@@ -335,7 +335,21 @@ function factionShortName(name) {
 }
 
 // ── Screen navigation ─────────────────────────────────────────────────────────
+function isDesktop() {
+  return window.matchMedia('(min-width: 900px)').matches;
+}
+
+function setActiveFleet(idx) {
+  activeFleet = idx;
+  document.body.classList.toggle('has-fleet', idx !== null);
+}
+
 function showScreen(id) {
+  // On desktop with a fleet open, picker is always visible — just re-render it
+  if (isDesktop() && id === 'picker' && activeFleet !== null) {
+    renderPickerScreen();
+    return;
+  }
   document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById('screen-' + id).classList.add('active');
 }
@@ -417,8 +431,9 @@ function renderHomeScreen() {
       '</div>';
 
     card.addEventListener('click', function() {
-      activeFleet = idx;
+      setActiveFleet(idx);
       renderFleetScreen();
+      if (isDesktop()) renderPickerScreen();
       showScreen('fleet');
     });
 
@@ -471,10 +486,11 @@ function initNewFleetScreen() {
 
     const fleet = createFleet(name, newFleetDraft.faction, newFleetDraft.fleetList || '', pts);
     fleets.push(fleet);
-    activeFleet = fleets.length - 1;
+    setActiveFleet(fleets.length - 1);
     saveFleets();
     renderHomeScreen();
     renderFleetScreen();
+    if (isDesktop()) renderPickerScreen();
     showScreen('fleet');
     resetNewFleetDraft();
   });
@@ -1373,7 +1389,7 @@ async function init() {
     if (!fleet) return;
     if (!window.confirm('Delete "' + fleet.name + '"? This cannot be undone.')) return;
     fleets.splice(activeFleet, 1);
-    activeFleet = null;
+    setActiveFleet(null);
     saveFleets();
     renderHomeScreen();
     showScreen('home');
