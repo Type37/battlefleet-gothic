@@ -416,9 +416,43 @@ function parseCatalogue(xml, filename, gstLookup) {
     }
   }
 
+  // --- 4. Deep walk: selectionEntry type="unit" at ANY depth ---
+  // Real escort classes (Sword, Cobra, Firestorm…) are nested inside
+  // "Escort Squadron" container entries and missed by the passes above.
+  function walkAllUnits(node) {
+    if (!node.childNodes) return;
+    for (let i = 0; i < node.childNodes.length; i++) {
+      const n = node.childNodes[i];
+      if (n.nodeName === 'selectionEntry') {
+        // Some real ships are mislabelled type="upgrade" in BSData (e.g. Chaos
+        // Iconoclast/Infidel), so trust the Unit profile, not the type attr —
+        // but require the entry's OWN profile (direct profiles element), not a
+        // descendant's, so squadron containers don't inherit a child's identity.
+        const ownProfiles = childrenNamed(n, 'profiles')[0];
+        const ownType = ownProfiles && descendantsNamed(ownProfiles, 'profile')
+          .some(function(p) { return attr(p, 'typeName') === 'Unit' || attr(p, 'typeName') === 'Commander'; });
+        if (ownType || attr(n, 'type') === 'unit') {
+          const raw = {
+            id:   attr(n, 'id'),
+            name: attr(n, 'name'),
+            type: attr(n, 'type'),
+            pts:  parseCost(n),
+            categories:   parseCategories(n),
+            upgrades:     parseUpgrades(n),
+            ...parseProfiles(n),
+          };
+          const cat = classifyEntry(raw);
+          if (cat) entries.push(toShip(raw));
+        }
+      }
+      walkAllUnits(n);
+    }
+  }
+
   getTopLevelEntries(root);
   getTopLevelLinks(root);
   getNestedGroupEntries(root);
+  walkAllUnits(root);
 
   const fleetLists = parseForceEntries(root);
 
@@ -436,6 +470,9 @@ function parseCatalogue(xml, filename, gstLookup) {
 // ── Build output database ─────────────────────────────────────────────────────
 
 // Categories that represent actual selectable ships (not entries we should skip)
+// 0-pt entries with these names are BSData containers/validation helpers, not ships
+const JUNK_NAMES = /^(armour |turns |re-rolls$|validation |the inquisition$|fleet commander$|escort squadron|imperial escort squadron|space marine escort squadron|vanguard escort squadron|escort squardon)/i;
+
 const SHIP_CATEGORIES = [
   'Battleship', 'Battlecruiser', 'Grand Cruiser', 'Cruiser',
   'Light Cruiser', 'Heavy Cruiser', 'Escort', 'Fleet Commander',
@@ -459,8 +496,17 @@ function buildDatabase(catalogues) {
       ships: [],
     };
 
+    const seenNames = new Set();
     for (const entry of cat.entries) {
       if (SHIP_CATEGORIES.indexOf(entry.category) === -1) continue;
+      // Skip 0-pt "Escort Squadron" container entries — real escorts always cost pts
+      if (entry.category === 'Escort' && !entry.pts) continue;
+      // Skip BSData helper/container junk hoisted by the deep walk
+      if (!entry.pts && JUNK_NAMES.test(entry.name)) continue;
+      // Dedup same-named ships within a faction (top-level entry wins)
+      const nameKey = entry.name.toLowerCase();
+      if (seenNames.has(nameKey)) continue;
+      seenNames.add(nameKey);
 
       const ship = {
         id:           entry.id,

@@ -2,222 +2,186 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Battlefleet Gothic — Fleet Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Battlefleet Gothic — Fleet Registry</title>
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
-<div id="app">
+<div id="app" data-state="home">
 
-  <!-- ══ Left panel — fleet list / fleet detail ══ -->
-  <div id="left-panel">
-
-    <!-- Home header -->
-    <header id="header-home" class="topbar">
-      <div class="brand">
-        <div class="brand-title">Battlefleet Gothic</div>
-        <div class="brand-sub">Fleet Builder</div>
-      </div>
-      <button class="icon-btn" id="btn-settings" aria-label="Settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-    </header>
-
-    <!-- Fleet header (hidden until fleet open) -->
-    <header id="header-fleet" class="topbar" hidden>
-      <button class="back-btn" id="btn-back-home">‹</button>
-      <div>
-        <div class="topbar-title" id="fleet-name-display">Fleet</div>
-        <div class="topbar-sub" id="fleet-faction-display"></div>
-      </div>
-      <button class="icon-btn" id="btn-fleet-menu" aria-label="Fleet options">···</button>
-      <div id="fleet-menu-dropdown" class="fleet-menu-dropdown hidden">
-        <button class="fleet-menu-item" id="fleet-menu-rename">Rename Fleet</button>
-        <button class="fleet-menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
-        <button class="fleet-menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
-      </div>
-    </header>
-
-    <!-- Pts tracker (fleet state only) -->
-    <div class="pts-tracker" id="pts-tracker" hidden>
-      <div class="pts-numbers">
-        <div><span class="pts-used" id="pts-used">0</span><span class="pts-limit" id="pts-limit"> / 0 pts</span></div>
-        <div class="pts-remaining" id="pts-remaining">0 remaining</div>
-      </div>
-      <div class="pts-track">
-        <div class="pts-seg pts-valid" id="pts-valid-bar" style="width:0%"></div>
-        <div class="pts-seg pts-invalid" id="pts-invalid-bar" style="width:0%"></div>
-      </div>
-      <div class="pts-legend" id="pts-legend" style="display:none">
-        <div class="pts-legend-item"><div class="pts-legend-dot valid"></div><span id="legend-valid-text">Valid</span></div>
-        <div class="pts-legend-item"><div class="pts-legend-dot invalid"></div><span id="legend-invalid-text">Needs fixing</span></div>
+  <!-- ══════════ Masthead ══════════ -->
+  <header id="masthead">
+    <div class="mast-brand" id="mast-brand">
+      <div class="mast-emblem" aria-hidden="true"></div>
+      <div class="mast-titles">
+        <div class="mast-title">Battlefleet Gothic</div>
+        <div class="mast-sub">Fleet Registry · Segmentum Obscurus</div>
       </div>
     </div>
 
-    <!-- Validation panel (fleet state only) -->
-    <div id="validation-panel"></div>
+    <div class="mast-fleet" id="mast-fleet" hidden>
+      <button class="mast-back" id="btn-back-home" aria-label="Back to fleets">‹</button>
+      <div class="mast-fleet-id">
+        <div class="mast-fleet-name" id="fleet-name-display">Fleet</div>
+        <div class="mast-fleet-sub" id="fleet-faction-display"></div>
+      </div>
+    </div>
 
-    <!-- Scrollable left body -->
-    <div id="left-body" class="panel-body">
+    <div class="mast-pts" id="mast-pts" hidden>
+      <div class="mast-pts-nums">
+        <span class="pts-used" id="pts-used">0</span><span class="pts-sep">/</span><span class="pts-limit" id="pts-limit">0</span>
+        <span class="pts-word">pts</span>
+        <span class="pts-remaining" id="pts-remaining"></span>
+      </div>
+      <div class="pts-track" aria-hidden="true">
+        <div class="pts-seg pts-valid" id="pts-valid-bar"></div>
+        <div class="pts-seg pts-invalid" id="pts-invalid-bar"></div>
+      </div>
+    </div>
 
-      <!-- Home content -->
+    <div class="mast-actions" id="mast-actions" hidden>
+      <button class="mast-btn" id="btn-export">Export</button>
+      <button class="mast-btn mast-btn-icon" id="btn-fleet-menu" aria-label="Fleet options">···</button>
+      <div id="fleet-menu-dropdown" class="menu-dropdown" hidden>
+        <button class="menu-item" id="fleet-menu-rename">Rename Fleet</button>
+        <button class="menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
+        <button class="menu-item danger" id="fleet-menu-delete">Strike from Registry</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════ Deck — two columns ══════════ -->
+  <div id="deck">
+
+    <!-- Left: manifest -->
+    <section id="manifest">
+
+      <!-- Home: fleet index -->
       <div id="home-content">
-        <div class="section-label">Your Fleets</div>
-        <div id="fleet-list"></div>
+        <div class="ledger-band"><span>Registered Fleets</span></div>
+        <div id="fleet-index"></div>
         <div class="empty-state" id="empty-fleets" hidden>
-          <div class="empty-icon">⚓</div>
-          <div class="empty-title">No fleets yet</div>
-          <div class="empty-sub">Create your first fleet below</div>
+          <div class="empty-rule"></div>
+          <div class="empty-title">The registry is empty</div>
+          <div class="empty-sub">No fleets stand ready in Segmentum Obscurus.</div>
+          <div class="empty-rule"></div>
         </div>
-        <button class="new-fleet-btn" id="btn-new-fleet">
-          <span class="new-fleet-plus">+</span> New Fleet
-        </button>
+        <button class="commission-btn" id="btn-new-fleet">✠ &nbsp;Commission New Fleet</button>
       </div>
 
-      <!-- Fleet ships body -->
-      <div id="fleet-body" hidden></div>
-
-    </div>
-
-    <!-- Mobile bottom nav -->
-    <nav class="bottom-nav">
-      <div class="nav-item active" data-nav="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Fleets</span>
+      <!-- Fleet: manifest -->
+      <div id="fleet-content" hidden>
+        <div id="validation-panel"></div>
+        <div id="fleet-body"></div>
       </div>
-      <div class="nav-item" data-nav="fleet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        <span>Build</span>
-      </div>
-      <div class="nav-item" data-nav="export">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Export</span>
-      </div>
-    </nav>
 
-    <!-- FAB (mobile only — desktop picker is always visible) -->
-    <button class="fab" id="btn-add-ship" aria-label="Add ship">+</button>
+    </section>
 
-  </div><!-- /#left-panel -->
+    <!-- Right: registry (wizard on home / picker on fleet) -->
+    <section id="registry">
+      <div class="registry-inner">
 
-  <!-- ══ Right panel — always visible on desktop ══ -->
-  <div id="right-panel">
+        <!-- Mobile-only close bar -->
+        <header class="registry-mobilebar">
+          <button class="mast-back" id="btn-close-registry">‹</button>
+          <div class="registry-mobilebar-title" id="registry-mobile-title">Registry</div>
+          <div style="width:44px"></div>
+        </header>
 
-    <!-- Welcome state -->
-    <div id="right-welcome">
-      <div class="empty-state">
-        <div class="empty-icon">⚔</div>
-        <div class="empty-title">Select a fleet</div>
-        <div class="empty-sub">Choose a fleet from the list, or create a new one to get started</div>
-      </div>
-    </div>
-
-    <!-- Ship picker -->
-    <div id="right-picker" hidden>
-      <header class="topbar" id="picker-topbar">
-        <button class="back-btn" id="btn-close-picker">‹ Fleet</button>
-        <div class="topbar-title">Add Ship</div>
-        <div style="width:64px"></div>
-      </header>
-      <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
-      <div class="search-wrap">
-        <div class="search-bar">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
-          <button class="search-clear" id="btn-search-clear" style="display:none" aria-label="Clear search">✕</button>
+        <!-- New Fleet wizard -->
+        <div id="registry-wizard">
+          <div class="ledger-band ledger-band-red"><span>Commission a Fleet</span></div>
+          <div class="wizard-steps" id="wizard-steps">
+            <div class="wstep active" data-step="1"><i>I</i><em>Faction</em></div>
+            <div class="wstep" data-step="2"><i>II</i><em>Fleet List</em></div>
+            <div class="wstep" data-step="3"><i>III</i><em>Charter</em></div>
+          </div>
+          <div class="wizard-body">
+            <div id="wiz-step-1" class="wiz-step">
+              <div id="faction-grid" class="faction-grid"></div>
+            </div>
+            <div id="wiz-step-2" class="wiz-step" hidden>
+              <div id="fleet-list-options"></div>
+            </div>
+            <div id="wiz-step-3" class="wiz-step" hidden>
+              <label class="field-label" for="new-fleet-name">Fleet Name</label>
+              <input class="field-input" id="new-fleet-name" type="text" placeholder="e.g. Gothic Patrol" maxlength="40" autocomplete="off">
+              <label class="field-label" style="margin-top:18px">Points Limit</label>
+              <div class="pts-chips" id="pts-chips">
+                <button class="pts-chip" data-pts="750">750</button>
+                <button class="pts-chip" data-pts="1000">1000</button>
+                <button class="pts-chip active" data-pts="1500">1500</button>
+                <button class="pts-chip" data-pts="2000">2000</button>
+              </div>
+              <input class="field-input" id="new-fleet-pts" type="number" value="1500" min="250" max="5000" step="50">
+              <p class="wiz-note">A Fleet Commander is required above 750 pts. Battleships require three cruisers apiece — violations are flagged, never blocked.</p>
+            </div>
+          </div>
+          <div class="wizard-foot">
+            <button class="ghost-btn" id="btn-wiz-back" hidden>‹ Back</button>
+            <button class="primary-btn" id="btn-wiz-next" disabled>Continue ›</button>
+          </div>
         </div>
-      </div>
-      <div class="panel-body" id="picker-body"></div>
-    </div>
 
-  </div><!-- /#right-panel -->
+        <!-- Ship picker -->
+        <div id="registry-picker" hidden>
+          <div class="ledger-band ledger-band-red"><span>Naval Registry</span><span class="ledger-band-aside" id="picker-faction-label"></span></div>
+          <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
+          <div class="search-wrap">
+            <input id="picker-search" class="search-input" placeholder="Search the registry…" autocomplete="off">
+            <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
+          </div>
+          <div id="picker-body"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ══════════ Mobile bottom nav ══════════ -->
+  <nav id="bottom-nav">
+    <button class="nav-item active" data-nav="home"><span class="nav-glyph">⚓</span><span>Fleets</span></button>
+    <button class="nav-item" data-nav="add" id="nav-add"><span class="nav-glyph">✠</span><span>Add</span></button>
+    <button class="nav-item" data-nav="export"><span class="nav-glyph">⎙</span><span>Export</span></button>
+  </nav>
 
 </div><!-- /#app -->
 
-<!-- ══ New Fleet overlay ══ -->
-<div id="overlay-new" class="overlay" hidden>
-  <header class="topbar">
-    <button class="back-btn" id="btn-close-new">✕</button>
-    <div class="topbar-title">New Fleet</div>
-    <div style="width:56px"></div>
-  </header>
-  <div class="overlay-body">
-    <div class="steps" id="new-steps">
-      <div class="step active" data-step="1">1</div>
-      <div class="step-line"></div>
-      <div class="step" data-step="2">2</div>
-      <div class="step-line"></div>
-      <div class="step" data-step="3">3</div>
-    </div>
-    <div id="new-step-1" class="new-step">
-      <div class="section-label">Select Faction</div>
-      <div id="faction-grid" class="faction-grid"></div>
-      <button class="primary-btn" id="btn-step1-next" disabled>Select Fleet List →</button>
-    </div>
-    <div id="new-step-2" class="new-step" style="display:none">
-      <div class="section-label" id="step2-label">Fleet List</div>
-      <div id="fleet-list-options"></div>
-      <button class="primary-btn" id="btn-step2-next" disabled>Name & Points →</button>
-    </div>
-    <div id="new-step-3" class="new-step" style="display:none">
-      <div class="section-label">Fleet Details</div>
-      <div class="field-group">
-        <label class="field-label">Fleet Name</label>
-        <input class="field-input" id="new-fleet-name" type="text" placeholder="e.g. Gothic Patrol" maxlength="40">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Points Limit</label>
-        <div class="pts-chips">
-          <button class="pts-chip" data-pts="750">750</button>
-          <button class="pts-chip" data-pts="1000">1000</button>
-          <button class="pts-chip active" data-pts="1500">1500</button>
-          <button class="pts-chip" data-pts="2000">2000</button>
-        </div>
-        <input class="field-input" id="new-fleet-pts" type="number" value="1500" min="250" max="5000" step="250">
-      </div>
-      <div class="info-box">
-        Fleet Commander is required above 750 pts. Battleships require 1 per 3 cruisers — but you can add them any time and fix warnings later.
-      </div>
-      <button class="primary-btn" id="btn-create-fleet">Create Fleet →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ Export overlay ══ -->
+<!-- ══════════ Export overlay ══════════ -->
 <div id="overlay-export" class="overlay" hidden>
-  <header class="topbar">
-    <button class="back-btn" id="btn-close-export">‹ Back</button>
-    <div class="topbar-title">Export</div>
-    <div style="width:56px"></div>
-  </header>
-  <div class="overlay-body">
-    <div id="export-select-msg" class="info-box" style="margin:16px 12px">
-      Open a fleet from the Fleets tab to export it.
-    </div>
-    <div id="export-content" style="display:none">
-      <div style="padding:12px">
-        <button class="primary-btn" id="btn-copy-link" style="margin-bottom:10px">Copy Share Link</button>
-        <button class="primary-btn secondary" id="btn-print">Print / Save PDF</button>
+  <div class="overlay-sheet">
+    <header class="overlay-head">
+      <div class="overlay-title">Export Fleet</div>
+      <button class="overlay-close" id="btn-close-export" aria-label="Close">✕</button>
+    </header>
+    <div class="overlay-body">
+      <div class="export-actions">
+        <button class="primary-btn" id="btn-print-cards">⎙ &nbsp;Print Ship Cards</button>
+        <button class="ghost-btn" id="btn-print-roster">Print Roster</button>
+        <button class="ghost-btn" id="btn-copy-text">Copy as Text</button>
       </div>
-      <div class="export-preview" id="export-preview"></div>
+      <pre class="export-preview" id="export-preview"></pre>
     </div>
   </div>
 </div>
 
-<!-- ══ Upgrade modal ══ -->
-<div id="modal-upgrades" class="modal" style="display:none" role="dialog" aria-modal="true">
-  <div class="modal-backdrop" id="modal-backdrop"></div>
-  <div class="modal-sheet" id="modal-sheet">
-    <div class="modal-header">
-      <div class="modal-title" id="modal-title">Upgrades</div>
-      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body" id="modal-body"></div>
+<!-- ══════════ Upgrades modal ══════════ -->
+<div id="modal-upgrades" class="overlay" hidden>
+  <div class="overlay-sheet overlay-sheet-narrow">
+    <header class="overlay-head">
+      <div class="overlay-title" id="modal-title">Refit &amp; Upgrades</div>
+      <button class="overlay-close" id="modal-close" aria-label="Close">✕</button>
+    </header>
+    <div class="overlay-body" id="modal-body"></div>
   </div>
 </div>
 
-<!-- ══ Toast ══ -->
+<!-- ══════════ Print root ══════════ -->
+<div id="print-root" aria-hidden="true"></div>
+
+<!-- ══════════ Toast ══════════ -->
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="js/app.js"></script>

@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-09T15:18:53.139Z",
+  "version": "2026-07-09T22:32:55.214Z",
   "bsdataRepo": "https://github.com/BSData/battlefleetgothic",
   "factions": {
     "Imperial Navy": {
@@ -444,11 +444,9 @@
       ],
       "ships": [
         "481c-4670-972c-f69d",
-        "b721-9c6e-7671-2544",
         "758a-f009-f45e-9871",
         "f990-8916-3a92-c5bc",
         "2467-8965-3a88-626e",
-        "43c0-ebd4-35da-00a6",
         "8266-b830-88d5-9b50",
         "c5b9-199f-504f-73b1",
         "eaaa-5886-aaae-81b1",
@@ -462,7 +460,33 @@
         "78ee-e5d4-a3f5-c30c",
         "0e56-8f72-ef16-a007",
         "8d8b-e0ae-1daa-f6ab",
-        "60b5-c127-2469-8e90"
+        "60b5-c127-2469-8e90",
+        "5da4-8ae6-fa73-87ce",
+        "bb453fc8-379f-49ca-8030-2c3456c729a0",
+        "367d-28f2-9d61-3247",
+        "0fff-de9d-bc9c-5f2f",
+        "375c-4f20-011c-693d",
+        "4cd1-d76f-ebd0-6d38",
+        "f5c7-aea0-51d4-702a",
+        "0b2b-0730-62de-1df8",
+        "c300-5643-bb60-eb85",
+        "e75e-8ce8-d9b2-057d",
+        "825e-f5e8-afbc-605f",
+        "64df-2bca-cbb9-db69",
+        "6dbc-826a-1741-f9c6",
+        "5cef-319b-8fdb-c1b4",
+        "c133-b14e-e57c-cb12",
+        "35af-bdab-91ca-40fb",
+        "1fda-2b76-b64f-e8d3",
+        "fd70-2a36-263f-1ab7",
+        "9e60-dcbc-5fe8-e8e0",
+        "2466-9136-a2e0-ee08",
+        "eb31-03ad-c769-4fe6",
+        "35ea-70f6-8ccc-e4e0",
+        "39f6-6f2c-bcea-b22b",
+        "c4a0-4f0a-bc98-0cfe",
+        "61f6-1b5d-3cd7-fb30",
+        "7d8b-7a00-a7f5-06a2"
       ]
     },
     "Chaos": {
@@ -876,7 +900,6 @@
         "ce8e-4d09-2cb5-51e6",
         "2d61-ee74-2848-43ec",
         "f83f-30ea-8b93-baef",
-        "70cb-9892-ba48-89ef",
         "243d-b87b-a98d-a368",
         "7167-8565-9b51-7940",
         "71c5-635e-3b8d-4466",
@@ -887,7 +910,10 @@
         "729e-db94-3a9e-3d9b",
         "c59a-b2fe-81e6-93e6",
         "7581-51de-2d96-5f48",
-        "8575-a9f4-8b1b-0265"
+        "8575-a9f4-8b1b-0265",
+        "a23e-2e23-de49-3663",
+        "8cdc-edab-b278-63d6",
+        "9c12-e4f6-867e-765b"
       ]
     },
     "Space Marines": {
@@ -1070,11 +1096,40 @@
       ],
       "ships": [
         "dbe9-4790-7e68-9eb6",
-        "a8ee-ec79-72ed-2dc1",
         "fd77-ef21-fa3c-1591",
         "cf6d-2889-24aa-122e",
         "375e-25ae-6461-041d",
-        "2799-f368-bbf8-32eb"
+        "2799-f368-bbf8-32eb",
+        "6998-3170-db2e-a587",
+        "b170-856a-5c7c-6663",
+        "0ba1-27c9-2e82-4b31",
+        "97cb-5bc2-00b1-10dd",
+        "c5c3-f6a3-5082-339c",
+        "1881-41d7-23be-64d3",
+        "9dc6-853a-2332-9990",
+        "baee-a0d4-b2b9-9480",
+        "6411-7c5c-d982-0329",
+        "24d5-fd4f-7133-816b",
+        "4274-f029-a854-046e",
+        "8df2-86a0-593b-93d6",
+        "5b33-a75e-39c4-b944",
+        "2d4d-44ab-05fc-aaf2",
+        "7c1d-73e9-1d54-64a4",
+        "b534-890f-19ea-1b07",
+        "c5f4-a9e9-73c1-1391",
+        "1403-b508-c96a-fc84",
+        "4c87-7440-89ad-a81e",
+        "bc37-c187-f798-d09a",
+        "2d5d-5fde-3724-625e",
+        "aa3d-5530-8fa4-b578",
+        "2b2e-d2b9-9bbb-0537",
+        "ce15-c5f5-0b43-9538",
+        "ae70-a2ff-df63-20c0",
+        "e9ae-f678-94d9-7681",
+        "71c8-8703-c627-0734",
+        "56d9-2a7b-ea50-5966",
+        "4b79-0212-f51e-9f11",
+        "3d00-e35a-3552-67c5"
       ]
     },
     "Adeptus Mechanicus": {
@@ -1139,14 +1194,24 @@
         "43962396-985c-422f-b087-fe7dd3631214",
         "60a020a1-0e17-45b6-b240-88dde04971d6",
         "cdb2cf14-061b-464c-8d24-7f24b74591eb",
-        "516b0b06-c831-4e9f-96b8-7930234c85a1",
         "0f680ea2-4292-45c4-bf61-d1818d767576",
         "c41a84ef-9eec-49f6-a284-494e77254996",
         "59cd178d-0101-4822-95e0-5c2a2f05f281",
         "a9328ba6-afa6-4410-896a-ca8684ac98cf",
         "033f21a1-b92f-49cf-88ea-5504d7452cdd",
-        "11a86503-a3ac-4f8c-a36b-34823f833631",
-        "bd7234ac-e633-4f0e-817e-e142b1bafb00"
+        "bd7234ac-e633-4f0e-817e-e142b1bafb00",
+        "238f0b9c-62df-4a00-b213-74909f85900a",
+        "ecc839fc-3760-457b-8055-e383e2c8dc65",
+        "52b5327b-9c2a-458d-a710-e244a7a1d527",
+        "75940471-1154-40fb-9fc6-aabcfa286e5d",
+        "f40d7bbd-860f-4c05-ae9e-cac2ac5765f5",
+        "7761-0b46-fce1-8821",
+        "633d-12fb-8605-64ee",
+        "e51b-d0d7-d6e3-479c",
+        "92ea-ca19-2e0a-b644",
+        "4ff3-67a9-9630-1c92",
+        "ee40-7886-674e-32ec",
+        "1531-1671-1c87-a81a"
       ]
     },
     "Inquisition": {
@@ -1190,12 +1255,18 @@
         }
       ],
       "ships": [
-        "516b0b06-c831-4e9f-96b8-7930234c85a1",
         "e8cf-e35d-7c01-a3e3",
         "3528-d35b-78b5-69ee",
         "49ef-6bd9-2c1b-8e54",
         "65ed-c4a4-ad28-0300",
-        "d0a9-0752-5347-271a"
+        "d0a9-0752-5347-271a",
+        "042b-3669-8215-bf20",
+        "7095-447c-65a6-0032",
+        "29f2-2dc1-eff2-3101",
+        "7fba-98fc-ee7f-8daf",
+        "8632-2465-51e5-b7af",
+        "1f7c-8c41-a7e8-40ad",
+        "fea6-6864-64f7-bd50"
       ]
     },
     "Eldar Corsairs": {
@@ -1374,7 +1445,6 @@
         "f8ae-884a-a4f5-e727",
         "e120-b2be-8d6b-4940",
         "b4f4-94d5-7c5a-b863",
-        "5952-f97f-78e3-8cab",
         "74cb-a24c-af6a-10c0",
         "63f4-19a4-4ec9-fc07",
         "8565-3257-a04c-b7a4",
@@ -1384,8 +1454,11 @@
         "694d-e150-688f-79a0",
         "7e5e-ba10-8e69-6acc",
         "b4fa-8dc5-340f-f3ea",
-        "8392-0b57-c8eb-ab28",
-        "ed59-d6ad-7b1e-e2c3"
+        "944b-2a4a-496c-6b39",
+        "a15a-29e4-3776-c9e9",
+        "0795-5e16-0941-2b59",
+        "66ad-f830-00ac-ed2a",
+        "a09e-038b-6c96-1477"
       ]
     },
     "Dark Eldar Pirate Fleet List": {
@@ -1446,7 +1519,7 @@
       "ships": [
         "8c9bde99-eedf-4503-84af-ff75ae33b222",
         "0318-9e79-f69d-0912",
-        "0a80-fcd2-0e63-7be3"
+        "3492-1236-f700-f36a"
       ]
     },
     "Orks": {
@@ -1664,9 +1737,12 @@
         "7db8db4f-3649-4932-9114-598f708bda42",
         "1741-0ffc-fd8c-79e6",
         "1421-5d8d-a1d7-4b40",
-        "e774-548d-9436-6e14",
         "7097-1466-41fb-f27b",
-        "6a3c-c8cc-6c39-5b7f"
+        "a91e-87e4-7a52-6b53",
+        "3e08-c5ed-c2e2-8bce",
+        "b5b2-a3cd-3374-9c8d",
+        "97ba-cd37-3b17-7942",
+        "4a6d-c067-5041-1ff0"
       ]
     },
     "Necrons": {
@@ -1735,12 +1811,12 @@
       ],
       "ships": [
         "8b768a17-acfc-4fca-87a5-8ce016ba3226",
-        "6ee91504-f516-4fef-a74e-a23482e50201",
         "e5eb3357-d2fd-450e-8ea2-1243d9d12971",
         "c1938fe3-5a9f-4c9e-90a9-8b8f701d2008",
         "a37e-16fe-be1e-c086",
         "3bf4-96e7-e296-fb90",
-        "e38b-d1fd-d726-e05c"
+        "f41e-42fc-3733-4efb",
+        "7110-fe73-ee4a-5fc8"
       ]
     },
     "Tyranid Hive Fleet List": {
@@ -1846,10 +1922,11 @@
       ],
       "ships": [
         "50148e04-c8d0-4ed4-af73-d5a7c72e317a",
-        "e4fd4ab2-2cfd-487f-8434-d3f2c7776b46",
         "322e0064-1643-4b0d-ae4c-1313d5448223",
         "62cebb4c-9c2b-408f-98e1-81b27552b625",
-        "a14b-d9bd-4c47-887a"
+        "395a-465a-22c1-e116",
+        "8faf-dc28-7e23-996c",
+        "f39d-43f8-86dc-42c0"
       ]
     },
     "Tau Fleet": {
@@ -1980,15 +2057,18 @@
       "ships": [
         "c9ec491f-fd16-41b2-8cd4-e3206780e268",
         "95fe0032-9fed-4eee-a001-0c955fd77663",
-        "1f861bf0-b898-460e-9ac7-3c57d6120e42",
         "444b2283-1cc4-49fd-b14d-b42267ebe752",
         "f439df3a-8cc9-44f5-a53f-90c00c8991e0",
         "493c09d5-8273-4b68-b957-f597b2ae9a45",
         "2f19107a-1458-455e-ad94-5e03231fa0b2",
         "47f80262-a084-41b6-8f6e-f818e1361733",
         "ea813263-ef6f-4327-a611-53f736ce0a81",
-        "e17af654-3a47-4c5e-be97-27a3b8667223",
-        "24bf-5876-2fc1-d213"
+        "7287-5f52-246b-c649",
+        "b117-d104-bf32-d956",
+        "ac75-25ce-b8d8-358e",
+        "5b0e-74f3-9fec-c969",
+        "04f6-da8e-bc68-a534",
+        "7ac3-2d49-f7e0-a848"
       ]
     },
     "Pirates and Wolf Packs": {
@@ -2046,7 +2126,6 @@
         "ac50-9f36-b84a-c132",
         "acfe-554e-15f8-aa32",
         "da39-bb64-77b5-0ca1",
-        "5c97-73cc-62c3-5e35",
         "626c-a955-8fc1-44a1",
         "808d-eb40-20f4-9942",
         "12ba-928c-7789-740b",
@@ -2056,7 +2135,17 @@
         "211b-3ef4-855d-72cd",
         "6ebd-43e5-9d67-cff9",
         "fb7e-fec7-aaad-77fb",
-        "107a-20d9-be9c-5cdf"
+        "107a-20d9-be9c-5cdf",
+        "6821-4f96-d4dd-4123",
+        "36d2-3770-1de5-bce4",
+        "c5d3-3a1b-4c3c-a2d7",
+        "aa24-ef7b-08c8-a8de",
+        "efff-5ad0-72f5-a479",
+        "3a02-543e-8d50-a4e7",
+        "412e-7045-599e-17a4",
+        "f6d4-26d7-ee2d-8569",
+        "e451-2844-5cf0-0025",
+        "cefd-92cb-4bc4-0d6c"
       ]
     },
     "Armada Imperialis": {
@@ -2065,21 +2154,16 @@
         "fdeabb84-1e4b-439c-8161-ead4e2008380",
         "e85f290e-c2d4-4737-ae0d-7b3099a761fe",
         "d65cfd13-349b-42f9-a853-96ff13660399",
-        "e670be5a-3aad-4eba-9e5e-2b79130c13b6",
         "b512fb3c-2bb4-4156-bf9e-697ce4eb7ade",
-        "f6c7fdfb-a1bc-4b82-a136-6d292cac8c91",
         "8ff259b5-11aa-49e4-86ca-c1f9101704be",
         "930ac713-cf02-4a88-bdaf-e526c9933cb2",
         "72382db0-d66e-4c4a-8c11-7ccea06a0e4c",
         "4675d6dd-be10-44e4-87a2-60ffdf77992a",
-        "0c7538f2-dc9a-4587-9c74-05dd0afd1c4c",
         "818e7121-b439-49e7-81ab-1c752fc79aff",
-        "7f06fe52-7f7b-481a-9c1d-50e9d914f495",
         "430197bb-be6a-4f5a-be75-229ab80507d4",
         "83c2-8ca0-d80b-0911",
         "88af-b057-0099-0a0d",
         "d941-fa4c-ab47-bfd2",
-        "3735-f8f9-adb1-e33e",
         "3fca-d065-ff67-cd0d",
         "6cf7-bc84-05fa-1b2d",
         "d992-ca25-3f54-5e0a",
@@ -2119,7 +2203,33 @@
         "4032-0cbf-fb8e-b7a6",
         "6d1b-6ca1-1e7e-8e8d",
         "b8d5-d1fb-bdf1-48c8",
-        "ea9f-2dfc-971b-7462"
+        "ea9f-2dfc-971b-7462",
+        "2f63e8ff-5632-43eb-9434-d6749e7115a0",
+        "1a1ebb83-bf55-4fc3-8aca-e3b3c733369d",
+        "8ff6f2a1-fc73-4742-a7d0-02b5d984c443",
+        "febac49e-ecca-450a-b5ee-415858c59b0b",
+        "453b3f94-43e7-4691-a7fb-3a27d605a988",
+        "017cda8e-7be0-4bf1-afde-43dd43c9c933",
+        "a23d7d9c-10f1-4f2b-a195-066df1460b80",
+        "5623b4aa-2140-41ff-bdef-c232feb0d238",
+        "dff12655-3099-4556-853b-57c96fb003e7",
+        "5f835d0b-5c75-47ab-b96a-e2a771f17039",
+        "7c87d775-c33e-4a72-9f53-9f4639c82971",
+        "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
+        "3a978ff1-809f-4409-b08d-a39333b70e0d",
+        "93575f7a-0c82-481b-aca4-dc540fa69876",
+        "a46373ab-15b6-42a0-8156-67edfe0c1866",
+        "fb307851-3d74-495c-9baa-a44ac4ba13b9",
+        "49fa463c-1029-48dd-9b9e-f97f167c69d2",
+        "0376-f1a7-5fee-7f9a",
+        "5610-4d14-8ed5-e67e",
+        "9960-f870-8718-4d1a",
+        "f119-d902-6256-c50c",
+        "c6c3-3872-a63b-80ea",
+        "06b7-37b9-470d-8df9",
+        "643c-5aee-f02a-c240",
+        "e8dd-0916-7cbc-95b2",
+        "2343-69f3-f40a-66b2"
       ]
     }
   },
@@ -2166,68 +2276,6 @@
         }
       ],
       "upgrades": []
-    },
-    "b721-9c6e-7671-2544": {
-      "id": "b721-9c6e-7671-2544",
-      "name": "Fleet Commander",
-      "faction": "Imperial Navy",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {
-        "Leadership": "8",
-        "Re-rolls": "1",
-        "Pg.": ""
-      },
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Rank",
-          "options": [
-            {
-              "id": "5da4-8ae6-fa73-87ce",
-              "name": "Fleet Admiral Ldr 8",
-              "pts": 50,
-              "description": ""
-            },
-            {
-              "id": "bb453fc8-379f-49ca-8030-2c3456c729a0",
-              "name": "Solar Admiral Ldr 10",
-              "pts": 150,
-              "description": ""
-            },
-            {
-              "id": "367d-28f2-9d61-3247",
-              "name": "Admiral Ldr 9",
-              "pts": 100,
-              "description": ""
-            }
-          ]
-        },
-        {
-          "group": "Extra Re-Rolls",
-          "options": [
-            {
-              "id": "3b86-8b3f-9839-a009",
-              "name": "3 Extra Re-Rolls",
-              "pts": 150,
-              "description": ""
-            },
-            {
-              "id": "035e-33cd-0111-9ac2",
-              "name": "1 Extra Re-Roll",
-              "pts": 25,
-              "description": ""
-            },
-            {
-              "id": "3306-d205-6a51-6546",
-              "name": "2 Extra Re-Rolls",
-              "pts": 75,
-              "description": ""
-            }
-          ]
-        }
-      ]
     },
     "758a-f009-f45e-9871": {
       "id": "758a-f009-f45e-9871",
@@ -2326,116 +2374,6 @@
           ]
         }
       ]
-    },
-    "43c0-ebd4-35da-00a6": {
-      "id": "43c0-ebd4-35da-00a6",
-      "name": "Escort Squadron",
-      "faction": "Imperial Navy",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {
-        "Type": "Escort/1",
-        "Hits": "1",
-        "Speed": "30 cm",
-        "Turns": "90°",
-        "Shields": "1",
-        "Armour": "4+",
-        "Turrets": "1"
-      },
-      "armament": [
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Prow Torpedos",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Falchion Prow Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Falchion Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Prow Lance",
-          "Range/Speed": "30",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Gladius Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Hunter Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Hunter Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Lance",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Prow Weapons Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Dorsal Weapons Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Front"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": []
     },
     "8266-b830-88d5-9b50": {
       "id": "8266-b830-88d5-9b50",
@@ -3406,6 +3344,902 @@
       "specialRules": [],
       "upgrades": []
     },
+    "5da4-8ae6-fa73-87ce": {
+      "id": "5da4-8ae6-fa73-87ce",
+      "name": "Fleet Admiral Ldr 8",
+      "faction": "Imperial Navy",
+      "pts": 50,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "bb453fc8-379f-49ca-8030-2c3456c729a0": {
+      "id": "bb453fc8-379f-49ca-8030-2c3456c729a0",
+      "name": "Solar Admiral Ldr 10",
+      "faction": "Imperial Navy",
+      "pts": 150,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "367d-28f2-9d61-3247": {
+      "id": "367d-28f2-9d61-3247",
+      "name": "Admiral Ldr 9",
+      "faction": "Imperial Navy",
+      "pts": 100,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "0fff-de9d-bc9c-5f2f": {
+      "id": "0fff-de9d-bc9c-5f2f",
+      "name": "Master of the Fleet Ldr 10",
+      "faction": "Imperial Navy",
+      "pts": 50,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "375c-4f20-011c-693d": {
+      "id": "375c-4f20-011c-693d",
+      "name": "Lord Admiral Rath Ldr 10",
+      "faction": "Imperial Navy",
+      "pts": 200,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "4cd1-d76f-ebd0-6d38": {
+      "id": "4cd1-d76f-ebd0-6d38",
+      "name": "Cobra Rapid Strike Vessel",
+      "faction": "Imperial Navy",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "30 cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/right/front"
+        },
+        {
+          "name": "Prow Torpedos",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "f5c7-aea0-51d4-702a": {
+      "id": "f5c7-aea0-51d4-702a",
+      "name": "Falchion Rapid Strike Vessel",
+      "faction": "Imperial Navy",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "0b2b-0730-62de-1df8": {
+      "id": "0b2b-0730-62de-1df8",
+      "name": "Firestorm Rapid Strike Vessel",
+      "faction": "Imperial Navy",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        },
+        {
+          "name": "Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c300-5643-bb60-eb85": {
+      "id": "c300-5643-bb60-eb85",
+      "name": "Gladius Frigate",
+      "faction": "Imperial Navy",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Gladius Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "e75e-8ce8-d9b2-057d": {
+      "id": "e75e-8ce8-d9b2-057d",
+      "name": "Hunter Destroyer",
+      "faction": "Imperial Navy",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Hunter Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Hunter Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "825e-f5e8-afbc-605f": {
+      "id": "825e-f5e8-afbc-605f",
+      "name": "Nova Frigate",
+      "faction": "Imperial Navy",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Nova Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Nova Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "64df-2bca-cbb9-db69": {
+      "id": "64df-2bca-cbb9-db69",
+      "name": "Sword Rapid Strike Vessel",
+      "faction": "Imperial Navy",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25 cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "6dbc-826a-1741-f9c6": {
+      "id": "6dbc-826a-1741-f9c6",
+      "name": "Havoc Class Frigate",
+      "faction": "Imperial Navy",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25 cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "5cef-319b-8fdb-c1b4": {
+      "id": "5cef-319b-8fdb-c1b4",
+      "name": "Viper Class Destroyer",
+      "faction": "Imperial Navy",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "30 cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c133-b14e-e57c-cb12": {
+      "id": "c133-b14e-e57c-cb12",
+      "name": "Apocalypse Class Battleship",
+      "faction": "Imperial Navy",
+      "pts": 365,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "15cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+Front/5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Special Lock On",
+          "effects": "If the Apocalypse is given Lock On special orders, it may increase the range of its lances to 60cm for that Shooting phase only. However, if this option is used the Apocalypse will suffer a Thrusters critical hit as soon if the lances are fired further than 45 cm. This does not cause hull damage, but the damage can be cummulative and must be repaired normally. Pg 19 2010 FAQ"
+        }
+      ],
+      "upgrades": []
+    },
+    "35af-bdab-91ca-40fb": {
+      "id": "35af-bdab-91ca-40fb",
+      "name": "Armageddon Class Battlecruiser",
+      "faction": "Imperial Navy",
+      "pts": 235,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+Front/5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapon Options",
+          "options": [
+            {
+              "id": "b601-1fe2-631a-0e67",
+              "name": "Prow Nova Cannon",
+              "pts": 20,
+              "description": ""
+            },
+            {
+              "id": "a696-026d-ca3f-77df",
+              "name": "Prow Torpedos",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "1fda-2b76-b64f-e8d3": {
+      "id": "1fda-2b76-b64f-e8d3",
+      "name": "Avenger Class Grand Cruiser",
+      "faction": "Imperial Navy",
+      "pts": 200,
+      "category": "Grand Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "16",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "16",
+          "Fire Arc": "Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armored Prow",
+          "effects": "All Chaos Vengeance grand cruiser variants listed in Armada on pp.38-39 completely ignore prow critical damage, regardless of the cause. If any critical damage rolled against the table results in a Prow Armament Damaged critical hit, it is assumed the critical damage did not take place, and it does not move up to the next higher critical damage. If the critical damage is caused by the ship taking a hit, the hit itself still counts normally."
+        }
+      ],
+      "upgrades": []
+    },
+    "fd70-2a36-263f-1ab7": {
+      "id": "fd70-2a36-263f-1ab7",
+      "name": "Cobra Destroyer",
+      "faction": "Imperial Navy",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Cobra Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Cobra Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "24th Destroyer Squadron 'Widowmaker'",
+          "effects": "Doubles the Leadership bonus from enemy contacts (enemies on special orders) from +1 to +2."
+        }
+      ],
+      "upgrades": []
+    },
+    "9e60-dcbc-5fe8-e8e0": {
+      "id": "9e60-dcbc-5fe8-e8e0",
+      "name": "Dominion Class Battlecruiser",
+      "faction": "Imperial Navy",
+      "pts": 260,
+      "category": "Battlecruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+Front/5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Furies: 30cm\nStarhawks: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Furies: 30cm\nStarhawks: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Dominion Port Lance Batteries",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Dominion Starbord Lance Batteries",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dominion Prow Torpedoes",
+          "Range/Speed": "Speed: 30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "2466-9136-a2e0-ee08": {
+      "id": "2466-9136-a2e0-ee08",
+      "name": "Falchion Frigate",
+      "faction": "Imperial Navy",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "eb31-03ad-c769-4fe6": {
+      "id": "eb31-03ad-c769-4fe6",
+      "name": "Firestorm Frigate",
+      "faction": "Imperial Navy",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Firestorm Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Firestorm Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "35ea-70f6-8ccc-e4e0": {
+      "id": "35ea-70f6-8ccc-e4e0",
+      "name": "Invincible Class Fast Battleship",
+      "faction": "Imperial Navy",
+      "pts": 290,
+      "category": "Heavy Cruiser",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "8",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+Front/5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Invincible Class Fast Battleship",
+          "effects": "Every time a fast battleship takes a hit roll two dice, not one, to check for critical hits. It is possible to have to roll twice on the Critical Hits table if a double 6 is rolled.\nThe ship can use \"Come to a New Heading\" orders as they have amuch higher power-to-weight ratio than other battleships."
+        }
+      ],
+      "upgrades": []
+    },
+    "39f6-6f2c-bcea-b22b": {
+      "id": "39f6-6f2c-bcea-b22b",
+      "name": "Mars Class Battlecruiser",
+      "faction": "Imperial Navy",
+      "pts": 270,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+Front/5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Furies: 30cm\nStarhawks: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Furies: 30cm\nStarhawks: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Weapons battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Targeting Matrix",
+          "effects": "Left colum shift on the gunnery table"
+        }
+      ],
+      "upgrades": [
+        {
+          "group": "Varient",
+          "options": [
+            {
+              "id": "a9a8-a19a-b99a-5caa",
+              "name": "Imperious (Targeting Matrix)",
+              "pts": 15,
+              "description": "Left colum shift on the gunnery table"
+            },
+            {
+              "id": "9b1a-4ffb-2eba-cb2a",
+              "name": "Standard",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "c4a0-4f0a-bc98-0cfe": {
+      "id": "c4a0-4f0a-bc98-0cfe",
+      "name": "Retribution Class Battleship",
+      "faction": "Imperial Navy",
+      "pts": 345,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+Front/ 5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Retribution Port Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Retribution Starboard Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Retribution Dorsal Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "9",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "61f6-1b5d-3cd7-fb30": {
+      "id": "61f6-1b5d-3cd7-fb30",
+      "name": "Sword Frigate",
+      "faction": "Imperial Navy",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Sword Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "7d8b-7a00-a7f5-06a2": {
+      "id": "7d8b-7a00-a7f5-06a2",
+      "name": "Victory Class Battleship",
+      "faction": "Imperial Navy",
+      "pts": 345,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+Front/5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Weapons battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "9",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Famous Ships",
+          "options": [
+            {
+              "id": "aee5-2f1c-3cab-bbbb",
+              "name": "Hammer of Scaro",
+              "pts": -10,
+              "description": ""
+            },
+            {
+              "id": "8c2f-c5fe-8327-0bb8",
+              "name": "Standard",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
     "19fa9a3b-ce7a-4a39-8137-b9755c7f57eb": {
       "id": "19fa9a3b-ce7a-4a39-8137-b9755c7f57eb",
       "name": "Abaddon the Despolier",
@@ -4115,17 +4949,6 @@
       "specialRules": [],
       "upgrades": []
     },
-    "70cb-9892-ba48-89ef": {
-      "id": "70cb-9892-ba48-89ef",
-      "name": "Escort Squadron",
-      "faction": "Chaos",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
     "243d-b87b-a98d-a368": {
       "id": "243d-b87b-a98d-a368",
       "name": "Chaos 13th Warmaster",
@@ -4733,6 +5556,96 @@
       "specialRules": [],
       "upgrades": []
     },
+    "a23e-2e23-de49-3663": {
+      "id": "a23e-2e23-de49-3663",
+      "name": "Iconoclast Class Destroyer",
+      "faction": "Chaos",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Iconoclast Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "8cdc-edab-b278-63d6": {
+      "id": "8cdc-edab-b278-63d6",
+      "name": "Idolator Class Raider",
+      "faction": "Chaos",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Idolator Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Idolator Lance Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "9c12-e4f6-867e-765b": {
+      "id": "9c12-e4f6-867e-765b",
+      "name": "Infidel Class Raider",
+      "faction": "Chaos",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Infidel Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Infidel Torpedos",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
     "dbe9-4790-7e68-9eb6": {
       "id": "dbe9-4790-7e68-9eb6",
       "name": "Battlebarge",
@@ -4782,122 +5695,6 @@
       ],
       "specialRules": [],
       "upgrades": []
-    },
-    "a8ee-ec79-72ed-2dc1": {
-      "id": "a8ee-ec79-72ed-2dc1",
-      "name": "Escort Squadron",
-      "faction": "Space Marines",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {
-        "Type": "Escort/1",
-        "Hits": "1",
-        "Speed": "25",
-        "Turns": "90",
-        "Shields": "1",
-        "Armour": "5+",
-        "Turrets": "2"
-      },
-      "armament": [
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Prow Torpedos",
-          "Range/Speed": "30",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Falchion Prow Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Falchion Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Prow Lance",
-          "Range/Speed": "30",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Gladius Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Hunter Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Hunter Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Lance",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Escorts",
-          "options": [
-            {
-              "id": "97cb-5bc2-00b1-10dd",
-              "name": "Gladius Frigate",
-              "pts": 45,
-              "description": ""
-            },
-            {
-              "id": "c5c3-f6a3-5082-339c",
-              "name": "Hunter Destroyer",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "1881-41d7-23be-64d3",
-              "name": "Nova Frigate",
-              "pts": 50,
-              "description": ""
-            }
-          ]
-        }
-      ]
     },
     "fd77-ef21-fa3c-1591": {
       "id": "fd77-ef21-fa3c-1591",
@@ -5941,6 +6738,1620 @@
       "specialRules": [],
       "upgrades": []
     },
+    "6998-3170-db2e-a587": {
+      "id": "6998-3170-db2e-a587",
+      "name": "Cobra Rapid Strike Vessel",
+      "faction": "Space Marines",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/right/front"
+        },
+        {
+          "name": "Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "b170-856a-5c7c-6663": {
+      "id": "b170-856a-5c7c-6663",
+      "name": "Falchion Rapid Strike Vessel",
+      "faction": "Space Marines",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "0ba1-27c9-2e82-4b31": {
+      "id": "0ba1-27c9-2e82-4b31",
+      "name": "Firestorm Rapid Strike Vessel",
+      "faction": "Space Marines",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        },
+        {
+          "name": "Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "97cb-5bc2-00b1-10dd": {
+      "id": "97cb-5bc2-00b1-10dd",
+      "name": "Gladius Frigate",
+      "faction": "Space Marines",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Gladius Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c5c3-f6a3-5082-339c": {
+      "id": "c5c3-f6a3-5082-339c",
+      "name": "Hunter Destroyer",
+      "faction": "Space Marines",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Hunter Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Hunter Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "1881-41d7-23be-64d3": {
+      "id": "1881-41d7-23be-64d3",
+      "name": "Nova Frigate",
+      "faction": "Space Marines",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Nova Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Nova Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "9dc6-853a-2332-9990": {
+      "id": "9dc6-853a-2332-9990",
+      "name": "Sword Rapid Strike Vessel",
+      "faction": "Space Marines",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "baee-a0d4-b2b9-9480": {
+      "id": "baee-a0d4-b2b9-9480",
+      "name": "Retribution Class Battleship",
+      "faction": "Space Marines",
+      "pts": 345,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+ front / 5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "9",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "a014-ac7e-329d-171c",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "7029-ded1-b4a9-1b1a",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "6411-7c5c-d982-0329": {
+      "id": "6411-7c5c-d982-0329",
+      "name": "Dominion Class Battlecruiser",
+      "faction": "Space Marines",
+      "pts": 260,
+      "category": "Heavy Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+ front / 5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "24d5-fd4f-7133-816b": {
+      "id": "24d5-fd4f-7133-816b",
+      "name": "Overlord Class Battlecruiser",
+      "faction": "Space Marines",
+      "pts": 220,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+ front / 5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "4274-f029-a854-046e": {
+      "id": "4274-f029-a854-046e",
+      "name": "Victory Class Battleship",
+      "faction": "Space Marines",
+      "pts": 345,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+ front / 5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Nova Cannon",
+          "Range/Speed": "30-150 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "198a-e170-f468-1c76",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "960d-b3e0-38c5-9b16",
+              "name": "Prow Nova Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "8df2-86a0-593b-93d6": {
+      "id": "8df2-86a0-593b-93d6",
+      "name": "Apocalypse Class Battleship",
+      "faction": "Space Marines",
+      "pts": 365,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "15 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+ front/ 5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Nova Cannon",
+          "Range/Speed": "30-150 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "9f3f-5c8c-924f-5d1a",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "111a-eec9-ac5b-dd60",
+              "name": "Prow Nova Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "5b33-a75e-39c4-b944": {
+      "id": "5b33-a75e-39c4-b944",
+      "name": "Oberon Class Battleship",
+      "faction": "Space Marines",
+      "pts": 335,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "15 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "5+",
+        "Turrets": "5"
+      },
+      "armament": [
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Left\\front\\right"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "a928-2ee7-97d5-c146",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "f610-805e-b0db-1d55",
+              "name": "Prow Weapons Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "2d4d-44ab-05fc-aaf2": {
+      "id": "2d4d-44ab-05fc-aaf2",
+      "name": "Avenger Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 200,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "16",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "16",
+          "Fire Arc": "Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "7c1d-73e9-1d54-64a4": {
+      "id": "7c1d-73e9-1d54-64a4",
+      "name": "Exorcist Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 230,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "b534-890f-19ea-1b07": {
+      "id": "b534-890f-19ea-1b07",
+      "name": "Armageddon Class Battlecruiser",
+      "faction": "Space Marines",
+      "pts": 235,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+ front /5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c5f4-a9e9-73c1-1391": {
+      "id": "c5f4-a9e9-73c1-1391",
+      "name": "Venerable Battlebarge Seditio Opprimere",
+      "faction": "Space Marines",
+      "pts": 415,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Bombardment Cannon",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Bombardment Cannon",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Bombardment Cannon",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Launch Bay",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Prow Torpedos",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "1403-b508-c96a-fc84": {
+      "id": "1403-b508-c96a-fc84",
+      "name": "Acheron Class Heavy Cruiser",
+      "faction": "Space Marines",
+      "pts": 190,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "25 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Lance",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "588f-17fa-649f-ca96",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "b8d3-1c40-364c-abd1",
+              "name": "Prow Weapons Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "4c87-7440-89ad-a81e": {
+      "id": "4c87-7440-89ad-a81e",
+      "name": "Desolator Class Battleship",
+      "faction": "Space Marines",
+      "pts": 300,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Torpedos",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "9",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "46d7-5bc1-bd14-d2a5",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "2d44-c7ce-a0a9-bcf5",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "bc37-c187-f798-d09a": {
+      "id": "bc37-c187-f798-d09a",
+      "name": "Despoiler Class Battleship",
+      "faction": "Space Marines",
+      "pts": 400,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Port Launch Bay",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "2 squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bay",
+          "Range/Speed": "Thunderhawks:  20 cm",
+          "Firepower/Str": "2 squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "c553-78ad-306c-28cd",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "78da-9092-1ab4-4b88",
+              "name": "Prow Lance Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "2d5d-5fde-3724-625e": {
+      "id": "2d5d-5fde-3724-625e",
+      "name": "Executor Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 210,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "aa3d-5530-8fa4-b578": {
+      "id": "aa3d-5530-8fa4-b578",
+      "name": "Hades Class Heavy Cruiser",
+      "faction": "Space Marines",
+      "pts": 200,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "25 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Hades Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Hades Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Hades Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "7ca1-4c11-d795-d318",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "c0f9-54e4-b4a7-0345",
+              "name": "Prow Lance Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "2b2e-d2b9-9bbb-0537": {
+      "id": "2b2e-d2b9-9bbb-0537",
+      "name": "Repulsive Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 230,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "14",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "14",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "ce15-c5f5-0b43-9538": {
+      "id": "ce15-c5f5-0b43-9538",
+      "name": "Retaliator Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 260,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadrons",
+          "Fire Arc": "-"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "ae70-a2ff-df63-20c0": {
+      "id": "ae70-a2ff-df63-20c0",
+      "name": "Styx Class Heavy Cruiser",
+      "faction": "Space Marines",
+      "pts": 260,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "25 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "9760-e488-c1b5-b804",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "f03c-294f-8a15-6570",
+              "name": "Prow Weapons Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "e9ae-f678-94d9-7681": {
+      "id": "e9ae-f678-94d9-7681",
+      "name": "Vengeance Class Grand Cruiser",
+      "faction": "Space Marines",
+      "pts": 230,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Grand Cruiser",
+        "Hits": "10",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "71c8-8703-c627-0734": {
+      "id": "71c8-8703-c627-0734",
+      "name": "Emperor Class Battleship",
+      "faction": "Space Marines",
+      "pts": 365,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "15 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "5+",
+        "Turrets": "5"
+      },
+      "armament": [
+        {
+          "name": "Dorsal Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Furies: 30cm Starhawks 20cm",
+          "Firepower/Str": "4 Squadrons",
+          "Fire Arc": ""
+        },
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Furies: 30cm Starhawks 20cm",
+          "Firepower/Str": "4 Squadrons",
+          "Fire Arc": ""
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Left/front/right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "bb7f-1284-7910-b30f",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "3372-a0e7-10f4-6f52",
+              "name": "Prow Weapons Battery",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "56d9-2a7b-ea50-5966": {
+      "id": "56d9-2a7b-ea50-5966",
+      "name": "Vanquisher Class Battleship",
+      "faction": "Space Marines",
+      "pts": 300,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+ front / 5+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Port Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Lance Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "4b79-0212-f51e-9f11": {
+      "id": "4b79-0212-f51e-9f11",
+      "name": "Mars Class Battlecruiser",
+      "faction": "Space Marines",
+      "pts": 270,
+      "category": "Heavy Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "20 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+ front / 5+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Starboard Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Launch Bays",
+          "Range/Speed": "Thunderhawks: 20 cm",
+          "Firepower/Str": "1 Squadron",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Nova Cannon",
+          "Range/Speed": "30-150 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "b6c7-4867-8864-6ca6",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "d4e9-e0ef-e97e-81f0",
+              "name": "Prow Nova Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "3d00-e35a-3552-67c5": {
+      "id": "3d00-e35a-3552-67c5",
+      "name": "Mercury Class Battlecruiser",
+      "faction": "Space Marines",
+      "pts": 255,
+      "category": "Heavy Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "25 cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+ front / 5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "45 cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Port Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Starboard Weapons Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "60 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/front/right"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Nova Cannon",
+          "Range/Speed": "30-150 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons",
+          "options": [
+            {
+              "id": "012c-f630-c52d-1459",
+              "name": "Prow Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "c099-3194-4290-d2c7",
+              "name": "Prow Nova Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
     "92f9cee9-cf3f-4e7c-b51f-3a152e158e48": {
       "id": "92f9cee9-cf3f-4e7c-b51f-3a152e158e48",
       "name": "Ark Mechanicus Omnissiah's Victory",
@@ -6472,17 +8883,6 @@
         }
       ]
     },
-    "516b0b06-c831-4e9f-96b8-7930234c85a1": {
-      "id": "516b0b06-c831-4e9f-96b8-7930234c85a1",
-      "name": "Escort Squadron",
-      "faction": "Inquisition",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
     "0f680ea2-4292-45c4-bf61-d1818d767576": {
       "id": "0f680ea2-4292-45c4-bf61-d1818d767576",
       "name": "Gothic Class Cruiser",
@@ -6861,146 +9261,6 @@
         }
       ]
     },
-    "11a86503-a3ac-4f8c-a36b-34823f833631": {
-      "id": "11a86503-a3ac-4f8c-a36b-34823f833631",
-      "name": "The Inquisition",
-      "faction": "Adeptus Mechanicus",
-      "pts": 0,
-      "category": "Battleship",
-      "stats": {
-        "Type": "Cruiser",
-        "Hits": "8",
-        "Speed": "25cm",
-        "Turns": "45°",
-        "Shields": "2",
-        "Armour": "6+",
-        "Turrets": "2"
-      },
-      "armament": [
-        {
-          "name": "Grey Knights Battlebarge Port Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "12",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Grey Knights Battlebarge Starboard Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "12",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Grey Knights Battlebarge Prow Launch Bays",
-          "Range/Speed": "Thunderhawk: 20cm",
-          "Firepower/Str": "3 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Grey Knights Battlebarge Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Grey Knights Battlebarge Dorsal Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Grey Knights Strike Cruiser Port Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Grey Knights Strike Cruiser Starboard Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Launch Bay",
-          "Range/Speed": "Thunderhawk: 20cm",
-          "Firepower/Str": "2 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "5",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Blackship Dorsal Lance Batteries",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Blackship Port Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "10",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Blackship Starboard Weappons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "10",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Blackship Prow Torpedos",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Inquisitorial Cruiser Port Weapons Battery",
-          "Range/Speed": "60cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Inquisitorial Cruiser Starboard Weapons Battery",
-          "Range/Speed": "60cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Launch Bay",
-          "Range/Speed": "Thunderhawks: 20cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Prow Torpedo Tubes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": []
-    },
     "bd7234ac-e633-4f0e-817e-e142b1bafb00": {
       "id": "bd7234ac-e633-4f0e-817e-e142b1bafb00",
       "name": "Tyrant Class Cruiser",
@@ -7109,6 +9369,512 @@
           ]
         }
       ]
+    },
+    "238f0b9c-62df-4a00-b213-74909f85900a": {
+      "id": "238f0b9c-62df-4a00-b213-74909f85900a",
+      "name": "Grey Knights Battlebarge",
+      "faction": "Adeptus Mechanicus",
+      "pts": 440,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "3",
+        "Armour": "6+",
+        "Turrets": "3"
+      },
+      "armament": [
+        {
+          "name": "Grey Knights Battlebarge Port Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Grey Knights Battlebarge Starboard Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "12",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Grey Knights Battlebarge Prow Launch Bays",
+          "Range/Speed": "Thunderhawk: 20cm",
+          "Firepower/Str": "3 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Grey Knights Battlebarge Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Grey Knights Battlebarge Dorsal Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "ecc839fc-3760-457b-8055-e383e2c8dc65": {
+      "id": "ecc839fc-3760-457b-8055-e383e2c8dc65",
+      "name": "Grey Knights Strike Cruiser",
+      "faction": "Adeptus Mechanicus",
+      "pts": 165,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "6",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "2",
+        "Armour": "6+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Grey Knights Strike Cruiser Port Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Grey Knights Strike Cruiser Starboard Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Launch Bay",
+          "Range/Speed": "Thunderhawk: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Armament Option",
+          "options": [
+            {
+              "id": "f68b5f8e-b9fa-41ba-aff3-3b912b12f305",
+              "name": "Launch Bay",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "663a4c5c-3690-4fb4-9670-eefb37c38ec9",
+              "name": "Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "eadd1e5b-8b13-490c-aeec-c89cdb4c524a",
+              "name": "Bombardment Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "52b5327b-9c2a-458d-a710-e244a7a1d527": {
+      "id": "52b5327b-9c2a-458d-a710-e244a7a1d527",
+      "name": "Inquisition Blackship",
+      "faction": "Adeptus Mechanicus",
+      "pts": 300,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "5",
+        "Armour": "6+Prow/ 5+",
+        "Turrets": "5"
+      },
+      "armament": [
+        {
+          "name": "Blackship Dorsal Lance Batteries",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Blackship Port Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Blackship Starboard Weappons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Blackship Prow Torpedos",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "75940471-1154-40fb-9fc6-aabcfa286e5d": {
+      "id": "75940471-1154-40fb-9fc6-aabcfa286e5d",
+      "name": "Inquisitor Lord",
+      "faction": "Adeptus Mechanicus",
+      "pts": 75,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Ordo",
+          "options": [
+            {
+              "id": "06b8cc40-4ba6-4078-9fb7-e963fe9a2d81",
+              "name": "Ordo Xenos",
+              "pts": 30,
+              "description": ""
+            },
+            {
+              "id": "3c85228a-be0d-400d-8e92-73cf1064386c",
+              "name": "Ordo Hereticus",
+              "pts": 25,
+              "description": ""
+            },
+            {
+              "id": "aedf97a1-205b-4e9d-b952-ab5c0178eef6",
+              "name": "Ordo Malleus",
+              "pts": 25,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "f40d7bbd-860f-4c05-ae9e-cac2ac5765f5": {
+      "id": "f40d7bbd-860f-4c05-ae9e-cac2ac5765f5",
+      "name": "Inquisitorial Cruiser",
+      "faction": "Adeptus Mechanicus",
+      "pts": 270,
+      "category": "Cruiser",
+      "stats": {
+        "Type": "Cruiser",
+        "Hits": "8",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "2",
+        "Armour": "6+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Inquisitorial Cruiser Port Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Inquisitorial Cruiser Starboard Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Prow Launch Bay",
+          "Range/Speed": "Thunderhawks: 20cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Prow Torpedo Tubes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Dorsal Lance Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapons Options",
+          "options": [
+            {
+              "id": "4943-dd2b-1978-3910",
+              "name": "Prow Launch Bay",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "2f02-6990-7087-d5a7",
+              "name": "Prow Torpedo Tubes",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "group": "Dorsal Weapons Options",
+          "options": [
+            {
+              "id": "489a-2573-63de-97d7",
+              "name": "Dorsal Bombardment Cannon",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "3d0d-ba63-e4fe-8b5c",
+              "name": "Dorsal Lance Battery",
+              "pts": 15,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "7761-0b46-fce1-8821": {
+      "id": "7761-0b46-fce1-8821",
+      "name": "Cobra Destroyer",
+      "faction": "Adeptus Mechanicus",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Cobra Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/right/front"
+        },
+        {
+          "name": "Cobra Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "633d-12fb-8605-64ee": {
+      "id": "633d-12fb-8605-64ee",
+      "name": "Falchion Frigate",
+      "faction": "Adeptus Mechanicus",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "e51b-d0d7-d6e3-479c": {
+      "id": "e51b-d0d7-d6e3-479c",
+      "name": "Firestorm Frigate",
+      "faction": "Adeptus Mechanicus",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "☐",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "92ea-ca19-2e0a-b644": {
+      "id": "92ea-ca19-2e0a-b644",
+      "name": "Gladius Frigate",
+      "faction": "Adeptus Mechanicus",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Gladius Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "4ff3-67a9-9630-1c92": {
+      "id": "4ff3-67a9-9630-1c92",
+      "name": "Hunter Destroyer",
+      "faction": "Adeptus Mechanicus",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Hunter Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Hunter Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "ee40-7886-674e-32ec": {
+      "id": "ee40-7886-674e-32ec",
+      "name": "Nova Frigate",
+      "faction": "Adeptus Mechanicus",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Nova Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Nova Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "1531-1671-1c87-a81a": {
+      "id": "1531-1671-1c87-a81a",
+      "name": "Sword Frigate",
+      "faction": "Adeptus Mechanicus",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "☐",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
     },
     "e8cf-e35d-7c01-a3e3": {
       "id": "e8cf-e35d-7c01-a3e3",
@@ -7413,6 +10179,236 @@
           ]
         }
       ]
+    },
+    "042b-3669-8215-bf20": {
+      "id": "042b-3669-8215-bf20",
+      "name": "Cobra Destroyer",
+      "faction": "Inquisition",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Cobra Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Cobra Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Famous Ships",
+          "options": [
+            {
+              "id": "af6f-adfc-f34a-4db7",
+              "name": "As Standard",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "8a36-7044-b804-f087",
+              "name": "24th Destroyer Squadron 'Widowmaker'",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "7095-447c-65a6-0032": {
+      "id": "7095-447c-65a6-0032",
+      "name": "Falchion Frigate",
+      "faction": "Inquisition",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "29f2-2dc1-eff2-3101": {
+      "id": "29f2-2dc1-eff2-3101",
+      "name": "Firestorm Frigate",
+      "faction": "Inquisition",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "☐",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "7fba-98fc-ee7f-8daf": {
+      "id": "7fba-98fc-ee7f-8daf",
+      "name": "Gladius Frigate",
+      "faction": "Inquisition",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Gladius Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "8632-2465-51e5-b7af": {
+      "id": "8632-2465-51e5-b7af",
+      "name": "Hunter Destroyer",
+      "faction": "Inquisition",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Hunter Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Hunter Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "1f7c-8c41-a7e8-40ad": {
+      "id": "1f7c-8c41-a7e8-40ad",
+      "name": "Sword Frigate",
+      "faction": "Inquisition",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "☐",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "fea6-6864-64f7-bd50": {
+      "id": "fea6-6864-64f7-bd50",
+      "name": "Nova Frigate",
+      "faction": "Inquisition",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Nova Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Nova Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
     },
     "55733e1a-4a8a-457d-abfd-50280545579b": {
       "id": "55733e1a-4a8a-457d-abfd-50280545579b",
@@ -7823,32 +10819,6 @@
         }
       ]
     },
-    "5952-f97f-78e3-8cab": {
-      "id": "5952-f97f-78e3-8cab",
-      "name": "Eldar Transport",
-      "faction": "Eldar Corsairs",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {
-        "Type": "Escort",
-        "Hits": "1",
-        "Speed": "10/10/15cm",
-        "Turns": "Special",
-        "Shields": "Holofields",
-        "Armour": "4+",
-        "Turrets": "0"
-      },
-      "armament": [
-        {
-          "name": "Eldar Transport Weapons Battery",
-          "Range/Speed": "15cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": []
-    },
     "74cb-a24c-af6a-10c0": {
       "id": "74cb-a24c-af6a-10c0",
       "name": "Eldar Hero",
@@ -8228,27 +11198,182 @@
         }
       ]
     },
-    "8392-0b57-c8eb-ab28": {
-      "id": "8392-0b57-c8eb-ab28",
-      "name": "Escort Squardon",
+    "944b-2a4a-496c-6b39": {
+      "id": "944b-2a4a-496c-6b39",
+      "name": "Hellebore Class Frigate",
       "faction": "Eldar Corsairs",
-      "pts": 0,
+      "pts": 65,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "10/20/30cm",
+        "Turns": "Special",
+        "Shields": "Holofields",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Prow Pulsar Lances",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Keel Torpedoes",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
       "specialRules": [],
       "upgrades": []
     },
-    "ed59-d6ad-7b1e-e2c3": {
-      "id": "ed59-d6ad-7b1e-e2c3",
-      "name": "Escort Squardon Shadowhunter",
+    "a15a-29e4-3776-c9e9": {
+      "id": "a15a-29e4-3776-c9e9",
+      "name": "Hemlock Class Destroyer",
       "faction": "Eldar Corsairs",
-      "pts": 0,
+      "pts": 40,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "15/20/30cm",
+        "Turns": "Special",
+        "Shields": "Holofields",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Hemlock Prow Pulsar Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Hemlock Boarding",
+          "effects": "A Hemlock cannot initiate boarding actions. A ship that boards a Hemlock class destroyer gains a +1 Modifier in addition to any other modifiers."
+        }
+      ],
+      "upgrades": []
+    },
+    "0795-5e16-0941-2b59": {
+      "id": "0795-5e16-0941-2b59",
+      "name": "Nightshade Class Destroyer",
+      "faction": "Eldar Corsairs",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "15/20/30cm",
+        "Turns": "Special",
+        "Shields": "Holofields",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Nightshade Keel Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Nightshade Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
       "specialRules": [],
       "upgrades": []
+    },
+    "66ad-f830-00ac-ed2a": {
+      "id": "66ad-f830-00ac-ed2a",
+      "name": "Aconite Class Frigate",
+      "faction": "Eldar Corsairs",
+      "pts": 55,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "10/20/30cm",
+        "Turns": "Special",
+        "Shields": "Holofields",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Aconite Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "5",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "a09e-038b-6c96-1477": {
+      "id": "a09e-038b-6c96-1477",
+      "name": "Shadowhunter ",
+      "faction": "Eldar Corsairs",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "15/20/30cm",
+        "Turns": "Special",
+        "Shields": "Holofields",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Phantom Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Prow Weapon",
+          "options": [
+            {
+              "id": "d809-62f7-72a1-38c8",
+              "name": "Prow Weapons Battery",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "81b2-5fa2-0b2a-dfc3",
+              "name": "Prow Phantom Lance",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
     },
     "8c9bde99-eedf-4503-84af-ff75ae33b222": {
       "id": "8c9bde99-eedf-4503-84af-ff75ae33b222",
@@ -8386,16 +11511,85 @@
         }
       ]
     },
-    "0a80-fcd2-0e63-7be3": {
-      "id": "0a80-fcd2-0e63-7be3",
-      "name": "Escort Squadron",
+    "3492-1236-f700-f36a": {
+      "id": "3492-1236-f700-f36a",
+      "name": "Dark Eldar Corsair Class Escort",
       "faction": "Dark Eldar Pirate Fleet List",
-      "pts": 0,
+      "pts": 50,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "40cm",
+        "Turns": "90°",
+        "Shields": "Shadowfield",
+        "Armour": "4+",
+        "Turrets": "0"
+      },
+      "armament": [
+        {
+          "name": "Corsair Class Escort Prow Batteries",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Torpedo Tubes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Phantom Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Impaler",
+          "Range/Speed": "Attack Craft: 30cm",
+          "Firepower/Str": "Special",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Weapons Batteries",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Front"
+        }
+      ],
       "specialRules": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "group": "Upgrades",
+          "options": [
+            {
+              "id": "285a-3ecf-5992-60e0",
+              "name": "Prow Torpedo Tubes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "6852-6249-8f5b-46ef",
+              "name": "Prow Phantom Lance",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "de89-db68-6d95-1648",
+              "name": "Impaler",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "5029-a9c3-745d-1492",
+              "name": "Prow Weapons Batteries",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
     },
     "090c65cc-0653-4f4e-a67b-e64854243aa6": {
       "id": "090c65cc-0653-4f4e-a67b-e64854243aa6",
@@ -9021,17 +12215,6 @@
       "specialRules": [],
       "upgrades": []
     },
-    "e774-548d-9436-6e14": {
-      "id": "e774-548d-9436-6e14",
-      "name": "Escort Squadron",
-      "faction": "Orks",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
     "7097-1466-41fb-f27b": {
       "id": "7097-1466-41fb-f27b",
       "name": "Validation Warlord",
@@ -9048,20 +12231,145 @@
       ],
       "upgrades": []
     },
-    "6a3c-c8cc-6c39-5b7f": {
-      "id": "6a3c-c8cc-6c39-5b7f",
-      "name": "Validation Warlord",
+    "a91e-87e4-7a52-6b53": {
+      "id": "a91e-87e4-7a52-6b53",
+      "name": "Grunt Assault Ship",
       "faction": "Orks",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "6+Prow/ 5+",
+        "Turrets": "2"
+      },
+      "armament": [
         {
-          "name": "Ork Warlord Validation",
-          "effects": "Duplicate warlords here for list validation, Select on ship for marking ship upgrades."
+          "name": "Grunt Assault Ship Gunz Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
         }
       ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "3e08-c5ed-c2e2-8bce": {
+      "id": "3e08-c5ed-c2e2-8bce",
+      "name": "Onslaught Attack Ship",
+      "faction": "Orks",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "6+Front/ 4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Onslaught Gunz Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "D6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "b5b2-a3cd-3374-9c8d": {
+      "id": "b5b2-a3cd-3374-9c8d",
+      "name": "Ravager Attack Ship",
+      "faction": "Orks",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "6+Front/ 4+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Ravager Torpedos",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "D6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Ravager Gunz Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "97ba-cd37-3b17-7942": {
+      "id": "97ba-cd37-3b17-7942",
+      "name": "Brute Ram Ship",
+      "faction": "Orks",
+      "pts": 25,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "6+Front/ 4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Brute Ram Ship Gunz Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front/Left/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Ramming",
+          "effects": "The Brute Ram Ship rolls 4 dice to damage an opposing ship when it rams."
+        }
+      ],
+      "upgrades": []
+    },
+    "4a6d-c067-5041-1ff0": {
+      "id": "4a6d-c067-5041-1ff0",
+      "name": "Savage Gunship",
+      "faction": "Orks",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "6+Front/ 4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Savage Heavy Gunz Battery",
+          "Range/Speed": "15cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
       "upgrades": []
     },
     "8b768a17-acfc-4fca-87a5-8ce016ba3226": {
@@ -9118,35 +12426,6 @@
         }
       ],
       "upgrades": []
-    },
-    "6ee91504-f516-4fef-a74e-a23482e50201": {
-      "id": "6ee91504-f516-4fef-a74e-a23482e50201",
-      "name": "Re-rolls",
-      "faction": "Necrons",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Choose one",
-          "options": [
-            {
-              "id": "c35d5068-f33a-4cbc-9eda-6491bb393ffe",
-              "name": "One extra re-roll",
-              "pts": 25,
-              "description": ""
-            },
-            {
-              "id": "38b8190b-ad0c-4cd0-92b3-cbfccf8aa810",
-              "name": "Two extra re-rolls",
-              "pts": 75,
-              "description": ""
-            }
-          ]
-        }
-      ]
     },
     "e5eb3357-d2fd-450e-8ea2-1243d9d12971": {
       "id": "e5eb3357-d2fd-450e-8ea2-1243d9d12971",
@@ -9294,14 +12573,61 @@
       "specialRules": [],
       "upgrades": []
     },
-    "e38b-d1fd-d726-e05c": {
-      "id": "e38b-d1fd-d726-e05c",
-      "name": "Escort Squadron",
+    "f41e-42fc-3733-4efb": {
+      "id": "f41e-42fc-3733-4efb",
+      "name": "Dirge Class Raider",
       "faction": "Necrons",
-      "pts": 0,
+      "pts": 40,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "50cm",
+        "Turns": "90",
+        "Shields": "6+ Save",
+        "Armour": "6+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Dirge Lightning Arc",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "7110-fe73-ee4a-5fc8": {
+      "id": "7110-fe73-ee4a-5fc8",
+      "name": "Jackal Class Raider",
+      "faction": "Necrons",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "40cm",
+        "Turns": "90",
+        "Shields": "6+ Save",
+        "Armour": "6+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Jackal Lightning Arc",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Jackal Portal",
+          "Range/Speed": "10cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "All around"
+        }
+      ],
       "specialRules": [],
       "upgrades": []
     },
@@ -9438,17 +12764,6 @@
           ]
         }
       ]
-    },
-    "e4fd4ab2-2cfd-487f-8434-d3f2c7776b46": {
-      "id": "e4fd4ab2-2cfd-487f-8434-d3f2c7776b46",
-      "name": "Vanguard Escort Squadron",
-      "faction": "Tyranid Hive Fleet List",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
     },
     "322e0064-1643-4b0d-ae4c-1313d5448223": {
       "id": "322e0064-1643-4b0d-ae4c-1313d5448223",
@@ -9631,16 +12946,209 @@
         }
       ]
     },
-    "a14b-d9bd-4c47-887a": {
-      "id": "a14b-d9bd-4c47-887a",
-      "name": "Escort Squadron",
+    "395a-465a-22c1-e116": {
+      "id": "395a-465a-22c1-e116",
+      "name": "Tyranid Escort Drone",
       "faction": "Tyranid Hive Fleet List",
-      "pts": 0,
+      "pts": 10,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "15cm",
+        "Turns": "45º",
+        "Shields": "-",
+        "Armour": "5+",
+        "Turrets": "1 (Spores)"
+      },
+      "armament": [
+        {
+          "name": "Prow Pyro-acid Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Feeder Tentacles",
+          "Range/Speed": "Contact",
+          "Firepower/Str": "Special",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Bio-plasma Discharge",
+          "Range/Speed": "15cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
       "specialRules": [],
-      "upgrades": []
+      "upgrades": [
+        {
+          "group": "Weapon",
+          "options": [
+            {
+              "id": "e890-7a2a-6359-ea73",
+              "name": "Pyro-acid Battery",
+              "pts": 10,
+              "description": ""
+            },
+            {
+              "id": "0de5-eb45-acf6-3df6",
+              "name": "Feeder Tentacles",
+              "pts": 5,
+              "description": ""
+            },
+            {
+              "id": "fe53-d1ff-2c93-8496",
+              "name": "Bio-plasma Discharge",
+              "pts": 5,
+              "description": ""
+            },
+            {
+              "id": "9588-da84-5470-54fa",
+              "name": "Fire ship",
+              "pts": 5,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "8faf-dc28-7e23-996c": {
+      "id": "8faf-dc28-7e23-996c",
+      "name": "Tyranid Kraken",
+      "faction": "Tyranid Hive Fleet List",
+      "pts": 25,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25 cm",
+        "Turns": "90º",
+        "Shields": "-",
+        "Armour": "6+",
+        "Turrets": "Special"
+      },
+      "armament": [
+        {
+          "name": "Pyro-acid Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Feeder Tentacles",
+          "Range/Speed": "Contact",
+          "Firepower/Str": "Special",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Torpedoes",
+          "Range/Speed": "15 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Massive Claws",
+          "Range/Speed": "Contact",
+          "Firepower/Str": "Special",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Bio Plasma Discharge",
+          "Range/Speed": "15 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "-"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Weapon",
+          "options": [
+            {
+              "id": "b930-2a32-ef54-e44f",
+              "name": "Pyro-acid Battery",
+              "pts": 15,
+              "description": ""
+            },
+            {
+              "id": "4acd-e4ff-babd-fa48",
+              "name": "Feeder Tentacles",
+              "pts": 5,
+              "description": ""
+            },
+            {
+              "id": "6bc6-b9e1-02fc-4db3",
+              "name": "Torpedoes",
+              "pts": 15,
+              "description": ""
+            },
+            {
+              "id": "ff84-5502-f0f7-a749",
+              "name": "Massive Claws",
+              "pts": 10,
+              "description": ""
+            },
+            {
+              "id": "909c-6644-e617-388e",
+              "name": "Bio Plasma Discharge",
+              "pts": 10,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "f39d-43f8-86dc-42c0": {
+      "id": "f39d-43f8-86dc-42c0",
+      "name": "Tyranid Vanguard Drone Ship",
+      "faction": "Tyranid Hive Fleet List",
+      "pts": 20,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25 cm",
+        "Turns": "90º",
+        "Shields": "-",
+        "Armour": "5+",
+        "Turrets": "1 (Spores)"
+      },
+      "armament": [
+        {
+          "name": "Pyro-acid Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Feeder Tentacles",
+          "Range/Speed": "Contact",
+          "Firepower/Str": "Special",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Weapon",
+          "options": [
+            {
+              "id": "1f6e-5e93-c8fa-3830",
+              "name": "Pyro-acid Battery",
+              "pts": 5,
+              "description": ""
+            },
+            {
+              "id": "54bf-5b9e-a1ad-f4ad",
+              "name": "Feeder Tentacles",
+              "pts": 5,
+              "description": ""
+            }
+          ]
+        }
+      ]
     },
     "c9ec491f-fd16-41b2-8cd4-e3206780e268": {
       "id": "c9ec491f-fd16-41b2-8cd4-e3206780e268",
@@ -9771,52 +13279,6 @@
       ],
       "specialRules": [],
       "upgrades": []
-    },
-    "1f861bf0-b898-460e-9ac7-3c57d6120e42": {
-      "id": "1f861bf0-b898-460e-9ac7-3c57d6120e42",
-      "name": "Fleet Commander",
-      "faction": "Tau Fleet",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Options",
-          "options": [
-            {
-              "id": "d5807109-4694-427f-8420-a5de624eb3ea",
-              "name": "Kor'O",
-              "pts": 80,
-              "description": ""
-            },
-            {
-              "id": "1f8786a1-a112-4b58-a94a-df7826fa8293",
-              "name": "Kor'el",
-              "pts": 50,
-              "description": ""
-            }
-          ]
-        },
-        {
-          "group": "Ethereal",
-          "options": [
-            {
-              "id": "b2627b3b-d784-4796-94cb-a62498f00419",
-              "name": "Aun'O (Two extra re-rolls)",
-              "pts": 75,
-              "description": ""
-            },
-            {
-              "id": "8ba816c1-d361-4da8-a185-2658ed17f722",
-              "name": "Aun'el (One extra re-roll)",
-              "pts": 25,
-              "description": ""
-            }
-          ]
-        }
-      ]
     },
     "444b2283-1cc4-49fd-b14d-b42267ebe752": {
       "id": "444b2283-1cc4-49fd-b14d-b42267ebe752",
@@ -10393,40 +13855,188 @@
       ],
       "upgrades": []
     },
-    "e17af654-3a47-4c5e-be97-27a3b8667223": {
-      "id": "e17af654-3a47-4c5e-be97-27a3b8667223",
-      "name": "Courier (Il'Emaar) Class Transport",
+    "7287-5f52-246b-c649": {
+      "id": "7287-5f52-246b-c649",
+      "name": "Orca (Kass'l) Class Gunship",
       "faction": "Tau Fleet",
-      "pts": 0,
+      "pts": 25,
       "category": "Escort",
       "stats": {
         "Type": "Escort",
         "Hits": "1",
-        "Speed": "20cm",
-        "Turns": "45º",
+        "Speed": "20",
+        "Turns": "90º",
         "Shields": "1",
         "Armour": "5+",
         "Turrets": "1"
       },
       "armament": [
         {
-          "name": "Courier Prow Railgun Battery",
+          "name": "Orca Prow Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Orca Prow Railgun Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front/Left/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "b117-d104-bf32-d956": {
+      "id": "b117-d104-bf32-d956",
+      "name": "Warden (Kir'la) Class Gunship",
+      "faction": "Tau Fleet",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90º",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Warden Prow Ion Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Warden Prow Railgun Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "ac75-25ce-b8d8-358e": {
+      "id": "ac75-25ce-b8d8-358e",
+      "name": "Messenger (Skether'qan) Class Starship",
+      "faction": "Tau Fleet",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Skether'qan Prow Railgun Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front/Left/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Messenger Rules",
+          "effects": "The Messenger is an exception to normal Escort rules as it is not always deployed in squadrons, and can function independently. The Skether’qan is equipped with a Tracking System.\nYou may only take 1 Messenger Starship per 500 points in the fleet."
+        }
+      ],
+      "upgrades": []
+    },
+    "5b0e-74f3-9fec-c969": {
+      "id": "5b0e-74f3-9fec-c969",
+      "name": "Nicassar Dhow",
+      "faction": "Tau Fleet",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "20 cm",
+        "Turns": "180°",
+        "Shields": "2",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Port Railgun Battery",
+          "Range/Speed": "30 cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "04f6-da8e-bc68-a534": {
+      "id": "04f6-da8e-bc68-a534",
+      "name": "Castellan (Kir'shasvre) Escort",
+      "faction": "Tau Fleet",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90º",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Gravitic Launcher",
+          "Range/Speed": "Missles: 20-40cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Prow Railgun battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
           "Fire Arc": "Left/Front/Right"
         }
       ],
       "specialRules": [],
       "upgrades": []
     },
-    "24bf-5876-2fc1-d213": {
-      "id": "24bf-5876-2fc1-d213",
-      "name": "Escort Squadron",
+    "7ac3-2d49-f7e0-a848": {
+      "id": "7ac3-2d49-f7e0-a848",
+      "name": "Defender (Kir'qath) Class Starship",
       "faction": "Tau Fleet",
-      "pts": 0,
+      "pts": 45,
       "category": "Escort",
-      "stats": {},
-      "armament": [],
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Kir'qath Prow Railgun Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Front/Left/Right"
+        },
+        {
+          "name": "Kir'qath Prow Gravitic Launcher",
+          "Range/Speed": "20-40cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
       "specialRules": [],
       "upgrades": []
     },
@@ -10734,115 +14344,6 @@
         }
       ],
       "specialRules": [],
-      "upgrades": []
-    },
-    "5c97-73cc-62c3-5e35": {
-      "id": "5c97-73cc-62c3-5e35",
-      "name": "Escort Squadron",
-      "faction": "Pirates and Wolf Packs",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {
-        "Type": "Escort",
-        "Hits": "1",
-        "Speed": "25cm",
-        "Turns": "45°",
-        "Shields": "1",
-        "Armour": "5+",
-        "Turrets": "1"
-      },
-      "armament": [
-        {
-          "name": "Iconoclast Weapons Profile",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Idolator Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "left/Front/Right"
-        },
-        {
-          "name": "Idolator Lance Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Recommissioned Escort Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Recommissioned Escort Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Cargo Transport Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Cargo Transport Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Rogue Trader Cargo Vessel Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Xenos Vessel Weapons battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Xenos Vessel Lance Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        }
-      ],
-      "specialRules": [
-        {
-          "name": "Rogue Trader War Supplies",
-          "effects": "Rogue Trader cargo vessels have more in common with true warships than typical freighters, giving up a significant portion of their cargo capacity to mount warship-grade weapons and engineering plants. They move\n+4D6 when under All Ahead Full special orders as warships do. They are worth one assault point in planetary assault scenarios when within 30cm of the planet edge and count as a half-transport (rounding DOWN) in scenarios that require transports. This means that if it is the only one remaining in a convoy scenario, it counts as zero.\nWhen included in a Rogue Trader escort squadron and not being used as a transport in scenarios that require them, it offers +1Ld to Reload Ordnance by ensuring escorts have a ready supply of torpedoes before the battle. This effect is not cumulative if there is more than one Rogue Trader cargo vessel in the escort squadron"
-        },
-        {
-          "name": "Rogue Trader Fast Clipper",
-          "effects": "Instead of taking a refit normally, for no extra cost this vessel type can be converted to a fast clipper by entirely removing its primary battery armament for the Advanced Drive Technology refit on p.80 (compendium)"
-        },
-        {
-          "name": "1 Long Range Sensors",
-          "effects": "This double the Leadership test bonus for enemy contacts (i.e. enemy on special orders from) +1 to +2."
-        },
-        {
-          "name": "2 Targetting Matrix",
-          "effects": "The vessel counts all targets as closing when using the gunnery table, and may re-roll a single missed shot each turn when shooting with lances."
-        },
-        {
-          "name": "Advanced Shielding",
-          "effects": "The vessel increases its number of shields by +1"
-        },
-        {
-          "name": "4 Ship Defence Grid",
-          "effects": "The vessel increases its number of turrets by +1"
-        },
-        {
-          "name": "5 Adanced Drive Technology",
-          "effects": "The vessel adds +5cm to its speed."
-        }
-      ],
       "upgrades": []
     },
     "626c-a955-8fc1-44a1": {
@@ -11364,6 +14865,380 @@
         }
       ]
     },
+    "6821-4f96-d4dd-4123": {
+      "id": "6821-4f96-d4dd-4123",
+      "name": "Iconoclast Class Destroyer",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Iconoclast Weapons Profile",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "36d2-3770-1de5-bce4": {
+      "id": "36d2-3770-1de5-bce4",
+      "name": "Idolator Class Raider",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Idolator Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "left/Front/Right"
+        },
+        {
+          "name": "Idolator Lance Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c5d3-3a1b-4c3c-a2d7": {
+      "id": "c5d3-3a1b-4c3c-a2d7",
+      "name": "Recommissioned Escort",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Recommissioned Escort Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Recommissioned Escort Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "aa24-ef7b-08c8-a8de": {
+      "id": "aa24-ef7b-08c8-a8de",
+      "name": "Cargo Transport",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 10,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Cargo Transport Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Cargo Transport Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "efff-5ad0-72f5-a479": {
+      "id": "efff-5ad0-72f5-a479",
+      "name": "Rogue Trader Cargo Vessel",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Rogue Trader Cargo Vessel Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Rogue Trader War Supplies",
+          "effects": "Rogue Trader cargo vessels have more in common with true warships than typical freighters, giving up a significant portion of their cargo capacity to mount warship-grade weapons and engineering plants. They move\n+4D6 when under All Ahead Full special orders as warships do. They are worth one assault point in planetary assault scenarios when within 30cm of the planet edge and count as a half-transport (rounding DOWN) in scenarios that require transports. This means that if it is the only one remaining in a convoy scenario, it counts as zero.\nWhen included in a Rogue Trader escort squadron and not being used as a transport in scenarios that require them, it offers +1Ld to Reload Ordnance by ensuring escorts have a ready supply of torpedoes before the battle. This effect is not cumulative if there is more than one Rogue Trader cargo vessel in the escort squadron"
+        },
+        {
+          "name": "Rogue Trader Fast Clipper",
+          "effects": "Instead of taking a refit normally, for no extra cost this vessel type can be converted to a fast clipper by entirely removing its primary battery armament for the Advanced Drive Technology refit on p.80 (compendium)"
+        }
+      ],
+      "upgrades": []
+    },
+    "3a02-543e-8d50-a4e7": {
+      "id": "3a02-543e-8d50-a4e7",
+      "name": "Xenos Vessel",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "45°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Xenos Vessel Weapons battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Xenos Vessel Lance Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "1 Long Range Sensors",
+          "effects": "This double the Leadership test bonus for enemy contacts (i.e. enemy on special orders from) +1 to +2."
+        },
+        {
+          "name": "2 Targetting Matrix",
+          "effects": "The vessel counts all targets as closing when using the gunnery table, and may re-roll a single missed shot each turn when shooting with lances."
+        },
+        {
+          "name": "Advanced Shielding",
+          "effects": "The vessel increases its number of shields by +1"
+        },
+        {
+          "name": "4 Ship Defence Grid",
+          "effects": "The vessel increases its number of turrets by +1"
+        },
+        {
+          "name": "5 Adanced Drive Technology",
+          "effects": "The vessel adds +5cm to its speed."
+        }
+      ],
+      "upgrades": [
+        {
+          "group": "Xenotech Systems (pick one)",
+          "options": [
+            {
+              "id": "2fee-5aa7-03dc-a3e5",
+              "name": "1 Long Range Sensors",
+              "pts": 0,
+              "description": "This double the Leadership test bonus for enemy contacts (i.e. enemy on special orders from) +1 to +2."
+            },
+            {
+              "id": "6159-1334-36c9-1992",
+              "name": "2 Targetting Matrix",
+              "pts": 0,
+              "description": "The vessel counts all targets as closing when using the gunnery table, and may re-roll a single missed shot each turn when shooting with lances."
+            },
+            {
+              "id": "5cf1-aa34-714c-dc75",
+              "name": "3 Advanced Shielding",
+              "pts": 0,
+              "description": "The vessel increases its number of shields by +1"
+            },
+            {
+              "id": "9524-ab63-c3e6-8e3c",
+              "name": "4 Ship Defence Grid",
+              "pts": 0,
+              "description": "The vessel increases its number of turrets by +1"
+            },
+            {
+              "id": "6b90-4c4c-1132-d3a9",
+              "name": "5 Adanced Drive Technology",
+              "pts": 0,
+              "description": "The vessel adds +5cm to its speed."
+            },
+            {
+              "id": "cf64-a269-9307-f1e6",
+              "name": "6 Pick one of the above",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "412e-7045-599e-17a4": {
+      "id": "412e-7045-599e-17a4",
+      "name": "Cobra Destroyer",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Cobra Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Cobra Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "f6d4-26d7-ee2d-8569": {
+      "id": "f6d4-26d7-ee2d-8569",
+      "name": "Falchion Frigate",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "e451-2844-5cf0-0025": {
+      "id": "e451-2844-5cf0-0025",
+      "name": "Firestorm Frigate",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Firestorm Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Firestorm Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "cefd-92cb-4bc4-0d6c": {
+      "id": "cefd-92cb-4bc4-0d6c",
+      "name": "Sword Frigate",
+      "faction": "Pirates and Wolf Packs",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Sword Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
     "fdeabb84-1e4b-439c-8161-ead4e2008380": {
       "id": "fdeabb84-1e4b-439c-8161-ead4e2008380",
       "name": "Armageddon Class Battlecruiser",
@@ -11513,35 +15388,6 @@
       "specialRules": [],
       "upgrades": []
     },
-    "e670be5a-3aad-4eba-9e5e-2b79130c13b6": {
-      "id": "e670be5a-3aad-4eba-9e5e-2b79130c13b6",
-      "name": "Fleet Commander",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Rank",
-          "options": [
-            {
-              "id": "2f63e8ff-5632-43eb-9434-d6749e7115a0",
-              "name": "Crusade Fleet Admiral",
-              "pts": 50,
-              "description": ""
-            },
-            {
-              "id": "8ff6f2a1-fc73-4742-a7d0-02b5d984c443",
-              "name": "Astartes Master of the Fleet",
-              "pts": 100,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
     "b512fb3c-2bb4-4156-bf9e-697ce4eb7ade": {
       "id": "b512fb3c-2bb4-4156-bf9e-697ce4eb7ade",
       "name": "Gothic Class Cruiser",
@@ -11579,35 +15425,6 @@
       ],
       "specialRules": [],
       "upgrades": []
-    },
-    "f6c7fdfb-a1bc-4b82-a136-6d292cac8c91": {
-      "id": "f6c7fdfb-a1bc-4b82-a136-6d292cac8c91",
-      "name": "Imperial Escort Squadron",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Escorts",
-          "options": [
-            {
-              "id": "febac49e-ecca-450a-b5ee-415858c59b0b",
-              "name": "Firestorm Class Frigate",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "453b3f94-43e7-4691-a7fb-3a27d605a988",
-              "name": "Falchion Class Frigate",
-              "pts": 35,
-              "description": ""
-            }
-          ]
-        }
-      ]
     },
     "8ff259b5-11aa-49e4-86ca-c1f9101704be": {
       "id": "8ff259b5-11aa-49e4-86ca-c1f9101704be",
@@ -11816,82 +15633,12 @@
       "specialRules": [],
       "upgrades": []
     },
-    "0c7538f2-dc9a-4587-9c74-05dd0afd1c4c": {
-      "id": "0c7538f2-dc9a-4587-9c74-05dd0afd1c4c",
-      "name": "Space Marine Escort Squadron",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Escorts",
-          "options": [
-            {
-              "id": "017cda8e-7be0-4bf1-afde-43dd43c9c933",
-              "name": "Nova Class Frigate",
-              "pts": 50,
-              "description": ""
-            },
-            {
-              "id": "a23d7d9c-10f1-4f2b-a195-066df1460b80",
-              "name": "Gladius Class Frigate",
-              "pts": 45,
-              "description": ""
-            },
-            {
-              "id": "5623b4aa-2140-41ff-bdef-c232feb0d238",
-              "name": "Hunter Class Destroyer",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "dff12655-3099-4556-853b-57c96fb003e7",
-              "name": "Firestorm Rapid Strike Vessel",
-              "pts": 45,
-              "description": ""
-            },
-            {
-              "id": "5f835d0b-5c75-47ab-b96a-e2a771f17039",
-              "name": "Sword Rapid Strike Vessel",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "7c87d775-c33e-4a72-9f53-9f4639c82971",
-              "name": "Falchion Rapid Strike Vessel",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
-              "name": "Cobra Rapid Strike Vessel",
-              "pts": 35,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
     "818e7121-b439-49e7-81ab-1c752fc79aff": {
       "id": "818e7121-b439-49e7-81ab-1c752fc79aff",
       "name": "Space Marine Strike Cruiser",
       "faction": "Armada Imperialis",
       "pts": 145,
       "category": "Cruiser",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "7f06fe52-7f7b-481a-9c1d-50e9d914f495": {
-      "id": "7f06fe52-7f7b-481a-9c1d-50e9d914f495",
-      "name": "The Inquisition",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Battleship",
       "stats": {},
       "armament": [],
       "specialRules": [],
@@ -12258,146 +16005,6 @@
               "id": "4a5e-e142-661c-fe23",
               "name": "Weapons Batteries",
               "pts": 0,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
-    "3735-f8f9-adb1-e33e": {
-      "id": "3735-f8f9-adb1-e33e",
-      "name": "Escort Squadron",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Escort",
-      "stats": {
-        "Type": "Escort",
-        "Hits": "1",
-        "Speed": "25",
-        "Turns": "90",
-        "Shields": "1",
-        "Armour": "5+",
-        "Turrets": "2"
-      },
-      "armament": [
-        {
-          "name": "Prow Torpedos",
-          "Range/Speed": "30",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Falchion Prow Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Falchion Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Lance",
-          "Range/Speed": "30",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
-        },
-        {
-          "name": "Gladius Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Hunter Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Hunter Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Lance",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Nova Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Weapons Battery",
-          "Range/Speed": "30",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Escorts",
-          "options": [
-            {
-              "id": "0376-f1a7-5fee-7f9a",
-              "name": "Cobra Destroyer",
-              "pts": 30,
-              "description": ""
-            },
-            {
-              "id": "5610-4d14-8ed5-e67e",
-              "name": "Falchion Frigate",
-              "pts": 35,
-              "description": ""
-            },
-            {
-              "id": "9960-f870-8718-4d1a",
-              "name": "Firestorm Frigate",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "f119-d902-6256-c50c",
-              "name": "Gladius Frigate",
-              "pts": 45,
-              "description": ""
-            },
-            {
-              "id": "c6c3-3872-a63b-80ea",
-              "name": "Hunter Destroyer",
-              "pts": 40,
-              "description": ""
-            },
-            {
-              "id": "06b7-37b9-470d-8df9",
-              "name": "Nova Frigate",
-              "pts": 50,
-              "description": ""
-            },
-            {
-              "id": "643c-5aee-f02a-c240",
-              "name": "Sword Frigate",
-              "pts": 35,
               "description": ""
             }
           ]
@@ -14966,6 +18573,709 @@
       ],
       "specialRules": [],
       "upgrades": []
+    },
+    "2f63e8ff-5632-43eb-9434-d6749e7115a0": {
+      "id": "2f63e8ff-5632-43eb-9434-d6749e7115a0",
+      "name": "Crusade Fleet Admiral",
+      "faction": "Armada Imperialis",
+      "pts": 50,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "1a1ebb83-bf55-4fc3-8aca-e3b3c733369d": {
+      "id": "1a1ebb83-bf55-4fc3-8aca-e3b3c733369d",
+      "name": "Admiral",
+      "faction": "Armada Imperialis",
+      "pts": 100,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Extra Admiral Re-Rolls",
+          "options": [
+            {
+              "id": "356ee19f-2087-4de5-9632-6f26566b92f5",
+              "name": "3 Extra Re-Rolls",
+              "pts": 150,
+              "description": ""
+            },
+            {
+              "id": "69403964-77be-4d2e-9ad5-1b61ee57ea0b",
+              "name": "1 Extra Re-Roll",
+              "pts": 25,
+              "description": ""
+            },
+            {
+              "id": "d56151eb-c732-44ff-9a5a-a99ef28abf27",
+              "name": "2 Extra Re-Rolls",
+              "pts": 75,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "8ff6f2a1-fc73-4742-a7d0-02b5d984c443": {
+      "id": "8ff6f2a1-fc73-4742-a7d0-02b5d984c443",
+      "name": "Astartes Master of the Fleet",
+      "faction": "Armada Imperialis",
+      "pts": 100,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "febac49e-ecca-450a-b5ee-415858c59b0b": {
+      "id": "febac49e-ecca-450a-b5ee-415858c59b0b",
+      "name": "Firestorm Class Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "453b3f94-43e7-4691-a7fb-3a27d605a988": {
+      "id": "453b3f94-43e7-4691-a7fb-3a27d605a988",
+      "name": "Falchion Class Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "017cda8e-7be0-4bf1-afde-43dd43c9c933": {
+      "id": "017cda8e-7be0-4bf1-afde-43dd43c9c933",
+      "name": "Nova Class Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "a23d7d9c-10f1-4f2b-a195-066df1460b80": {
+      "id": "a23d7d9c-10f1-4f2b-a195-066df1460b80",
+      "name": "Gladius Class Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "5623b4aa-2140-41ff-bdef-c232feb0d238": {
+      "id": "5623b4aa-2140-41ff-bdef-c232feb0d238",
+      "name": "Hunter Class Destroyer",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "dff12655-3099-4556-853b-57c96fb003e7": {
+      "id": "dff12655-3099-4556-853b-57c96fb003e7",
+      "name": "Firestorm Rapid Strike Vessel",
+      "faction": "Armada Imperialis",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "5f835d0b-5c75-47ab-b96a-e2a771f17039": {
+      "id": "5f835d0b-5c75-47ab-b96a-e2a771f17039",
+      "name": "Sword Rapid Strike Vessel",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "7c87d775-c33e-4a72-9f53-9f4639c82971": {
+      "id": "7c87d775-c33e-4a72-9f53-9f4639c82971",
+      "name": "Falchion Rapid Strike Vessel",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "a9c7bb02-eb1e-4188-8aef-d7fd305265e5": {
+      "id": "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
+      "name": "Cobra Rapid Strike Vessel",
+      "faction": "Armada Imperialis",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "3a978ff1-809f-4409-b08d-a39333b70e0d": {
+      "id": "3a978ff1-809f-4409-b08d-a39333b70e0d",
+      "name": "Grey Knights Battlebarge",
+      "faction": "Armada Imperialis",
+      "pts": 440,
+      "category": "Battleship",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "93575f7a-0c82-481b-aca4-dc540fa69876": {
+      "id": "93575f7a-0c82-481b-aca4-dc540fa69876",
+      "name": "Grey Knights Strike Cruiser",
+      "faction": "Armada Imperialis",
+      "pts": 270,
+      "category": "Cruiser",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Armament Option",
+          "options": [
+            {
+              "id": "2b401cbc-300f-4cc4-b83b-08868c8ab03b",
+              "name": "Launch Bay",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "9cd6a2ab-a71c-4e71-afea-cde401df537f",
+              "name": "Torpedoes",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "0b55dbde-8407-4f9e-b952-252de9bd31be",
+              "name": "Bombardment Cannon",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "a46373ab-15b6-42a0-8156-67edfe0c1866": {
+      "id": "a46373ab-15b6-42a0-8156-67edfe0c1866",
+      "name": "Inquisition Blackship",
+      "faction": "Armada Imperialis",
+      "pts": 300,
+      "category": "Battleship",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "fb307851-3d74-495c-9baa-a44ac4ba13b9": {
+      "id": "fb307851-3d74-495c-9baa-a44ac4ba13b9",
+      "name": "Inquisitor Lord",
+      "faction": "Armada Imperialis",
+      "pts": 75,
+      "category": "Fleet Commander",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Ordo",
+          "options": [
+            {
+              "id": "fe6e54a1-62fb-408c-af28-8a9222006d2d",
+              "name": "Ordo Xenos",
+              "pts": 30,
+              "description": ""
+            },
+            {
+              "id": "ea17a829-b065-40ec-8264-ddee0fc045c9",
+              "name": "Ordo Hereticus",
+              "pts": 25,
+              "description": ""
+            },
+            {
+              "id": "9ad4471c-42c2-462e-9a38-1611e9240364",
+              "name": "Ordo Malleus",
+              "pts": 25,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "49fa463c-1029-48dd-9b9e-f97f167c69d2": {
+      "id": "49fa463c-1029-48dd-9b9e-f97f167c69d2",
+      "name": "Inquisitorial Cruiser",
+      "faction": "Armada Imperialis",
+      "pts": 270,
+      "category": "Cruiser",
+      "stats": {},
+      "armament": [],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "0376-f1a7-5fee-7f9a": {
+      "id": "0376-f1a7-5fee-7f9a",
+      "name": "Cobra Destroyer",
+      "faction": "Armada Imperialis",
+      "pts": 30,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "4+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Prow Torpedos",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Famous Ships",
+          "options": [
+            {
+              "id": "10a8-d679-8f54-8d00",
+              "name": "As Standard",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "966a-4039-cae9-fc2e",
+              "name": "24th Destroyer Squadron 'Widowmaker'",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "5610-4d14-8ed5-e67e": {
+      "id": "5610-4d14-8ed5-e67e",
+      "name": "Falchion Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Falchion Prow Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Falchion Prow Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "9960-f870-8718-4d1a": {
+      "id": "9960-f870-8718-4d1a",
+      "name": "Firestorm Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort/1",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Prow Lance",
+          "Range/Speed": "30",
+          "Firepower/Str": "1",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "f119-d902-6256-c50c": {
+      "id": "f119-d902-6256-c50c",
+      "name": "Gladius Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 45,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "30cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Gladius Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "c6c3-3872-a63b-80ea": {
+      "id": "c6c3-3872-a63b-80ea",
+      "name": "Hunter Destroyer",
+      "faction": "Armada Imperialis",
+      "pts": 40,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Hunter Torpedoes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Hunter Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "06b7-37b9-470d-8df9": {
+      "id": "06b7-37b9-470d-8df9",
+      "name": "Nova Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 50,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "35cm",
+        "Turns": "90°",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "1"
+      },
+      "armament": [
+        {
+          "name": "Nova Lance",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "1",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Nova Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "643c-5aee-f02a-c240": {
+      "id": "643c-5aee-f02a-c240",
+      "name": "Sword Frigate",
+      "faction": "Armada Imperialis",
+      "pts": 35,
+      "category": "Escort",
+      "stats": {
+        "Type": "Escort",
+        "Hits": "1",
+        "Speed": "25",
+        "Turns": "90",
+        "Shields": "1",
+        "Armour": "5+",
+        "Turrets": "2"
+      },
+      "armament": [
+        {
+          "name": "Weapons Battery",
+          "Range/Speed": "30",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/right/front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "e8dd-0916-7cbc-95b2": {
+      "id": "e8dd-0916-7cbc-95b2",
+      "name": "Venerable Battlebarge Seditio Opprimere",
+      "faction": "Armada Imperialis",
+      "pts": 450,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "6+",
+        "Turrets": "4"
+      },
+      "armament": [
+        {
+          "name": "Seditio Opprimere Port Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Seditio Opprimere Starboard Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Seditio Opprimere Dorsal Bombardment Cannon",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Seditio Opprimere Prow Launch Bay",
+          "Range/Speed": "Thunderhawks: 20cm",
+          "Firepower/Str": "2 Squadrons",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Seditio Opprimere Prow Torpedos",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Front"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": []
+    },
+    "2343-69f3-f40a-66b2": {
+      "id": "2343-69f3-f40a-66b2",
+      "name": "Loyalist Venerable Battlebarge",
+      "faction": "Armada Imperialis",
+      "pts": 445,
+      "category": "Battleship",
+      "stats": {
+        "Type": "Battleship",
+        "Hits": "12",
+        "Speed": "20cm",
+        "Turns": "45°",
+        "Shields": "4",
+        "Armour": "5+",
+        "Turrets": "4",
+        "Leadership": "30cm",
+        "Re-rolls": "4",
+        "Pg.": "Front"
+      },
+      "armament": [
+        {
+          "name": "Vengeful Spirit Port Launch Bays",
+          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Vengeful Spirit Starboard Launch Bays",
+          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Vengeful Spirit Prow Launch Bays",
+          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
+          "Firepower/Str": "2",
+          "Fire Arc": "-"
+        },
+        {
+          "name": "Battlebarge Port Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Battlebarge Starboard Weapons Battery",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Battlebarge Port Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Battlebarge Starboard Weapons Battery",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "10",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Vengeful Spirit Port Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Left"
+        },
+        {
+          "name": "Vengeful Spirit Starboard Weapons Battery",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "6",
+          "Fire Arc": "Right"
+        },
+        {
+          "name": "Chaos Battlebarge Prow Torpedo Tubes",
+          "Range/Speed": "30cm",
+          "Firepower/Str": "8",
+          "Fire Arc": "Front"
+        },
+        {
+          "name": "Dorsal Lances",
+          "Range/Speed": "45cm",
+          "Firepower/Str": "4",
+          "Fire Arc": "Left/Front/Right"
+        },
+        {
+          "name": "Vengeful Spirit Dorsal Lances",
+          "Range/Speed": "60cm",
+          "Firepower/Str": "3",
+          "Fire Arc": "Left/Front/Right"
+        }
+      ],
+      "specialRules": [],
+      "upgrades": [
+        {
+          "group": "Chaos Battlebarge Weapons Battery Options",
+          "options": [
+            {
+              "id": "1c46-0ce8-689f-fc11",
+              "name": "Exchange Broadside Weapon Batteries for Range 45cm, Firepower 8",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "1fba-278d-2ac5-1fe7",
+              "name": "Exchange Broadside Weapon Batteries for Range-30cm, Firepower-10.",
+              "pts": 0,
+              "description": ""
+            },
+            {
+              "id": "1961-efed-cd96-84e0",
+              "name": "Vengeful Spirit",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "group": "Ordnance",
+          "options": [
+            {
+              "id": "bc18-9738-b94f-120d",
+              "name": "Thunderhawk Gunship",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "group": "Chaos Battlebarge Prow Weapons Options",
+          "options": [
+            {
+              "id": "5f61-2e31-072e-2bd7",
+              "name": "Torpedo Tubes",
+              "pts": 10,
+              "description": ""
+            },
+            {
+              "id": "9269-490d-f76b-01f3",
+              "name": "Vengeful Spirit",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "group": "Dorsal Weapons Options",
+          "options": [
+            {
+              "id": "ce8f-208a-ad42-01a5",
+              "name": "Range 45cm, Strength 4 Lances",
+              "pts": 10,
+              "description": ""
+            },
+            {
+              "id": "9f82-9985-f9fc-feb1",
+              "name": "Vengeful Spirit",
+              "pts": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
     }
   }
 }

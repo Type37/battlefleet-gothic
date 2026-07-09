@@ -1,1451 +1,936 @@
+/* ═══════════════════════════════════════════════════════════════
+   BATTLEFLEET GOTHIC — FLEET REGISTRY
+   Vanilla JS. No dependencies. localStorage persistence.
+   ═══════════════════════════════════════════════════════════════ */
 'use strict';
 
+/* ── Constants ─────────────────────────────────────────────── */
+const STORE_KEY = 'bfg-fleets';
 const GREEK = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π'];
+const CAT_ORDER = ['Fleet Commander','Battleship','Grand Cruiser','Battlecruiser','Heavy Cruiser','Cruiser','Light Cruiser','Escort'];
+const CRUISER_CATS = new Set(['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser']);
 
-// ── State ────────────────────────────────────────────────────────────────────
-let DB = null;           // ship_database.json
-let fleets = [];         // saved fleets array
-let activeFleet = null;  // index into fleets
-let newFleetDraft = {};  // draft during creation
+const FACTION_META = {
+  'Imperial Navy':               { icon: 'imperial-navy.svg', color: 'var(--f-imperial)', short: 'Imperial Navy' },
+  'Chaos':                       { icon: 'chaos.svg',         color: 'var(--f-chaos)',    short: 'Chaos' },
+  'Space Marines':               { icon: 'space-marines.svg', color: 'var(--f-marines)',  short: 'Space Marines' },
+  'Adeptus Mechanicus':          { icon: 'mechanicus.svg',    color: 'var(--f-mech)',     short: 'Adeptus Mechanicus' },
+  'Inquisition':                 { icon: 'inquisition.svg',   color: 'var(--f-inq)',      short: 'Inquisition' },
+  'Eldar Corsairs':              { icon: 'eldar.svg',         color: 'var(--f-eldar)',    short: 'Eldar Corsairs' },
+  'Dark Eldar Pirate Fleet List':{ icon: 'dark-eldar.svg',    color: 'var(--f-deldar)',   short: 'Dark Eldar' },
+  'Orks':                        { icon: 'orks.svg',          color: 'var(--f-orks)',     short: 'Orks' },
+  'Necrons':                     { icon: 'necrons.svg',       color: 'var(--f-necrons)',  short: 'Necrons' },
+  'Tyranid Hive Fleet List':     { icon: 'tyranids.svg',      color: 'var(--f-nids)',     short: 'Tyranids' },
+  'Tau Fleet':                   { icon: 'tau.svg',           color: 'var(--f-tau)',      short: 'Tau' },
+  'Pirates and Wolf Packs':      { icon: 'pirates.svg',       color: 'var(--f-pirates)',  short: 'Pirates & Wolf Packs' },
+  'Armada Imperialis':           { icon: 'armada.svg',        color: 'var(--f-armada)',   short: 'Armada Imperialis' },
+};
+function fmeta(faction) {
+  return FACTION_META[faction] || { icon: 'armada.svg', color: 'var(--bone-dim)', short: faction };
+}
+function fstyle(faction) {
+  const m = fmeta(faction);
+  return `--fi:url('assets/icons/${m.icon}');--fc:${m.color}`;
+}
 
-// ── Load data ────────────────────────────────────────────────────────────────
-async function loadDB() {
+/* ── State ─────────────────────────────────────────────────── */
+let DB = null;
+let fleets = [];
+let activeFleet = null;          // index into fleets[]
+let state = 'home';              // 'home' | 'fleet'
+let pickerCategory = 'All';
+let pickerSearch = '';
+let wizStep = 1;
+let wizDraft = {};               // { faction, fleetList }
+
+const $ = id => document.getElementById(id);
+const app = document.getElementById('app');
+
+/* ── Storage ───────────────────────────────────────────────── */
+function loadFleets() {
+  try { fleets = JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+  catch (e) { fleets = []; }
+}
+function saveFleets() {
+  localStorage.setItem(STORE_KEY, JSON.stringify(fleets));
+}
+function getFleet() { return activeFleet != null ? fleets[activeFleet] : null; }
+
+/* ── Points & validation ───────────────────────────────────── */
+function shipDef(id) { return DB.ships[id]; }
+function slotPts(slot) {
+  const s = shipDef(slot.shipId);
+  if (!s) return 0;
+  const upg = (slot.upgrades || []).reduce((a, u) => a + (u.pts || 0), 0);
+  return (s.pts + upg) * (slot.qty || 1);
+}
+function sqdPts(sqd) {
+  const s = shipDef(sqd.shipId);
+  if (!s) return 0;
+  const upg = (sqd.upgrades || []).reduce((a, u) => a + (u.pts || 0), 0);
+  return s.pts * sqd.count + upg;
+}
+function fleetTotalPts(fleet) {
+  let t = fleet.commander ? fleet.commander.pts : 0;
+  fleet.ships.forEach(sl => t += slotPts(sl));
+  fleet.squadrons.forEach(sq => t += sqdPts(sq));
+  return t;
+}
+function countCruisers(fleet) {
+  return fleet.ships.filter(sl => {
+    const s = shipDef(sl.shipId);
+    return s && CRUISER_CATS.has(s.category);
+  }).length;
+}
+function countBattleships(fleet) {
+  return fleet.ships.filter(sl => {
+    const s = shipDef(sl.shipId);
+    return s && s.category === 'Battleship';
+  }).length;
+}
+function validateFleet(fleet) {
+  const issues = [];
+  const total = fleetTotalPts(fleet);
+  if (total === 0 && !fleet.commander) return issues;   // silence on empty fleet
+  const fac = DB.factions[fleet.faction];
+  const hasCommanders = fac && fac.ships.some(id => {
+    const s = DB.ships[id];
+    return s && s.category === 'Fleet Commander';
+  });
+  if (total > 750 && !fleet.commander && hasCommanders) {
+    issues.push({ type: 'err', msg: 'A Fleet Commander is required for fleets above 750 pts.' });
+  }
+  const bs = countBattleships(fleet), cr = countCruisers(fleet);
+  if (bs > 0 && cr < bs * 3) {
+    issues.push({ type: 'err', msg: `${bs} battleship${bs>1?'s':''} require${bs>1?'':'s'} ${bs*3} cruisers — add ${bs*3 - cr} more.`, affectsCategory: 'Battleship' });
+  }
+  fleet.squadrons.forEach(sq => {
+    const s = shipDef(sq.shipId);
+    if (!s) return;
+    if (sq.count < 2) issues.push({ type: 'warn', msg: `${s.name} squadron needs at least 2 ships (currently ${sq.count}).` });
+    if (sq.count > 6) issues.push({ type: 'warn', msg: `${s.name} squadron exceeds the maximum of 6 ships (${sq.count}).` });
+  });
+  if (total > fleet.limit) {
+    issues.push({ type: 'warn', msg: `Fleet exceeds its ${fleet.limit} pt limit by ${total - fleet.limit} pts.` });
+  }
+  return issues;
+}
+function battleshipsInvalid(fleet) {
+  const bs = countBattleships(fleet);
+  return bs > 0 && countCruisers(fleet) < bs * 3;
+}
+function ptsSplit(fleet) {
+  let invalid = 0;
+  if (battleshipsInvalid(fleet)) {
+    fleet.ships.forEach(sl => {
+      const s = shipDef(sl.shipId);
+      if (s && s.category === 'Battleship') invalid += slotPts(sl);
+    });
+  }
+  return { valid: fleetTotalPts(fleet) - invalid, invalid };
+}
+
+/* ── Helpers ───────────────────────────────────────────────── */
+function escHtml(str) {
+  return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function statsRun(ship) {
+  const st = ship.stats || {};
+  const bits = [];
+  if (st.Hits)    bits.push(`<b>${escHtml(st.Hits)}</b> Hits`);
+  if (st.Shields) bits.push(`<b>${escHtml(st.Shields)}</b> Shields`);
+  if (st.Armour)  bits.push(`Armour <b>${escHtml(st.Armour)}</b>`);
+  if (st.Speed)   bits.push(`<b>${escHtml(st.Speed)}</b>`);
+  if (!bits.length) return escHtml(ship.category);
+  return bits.join('<span class="stat-sep">·</span>');
+}
+let toastTimer = null;
+function showToast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+/* ── State machine ─────────────────────────────────────────── */
+function setState(s) {
+  state = s;
+  app.dataset.state = s;
+  const onFleet = s === 'fleet';
+
+  $('mast-brand').hidden   = onFleet;
+  $('mast-fleet').hidden   = !onFleet;
+  $('mast-pts').hidden     = !onFleet;
+  $('mast-actions').hidden = !onFleet;
+  $('fleet-menu-dropdown').hidden = true;
+
+  $('home-content').hidden  = onFleet;
+  $('fleet-content').hidden = !onFleet;
+
+  $('registry-wizard').hidden = onFleet;
+  $('registry-picker').hidden = !onFleet;
+  $('registry-mobile-title').textContent = onFleet ? 'Add Ship' : 'New Fleet';
+
+  app.classList.remove('registry-open');
+
+  document.querySelectorAll('#bottom-nav .nav-item').forEach(n => {
+    n.classList.toggle('active', (n.dataset.nav === 'home' && !onFleet));
+  });
+
+  if (onFleet) renderFleet(); else renderHome();
+}
+function openRegistryMobile() {
+  app.classList.add('registry-open');
+}
+function closeRegistryMobile() {
+  app.classList.remove('registry-open');
+}
+
+/* ── Home render ───────────────────────────────────────────── */
+function renderHome() {
+  const idx = $('fleet-index');
+  $('empty-fleets').hidden = fleets.length > 0;
+  idx.innerHTML = fleets.map((f, i) => {
+    const m = fmeta(f.faction);
+    return `
+    <button class="fleet-row" data-open="${i}" style="${fstyle(f.faction)}">
+      <span class="fleet-row-emblem"></span>
+      <span class="fleet-row-main">
+        <span class="fleet-row-name">${escHtml(f.name)}</span>
+        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? ' · ' + escHtml(f.fleetList) : ''}</span>
+      </span>
+      <span class="fleet-row-pts"><b>${fleetTotalPts(f)}</b><span>of ${f.limit} pts</span></span>
+    </button>`;
+  }).join('');
+}
+
+/* ── Fleet render ──────────────────────────────────────────── */
+function renderFleet() {
+  const fleet = getFleet();
+  if (!fleet) { setState('home'); return; }
+  const m = fmeta(fleet.faction);
+
+  $('fleet-name-display').textContent = fleet.name;
+  $('fleet-faction-display').textContent = m.short + (fleet.fleetList ? ' · ' + fleet.fleetList : '');
+  $('picker-faction-label').textContent = m.short;
+
+  // pts tracker
+  const total = fleetTotalPts(fleet);
+  const split = ptsSplit(fleet);
+  $('pts-used').textContent = total;
+  $('pts-limit').textContent = fleet.limit;
+  const rem = fleet.limit - total;
+  $('pts-remaining').textContent = rem >= 0 ? `${rem} remaining` : `${-rem} over`;
+  $('mast-pts').classList.toggle('over-limit', total > fleet.limit);
+  const pctV = Math.min(100, (split.valid / fleet.limit) * 100);
+  const pctI = Math.min(100 - pctV, (split.invalid / fleet.limit) * 100);
+  $('pts-valid-bar').style.width = pctV + '%';
+  $('pts-invalid-bar').style.width = pctI + '%';
+
+  // validation
+  const issues = validateFleet(fleet);
+  $('validation-panel').innerHTML = issues.map(i => `
+    <div class="vitem ${i.type}"><span class="vitem-glyph">${i.type === 'err' ? '✕' : '⚠'}</span><span>${escHtml(i.msg)}</span></div>
+  `).join('');
+
+  renderManifest(fleet);
+  renderPicker(fleet);
+}
+
+function renderManifest(fleet) {
+  const body = $('fleet-body');
+  const bsInvalid = battleshipsInvalid(fleet);
+  let html = '';
+
+  // Commander
+  if (fleet.commander) {
+    const c = shipDef(fleet.commander.shipId);
+    html += `<div class="man-band"><span>Fleet Commander</span><span class="man-band-pts">${fleet.commander.pts} pts</span></div>`;
+    html += `
+    <div class="ship-row" data-kind="cmd">
+      <div class="ship-row-top">
+        <div class="ship-row-main">
+          <div class="ship-row-name">${escHtml(fleet.commander.name || (c ? c.name : 'Commander'))}</div>
+          <div class="ship-row-stats">${c ? escHtml(c.name) : ''}</div>
+        </div>
+        <div class="ship-row-pts">${fleet.commander.pts}<small>pts</small></div>
+        <button class="row-x" data-remove-cmd aria-label="Remove commander">✕</button>
+      </div>
+    </div>`;
+  }
+
+  // Capital ships by category
+  const byCat = {};
+  fleet.ships.forEach((sl, i) => {
+    const s = shipDef(sl.shipId);
+    if (!s) return;
+    (byCat[s.category] = byCat[s.category] || []).push({ sl, i, s });
+  });
+
+  for (const cat of CAT_ORDER) {
+    if (cat === 'Fleet Commander' || cat === 'Escort' || !byCat[cat]) continue;
+    const group = byCat[cat];
+    const catPts = group.reduce((a, g) => a + slotPts(g.sl), 0);
+    html += `<div class="man-band"><span>${escHtml(cat)}s</span><span class="man-band-count">×${group.length}</span><span class="man-band-pts">${catPts} pts</span></div>`;
+
+    // greek indices per shipId
+    const seen = {};
+    group.forEach(g => {
+      const dupes = group.filter(x => x.sl.shipId === g.sl.shipId).length;
+      let suffix = '';
+      if (dupes > 1) {
+        seen[g.sl.shipId] = (seen[g.sl.shipId] || 0);
+        suffix = `<span class="greek">${GREEK[seen[g.sl.shipId] % GREEK.length]}</span>`;
+        seen[g.sl.shipId]++;
+      }
+      const invalid = bsInvalid && g.s.category === 'Battleship';
+      const upgTags = (g.sl.upgrades || []).map(u =>
+        `<span class="upg-tag">${escHtml(u.name)}${u.pts ? ` +${u.pts}` : ''}</span>`).join('');
+      html += `
+      <div class="ship-row ${invalid ? 'invalid' : ''}" data-slot="${g.i}">
+        <button class="ship-row-top" data-toggle>
+          <span class="ship-row-main">
+            <span class="ship-row-name">${escHtml(g.s.name)}${suffix}</span>
+            <span class="ship-row-stats">${statsRun(g.s)}</span>
+            ${invalid ? '<span class="ship-row-flag">⚠ Needs cruiser escort</span>' : ''}
+          </span>
+          <span class="ship-row-pts">${slotPts(g.sl)}<small>pts</small></span>
+        </button>
+        <div class="ship-detail"><div class="ship-detail-pad">
+          ${shipDetailHtml(g.s)}
+          ${upgTags ? `<div style="margin-top:6px">${upgTags}</div>` : ''}
+          <div class="detail-actions">
+            ${g.s.upgrades && g.s.upgrades.length ? `<button class="chip-btn" data-upgrades="${g.i}">Refit / Upgrades</button>` : ''}
+            <button class="chip-btn" data-remove="${g.i}">Remove Ship</button>
+          </div>
+        </div></div>
+      </div>`;
+    });
+  }
+
+  // Escort squadrons
+  if (fleet.squadrons.length) {
+    const sqPts = fleet.squadrons.reduce((a, sq) => a + sqdPts(sq), 0);
+    html += `<div class="man-band"><span>Escort Squadrons</span><span class="man-band-count">×${fleet.squadrons.length}</span><span class="man-band-pts">${sqPts} pts</span></div>`;
+    fleet.squadrons.forEach((sq, i) => {
+      const s = shipDef(sq.shipId);
+      if (!s) return;
+      const bad = sq.count < 2 || sq.count > 6;
+      html += `
+      <div class="ship-row" data-sqd="${i}">
+        <div class="ship-row-top">
+          <button class="ship-row-main" data-toggle style="all:unset;flex:1;min-width:0;cursor:pointer">
+            <span class="ship-row-name" style="display:block">${escHtml(s.name)}</span>
+            <span class="ship-row-stats" style="display:block">Squadron of <b>${sq.count}</b><span class="stat-sep">·</span>${statsRun(s)}</span>
+            ${bad ? `<span class="ship-row-flag" style="display:block">⚠ Squadrons field 2–6 ships</span>` : ''}
+          </button>
+          <span class="sqd-step">
+            <button class="sqd-btn" data-sqd-dec="${i}" ${sq.count <= 1 ? 'disabled' : ''}>−</button>
+            <span class="sqd-count">${sq.count}</span>
+            <button class="sqd-btn" data-sqd-inc="${i}">+</button>
+          </span>
+          <span class="ship-row-pts">${sqdPts(sq)}<small>pts</small></span>
+          <button class="row-x" data-remove-sqd="${i}" aria-label="Remove squadron">✕</button>
+        </div>
+        <div class="ship-detail"><div class="ship-detail-pad">${shipDetailHtml(s)}</div></div>
+      </div>`;
+    });
+  }
+
+  if (!html) {
+    html = `<div class="empty-state">
+      <div class="empty-rule"></div>
+      <div class="empty-title">No ships on the manifest</div>
+      <div class="empty-sub">Requisition vessels from the naval registry.</div>
+      <div class="empty-rule"></div>
+    </div>`;
+  }
+  body.innerHTML = html;
+}
+
+function shipDetailHtml(ship) {
+  let html = '';
+  const st = ship.stats || {};
+  const cells = [
+    ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
+    ['Armour', st.Armour], ['Turrets', st.Turrets], ['Hits', st.Hits],
+  ].filter(c => c[1]);
+  if (cells.length) {
+    html += `<div class="stat-strip">${cells.map(c =>
+      `<div class="stat-cell"><b>${escHtml(c[1])}</b><span>${c[0]}</span></div>`).join('')}</div>`;
+  }
+  if (ship.armament && ship.armament.length) {
+    html += `<table class="arm-table">
+      <thead><tr><th>Armament</th><th>Range / Speed</th><th>FP / Str</th><th>Arc</th></tr></thead>
+      <tbody>${ship.armament.map(a => `
+        <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '—')}</td><td>${escHtml(a['Firepower/Str'] || '—')}</td><td>${escHtml(a['Fire Arc'] || '—')}</td></tr>
+      `).join('')}</tbody>
+    </table>`;
+  }
+  if (ship.specialRules && ship.specialRules.length) {
+    html += ship.specialRules.map(r =>
+      `<div class="rule-block"><b>${escHtml(r.name)}</b><p>${escHtml(r.effects || '')}</p></div>`).join('');
+  }
+  return html || '<p class="wiz-note">No further data held in the registry for this class.</p>';
+}
+
+/* ── Picker render ─────────────────────────────────────────── */
+function pickerShips(fleet) {
+  const fac = DB.factions[fleet.faction];
+  if (!fac) return [];
+  return fac.ships.map(id => DB.ships[id]).filter(Boolean);
+}
+function renderPicker(fleet) {
+  const ships = pickerShips(fleet);
+  const cats = CAT_ORDER.filter(c => ships.some(s => s.category === c));
+
+  // tabs
+  const tabs = ['All', ...cats];
+  if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
+  $('picker-tabs').innerHTML = tabs.map(t =>
+    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
+  ).join('');
+
+  // rows
+  const q = pickerSearch.trim().toLowerCase();
+  let pool = ships;
+  if (pickerCategory !== 'All') pool = pool.filter(s => s.category === pickerCategory);
+  if (q) pool = pool.filter(s => s.name.toLowerCase().includes(q));
+
+  const bsWouldViolate = cat =>
+    cat === 'Battleship' && countCruisers(fleet) < (countBattleships(fleet) + 1) * 3;
+
+  const groups = pickerCategory === 'All'
+    ? cats.map(c => [c, pool.filter(s => s.category === c)]).filter(g => g[1].length)
+    : [[pickerCategory, pool]];
+
+  let html = '';
+  for (const [cat, list] of groups) {
+    if (!list.length) continue;
+    if (pickerCategory === 'All') html += `<div class="pick-cat-head">${escHtml(cat)}s</div>`;
+    list.slice().sort((a, b) => b.pts - a.pts).forEach(s => {
+      const warn = bsWouldViolate(s.category);
+      html += `
+      <div class="pick-row" data-ship="${s.id}">
+        <div class="pick-row-top">
+          <button class="pick-row-main" data-toggle style="all:unset;flex:1;min-width:0;cursor:pointer">
+            <span class="pick-row-name" style="display:block">${escHtml(s.name)}</span>
+            <span class="pick-row-stats" style="display:block">${statsRun(s)}</span>
+          </button>
+          <span class="pick-row-pts">${s.pts}<small style="display:block;font-size:9px;font-weight:400;color:var(--faint);text-align:right;letter-spacing:1px">pts</small></span>
+          <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio — allowed, but flagged' : 'Add to fleet'}">+</button>
+        </div>
+        <div class="ship-detail"><div class="ship-detail-pad">
+          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet — you may add it anyway and fix the manifest later.</div>` : ''}
+          ${shipDetailHtml(s)}
+        </div></div>
+      </div>`;
+    });
+  }
+  $('picker-body').innerHTML = html || `<div class="pick-none">No vessels of this class answer the summons.</div>`;
+}
+
+/* ── Fleet mutations ───────────────────────────────────────── */
+function addShip(shipId) {
+  const fleet = getFleet();
+  const s = shipDef(shipId);
+  if (!fleet || !s) return;
+
+  if (s.category === 'Fleet Commander') {
+    const had = !!fleet.commander;
+    fleet.commander = { shipId, name: s.name, pts: s.pts, rerolls: 0 };
+    showToast(had ? `${s.name} assumes command` : `${s.name} takes command of the fleet`);
+  } else if (s.category === 'Escort') {
+    const sq = fleet.squadrons.find(x => x.shipId === shipId);
+    if (sq) { sq.count++; showToast(`${s.name} joins the squadron (${sq.count})`); }
+    else { fleet.squadrons.push({ shipId, count: 2, upgrades: [] }); showToast(`${s.name} squadron formed (2 ships)`); }
+  } else {
+    fleet.ships.push({ shipId, qty: 1, upgrades: [], _idx: Date.now() });
+    showToast(`${s.name} added to the manifest`);
+  }
+  saveFleets();
+  renderFleet();
+}
+function removeShip(i) {
+  const fleet = getFleet();
+  const s = shipDef(fleet.ships[i]?.shipId);
+  fleet.ships.splice(i, 1);
+  saveFleets(); renderFleet();
+  if (s) showToast(`${s.name} struck from the manifest`);
+}
+
+/* ── Wizard ────────────────────────────────────────────────── */
+function wizGoto(step) {
+  wizStep = step;
+  document.querySelectorAll('.wstep').forEach(el => {
+    const n = +el.dataset.step;
+    el.classList.toggle('active', n === step);
+    el.classList.toggle('done', n < step);
+  });
+  $('wiz-step-1').hidden = step !== 1;
+  $('wiz-step-2').hidden = step !== 2;
+  $('wiz-step-3').hidden = step !== 3;
+  $('btn-wiz-back').hidden = step === 1;
+  const next = $('btn-wiz-next');
+  if (step === 1) { next.textContent = 'Continue ›'; next.disabled = !wizDraft.faction; }
+  if (step === 2) { next.textContent = 'Continue ›'; next.disabled = !wizDraft.fleetList; }
+  if (step === 3) { next.textContent = '✠ Commission Fleet'; next.disabled = false; }
+}
+function renderWizard() {
+  const grid = $('faction-grid');
+  grid.innerHTML = Object.entries(DB.factions).map(([name, f]) => {
+    const m = fmeta(name);
+    return `
+    <button class="faction-cell ${wizDraft.faction === name ? 'selected' : ''}" data-faction="${escHtml(name)}" style="${fstyle(name)}">
+      <span class="faction-icon"></span>
+      <span>
+        <span class="faction-cell-name" style="display:block">${escHtml(m.short)}</span>
+        <span class="faction-cell-sub" style="display:block">${f.ships.length} classes</span>
+      </span>
+    </button>`;
+  }).join('');
+}
+function renderWizardLists() {
+  const fac = DB.factions[wizDraft.faction];
+  const lists = fac ? fac.fleetLists : [];
+  const box = $('fleet-list-options');
+  if (!lists.length) {
+    box.innerHTML = `<p class="wiz-note">This registry holds no named fleet lists — the fleet will be chartered unaligned.</p>`;
+    wizDraft.fleetList = '';
+    return;
+  }
+  box.innerHTML = lists.map(l => `
+    <button class="list-opt ${wizDraft.fleetList === l.name ? 'selected' : ''}" data-list="${escHtml(l.name)}">
+      <span class="list-opt-name" style="display:block">${escHtml(l.name)}</span>
+    </button>`).join('');
+}
+function commissionFleet() {
+  const name = $('new-fleet-name').value.trim() || 'Unnamed Fleet';
+  const limit = parseInt($('new-fleet-pts').value, 10) || 1500;
+  fleets.push({
+    id: Date.now(),
+    name, faction: wizDraft.faction,
+    fleetList: wizDraft.fleetList || '',
+    limit,
+    commander: null, ships: [], squadrons: [],
+    created: new Date().toISOString(),
+  });
+  saveFleets();
+  activeFleet = fleets.length - 1;
+  wizDraft = {}; $('new-fleet-name').value = '';
+  wizGoto(1); renderWizard();
+  setState('fleet');
+  showToast(`${name} enters the registry`);
+}
+
+/* ── Export & print ────────────────────────────────────────── */
+function exportText(fleet) {
+  const m = fmeta(fleet.faction);
+  const lines = [];
+  lines.push(`${fleet.name.toUpperCase()}`);
+  lines.push(`${m.short}${fleet.fleetList ? ' — ' + fleet.fleetList : ''}`);
+  lines.push(`${fleetTotalPts(fleet)} / ${fleet.limit} pts`);
+  lines.push('═'.repeat(40));
+  if (fleet.commander) {
+    const c = shipDef(fleet.commander.shipId);
+    lines.push('', 'FLEET COMMANDER');
+    lines.push(`  ${fleet.commander.name || (c && c.name) || 'Commander'} — ${fleet.commander.pts} pts`);
+  }
+  const byCat = {};
+  fleet.ships.forEach(sl => {
+    const s = shipDef(sl.shipId); if (!s) return;
+    (byCat[s.category] = byCat[s.category] || []).push(sl);
+  });
+  for (const cat of CAT_ORDER) {
+    if (!byCat[cat]) continue;
+    lines.push('', cat.toUpperCase() + 'S');
+    const seen = {};
+    byCat[cat].forEach(sl => {
+      const s = shipDef(sl.shipId);
+      const dupes = byCat[cat].filter(x => x.shipId === sl.shipId).length;
+      let suffix = '';
+      if (dupes > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = ' ' + GREEK[seen[sl.shipId]++ % GREEK.length]; }
+      const upg = (sl.upgrades || []).map(u => `${u.name}${u.pts ? ` (+${u.pts})` : ''}`).join(', ');
+      lines.push(`  ${s.name}${suffix} — ${slotPts(sl)} pts${upg ? `  [${upg}]` : ''}`);
+    });
+  }
+  if (fleet.squadrons.length) {
+    lines.push('', 'ESCORT SQUADRONS');
+    fleet.squadrons.forEach(sq => {
+      const s = shipDef(sq.shipId);
+      lines.push(`  ${s.name} ×${sq.count} — ${sqdPts(sq)} pts`);
+    });
+  }
+  lines.push('', '═'.repeat(40), `TOTAL: ${fleetTotalPts(fleet)} pts`);
+  return lines.join('\n');
+}
+
+function openExport() {
+  const fleet = getFleet();
+  if (!fleet) { showToast('Open a fleet first'); return; }
+  $('export-preview').textContent = exportText(fleet);
+  $('overlay-export').hidden = false;
+}
+
+function printCardHtml(ship, opts) {
+  const st = ship.stats || {};
+  const hits = Math.min(parseInt(st.Hits, 10) || (ship.category === 'Escort' ? 1 : 1), 16);
+  const isEscort = ship.category === 'Escort';
+  const cells = [
+    ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
+    ['Armour', st.Armour], ['Turrets', st.Turrets],
+  ].filter(c => c[1]);
+  const upgRules = (opts.upgrades || []).map(u => `<b>${escHtml(u.name)}</b>${u.pts ? ` (+${u.pts} pts)` : ''}`).join(' · ');
+  const rules = (ship.specialRules || []).map(r => `<b>${escHtml(r.name)}:</b> ${escHtml(r.effects || '')}`).join(' ');
+  return `
+  <div class="pcard">
+    <div class="pcard-head">
+      <span class="pcard-class">${escHtml(ship.category)} — ${escHtml(ship.name)}${opts.suffix ? ' ' + opts.suffix : ''}</span>
+      <span class="pcard-pts">${opts.pts} pts</span>
+    </div>
+    <div class="pcard-sub">
+      <span>${escHtml(opts.factionShort)}</span>
+      <span style="margin-left:auto">${escHtml(opts.fleetName)}</span>
+    </div>
+    <div class="pcard-body" style="flex-direction:column">
+      ${cells.length ? `<div class="pcard-statrow">${cells.map(c =>
+        `<div class="pcard-stat"><b>${escHtml(c[1])}</b><span>${c[0]}</span></div>`).join('')}</div>` : ''}
+      <div class="pcard-hits">
+        <span class="pcard-hits-label">${isEscort ? `Squadron (${opts.count || 1})` : 'Hits'}</span>
+        ${Array.from({ length: isEscort ? (opts.count || 1) : hits }, () => '<span class="hit-box"></span>').join('')}
+        <span class="pcard-hits-label" style="margin-left:2mm">Ld</span><span class="hit-box" style="border-color:#333"></span>
+      </div>
+      ${ship.armament && ship.armament.length ? `
+      <table class="pcard-arm">
+        <thead><tr><th>Armament</th><th>Range/Speed</th><th>FP/Str</th><th>Arc</th></tr></thead>
+        <tbody>${ship.armament.map(a => `
+          <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '—')}</td><td>${escHtml(a['Firepower/Str'] || '—')}</td><td>${escHtml(a['Fire Arc'] || '—')}</td></tr>`).join('')}
+        </tbody>
+      </table>` : ''}
+      ${(rules || upgRules) ? `<div class="pcard-rules">${upgRules}${upgRules && rules ? ' — ' : ''}${rules}</div>` : ''}
+      ${!isEscort ? `
+      <div class="pcard-crit">
+        <div class="pcard-crit-label">Critical Damage</div>
+        <div class="crit-track">${[2,3,4,5,6,7,8,9,10].map(n => `<span class="crit-cell">${n}</span>`).join('')}</div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function printCards() {
+  const fleet = getFleet();
+  if (!fleet) return;
+  const short = fmeta(fleet.faction).short;
+  const cards = [];
+  if (fleet.commander) {
+    const c = shipDef(fleet.commander.shipId);
+    if (c) cards.push(printCardHtml(c, { pts: fleet.commander.pts, factionShort: short, fleetName: fleet.name }));
+  }
+  const byId = {};
+  fleet.ships.forEach(sl => { byId[sl.shipId] = (byId[sl.shipId] || 0) + 1; });
+  const seen = {};
+  fleet.ships.forEach(sl => {
+    const s = shipDef(sl.shipId); if (!s) return;
+    let suffix = '';
+    if (byId[sl.shipId] > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = GREEK[seen[sl.shipId]++ % GREEK.length]; }
+    cards.push(printCardHtml(s, { pts: slotPts(sl), suffix, upgrades: sl.upgrades, factionShort: short, fleetName: fleet.name }));
+  });
+  fleet.squadrons.forEach(sq => {
+    const s = shipDef(sq.shipId); if (!s) return;
+    cards.push(printCardHtml(s, { pts: sqdPts(sq), count: sq.count, factionShort: short, fleetName: fleet.name }));
+  });
+  $('print-root').innerHTML = `<div class="print-grid">${cards.join('')}</div>`;
+  window.print();
+}
+
+function printRoster() {
+  const fleet = getFleet();
+  if (!fleet) return;
+  const m = fmeta(fleet.faction);
+  let html = `<div class="print-roster">
+    <h1>${escHtml(fleet.name)}</h1>
+    <div class="pr-sub">${escHtml(m.short)}${fleet.fleetList ? ' · ' + escHtml(fleet.fleetList) : ''} · ${fleetTotalPts(fleet)} / ${fleet.limit} pts</div>`;
+  if (fleet.commander) {
+    const c = shipDef(fleet.commander.shipId);
+    html += `<h2>Fleet Commander</h2><table><tr><td>${escHtml(fleet.commander.name || (c && c.name) || '')}</td><td class="pr-pts">${fleet.commander.pts} pts</td></tr></table>`;
+  }
+  const byCat = {};
+  fleet.ships.forEach(sl => {
+    const s = shipDef(sl.shipId); if (!s) return;
+    (byCat[s.category] = byCat[s.category] || []).push(sl);
+  });
+  for (const cat of CAT_ORDER) {
+    if (!byCat[cat]) continue;
+    html += `<h2>${escHtml(cat)}s</h2><table>`;
+    const seen = {};
+    byCat[cat].forEach(sl => {
+      const s = shipDef(sl.shipId);
+      const dupes = byCat[cat].filter(x => x.shipId === sl.shipId).length;
+      let suffix = '';
+      if (dupes > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = ' ' + GREEK[seen[sl.shipId]++ % GREEK.length]; }
+      const upg = (sl.upgrades || []).map(u => u.name).join(', ');
+      html += `<tr><td>${escHtml(s.name)}${suffix}${upg ? ` <i>(${escHtml(upg)})</i>` : ''}</td><td class="pr-pts">${slotPts(sl)} pts</td></tr>`;
+    });
+    html += `</table>`;
+  }
+  if (fleet.squadrons.length) {
+    html += `<h2>Escort Squadrons</h2><table>`;
+    fleet.squadrons.forEach(sq => {
+      const s = shipDef(sq.shipId);
+      html += `<tr><td>${escHtml(s.name)} ×${sq.count}</td><td class="pr-pts">${sqdPts(sq)} pts</td></tr>`;
+    });
+    html += `</table>`;
+  }
+  html += `<table><tr class="pr-total"><td>TOTAL</td><td class="pr-pts">${fleetTotalPts(fleet)} pts</td></tr></table></div>`;
+  $('print-root').innerHTML = html;
+  window.print();
+}
+
+/* ── Upgrades modal ────────────────────────────────────────── */
+let modalSlotIdx = null;
+function openUpgrades(slotIdx) {
+  const fleet = getFleet();
+  const sl = fleet.ships[slotIdx];
+  const s = shipDef(sl.shipId);
+  if (!s || !s.upgrades || !s.upgrades.length) return;
+  modalSlotIdx = slotIdx;
+  $('modal-title').textContent = `Refit — ${s.name}`;
+  $('modal-body').innerHTML = s.upgrades.map((g, gi) => `
+    <div class="upg-group">
+      <div class="upg-group-name">${escHtml(g.group || 'Options')}</div>
+      ${g.options.map(o => {
+        const sel = (sl.upgrades || []).some(u => u.id === o.id);
+        return `
+        <button class="upg-opt ${sel ? 'selected' : ''}" data-upg-id="${o.id}" data-upg-group="${gi}">
+          <span class="upg-check"></span>
+          <span class="upg-opt-name">${escHtml(o.name)}${o.description ? `<span class="upg-opt-desc" style="display:block">${escHtml(o.description)}</span>` : ''}</span>
+          <span class="upg-opt-pts">${o.pts > 0 ? '+' + o.pts : o.pts === 0 ? 'free' : o.pts}</span>
+        </button>`;
+      }).join('')}
+    </div>`).join('');
+  $('modal-upgrades').hidden = false;
+}
+function toggleUpgrade(optId, groupIdx) {
+  const fleet = getFleet();
+  const sl = fleet.ships[modalSlotIdx];
+  const s = shipDef(sl.shipId);
+  const group = s.upgrades[groupIdx];
+  const opt = group.options.find(o => o.id === optId);
+  if (!opt) return;
+  sl.upgrades = sl.upgrades || [];
+  const had = sl.upgrades.some(u => u.id === optId);
+  // options within a group are exclusive — clear the group first
+  const groupIds = new Set(group.options.map(o => o.id));
+  sl.upgrades = sl.upgrades.filter(u => !groupIds.has(u.id));
+  if (!had) sl.upgrades.push({ id: opt.id, name: opt.name, pts: opt.pts || 0 });
+  saveFleets();
+  openUpgrades(modalSlotIdx); // re-render modal
+  renderFleet();
+}
+
+/* ── Fleet menu actions ────────────────────────────────────── */
+function renameFleet() {
+  const fleet = getFleet();
+  const name = window.prompt('Rename fleet:', fleet.name);
+  if (name && name.trim()) {
+    fleet.name = name.trim();
+    saveFleets(); renderFleet();
+  }
+}
+function duplicateFleet() {
+  const fleet = getFleet();
+  const copy = JSON.parse(JSON.stringify(fleet));
+  copy.id = Date.now();
+  copy.name = fleet.name + ' (Copy)';
+  copy.created = new Date().toISOString();
+  fleets.push(copy);
+  saveFleets();
+  showToast(`${copy.name} entered into the registry`);
+}
+function deleteFleet() {
+  const fleet = getFleet();
+  if (!window.confirm(`Strike "${fleet.name}" from the registry? This cannot be undone.`)) return;
+  fleets.splice(activeFleet, 1);
+  activeFleet = null;
+  saveFleets();
+  setState('home');
+  showToast('Fleet struck from the registry');
+}
+
+/* ── Events ────────────────────────────────────────────────── */
+function bindEvents() {
+  // masthead
+  $('btn-back-home').addEventListener('click', () => { activeFleet = null; setState('home'); });
+  $('btn-export').addEventListener('click', openExport);
+  $('btn-fleet-menu').addEventListener('click', e => {
+    e.stopPropagation();
+    $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.mast-actions')) $('fleet-menu-dropdown').hidden = true;
+  });
+  $('fleet-menu-rename').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; renameFleet(); });
+  $('fleet-menu-duplicate').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; duplicateFleet(); });
+  $('fleet-menu-delete').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; deleteFleet(); });
+
+  // home
+  $('fleet-index').addEventListener('click', e => {
+    const row = e.target.closest('[data-open]');
+    if (row) { activeFleet = +row.dataset.open; setState('fleet'); }
+  });
+  $('btn-new-fleet').addEventListener('click', () => {
+    openRegistryMobile();  // no-op visually on desktop (wizard already visible)
+    document.querySelector('.registry-inner').scrollTop = 0;
+  });
+
+  // registry mobile close
+  $('btn-close-registry').addEventListener('click', closeRegistryMobile);
+
+  // bottom nav
+  document.querySelectorAll('#bottom-nav .nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nav = btn.dataset.nav;
+      if (nav === 'home') { if (state === 'fleet') { activeFleet = null; setState('home'); } closeRegistryMobile(); }
+      if (nav === 'add') { openRegistryMobile(); }
+      if (nav === 'export') { openExport(); }
+    });
+  });
+
+  // wizard
+  $('faction-grid').addEventListener('click', e => {
+    const cell = e.target.closest('[data-faction]');
+    if (!cell) return;
+    wizDraft.faction = cell.dataset.faction;
+    wizDraft.fleetList = undefined;
+    renderWizard();
+    $('btn-wiz-next').disabled = false;
+  });
+  $('fleet-list-options').addEventListener('click', e => {
+    const opt = e.target.closest('[data-list]');
+    if (!opt) return;
+    wizDraft.fleetList = opt.dataset.list;
+    renderWizardLists();
+    $('btn-wiz-next').disabled = false;
+  });
+  $('btn-wiz-back').addEventListener('click', () => wizGoto(wizStep - 1));
+  $('btn-wiz-next').addEventListener('click', () => {
+    if (wizStep === 1) {
+      renderWizardLists();
+      const fac = DB.factions[wizDraft.faction];
+      if (!fac || !fac.fleetLists.length) { wizDraft.fleetList = ''; wizGoto(2); $('btn-wiz-next').disabled = false; }
+      else wizGoto(2);
+    }
+    else if (wizStep === 2) wizGoto(3);
+    else commissionFleet();
+  });
+  $('pts-chips').addEventListener('click', e => {
+    const chip = e.target.closest('[data-pts]');
+    if (!chip) return;
+    document.querySelectorAll('.pts-chip').forEach(c => c.classList.toggle('active', c === chip));
+    $('new-fleet-pts').value = chip.dataset.pts;
+  });
+  $('new-fleet-pts').addEventListener('input', () => {
+    document.querySelectorAll('.pts-chip').forEach(c =>
+      c.classList.toggle('active', c.dataset.pts === $('new-fleet-pts').value));
+  });
+
+  // picker
+  $('picker-tabs').addEventListener('click', e => {
+    const tab = e.target.closest('[data-tab]');
+    if (!tab) return;
+    pickerCategory = tab.dataset.tab;
+    renderPicker(getFleet());
+  });
+  $('picker-search').addEventListener('input', e => {
+    pickerSearch = e.target.value;
+    $('btn-search-clear').hidden = !pickerSearch;
+    renderPicker(getFleet());
+  });
+  $('btn-search-clear').addEventListener('click', () => {
+    pickerSearch = '';
+    $('picker-search').value = '';
+    $('btn-search-clear').hidden = true;
+    renderPicker(getFleet());
+  });
+  $('picker-body').addEventListener('click', e => {
+    const add = e.target.closest('[data-add]');
+    if (add) { addShip(add.dataset.add); return; }
+    const toggle = e.target.closest('[data-toggle]');
+    if (toggle) toggle.closest('.pick-row').classList.toggle('open');
+  });
+
+  // manifest
+  $('fleet-body').addEventListener('click', e => {
+    const t = e.target;
+    const removeCmd = t.closest('[data-remove-cmd]');
+    if (removeCmd) { getFleet().commander = null; saveFleets(); renderFleet(); showToast('Commander relieved of duty'); return; }
+    const rem = t.closest('[data-remove]');
+    if (rem) { removeShip(+rem.dataset.remove); return; }
+    const remSqd = t.closest('[data-remove-sqd]');
+    if (remSqd) {
+      const fleet = getFleet();
+      fleet.squadrons.splice(+remSqd.dataset.removeSqd, 1);
+      saveFleets(); renderFleet(); showToast('Squadron disbanded'); return;
+    }
+    const inc = t.closest('[data-sqd-inc]');
+    if (inc) { getFleet().squadrons[+inc.dataset.sqdInc].count++; saveFleets(); renderFleet(); return; }
+    const dec = t.closest('[data-sqd-dec]');
+    if (dec) {
+      const sq = getFleet().squadrons[+dec.dataset.sqdDec];
+      if (sq.count > 1) { sq.count--; saveFleets(); renderFleet(); }
+      return;
+    }
+    const upg = t.closest('[data-upgrades]');
+    if (upg) { openUpgrades(+upg.dataset.upgrades); return; }
+    const toggle = t.closest('[data-toggle]');
+    if (toggle) toggle.closest('.ship-row').classList.toggle('open');
+  });
+
+  // export overlay
+  $('btn-close-export').addEventListener('click', () => $('overlay-export').hidden = true);
+  $('overlay-export').addEventListener('click', e => { if (e.target === $('overlay-export')) $('overlay-export').hidden = true; });
+  $('btn-print-cards').addEventListener('click', printCards);
+  $('btn-print-roster').addEventListener('click', printRoster);
+  $('btn-copy-text').addEventListener('click', () => {
+    navigator.clipboard.writeText($('export-preview').textContent)
+      .then(() => showToast('Fleet list copied'))
+      .catch(() => showToast('Copy failed — select the text manually'));
+  });
+
+  // upgrades modal
+  $('modal-close').addEventListener('click', () => $('modal-upgrades').hidden = true);
+  $('modal-upgrades').addEventListener('click', e => {
+    if (e.target === $('modal-upgrades')) { $('modal-upgrades').hidden = true; return; }
+    const opt = e.target.closest('[data-upg-id]');
+    if (opt) toggleUpgrade(opt.dataset.upgId, +opt.dataset.upgGroup);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      $('overlay-export').hidden = true;
+      $('modal-upgrades').hidden = true;
+      $('fleet-menu-dropdown').hidden = true;
+      closeRegistryMobile();
+    }
+  });
+}
+
+/* ── Boot ──────────────────────────────────────────────────── */
+async function boot() {
   try {
     const res = await fetch('data/ship_database.json');
     DB = await res.json();
   } catch (e) {
-    showToast('Failed to load ship data — check your connection.');
-  }
-}
-
-// ── Persistence ──────────────────────────────────────────────────────────────
-function saveFleets() {
-  localStorage.setItem('bfg-fleets', JSON.stringify(fleets));
-}
-
-function loadFleets() {
-  try {
-    const raw = localStorage.getItem('bfg-fleets');
-    fleets = raw ? JSON.parse(raw) : [];
-  } catch (e) {
-    fleets = [];
-  }
-}
-
-function getActiveFleet() {
-  return activeFleet !== null ? fleets[activeFleet] : null;
-}
-
-// ── Fleet model ──────────────────────────────────────────────────────────────
-function createFleet(name, faction, fleetList, limit) {
-  return {
-    id:        Date.now(),
-    name,
-    faction,
-    fleetList,
-    limit,
-    commander: null,
-    ships:     [],      // { shipId, qty, upgrades[], note }
-    // escorts grouped into squadrons
-    squadrons: [],      // { shipId, count, upgrades[] }
-    created:   new Date().toISOString(),
-  };
-}
-
-function fleetTotalPts(fleet) {
-  if (!fleet || !DB) return 0;
-  let total = 0;
-  if (fleet.commander) total += fleet.commander.pts || 0;
-  for (const slot of fleet.ships) {
-    const ship = DB.ships[slot.shipId];
-    if (!ship) continue;
-    let shipPts = ship.pts;
-    for (const upg of (slot.upgrades || [])) shipPts += upg.pts || 0;
-    total += shipPts * (slot.qty || 1);
-  }
-  for (const sqd of fleet.squadrons) {
-    const ship = DB.ships[sqd.shipId];
-    if (!ship) continue;
-    let shipPts = ship.pts;
-    for (const upg of (sqd.upgrades || [])) shipPts += upg.pts || 0;
-    total += shipPts * (sqd.count || 1);
-  }
-  return total;
-}
-
-// ── Validation ───────────────────────────────────────────────────────────────
-function validateFleet(fleet) {
-  if (!fleet || !DB) return [];
-  const issues = [];
-  const ships = fleet.ships.map(s => DB.ships[s.shipId]).filter(Boolean);
-
-  const battleships    = ships.filter(s => s.category === 'Battleship').length;
-  const cruisers       = ships.filter(s => ['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser'].includes(s.category)).length;
-  const total          = fleetTotalPts(fleet);
-
-  // Fleet Commander required above 750 pts
-  if (total > 750 && !fleet.commander) {
-    issues.push({ type: 'err', msg: 'Fleet Commander required for fleets above 750 pts' });
-  }
-
-  // Battleship ratio: 1 per 3 cruisers
-  if (battleships > 0) {
-    const required = battleships * 3;
-    if (cruisers < required) {
-      const need = required - cruisers;
-      issues.push({
-        type: 'err',
-        msg: battleships + (battleships > 1 ? ' Battleships require' : ' Battleship requires') + ' ' + required + ' cruisers — add ' + need + ' more cruiser' + (need > 1 ? 's' : ''),
-        affectsCategory: 'Battleship',
-      });
-    }
-  }
-
-  // Escort squadron size (2–6)
-  for (const sqd of fleet.squadrons) {
-    if (sqd.count < 2) {
-      const ship = DB.ships[sqd.shipId];
-      issues.push({ type: 'warn', msg: (ship ? ship.name : 'Escort') + ' squadron needs at least 2 ships (currently ' + sqd.count + ')' });
-    }
-    if (sqd.count > 6) {
-      const ship = DB.ships[sqd.shipId];
-      issues.push({ type: 'warn', msg: (ship ? ship.name : 'Escort') + ' squadron exceeds maximum of 6 ships (' + sqd.count + ')' });
-    }
-  }
-
-  return issues;
-}
-
-// Which ship ids are "invalid" (part of a ratio violation)
-function invalidShipIds(fleet) {
-  const issues = validateFleet(fleet);
-  const invalid = new Set();
-  if (issues.some(i => i.affectsCategory === 'Battleship')) {
-    for (const slot of fleet.ships) {
-      const ship = DB.ships[slot.shipId];
-      if (ship && ship.category === 'Battleship') invalid.add(slot.shipId);
-    }
-  }
-  return invalid;
-}
-
-// Points split: valid / invalid
-function ptsSplit(fleet) {
-  if (!fleet || !DB) return { valid: 0, invalid: 0 };
-  const bad = invalidShipIds(fleet);
-  let valid = 0, invalid = 0;
-  if (fleet.commander) valid += fleet.commander.pts || 0;
-  for (const slot of fleet.ships) {
-    const ship = DB.ships[slot.shipId];
-    if (!ship) continue;
-    let p = ship.pts;
-    for (const upg of (slot.upgrades || [])) p += upg.pts || 0;
-    p *= (slot.qty || 1);
-    if (bad.has(slot.shipId)) invalid += p;
-    else valid += p;
-  }
-  for (const sqd of fleet.squadrons) {
-    const ship = DB.ships[sqd.shipId];
-    if (!ship) continue;
-    let p = ship.pts;
-    for (const upg of (sqd.upgrades || [])) p += upg.pts || 0;
-    valid += p * (sqd.count || 1);
-  }
-  return { valid, invalid };
-}
-
-// ── Canvas silhouette renderer ────────────────────────────────────────────────
-const SIL_CACHE = {};
-
-function drawSilhouette(canvas, category, color) {
-  const key = category + '_' + color + '_' + canvas.width + 'x' + canvas.height;
-  if (SIL_CACHE[key] === 'drawn') return;
-
-  const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height;
-  ctx.clearRect(0, 0, w, h);
-
-  // Ambient glow background
-  const grd = ctx.createLinearGradient(0, 0, w, 0);
-  grd.addColorStop(0, 'rgba(0,0,0,0)');
-  grd.addColorStop(0.4, color + '18');
-  grd.addColorStop(0.7, color + '30');
-  grd.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.strokeStyle = color;
-  ctx.fillStyle   = color;
-  ctx.lineJoin    = 'round';
-  ctx.lineCap     = 'round';
-
-  const cx = w / 2, cy = h / 2;
-
-  function hull(pts, alpha, fill) {
-    ctx.beginPath();
-    ctx.moveTo(pts[0][0], pts[0][1]);
-    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
-    ctx.closePath();
-    ctx.globalAlpha = fill ? alpha * 0.15 : 0;
-    if (fill) ctx.fill();
-    ctx.globalAlpha = alpha;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-  }
-
-  if (category === 'Battleship') {
-    hull([
-      [cx + w*.44, cy],
-      [cx + w*.18, cy - h*.2],
-      [cx - w*.08, cy - h*.22],
-      [cx - w*.44, cy - h*.12],
-      [cx - w*.46, cy],
-      [cx - w*.44, cy + h*.12],
-      [cx - w*.08, cy + h*.22],
-      [cx + w*.18, cy + h*.2],
-    ], .65, true);
-    // spine
-    ctx.beginPath(); ctx.moveTo(cx + w*.38, cy); ctx.lineTo(cx - w*.3, cy);
-    ctx.globalAlpha = .35; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
-    // prow spike
-    ctx.beginPath(); ctx.moveTo(cx + w*.44, cy); ctx.lineTo(cx + w*.5, cy);
-    ctx.globalAlpha = .85; ctx.lineWidth = 2; ctx.stroke(); ctx.globalAlpha = 1;
-    // engine block
-    ctx.globalAlpha = .3;
-    ctx.fillRect(cx - w*.48, cy - h*.07, w*.06, h*.14);
-    ctx.globalAlpha = 1;
-    // turrets
-    [[-.08, -.21], [.08, -.21], [-.08, .21], [.08, .21]].forEach(function(o) {
-      ctx.beginPath(); ctx.arc(cx + o[0]*w, cy + o[1]*h, .034*w, 0, Math.PI*2);
-      ctx.globalAlpha = .5; ctx.fill(); ctx.globalAlpha = 1;
-    });
-
-  } else if (category === 'Battlecruiser' || category === 'Grand Cruiser') {
-    hull([
-      [cx + w*.42, cy],
-      [cx + w*.16, cy - h*.18],
-      [cx - w*.06, cy - h*.2],
-      [cx - w*.42, cy - h*.1],
-      [cx - w*.44, cy],
-      [cx - w*.42, cy + h*.1],
-      [cx - w*.06, cy + h*.2],
-      [cx + w*.16, cy + h*.18],
-    ], .6, true);
-    ctx.beginPath(); ctx.moveTo(cx + w*.36, cy); ctx.lineTo(cx - w*.28, cy);
-    ctx.globalAlpha = .3; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.moveTo(cx + w*.42, cy); ctx.lineTo(cx + w*.47, cy);
-    ctx.globalAlpha = .8; ctx.lineWidth = 2; ctx.stroke(); ctx.globalAlpha = 1;
-    [[-.06, -.19], [.06, -.19], [-.06, .19], [.06, .19]].forEach(function(o) {
-      ctx.beginPath(); ctx.arc(cx + o[0]*w, cy + o[1]*h, .03*w, 0, Math.PI*2);
-      ctx.globalAlpha = .45; ctx.fill(); ctx.globalAlpha = 1;
-    });
-
-  } else if (category === 'Cruiser' || category === 'Heavy Cruiser') {
-    hull([
-      [cx + w*.38, cy],
-      [cx + w*.14, cy - h*.16],
-      [cx - w*.07, cy - h*.18],
-      [cx - w*.38, cy - h*.09],
-      [cx - w*.4,  cy],
-      [cx - w*.38, cy + h*.09],
-      [cx - w*.07, cy + h*.18],
-      [cx + w*.14, cy + h*.16],
-    ], .6, true);
-    ctx.beginPath(); ctx.moveTo(cx + w*.32, cy); ctx.lineTo(cx - w*.25, cy);
-    ctx.globalAlpha = .3; ctx.lineWidth = 1; ctx.stroke(); ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.moveTo(cx + w*.38, cy); ctx.lineTo(cx + w*.44, cy);
-    ctx.globalAlpha = .75; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
-    [[-.04, -.17], [.04, -.17], [-.04, .17], [.04, .17]].forEach(function(o) {
-      ctx.beginPath(); ctx.arc(cx + o[0]*w, cy + o[1]*h, .027*w, 0, Math.PI*2);
-      ctx.globalAlpha = .4; ctx.fill(); ctx.globalAlpha = 1;
-    });
-
-  } else if (category === 'Light Cruiser') {
-    hull([
-      [cx + w*.34, cy],
-      [cx + w*.12, cy - h*.13],
-      [cx - w*.06, cy - h*.15],
-      [cx - w*.34, cy - h*.07],
-      [cx - w*.36, cy],
-      [cx - w*.34, cy + h*.07],
-      [cx - w*.06, cy + h*.15],
-      [cx + w*.12, cy + h*.13],
-    ], .55, true);
-    ctx.beginPath(); ctx.moveTo(cx + w*.34, cy); ctx.lineTo(cx + w*.4, cy);
-    ctx.globalAlpha = .7; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
-
-  } else {
-    // Escort
-    hull([
-      [cx + w*.3,  cy],
-      [cx + w*.08, cy - h*.1],
-      [cx - w*.26, cy - h*.07],
-      [cx - w*.3,  cy],
-      [cx - w*.26, cy + h*.07],
-      [cx + w*.08, cy + h*.1],
-    ], .5, true);
-    ctx.beginPath(); ctx.moveTo(cx + w*.3, cy); ctx.lineTo(cx + w*.36, cy);
-    ctx.globalAlpha = .7; ctx.lineWidth = 1.5; ctx.stroke(); ctx.globalAlpha = 1;
-  }
-
-  SIL_CACHE[key] = 'drawn';
-}
-
-// ── Faction colour mapping ────────────────────────────────────────────────────
-const FACTION_META = {
-  'Imperial Navy':               { color: '#8a2020', icon: '⚓', accent: 'var(--imp)' },
-  'Chaos':                       { color: '#5a2a8a', icon: '💀', accent: 'var(--chaos)' },
-  'Space Marines':               { color: '#1e3a6a', icon: '⬡', accent: 'var(--sm)' },
-  'Adeptus Mechanicus':          { color: '#7a1010', icon: '⚙', accent: 'var(--mech)' },
-  'Inquisition':                 { color: '#2a2a7a', icon: '✦', accent: 'var(--inq)' },
-  'Eldar Corsairs':              { color: '#1a5a2a', icon: '◈', accent: 'var(--eldar)' },
-  'Dark Eldar Pirate Fleet List':{ color: '#5a106a', icon: '☽', accent: 'var(--de)' },
-  'Orks':                        { color: '#4a4a10', icon: '⚡', accent: 'var(--ork)' },
-  'Necrons':                     { color: '#106a6a', icon: '⬡', accent: 'var(--necron)' },
-  'Tyranid Hive Fleet List':     { color: '#6a1a10', icon: '✸', accent: 'var(--nid)' },
-  'Tau Fleet':                   { color: '#10406a', icon: '◎', accent: 'var(--tau)' },
-  'Pirates and Wolf Packs':      { color: '#4a3a10', icon: '☠', accent: 'var(--pirate)' },
-  'Armada Imperialis':           { color: '#8a2020', icon: '⚔', accent: 'var(--heresy)' },
-};
-
-function factionMeta(name) {
-  return FACTION_META[name] || { color: '#596178', icon: '🚀', accent: 'var(--muted)' };
-}
-
-// ── Category colours ──────────────────────────────────────────────────────────
-const CAT_COLORS = {
-  'Battleship':     '#e08080',
-  'Battlecruiser':  '#c070b0',
-  'Grand Cruiser':  '#c09040',
-  'Cruiser':        '#6090d0',
-  'Light Cruiser':  '#60b0b0',
-  'Heavy Cruiser':  '#9070c0',
-  'Escort':         '#70a070',
-  'Fleet Commander':'#c49b3c',
-};
-function catColor(cat) { return CAT_COLORS[cat] || '#596178'; }
-
-// ── Short display names ───────────────────────────────────────────────────────
-function factionShortName(name) {
-  return name
-    .replace(' Pirate Fleet List', '')
-    .replace(' Hive Fleet List', '')
-    .replace(' Corsairs', '');
-}
-
-// ── Navigation & state ────────────────────────────────────────────────────────
-function isDesktop() {
-  return window.matchMedia('(min-width: 900px)').matches;
-}
-
-function setActiveFleet(idx) {
-  activeFleet = idx;
-}
-
-// Main state: 'home' | 'fleet' | 'new' | 'export'
-function setState(state) {
-  // Headers
-  document.getElementById('header-home').hidden  = state !== 'home';
-  document.getElementById('header-fleet').hidden = state !== 'fleet';
-
-  // Pts / validation (fleet only)
-  document.getElementById('pts-tracker').hidden     = state !== 'fleet';
-  if (state !== 'fleet') document.getElementById('validation-panel').innerHTML = '';
-
-  // Left body content
-  document.getElementById('home-content').hidden = state !== 'home';
-  document.getElementById('fleet-body').hidden   = state !== 'fleet';
-
-  // Right panel
-  document.getElementById('right-welcome').hidden = state !== 'home';
-  document.getElementById('right-picker').hidden  = state !== 'fleet';
-
-  // Overlays
-  document.getElementById('overlay-new').hidden    = state !== 'new';
-  document.getElementById('overlay-export').hidden = state !== 'export';
-
-  // Mobile: close right panel when leaving fleet
-  if (state !== 'fleet') {
-    document.getElementById('right-panel').classList.remove('mobile-open');
-  }
-
-  // Mobile nav active state
-  document.querySelectorAll('[data-nav]').forEach(function(item) {
-    const nav = item.dataset.nav;
-    item.classList.toggle('active',
-      (nav === 'home'   && state === 'home') ||
-      (nav === 'fleet'  && state === 'fleet') ||
-      (nav === 'export' && state === 'export')
-    );
-  });
-}
-
-function openPicker() {
-  renderPickerScreen();
-  if (!isDesktop()) {
-    document.getElementById('right-panel').classList.add('mobile-open');
-  }
-}
-
-function closePicker() {
-  document.getElementById('right-panel').classList.remove('mobile-open');
-}
-
-function initNav() {
-  // Mobile bottom nav
-  document.querySelectorAll('[data-nav]').forEach(function(item) {
-    item.addEventListener('click', function() {
-      const nav = item.dataset.nav;
-      if (nav === 'home') {
-        setState('home');
-      } else if (nav === 'fleet') {
-        if (activeFleet !== null) setState('fleet');
-      } else if (nav === 'export') {
-        buildExportScreen();
-        setState('export');
-      }
-    });
-  });
-
-  // Back to home from fleet
-  document.getElementById('btn-back-home').addEventListener('click', function() {
-    setState('home');
-  });
-
-  // Close picker (mobile back button)
-  document.getElementById('btn-close-picker').addEventListener('click', closePicker);
-
-  // Close new-fleet overlay
-  document.getElementById('btn-close-new').addEventListener('click', function() {
-    setState(activeFleet !== null ? 'fleet' : 'home');
-  });
-
-  // Close export overlay
-  document.getElementById('btn-close-export').addEventListener('click', function() {
-    setState(activeFleet !== null ? 'fleet' : 'home');
-  });
-}
-
-// ── Toast ─────────────────────────────────────────────────────────────────────
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2400);
-}
-
-// ── Home screen ───────────────────────────────────────────────────────────────
-function renderHomeScreen() {
-  const list = document.getElementById('fleet-list');
-  const empty = document.getElementById('empty-fleets');
-  list.innerHTML = '';
-
-  if (fleets.length === 0) {
-    empty.style.display = 'block';
+    document.body.innerHTML = `<div style="padding:40px;font-family:serif;color:#e6dfca;text-align:center">
+      <h1 style="font-size:22px">The registry archives are unreachable</h1>
+      <p style="opacity:.7">ship_database.json failed to load — serve this app over HTTP.</p></div>`;
     return;
   }
-  empty.style.display = 'none';
-
-  fleets.forEach(function(fleet, idx) {
-    const meta  = factionMeta(fleet.faction);
-    const total = fleetTotalPts(fleet);
-    const split = ptsSplit(fleet);
-    const pct   = fleet.limit > 0 ? Math.min(total / fleet.limit * 100, 100) : 0;
-    const valPct = fleet.limit > 0 ? Math.min(split.valid / fleet.limit * 100, 100) : 0;
-    const invPct = fleet.limit > 0 ? Math.min(split.invalid / fleet.limit * 100, 100) : 0;
-    const hasIssues = split.invalid > 0;
-
-    const shipCount = fleet.ships.reduce(function(a, s) { return a + (s.qty || 1); }, 0)
-                    + fleet.squadrons.reduce(function(a, s) { return a + (s.count || 0); }, 0);
-
-    const card = document.createElement('div');
-    card.className = 'fleet-card';
-    card.innerHTML =
-      '<div class="fleet-card-stripe" style="background:' + meta.color + '"></div>' +
-      '<div class="fleet-card-body">' +
-        '<div class="fleet-card-name">' + escHtml(fleet.name) + '</div>' +
-        '<div class="fleet-card-meta-row">' + factionShortName(fleet.faction) + ' · ' + (fleet.fleetList || '') + '</div>' +
-        '<div class="fleet-card-footer">' +
-          '<div class="fleet-card-pts-wrap">' +
-            '<div class="fleet-card-pts-label">' +
-              '<span>' + total + ' pts</span>' +
-              '<span style="color:var(--muted)">/ ' + fleet.limit + '</span>' +
-            '</div>' +
-            '<div class="mini-bar">' +
-              '<div class="mini-bar-fill" style="width:' + valPct + '%;background:' + meta.color + '"></div>' +
-              (split.invalid > 0 ? '<div class="mini-bar-fill" style="width:' + invPct + '%;background:#c43c3c"></div>' : '') +
-            '</div>' +
-          '</div>' +
-          '<div class="fleet-card-ships' + (hasIssues ? ' invalid" style="color:var(--warn-text)"' : '"') + '>' +
-            (hasIssues ? '⚠ ' : '') + shipCount + ' ship' + (shipCount !== 1 ? 's' : '') +
-          '</div>' +
-        '</div>' +
-      '</div>';
-
-    card.addEventListener('click', function() {
-      setActiveFleet(idx);
-      renderFleetScreen();
-      renderPickerScreen();
-      setState('fleet');
-    });
-
-    list.appendChild(card);
-  });
-}
-
-// ── New Fleet screen ──────────────────────────────────────────────────────────
-function initNewFleetScreen() {
-  // Faction grid
-  const grid = document.getElementById('faction-grid');
-  grid.innerHTML = '';
-  if (!DB) return;
-
-  Object.keys(DB.factions).forEach(function(name) {
-    const meta = factionMeta(name);
-    const listCount = DB.factions[name].fleetLists.length;
-    const card = document.createElement('div');
-    card.className = 'faction-card';
-    card.dataset.faction = name;
-    card.innerHTML =
-      '<div class="faction-icon" style="background:' + meta.color + '33">' + meta.icon + '</div>' +
-      '<div class="faction-name">' + escHtml(factionShortName(name)) + '</div>' +
-      '<div class="faction-sub">' + (listCount > 0 ? listCount + ' fleet list' + (listCount > 1 ? 's' : '') : 'Open fleet') + '</div>';
-
-    card.addEventListener('click', function() {
-      grid.querySelectorAll('.faction-card').forEach(function(c) { c.classList.remove('selected'); });
-      card.classList.add('selected');
-      newFleetDraft.faction = name;
-      document.getElementById('btn-step1-next').disabled = false;
-    });
-    grid.appendChild(card);
-  });
-
-  document.getElementById('btn-step1-next').addEventListener('click', function() {
-    if (!newFleetDraft.faction) return;
-    goNewStep(2);
-  });
-
-  document.getElementById('btn-step2-next').addEventListener('click', function() {
-    if (!newFleetDraft.fleetList) return;
-    goNewStep(3);
-  });
-
-  document.getElementById('btn-create-fleet').addEventListener('click', function() {
-    const name = document.getElementById('new-fleet-name').value.trim();
-    const pts  = parseInt(document.getElementById('new-fleet-pts').value, 10);
-    if (!name) { showToast('Enter a fleet name'); return; }
-    if (!pts || pts < 100) { showToast('Set a valid points limit'); return; }
-
-    const fleet = createFleet(name, newFleetDraft.faction, newFleetDraft.fleetList || '', pts);
-    fleets.push(fleet);
-    setActiveFleet(fleets.length - 1);
-    saveFleets();
-    renderHomeScreen();
-    renderFleetScreen();
-    renderPickerScreen();
-    setState('fleet');
-    resetNewFleetDraft();
-  });
-
-  // Points chips
-  document.querySelectorAll('.pts-chip').forEach(function(chip) {
-    chip.addEventListener('click', function() {
-      document.querySelectorAll('.pts-chip').forEach(function(c) { c.classList.remove('active'); });
-      chip.classList.add('active');
-      document.getElementById('new-fleet-pts').value = chip.dataset.pts;
-    });
-  });
-
-  document.getElementById('new-fleet-pts').addEventListener('input', function() {
-    document.querySelectorAll('.pts-chip').forEach(function(c) { c.classList.remove('active'); });
-    document.querySelectorAll('.pts-chip').forEach(function(c) {
-      if (c.dataset.pts === this.value) c.classList.add('active');
-    }, this);
-  });
-}
-
-function goNewStep(n) {
-  [1,2,3].forEach(function(i) {
-    document.getElementById('new-step-' + i).style.display = i === n ? 'block' : 'none';
-    const dot = document.querySelector('[data-step="' + i + '"]');
-    if (dot) {
-      dot.classList.toggle('active', i === n);
-      dot.classList.toggle('done', i < n);
-    }
-  });
-
-  if (n === 2) {
-    // Populate fleet lists
-    const faction = newFleetDraft.faction;
-    const label = document.getElementById('step2-label');
-    label.textContent = 'Fleet List — ' + factionShortName(faction);
-    const opts = document.getElementById('fleet-list-options');
-    opts.innerHTML = '';
-    newFleetDraft.fleetList = null;
-    document.getElementById('btn-step2-next').disabled = true;
-
-    const lists = DB.factions[faction] ? DB.factions[faction].fleetLists : [];
-    if (lists.length === 0) {
-      // No fleet lists — skip to step 3
-      newFleetDraft.fleetList = 'Open Fleet';
-      goNewStep(3);
-      return;
-    }
-    lists.forEach(function(fl) {
-      const opt = document.createElement('div');
-      opt.className = 'fleet-list-option';
-      opt.innerHTML = '<div class="flo-name">' + escHtml(fl.name) + '</div>' +
-        '<div class="flo-desc">' + buildFleetListDesc(fl) + '</div>';
-      opt.addEventListener('click', function() {
-        opts.querySelectorAll('.fleet-list-option').forEach(function(o) { o.classList.remove('selected'); });
-        opt.classList.add('selected');
-        newFleetDraft.fleetList = fl.name;
-        document.getElementById('btn-step2-next').disabled = false;
-      });
-      opts.appendChild(opt);
-    });
-  }
-}
-
-function buildFleetListDesc(fl) {
-  // Summarise constraints for display
-  const cats = fl.categories || [];
-  const parts = [];
-  cats.forEach(function(cat) {
-    if (cat.name && cat.constraints && cat.constraints.length) {
-      parts.push(cat.name);
-    }
-  });
-  return parts.length ? parts.slice(0, 3).join(', ') + (parts.length > 3 ? '…' : '') : 'Standard fleet composition';
-}
-
-function resetNewFleetDraft() {
-  newFleetDraft = {};
-  goNewStep(1);
-  document.querySelectorAll('.faction-card').forEach(function(c) { c.classList.remove('selected'); });
-  document.getElementById('new-fleet-name').value = '';
-  document.getElementById('new-fleet-pts').value = '1500';
-  document.querySelectorAll('.pts-chip').forEach(function(c) { c.classList.toggle('active', c.dataset.pts === '1500'); });
-  document.getElementById('btn-step1-next').disabled = true;
-  document.getElementById('btn-step2-next').disabled = true;
-}
-
-// ── Fleet view screen ─────────────────────────────────────────────────────────
-function renderFleetScreen() {
-  const fleet = getActiveFleet();
-  if (!fleet || !DB) return;
-
-  document.getElementById('fleet-name-display').textContent    = fleet.name;
-  document.getElementById('fleet-faction-display').textContent = factionShortName(fleet.faction) + ' · ' + (fleet.fleetList || '');
-
-  renderPtsTracker(fleet);
-  renderValidationPanel(fleet);
-  renderFleetBody(fleet);
-}
-
-function renderPtsTracker(fleet) {
-  const total = fleetTotalPts(fleet);
-  const split = ptsSplit(fleet);
-  const limit = fleet.limit;
-
-  const tracker = document.getElementById('pts-tracker');
-  tracker.classList.toggle('over-limit', total > limit);
-
-  document.getElementById('pts-used').textContent = total;
-  document.getElementById('pts-limit').textContent = ' / ' + limit + ' pts';
-  document.getElementById('pts-remaining').textContent =
-    total <= limit ? (limit - total) + ' remaining' : (total - limit) + ' over limit';
-
-  const validPct   = limit > 0 ? Math.min(split.valid   / limit * 100, 100) : 0;
-  const invalidPct = limit > 0 ? Math.min(split.invalid / limit * 100, 100) : 0;
-  document.getElementById('pts-valid-bar').style.width   = validPct + '%';
-  document.getElementById('pts-invalid-bar').style.width = invalidPct + '%';
-
-  const legend = document.getElementById('pts-legend');
-  if (split.invalid > 0) {
-    legend.style.display = 'flex';
-    document.getElementById('legend-valid-text').textContent   = 'Valid (' + split.valid + ' pts)';
-    document.getElementById('legend-invalid-text').textContent = 'Needs fixing (' + split.invalid + ' pts)';
-  } else {
-    legend.style.display = 'none';
-  }
-}
-
-function renderValidationPanel(fleet) {
-  const panel = document.getElementById('validation-panel');
-  panel.innerHTML = '';
-  // Don't show validation until something has been added
-  if (fleet.ships.length === 0 && !fleet.commander && fleet.squadrons.length === 0) return;
-  const issues = validateFleet(fleet);
-  issues.forEach(function(issue) {
-    const row = document.createElement('div');
-    row.className = 'v-row ' + issue.type;
-    row.innerHTML = '<span class="v-icon">' + (issue.type === 'err' ? '✕' : '⚠') + '</span><span>' + escHtml(issue.msg) + '</span>';
-    panel.appendChild(row);
-  });
-}
-
-function renderFleetBody(fleet) {
-  const body = document.getElementById('fleet-body');
-  body.innerHTML = '';
-  const invalid = invalidShipIds(fleet);
-
-  // ── Commander ──
-  if (fleet.commander) {
-    const sec = document.createElement('div');
-    sec.className = 'fleet-section';
-    sec.innerHTML = '<div class="fleet-section-header"><div class="fleet-section-name">Fleet Commander</div><div class="fleet-section-count">' + fleet.commander.pts + ' pts</div></div>';
-    sec.appendChild(buildCommanderCard(fleet));
-    body.appendChild(sec);
-  } else if (fleet.limit > 750) {
-    // Prompt to add commander
-    const sec = document.createElement('div');
-    sec.className = 'fleet-section';
-    sec.innerHTML = '<div class="fleet-section-header"><div class="fleet-section-name">Fleet Commander</div><div class="fleet-section-count err" style="color:var(--err-text)">Required</div></div>' +
-      '<div class="v-row err" style="margin:0 12px 8px;cursor:pointer" id="add-commander-prompt"><span class="v-icon">✕</span><span>No commander — tap to add one</span></div>';
-    body.appendChild(sec);
-    document.getElementById('add-commander-prompt').addEventListener('click', function() {
-      openPickerForCategory('Fleet Commander');
-    });
-  }
-
-  // ── Ships by category ──
-  const SECTION_ORDER = ['Battleship','Battlecruiser','Grand Cruiser','Cruiser','Heavy Cruiser','Light Cruiser'];
-  const shipsByCategory = {};
-  fleet.ships.forEach(function(slot) {
-    const ship = DB.ships[slot.shipId];
-    if (!ship) return;
-    const cat = ship.category;
-    if (!shipsByCategory[cat]) shipsByCategory[cat] = [];
-    shipsByCategory[cat].push(slot);
-  });
-
-  // Render in order, then any remaining categories
-  const rendered = new Set();
-  SECTION_ORDER.forEach(function(cat) {
-    if (!shipsByCategory[cat]) return;
-    rendered.add(cat);
-    body.appendChild(buildShipSection(fleet, cat, shipsByCategory[cat], invalid));
-  });
-  Object.keys(shipsByCategory).forEach(function(cat) {
-    if (rendered.has(cat)) return;
-    body.appendChild(buildShipSection(fleet, cat, shipsByCategory[cat], invalid));
-  });
-
-  // ── Escorts ──
-  if (fleet.squadrons.length > 0) {
-    const sec = document.createElement('div');
-    sec.className = 'fleet-section';
-    const totalEscorts = fleet.squadrons.reduce(function(a,s) { return a + s.count; }, 0);
-    sec.innerHTML = '<div class="fleet-section-header"><div class="fleet-section-name">Escorts</div><div class="fleet-section-count">' + totalEscorts + ' ship' + (totalEscorts !== 1 ? 's' : '') + ' · ' + fleet.squadrons.length + ' sqd</div></div>';
-    fleet.squadrons.forEach(function(sqd, idx) {
-      sec.appendChild(buildSquadronCard(fleet, sqd, idx));
-    });
-    body.appendChild(sec);
-  }
-
-  // Empty state
-  if (fleet.ships.length === 0 && fleet.squadrons.length === 0 && !fleet.commander) {
-    const empty = document.createElement('div');
-    empty.className = 'empty-state';
-    empty.innerHTML = '<div class="empty-icon">⚓</div><div class="empty-title">Fleet is empty</div><div class="empty-sub">Tap + to add your first ship</div>';
-    body.appendChild(empty);
-  }
-
-  // Extra spacing
-  const spacer = document.createElement('div');
-  spacer.style.height = '24px';
-  body.appendChild(spacer);
-}
-
-function buildShipSection(fleet, cat, slots, invalid) {
-  const sec = document.createElement('div');
-  sec.className = 'fleet-section';
-
-  const battleships = cat === 'Battleship';
-  const cruiserCount = fleet.ships.filter(function(s) {
-    const ship = DB.ships[s.shipId];
-    return ship && ['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser'].includes(ship.category);
-  }).length;
-  const bsCount = slots.length;
-  const unlocked = Math.floor(cruiserCount / 3);
-
-  let countLabel = slots.length.toString();
-  let countClass = 'fleet-section-count';
-  if (battleships && bsCount > unlocked) {
-    countLabel = bsCount + ' / ' + unlocked + ' unlocked ⚠';
-    countClass = 'fleet-section-count err';
-  }
-
-  sec.innerHTML = '<div class="fleet-section-header"><div class="fleet-section-name">' + cat + 's</div><div class="' + countClass + '">' + countLabel + '</div></div>';
-
-  // Count how many of each shipId appear so we can show Greek suffixes for duplicates
-  const shipIdTotal = {};
-  slots.forEach(function(slot) { shipIdTotal[slot.shipId] = (shipIdTotal[slot.shipId] || 0) + 1; });
-  const shipIdIdx = {};
-  slots.forEach(function(slot) {
-    if (!shipIdIdx[slot.shipId]) shipIdIdx[slot.shipId] = 0;
-    const greekIdx = shipIdTotal[slot.shipId] > 1 ? shipIdIdx[slot.shipId] : -1;
-    shipIdIdx[slot.shipId]++;
-    sec.appendChild(buildShipCard(fleet, slot, invalid.has(slot.shipId), greekIdx));
-  });
-  return sec;
-}
-
-function buildCommanderCard(fleet) {
-  const cmdr = fleet.commander;
-  const card = document.createElement('div');
-  card.className = 'commander-card';
-
-  const rerolls = cmdr.rerolls || 2;
-  let pips = '';
-  for (let i = 0; i < 3; i++) {
-    pips += '<div class="reroll-pip' + (i >= rerolls ? ' empty' : '') + '"></div>';
-  }
-
-  card.innerHTML =
-    '<div class="commander-header">' +
-      '<div class="commander-name">' + escHtml(cmdr.name) + '</div>' +
-      '<div class="commander-pts">' + cmdr.pts + ' pts</div>' +
-      '<button class="sqd-remove" title="Remove commander">✕</button>' +
-    '</div>' +
-    '<div class="reroll-pips">' + pips + '</div>';
-
-  card.querySelector('.sqd-remove').addEventListener('click', function(e) {
-    e.stopPropagation();
-    fleet.commander = null;
-    saveFleets();
-    renderFleetScreen();
-  });
-  return card;
-}
-
-function buildShipCard(fleet, slot, isInvalid, greekIdx) {
-  const ship = DB.ships[slot.shipId];
-  if (!ship) return document.createTextNode('');
-
-  const cardId = 'ship-card-' + slot.shipId + '-' + slot._idx;
-  let shipPts = ship.pts;
-  for (const upg of (slot.upgrades || [])) shipPts += upg.pts || 0;
-
-  const card = document.createElement('div');
-  card.className = 'ship-card' + (isInvalid ? ' invalid' : '');
-  card.id = cardId;
-
-  const color = catColor(ship.category);
-  const greekSuffix = (greekIdx >= 0) ? ' ' + (GREEK[greekIdx] || String(greekIdx + 1)) : '';
-
-  let headerHtml =
-    '<div class="ship-card-header">' +
-      '<div class="ship-thumb">' +
-        '<canvas id="sil-' + cardId + '" width="72" height="64"></canvas>' +
-      '</div>' +
-      '<div class="ship-header-info">' +
-        '<div class="ship-title-block">' +
-          '<div class="ship-card-title">' + escHtml(ship.name + greekSuffix) + '</div>' +
-          '<div class="ship-card-type">' + (ship.stats['Hits'] || '?') + ' Hits · ' + (ship.stats['Shields'] || '?') + ' Shields · ' + (ship.stats['Armour'] || '?') + '</div>' +
-        '</div>' +
-        '<div class="ship-card-pts">' + shipPts + ' pts</div>' +
-        '<div class="ship-chevron">›</div>' +
-      '</div>' +
-    '</div>';
-
-  // Upgrades preview when collapsed
-  let upgChips = '';
-  for (const upg of (slot.upgrades || [])) {
-    upgChips += '<div class="upgrade-chip special">' + escHtml(upg.name) + '</div>' +
-                '<div class="upgrade-chip cost">+' + upg.pts + ' pts</div>';
-  }
-  if (upgChips) headerHtml += '<div class="ship-upgrades">' + upgChips + '</div>';
-
-  if (isInvalid) {
-    headerHtml += '<div class="invalid-badge">⚠ Add more cruisers to make this legal</div>';
-  }
-
-  headerHtml += '<div class="ship-detail">' + buildShipDetailHtml(ship, slot) + '</div>';
-
-  card.innerHTML = headerHtml;
-
-  // Toggle expand
-  card.querySelector('.ship-card-header').addEventListener('click', function() {
-    const detail = card.querySelector('.ship-detail');
-    const chev   = card.querySelector('.ship-chevron');
-    const open   = detail.classList.contains('open');
-    detail.classList.toggle('open', !open);
-    chev.classList.toggle('open', !open);
-    card.classList.toggle('open', !open);
-  });
-
-  // Edit upgrades
-  card.querySelector('.btn-edit').addEventListener('click', function(e) {
-    e.stopPropagation();
-    openUpgradeModal(fleet, slot, ship);
-  });
-
-  // Remove
-  card.querySelector('.btn-remove').addEventListener('click', function(e) {
-    e.stopPropagation();
-    fleet.ships = fleet.ships.filter(function(s) { return s !== slot; });
-    saveFleets();
-    renderFleetScreen();
-    showToast(ship.name + ' removed');
-  });
-
-  // Draw silhouette after append
-  requestAnimationFrame(function() {
-    const cv = document.getElementById('sil-' + cardId);
-    if (cv) drawSilhouette(cv, ship.category, color);
-  });
-
-  return card;
-}
-
-function buildShipDetailHtml(ship, slot) {
-  const stats = ship.stats || {};
-
-  let statHtml = '<div class="stat-grid">';
-  [
-    ['Speed',   'Speed'],
-    ['Turns',   'Turns'],
-    ['Hits',    'Hits'],
-    ['Shields', 'Shields'],
-    ['Armour',  'Armour'],
-    ['Turrets', 'Turrets'],
-  ].forEach(function(pair) {
-    statHtml += '<div class="stat-cell"><div class="stat-val">' + escHtml(stats[pair[0]] || '—') + '</div><div class="stat-lbl">' + pair[1] + '</div></div>';
-  });
-  statHtml += '</div>';
-
-  let armHtml = '';
-  if (ship.armament && ship.armament.length) {
-    armHtml += '<div class="arm-label">Armament</div><table class="arm-table">' +
-      '<thead><tr><th>Weapon</th><th>Range</th><th>FP/Str</th><th>Arc</th></tr></thead><tbody>';
-    ship.armament.forEach(function(w) {
-      armHtml += '<tr><td>' + escHtml(w.name) + '</td><td>' + escHtml(w['Range/Speed'] || w['Range'] || '—') + '</td><td>' + escHtml(w['Firepower/Str'] || w['Str'] || '—') + '</td><td>' + escHtml(w['Fire Arc'] || w['Arc'] || '—') + '</td></tr>';
-    });
-    armHtml += '</tbody></table>';
-  }
-
-  let rulesHtml = '';
-  if (ship.specialRules && ship.specialRules.length) {
-    rulesHtml = '<div class="special-rules-label">Special Rules</div>';
-    ship.specialRules.forEach(function(r) {
-      rulesHtml += '<div class="special-rule"><strong>' + escHtml(r.name) + '</strong>' + (r.effects ? ': ' + escHtml(r.effects) : '') + '</div>';
-    });
-  }
-
-  return statHtml + armHtml + rulesHtml +
-    '<div class="ship-actions"><button class="ship-action-btn btn-edit">Edit Upgrades</button><button class="ship-action-btn btn-remove">Remove</button></div>';
-}
-
-function buildSquadronCard(fleet, sqd, sqdIdx) {
-  const ship = DB.ships[sqd.shipId];
-  if (!ship) return document.createElement('div');
-
-  const card = document.createElement('div');
-  card.className = 'escort-squadron';
-
-  const stats = ship.stats || {};
-  const perShipPts = ship.pts + (sqd.upgrades || []).reduce(function(a, u) { return a + (u.pts||0); }, 0);
-  const totalPts = perShipPts * sqd.count;
-
-  const bodyId = 'sqd-body-' + sqdIdx;
-  card.innerHTML =
-    '<div class="squadron-header">' +
-      '<div class="squadron-tag">SQD</div>' +
-      '<div class="squadron-name">' + sqd.count + '× ' + escHtml(ship.name) + '</div>' +
-      '<div class="squadron-pts">' + totalPts + ' pts</div>' +
-      '<div class="ship-chevron open">›</div>' +
-    '</div>' +
-    '<div class="squadron-body" id="' + bodyId + '">' +
-      '<div class="sqd-stat-bar">' +
-        '<div class="sqd-stat"><div class="sqd-stat-val">' + escHtml(stats['Speed'] || '—') + '</div><div class="sqd-stat-lbl">Speed</div></div>' +
-        '<div class="sqd-stat"><div class="sqd-stat-val">' + escHtml(stats['Hits'] || '—') + '</div><div class="sqd-stat-lbl">Hits</div></div>' +
-        '<div class="sqd-stat"><div class="sqd-stat-val">' + escHtml(stats['Shields'] || '—') + '</div><div class="sqd-stat-lbl">Shields</div></div>' +
-        '<div class="sqd-stat"><div class="sqd-stat-val">' + escHtml(stats['Armour'] || '—') + '</div><div class="sqd-stat-lbl">Armour</div></div>' +
-      '</div>' +
-      buildSqdShipRows(sqd, ship, perShipPts, fleet, sqdIdx) +
-      '<div class="sqd-footer">' +
-        '<button class="sqd-add-btn" data-sqd="' + sqdIdx + '">+ Add ship</button>' +
-        (sqd.count > 1 ? '<button class="sqd-add-btn" data-sqd-remove="' + sqdIdx + '">− Remove</button>' : '') +
-        '<button class="sqd-add-btn" style="color:var(--err-text)" data-sqd-delete="' + sqdIdx + '">Disband</button>' +
-      '</div>' +
-    '</div>';
-
-  // Toggle
-  card.querySelector('.squadron-header').addEventListener('click', function() {
-    const body = document.getElementById(bodyId);
-    const chev = card.querySelector('.ship-chevron');
-    const open = body.style.display !== 'none';
-    body.style.display = open ? 'none' : 'block';
-    chev.classList.toggle('open', !open);
-  });
-
-  card.querySelector('[data-sqd="' + sqdIdx + '"]').addEventListener('click', function() {
-    sqd.count = Math.min(sqd.count + 1, 6);
-    saveFleets();
-    renderFleetScreen();
-  });
-
-  const removeBtn = card.querySelector('[data-sqd-remove="' + sqdIdx + '"]');
-  if (removeBtn) {
-    removeBtn.addEventListener('click', function() {
-      sqd.count = Math.max(sqd.count - 1, 1);
-      saveFleets();
-      renderFleetScreen();
-    });
-  }
-
-  card.querySelector('[data-sqd-delete="' + sqdIdx + '"]').addEventListener('click', function() {
-    fleet.squadrons.splice(sqdIdx, 1);
-    saveFleets();
-    renderFleetScreen();
-    showToast('Squadron disbanded');
-  });
-
-  return card;
-}
-
-function buildSqdShipRows(sqd, ship, perShipPts, fleet, sqdIdx) {
-  let html = '';
-  for (let i = 0; i < sqd.count; i++) {
-    html += '<div class="sqd-ship-row"><span class="sqd-ship-name">' + escHtml(ship.name) + ' ' + (i + 1) + '</span><span class="sqd-ship-pts">' + perShipPts + ' pts</span></div>';
-  }
-  return html;
-}
-
-// ── Upgrade modal ─────────────────────────────────────────────────────────────
-function openUpgradeModal(fleet, slot, ship) {
-  document.getElementById('modal-title').textContent = ship.name + ' — Upgrades';
-  const body = document.getElementById('modal-body');
-  body.innerHTML = '';
-
-  if (!ship.upgrades || ship.upgrades.length === 0) {
-    body.innerHTML = '<div class="picker-empty">No upgrades available for this ship.</div>';
-  } else {
-    ship.upgrades.forEach(function(group) {
-      const grp = document.createElement('div');
-      grp.className = 'upgrade-group';
-      grp.innerHTML = '<div class="upgrade-group-name">' + escHtml(group.group) + '</div>';
-
-      group.options.forEach(function(opt) {
-        const isSelected = (slot.upgrades || []).some(function(u) { return u.id === opt.id; });
-        const el = document.createElement('div');
-        el.className = 'upgrade-option' + (isSelected ? ' selected' : '');
-        el.innerHTML =
-          '<div style="flex:1"><div class="upgrade-option-name">' + escHtml(opt.name) + '</div>' +
-          (opt.description ? '<div class="upgrade-option-desc">' + escHtml(opt.description) + '</div>' : '') + '</div>' +
-          '<div class="upgrade-option-pts">' + (opt.pts > 0 ? '+' + opt.pts : opt.pts === 0 ? 'Free' : opt.pts) + ' pts</div>' +
-          '<div class="upgrade-checkmark">' + (isSelected ? '✓' : '') + '</div>';
-
-        el.addEventListener('click', function() {
-          if (!slot.upgrades) slot.upgrades = [];
-          const existIdx = slot.upgrades.findIndex(function(u) { return u.id === opt.id; });
-          if (existIdx >= 0) {
-            slot.upgrades.splice(existIdx, 1);
-            el.classList.remove('selected');
-            el.querySelector('.upgrade-checkmark').textContent = '';
-          } else {
-            slot.upgrades.push({ id: opt.id, name: opt.name, pts: opt.pts });
-            el.classList.add('selected');
-            el.querySelector('.upgrade-checkmark').textContent = '✓';
-          }
-          saveFleets();
-          renderPtsTracker(fleet);
-        });
-        grp.appendChild(el);
-      });
-      body.appendChild(grp);
-    });
-  }
-
-  document.getElementById('modal-upgrades').style.display = 'flex';
-}
-
-// ── Ship picker ───────────────────────────────────────────────────────────────
-let pickerCategory = 'All';
-let pickerSearch   = '';
-
-function openPickerForCategory(cat) {
-  if (cat) pickerCategory = cat;
-  openPicker();
-}
-
-function renderPickerScreen() {
-  const fleet = getActiveFleet();
-  if (!fleet || !DB) return;
-
-  const factionData = DB.factions[fleet.faction];
-  if (!factionData) return;
-
-  const allShips = factionData.ships.map(function(id) { return DB.ships[id]; }).filter(Boolean);
-
-  // Build category tabs
-  const tabs = document.getElementById('picker-tabs');
-  tabs.innerHTML = '';
-  const cats = ['All'];
-  allShips.forEach(function(s) {
-    if (cats.indexOf(s.category) === -1) cats.push(s.category);
-  });
-
-  cats.forEach(function(cat) {
-    const tab = document.createElement('button');
-    tab.className = 'cat-tab' + (cat === pickerCategory ? ' active' : '');
-    tab.textContent = cat;
-    tab.addEventListener('click', function() {
-      pickerCategory = cat;
-      tabs.querySelectorAll('.cat-tab').forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      renderPickerList(allShips, fleet);
-    });
-    tabs.appendChild(tab);
-  });
-
-  // Search
-  const searchInput = document.getElementById('picker-search');
-  searchInput.value = pickerSearch;
-  searchInput.oninput = function() {
-    pickerSearch = searchInput.value;
-    document.getElementById('btn-search-clear').style.display = pickerSearch ? 'block' : 'none';
-    renderPickerList(allShips, fleet);
-  };
-  document.getElementById('btn-search-clear').onclick = function() {
-    pickerSearch = '';
-    searchInput.value = '';
-    this.style.display = 'none';
-    renderPickerList(allShips, fleet);
-  };
-  document.getElementById('btn-search-clear').style.display = pickerSearch ? 'block' : 'none';
-
-  renderPickerList(allShips, fleet);
-}
-
-function renderPickerList(allShips, fleet) {
-  const body = document.getElementById('picker-body');
-  body.innerHTML = '';
-
-  let ships = allShips;
-  if (pickerCategory !== 'All') {
-    ships = ships.filter(function(s) { return s.category === pickerCategory; });
-  }
-  if (pickerSearch) {
-    const q = pickerSearch.toLowerCase();
-    ships = ships.filter(function(s) { return s.name.toLowerCase().indexOf(q) !== -1; });
-  }
-
-  if (ships.length === 0) {
-    body.innerHTML = '<div class="picker-empty">No ships found</div>';
-    return;
-  }
-
-  ships.forEach(function(ship) {
-    body.appendChild(buildPickerCard(ship, fleet));
-  });
-}
-
-function buildPickerCard(ship, fleet) {
-  const color  = catColor(ship.category);
-  const cardId = 'picker-' + ship.id;
-
-  const card = document.createElement('div');
-  card.className = 'picker-card';
-  card.id = cardId;
-
-  // Validation warning for this ship type
-  const warn = pickerWarn(ship, fleet);
-
-  const headerHtml =
-    '<div class="picker-header">' +
-      '<div class="picker-thumb">' +
-        '<canvas id="pic-sil-' + ship.id + '" width="80" height="68"></canvas>' +
-      '</div>' +
-      '<div class="picker-info">' +
-        '<div class="picker-name-block">' +
-          '<div class="picker-title">' + escHtml(ship.name) + '</div>' +
-          '<div class="picker-sub">' + ship.category + ' · ' + (ship.stats['Hits'] || '?') + ' Hits · ' + (ship.stats['Shields'] || '?') + ' Shields</div>' +
-        '</div>' +
-        '<div class="picker-pts">' + ship.pts + '</div>' +
-        '<div class="picker-chev">›</div>' +
-      '</div>' +
-    '</div>';
-
-  const detailHtml =
-    '<div class="picker-detail">' +
-      '<div class="ship-banner"><canvas id="pic-ban-' + ship.id + '" width="320" height="90"></canvas></div>' +
-      buildShipDetailHtml(ship, { upgrades: [] }).replace('<div class="ship-actions"><button class="ship-action-btn btn-edit">Edit Upgrades</button><button class="ship-action-btn btn-remove">Remove</button></div>', '') +
-      (warn ? '<div class="picker-warn">⚠ ' + escHtml(warn) + '</div>' : '') +
-      '<button class="add-to-fleet-btn' + (warn ? ' warn-btn' : '') + '" data-ship-id="' + ship.id + '">' +
-        (ship.category === 'Escort' ? 'Add to Squadron' : 'Add to Fleet') +
-        (warn ? ' Anyway' : '') +
-      '</button>' +
-    '</div>';
-
-  card.innerHTML = headerHtml + detailHtml;
-
-  // Toggle
-  card.querySelector('.picker-header').addEventListener('click', function() {
-    const detail = card.querySelector('.picker-detail');
-    const chev   = card.querySelector('.picker-chev');
-    const open   = detail.classList.contains('open');
-
-    // Close others
-    document.querySelectorAll('.picker-card').forEach(function(c) {
-      if (c !== card) {
-        c.querySelector('.picker-detail').classList.remove('open');
-        c.querySelector('.picker-chev').classList.remove('open');
-        c.classList.remove('open');
-      }
-    });
-
-    detail.classList.toggle('open', !open);
-    chev.classList.toggle('open', !open);
-    card.classList.toggle('open', !open);
-
-    if (!open) {
-      // Draw banner
-      requestAnimationFrame(function() {
-        const ban = document.getElementById('pic-ban-' + ship.id);
-        if (ban) drawSilhouette(ban, ship.category, color);
-      });
-    }
-  });
-
-  // Add button
-  card.querySelector('.add-to-fleet-btn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    addShipToFleet(fleet, ship);
-  });
-
-  // Draw thumbnail silhouette
-  requestAnimationFrame(function() {
-    const cv = document.getElementById('pic-sil-' + ship.id);
-    if (cv) drawSilhouette(cv, ship.category, color);
-  });
-
-  return card;
-}
-
-function pickerWarn(ship, fleet) {
-  if (ship.category === 'Battleship') {
-    const cruiserCount = fleet.ships.filter(function(s) {
-      const fs = DB.ships[s.shipId];
-      return fs && ['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser'].includes(fs.category);
-    }).length;
-    const bsCount = fleet.ships.filter(function(s) {
-      const fs = DB.ships[s.shipId];
-      return fs && fs.category === 'Battleship';
-    }).length;
-    const unlocked = Math.floor(cruiserCount / 3);
-    if (bsCount >= unlocked) {
-      const needed = (bsCount + 1) * 3 - cruiserCount;
-      return 'Battleship requires ' + ((bsCount + 1) * 3) + ' cruisers total — you need ' + needed + ' more. You can still add it and fix later.';
-    }
-  }
-  if (ship.category === 'Fleet Commander' && fleet.commander) {
-    return 'Fleet already has a commander. Adding this will replace the current one.';
-  }
-  return null;
-}
-
-function addShipToFleet(fleet, ship) {
-  if (ship.category === 'Fleet Commander') {
-    fleet.commander = { shipId: ship.id, name: ship.name, pts: ship.pts, rerolls: 2 };
-    saveFleets();
-    renderFleetScreen();
-    closePicker();
-    showToast(ship.name + ' set as commander');
-    return;
-  }
-
-  if (ship.category === 'Escort') {
-    const existing = fleet.squadrons.find(function(s) { return s.shipId === ship.id; });
-    if (existing) {
-      existing.count = Math.min(existing.count + 1, 6);
-    } else {
-      fleet.squadrons.push({ shipId: ship.id, count: 1, upgrades: [] });
-    }
-    saveFleets();
-    renderFleetScreen();
-    closePicker();
-    showToast(ship.name + ' added to squadron');
-    return;
-  }
-
-  fleet.ships.push({ shipId: ship.id, upgrades: [], qty: 1, _idx: Date.now() });
-  saveFleets();
-  renderFleetScreen();
-  closePicker();
-  showToast(ship.name + ' added');
-}
-
-// ── Export screen ─────────────────────────────────────────────────────────────
-function buildExportScreen() {
-  const fleet = getActiveFleet();
-  const selectMsg = document.getElementById('export-select-msg');
-  const content   = document.getElementById('export-content');
-
-  if (!fleet) {
-    selectMsg.style.display = 'block';
-    content.style.display = 'none';
-    return;
-  }
-
-  selectMsg.style.display = 'none';
-  content.style.display = 'block';
-
-  // Share link
-  const url = window.location.href.split('#')[0] + '#fleet=' + encodeURIComponent(JSON.stringify({ idx: activeFleet }));
-  document.getElementById('btn-copy-link').onclick = function() {
-    navigator.clipboard.writeText(url).then(function() {
-      showToast('Link copied!');
-    }).catch(function() {
-      showToast('Could not copy — try manually: ' + url);
-    });
-  };
-
-  document.getElementById('btn-print').onclick = function() { window.print(); };
-
-  // Preview
-  const preview = document.getElementById('export-preview');
-  const total = fleetTotalPts(fleet);
-  const issues = validateFleet(fleet);
-
-  let html = '<h2>' + escHtml(fleet.name) + '</h2>';
-  html += '<div style="color:var(--muted);font-size:12px;margin-bottom:12px">' + factionShortName(fleet.faction) + (fleet.fleetList ? ' · ' + escHtml(fleet.fleetList) : '') + '</div>';
-
-  if (issues.length) {
-    html += '<div style="color:var(--warn-text);font-size:12px;margin-bottom:8px">⚠ ' + issues.length + ' validation issue' + (issues.length > 1 ? 's' : '') + '</div>';
-  }
-
-  if (fleet.commander) {
-    html += '<h3>Fleet Commander</h3>';
-    html += '<div class="ex-ship"><span>' + escHtml(fleet.commander.name) + '</span><span>' + fleet.commander.pts + ' pts</span></div>';
-  }
-
-  const cats = {};
-  fleet.ships.forEach(function(s) {
-    const ship = DB.ships[s.shipId];
-    if (!ship) return;
-    if (!cats[ship.category]) cats[ship.category] = [];
-    let pts = ship.pts;
-    for (const u of (s.upgrades||[])) pts += u.pts||0;
-    cats[ship.category].push({ name: ship.name, pts, upgrades: s.upgrades || [] });
-  });
-
-  Object.entries(cats).forEach(function(entry) {
-    html += '<h3>' + entry[0] + 's</h3>';
-    entry[1].forEach(function(s) {
-      const upgText = s.upgrades.length ? ' (' + s.upgrades.map(function(u) { return u.name; }).join(', ') + ')' : '';
-      html += '<div class="ex-ship"><span>' + escHtml(s.name) + escHtml(upgText) + '</span><span>' + s.pts + ' pts</span></div>';
-    });
-  });
-
-  if (fleet.squadrons.length) {
-    html += '<h3>Escorts</h3>';
-    fleet.squadrons.forEach(function(sqd) {
-      const ship = DB.ships[sqd.shipId];
-      if (!ship) return;
-      const pp = ship.pts + (sqd.upgrades||[]).reduce(function(a,u){return a+(u.pts||0);},0);
-      html += '<div class="ex-ship"><span>' + sqd.count + '× ' + escHtml(ship.name) + '</span><span>' + (pp*sqd.count) + ' pts</span></div>';
-    });
-  }
-
-  html += '<div class="ex-total"><span>Total</span><span>' + total + ' / ' + fleet.limit + ' pts</span></div>';
-  preview.innerHTML = html;
-}
-
-// ── Utility ───────────────────────────────────────────────────────────────────
-function escHtml(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-// ── Boot ──────────────────────────────────────────────────────────────────────
-async function init() {
-  await loadDB();
   loadFleets();
-  initNav();
-  initNewFleetScreen();
-  renderHomeScreen();
+  bindEvents();
+  renderWizard();
+  wizGoto(1);
   setState('home');
-
-  document.getElementById('btn-new-fleet').addEventListener('click', function() {
-    resetNewFleetDraft();
-    setState('new');
-  });
-
-  document.getElementById('btn-add-ship').addEventListener('click', function() {
-    pickerSearch = '';
-    openPicker();
-  });
-
-  document.getElementById('modal-close').addEventListener('click', function() {
-    document.getElementById('modal-upgrades').style.display = 'none';
-  });
-  document.getElementById('modal-backdrop').addEventListener('click', function() {
-    document.getElementById('modal-upgrades').style.display = 'none';
-  });
-
-  // ── Fleet options menu (···) ──
-  const fleetMenuBtn = document.getElementById('btn-fleet-menu');
-  const fleetMenuDropdown = document.getElementById('fleet-menu-dropdown');
-
-  fleetMenuBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    fleetMenuDropdown.classList.toggle('hidden');
-  });
-
-  document.addEventListener('click', function() {
-    fleetMenuDropdown.classList.add('hidden');
-  });
-
-  document.getElementById('fleet-menu-rename').addEventListener('click', function() {
-    fleetMenuDropdown.classList.add('hidden');
-    const fleet = getActiveFleet();
-    if (!fleet) return;
-    const name = window.prompt('Rename fleet:', fleet.name);
-    if (name && name.trim()) {
-      fleet.name = name.trim();
-      saveFleets();
-      renderFleetScreen();
-      renderHomeScreen();
-      showToast('Fleet renamed');
-    }
-  });
-
-  document.getElementById('fleet-menu-duplicate').addEventListener('click', function() {
-    fleetMenuDropdown.classList.add('hidden');
-    const fleet = getActiveFleet();
-    if (!fleet) return;
-    const copy = JSON.parse(JSON.stringify(fleet));
-    copy.id = Date.now();
-    copy.name = fleet.name + ' (Copy)';
-    copy.created = new Date().toISOString();
-    fleets.push(copy);
-    saveFleets();
-    renderHomeScreen();
-    showToast('Fleet duplicated');
-  });
-
-  document.getElementById('fleet-menu-delete').addEventListener('click', function() {
-    fleetMenuDropdown.classList.add('hidden');
-    const fleet = getActiveFleet();
-    if (!fleet) return;
-    if (!window.confirm('Delete "' + fleet.name + '"? This cannot be undone.')) return;
-    fleets.splice(activeFleet, 1);
-    setActiveFleet(null);
-    saveFleets();
-    renderHomeScreen();
-    setState('home');
-    showToast('Fleet deleted');
-  });
 }
-
-document.addEventListener('DOMContentLoaded', init);
+boot();
