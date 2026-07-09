@@ -1,5 +1,7 @@
 'use strict';
 
+const GREEK = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π'];
+
 // ── State ────────────────────────────────────────────────────────────────────
 let DB = null;           // ship_database.json
 let fleets = [];         // saved fleets array
@@ -578,6 +580,9 @@ function renderPtsTracker(fleet) {
   const split = ptsSplit(fleet);
   const limit = fleet.limit;
 
+  const tracker = document.getElementById('pts-tracker');
+  tracker.classList.toggle('over-limit', total > limit);
+
   document.getElementById('pts-used').textContent = total;
   document.getElementById('pts-limit').textContent = ' / ' + limit + ' pts';
   document.getElementById('pts-remaining').textContent =
@@ -601,6 +606,8 @@ function renderPtsTracker(fleet) {
 function renderValidationPanel(fleet) {
   const panel = document.getElementById('validation-panel');
   panel.innerHTML = '';
+  // Don't show validation until something has been added
+  if (fleet.ships.length === 0 && !fleet.commander && fleet.squadrons.length === 0) return;
   const issues = validateFleet(fleet);
   issues.forEach(function(issue) {
     const row = document.createElement('div');
@@ -704,8 +711,15 @@ function buildShipSection(fleet, cat, slots, invalid) {
 
   sec.innerHTML = '<div class="fleet-section-header"><div class="fleet-section-name">' + cat + 's</div><div class="' + countClass + '">' + countLabel + '</div></div>';
 
+  // Count how many of each shipId appear so we can show Greek suffixes for duplicates
+  const shipIdTotal = {};
+  slots.forEach(function(slot) { shipIdTotal[slot.shipId] = (shipIdTotal[slot.shipId] || 0) + 1; });
+  const shipIdIdx = {};
   slots.forEach(function(slot) {
-    sec.appendChild(buildShipCard(fleet, slot, invalid.has(slot.shipId)));
+    if (!shipIdIdx[slot.shipId]) shipIdIdx[slot.shipId] = 0;
+    const greekIdx = shipIdTotal[slot.shipId] > 1 ? shipIdIdx[slot.shipId] : -1;
+    shipIdIdx[slot.shipId]++;
+    sec.appendChild(buildShipCard(fleet, slot, invalid.has(slot.shipId), greekIdx));
   });
   return sec;
 }
@@ -738,7 +752,7 @@ function buildCommanderCard(fleet) {
   return card;
 }
 
-function buildShipCard(fleet, slot, isInvalid) {
+function buildShipCard(fleet, slot, isInvalid, greekIdx) {
   const ship = DB.ships[slot.shipId];
   if (!ship) return document.createTextNode('');
 
@@ -751,6 +765,7 @@ function buildShipCard(fleet, slot, isInvalid) {
   card.id = cardId;
 
   const color = catColor(ship.category);
+  const greekSuffix = (greekIdx >= 0) ? ' ' + (GREEK[greekIdx] || String(greekIdx + 1)) : '';
 
   let headerHtml =
     '<div class="ship-card-header">' +
@@ -759,8 +774,8 @@ function buildShipCard(fleet, slot, isInvalid) {
       '</div>' +
       '<div class="ship-header-info">' +
         '<div class="ship-title-block">' +
-          '<div class="ship-card-title">' + escHtml(ship.name) + '</div>' +
-          '<div class="ship-card-type">' + ship.category + ' · ' + (ship.stats['Hits'] || '?') + ' Hits · ' + (ship.stats['Speed'] || '?') + '</div>' +
+          '<div class="ship-card-title">' + escHtml(ship.name + greekSuffix) + '</div>' +
+          '<div class="ship-card-type">' + (ship.stats['Hits'] || '?') + ' Hits · ' + (ship.stats['Shields'] || '?') + ' Shields · ' + (ship.stats['Armour'] || '?') + '</div>' +
         '</div>' +
         '<div class="ship-card-pts">' + shipPts + ' pts</div>' +
         '<div class="ship-chevron">›</div>' +
@@ -779,7 +794,7 @@ function buildShipCard(fleet, slot, isInvalid) {
     headerHtml += '<div class="invalid-badge">⚠ Add more cruisers to make this legal</div>';
   }
 
-  headerHtml += '<div class="ship-detail" style="display:none">' + buildShipDetailHtml(ship, slot) + '</div>';
+  headerHtml += '<div class="ship-detail">' + buildShipDetailHtml(ship, slot) + '</div>';
 
   card.innerHTML = headerHtml;
 
@@ -787,8 +802,8 @@ function buildShipCard(fleet, slot, isInvalid) {
   card.querySelector('.ship-card-header').addEventListener('click', function() {
     const detail = card.querySelector('.ship-detail');
     const chev   = card.querySelector('.ship-chevron');
-    const open   = detail.style.display !== 'none';
-    detail.style.display = open ? 'none' : 'block';
+    const open   = detail.classList.contains('open');
+    detail.classList.toggle('open', !open);
     chev.classList.toggle('open', !open);
     card.classList.toggle('open', !open);
   });
@@ -984,7 +999,7 @@ let pickerCategory = 'All';
 let pickerSearch   = '';
 
 function openPickerForCategory(cat) {
-  pickerCategory = cat || 'All';
+  if (cat) pickerCategory = cat;
   renderPickerScreen();
   showScreen('picker');
 }
@@ -1088,7 +1103,7 @@ function buildPickerCard(ship, fleet) {
     '</div>';
 
   const detailHtml =
-    '<div class="picker-detail" style="display:none">' +
+    '<div class="picker-detail">' +
       '<div class="ship-banner"><canvas id="pic-ban-' + ship.id + '" width="320" height="90"></canvas></div>' +
       buildShipDetailHtml(ship, { upgrades: [] }).replace('<div class="ship-actions"><button class="ship-action-btn btn-edit">Edit Upgrades</button><button class="ship-action-btn btn-remove">Remove</button></div>', '') +
       (warn ? '<div class="picker-warn">⚠ ' + escHtml(warn) + '</div>' : '') +
@@ -1104,18 +1119,18 @@ function buildPickerCard(ship, fleet) {
   card.querySelector('.picker-header').addEventListener('click', function() {
     const detail = card.querySelector('.picker-detail');
     const chev   = card.querySelector('.picker-chev');
-    const open   = detail.style.display !== 'none';
+    const open   = detail.classList.contains('open');
 
     // Close others
     document.querySelectorAll('.picker-card').forEach(function(c) {
       if (c !== card) {
-        c.querySelector('.picker-detail').style.display = 'none';
+        c.querySelector('.picker-detail').classList.remove('open');
         c.querySelector('.picker-chev').classList.remove('open');
         c.classList.remove('open');
       }
     });
 
-    detail.style.display = open ? 'none' : 'block';
+    detail.classList.toggle('open', !open);
     chev.classList.toggle('open', !open);
     card.classList.toggle('open', !open);
 
@@ -1299,7 +1314,7 @@ async function init() {
 
   document.getElementById('btn-add-ship').addEventListener('click', function() {
     pickerSearch = '';
-    pickerCategory = 'All';
+    // Preserve last active category tab
     renderPickerScreen();
     showScreen('picker');
   });
@@ -1309,6 +1324,60 @@ async function init() {
   });
   document.getElementById('modal-backdrop').addEventListener('click', function() {
     document.getElementById('modal-upgrades').style.display = 'none';
+  });
+
+  // ── Fleet options menu (···) ──
+  const fleetMenuBtn = document.getElementById('btn-fleet-menu');
+  const fleetMenuDropdown = document.getElementById('fleet-menu-dropdown');
+
+  fleetMenuBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    fleetMenuDropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', function() {
+    fleetMenuDropdown.classList.add('hidden');
+  });
+
+  document.getElementById('fleet-menu-rename').addEventListener('click', function() {
+    fleetMenuDropdown.classList.add('hidden');
+    const fleet = getActiveFleet();
+    if (!fleet) return;
+    const name = window.prompt('Rename fleet:', fleet.name);
+    if (name && name.trim()) {
+      fleet.name = name.trim();
+      saveFleets();
+      renderFleetScreen();
+      renderHomeScreen();
+      showToast('Fleet renamed');
+    }
+  });
+
+  document.getElementById('fleet-menu-duplicate').addEventListener('click', function() {
+    fleetMenuDropdown.classList.add('hidden');
+    const fleet = getActiveFleet();
+    if (!fleet) return;
+    const copy = JSON.parse(JSON.stringify(fleet));
+    copy.id = Date.now();
+    copy.name = fleet.name + ' (Copy)';
+    copy.created = new Date().toISOString();
+    fleets.push(copy);
+    saveFleets();
+    renderHomeScreen();
+    showToast('Fleet duplicated');
+  });
+
+  document.getElementById('fleet-menu-delete').addEventListener('click', function() {
+    fleetMenuDropdown.classList.add('hidden');
+    const fleet = getActiveFleet();
+    if (!fleet) return;
+    if (!window.confirm('Delete "' + fleet.name + '"? This cannot be undone.')) return;
+    fleets.splice(activeFleet, 1);
+    activeFleet = null;
+    saveFleets();
+    renderHomeScreen();
+    showScreen('home');
+    showToast('Fleet deleted');
   });
 }
 
