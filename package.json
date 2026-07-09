@@ -1,0 +1,12 @@
+{
+  "name": "battlefleet-gothic-builder",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "sync": "node scripts/parse-bsdata.js",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.9.8"
+  }
+}

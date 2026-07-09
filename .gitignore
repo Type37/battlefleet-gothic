@@ -1,0 +1,6 @@
+node_modules/
+bsg-data/
+*.pdf
+reference/
+GABARIT-Presentation-resized2.webp
+.claude/
