@@ -58,26 +58,85 @@ body {
   overflow: hidden;
 }
 
-/* ── Screen system ── */
-.screen {
-  display: none;
-  flex-direction: column;
+/* ── App shell ── */
+#app {
+  display: flex;
   height: 100dvh;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
   overflow: hidden;
 }
-.screen.active { display: flex; }
 
-.screen-body {
+/* ── Left panel ── */
+#left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+}
+
+/* ── Right panel ── */
+#right-panel {
+  display: none; /* hidden on mobile by default */
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  background: var(--void);
+  border-left: 1px solid var(--border);
+}
+
+/* Mobile: right panel slides in as full-screen overlay */
+#right-panel.mobile-open {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  border: none;
+}
+
+/* Right panel content areas */
+#right-welcome {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#right-picker {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Panel scrollable body ── */
+.panel-body {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 80px;
+  padding-bottom: 80px; /* space for mobile nav */
   -webkit-overflow-scrolling: touch;
 }
-.screen-body::-webkit-scrollbar { width: 3px; }
-.screen-body::-webkit-scrollbar-thumb { background: var(--border); }
+.panel-body::-webkit-scrollbar { width: 3px; }
+.panel-body::-webkit-scrollbar-thumb { background: var(--border); }
+
+/* ── Overlays (new fleet, export) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--void);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.overlay[hidden] { display: none; }
+.overlay-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 32px;
+}
 
 /* ── Topbar ── */
 .topbar {
@@ -1126,76 +1185,72 @@ body {
 
 /* ── Desktop responsive layout ── */
 @media (min-width: 900px) {
-  body {
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    height: 100dvh;
-    background: #080a10;
-  }
+  body { background: #080a10; }
 
-  /* Remove mobile centering */
-  .screen {
-    max-width: none;
-    margin: 0;
-    height: 100dvh;
-  }
-
-  /* Home/New: centered column when no fleet open */
-  #screen-home.active,
-  #screen-new.active {
-    width: 520px;
-    margin: 0 auto;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-  }
-
-  /* ── Two-column fleet+picker layout ── */
-  body.has-fleet #screen-home { display: none !important; }
-
-  body.has-fleet #screen-fleet {
-    display: flex !important;
+  #left-panel {
     width: 420px;
-    flex-shrink: 0;
-    border-right: 1px solid var(--border);
+    flex: none;
   }
 
-  body.has-fleet #screen-picker {
-    display: flex !important;
-    flex: 1;
-    min-width: 0;
+  #right-panel {
+    display: flex; /* always visible on desktop */
   }
 
-  /* Hide mobile-only chrome */
-  body.has-fleet .fab { display: none; }
-  body.has-fleet #screen-fleet .bottom-nav,
-  body.has-fleet #screen-picker .bottom-nav { display: none; }
-  #screen-picker .back-btn { display: none; }
-  #screen-picker .topbar { padding-right: 16px; }
+  /* No mobile chrome on desktop */
+  .fab { display: none; }
+  .bottom-nav { display: none; }
+  .panel-body { padding-bottom: 16px; }
 
-  /* Remove bottom padding now that there's no nav bar */
-  body.has-fleet #fleet-body { padding-bottom: 16px; }
-  body.has-fleet #picker-body { padding-bottom: 16px; }
-
-  /* Picker fills height cleanly */
-  body.has-fleet #screen-picker { background: var(--iron); }
-  body.has-fleet #picker-body { background: var(--void); }
-
-  /* Picker topbar placeholder for alignment */
-  #screen-picker .topbar { justify-content: flex-start; gap: 0; }
-  #screen-picker .topbar-title { text-align: left; }
+  /* Hide picker mobile back button on desktop */
+  #btn-close-picker { display: none; }
 
   /* Modal sheet wider on desktop */
   .modal-sheet { max-width: 520px; }
 
-  /* Toast above bottom of screen (no nav bar) */
+  /* Toast sits lower without mobile nav */
   .toast { bottom: 24px; }
-}
 
-/* ── Narrow desktop / large tablet ── */
-@media (min-width: 600px) and (max-width: 899px) {
-  body { display: flex; justify-content: center; background: #080a10; }
-  .screen { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+  /* Overlay: centered card on desktop */
+  .overlay {
+    background: rgba(8,10,16,.85);
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay > header { display: none; }
+  .overlay-body {
+    background: var(--iron);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 520px;
+    max-height: 85dvh;
+    overflow-y: auto;
+    padding-bottom: 24px;
+  }
+  /* Show a close button inside overlay on desktop */
+  .overlay-close-desktop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 16px 0;
+    margin-bottom: -4px;
+  }
+  .overlay-close-desktop-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+  .overlay-close-desktop-btn:hover { color: var(--parch); }
+  .overlay-close-desktop-title {
+    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--brass);
+    letter-spacing: .04em;
+  }
 }
 
 @media print {

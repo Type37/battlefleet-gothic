@@ -334,41 +334,96 @@ function factionShortName(name) {
     .replace(' Corsairs', '');
 }
 
-// ── Screen navigation ─────────────────────────────────────────────────────────
+// ── Navigation & state ────────────────────────────────────────────────────────
 function isDesktop() {
   return window.matchMedia('(min-width: 900px)').matches;
 }
 
 function setActiveFleet(idx) {
   activeFleet = idx;
-  document.body.classList.toggle('has-fleet', idx !== null);
 }
 
-function showScreen(id) {
-  // On desktop with a fleet open, picker is always visible — just re-render it
-  if (isDesktop() && id === 'picker' && activeFleet !== null) {
-    renderPickerScreen();
-    return;
+// Main state: 'home' | 'fleet' | 'new' | 'export'
+function setState(state) {
+  // Headers
+  document.getElementById('header-home').hidden  = state !== 'home';
+  document.getElementById('header-fleet').hidden = state !== 'fleet';
+
+  // Pts / validation (fleet only)
+  document.getElementById('pts-tracker').hidden     = state !== 'fleet';
+  if (state !== 'fleet') document.getElementById('validation-panel').innerHTML = '';
+
+  // Left body content
+  document.getElementById('home-content').hidden = state !== 'home';
+  document.getElementById('fleet-body').hidden   = state !== 'fleet';
+
+  // Right panel
+  document.getElementById('right-welcome').hidden = state !== 'home';
+  document.getElementById('right-picker').hidden  = state !== 'fleet';
+
+  // Overlays
+  document.getElementById('overlay-new').hidden    = state !== 'new';
+  document.getElementById('overlay-export').hidden = state !== 'export';
+
+  // Mobile: close right panel when leaving fleet
+  if (state !== 'fleet') {
+    document.getElementById('right-panel').classList.remove('mobile-open');
   }
-  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('screen-' + id).classList.add('active');
+
+  // Mobile nav active state
+  document.querySelectorAll('[data-nav]').forEach(function(item) {
+    const nav = item.dataset.nav;
+    item.classList.toggle('active',
+      (nav === 'home'   && state === 'home') ||
+      (nav === 'fleet'  && state === 'fleet') ||
+      (nav === 'export' && state === 'export')
+    );
+  });
+}
+
+function openPicker() {
+  renderPickerScreen();
+  if (!isDesktop()) {
+    document.getElementById('right-panel').classList.add('mobile-open');
+  }
+}
+
+function closePicker() {
+  document.getElementById('right-panel').classList.remove('mobile-open');
 }
 
 function initNav() {
-  document.querySelectorAll('[data-back]').forEach(function(btn) {
-    btn.addEventListener('click', function() { showScreen(btn.dataset.back); });
-  });
-  document.querySelectorAll('[data-screen]').forEach(function(el) {
-    el.addEventListener('click', function() {
-      const target = el.dataset.screen;
-      if (target === 'fleet' && activeFleet === null) return;
-      if (target === 'export') {
+  // Mobile bottom nav
+  document.querySelectorAll('[data-nav]').forEach(function(item) {
+    item.addEventListener('click', function() {
+      const nav = item.dataset.nav;
+      if (nav === 'home') {
+        setState('home');
+      } else if (nav === 'fleet') {
+        if (activeFleet !== null) setState('fleet');
+      } else if (nav === 'export') {
         buildExportScreen();
-        showScreen('export');
-        return;
+        setState('export');
       }
-      showScreen(target);
     });
+  });
+
+  // Back to home from fleet
+  document.getElementById('btn-back-home').addEventListener('click', function() {
+    setState('home');
+  });
+
+  // Close picker (mobile back button)
+  document.getElementById('btn-close-picker').addEventListener('click', closePicker);
+
+  // Close new-fleet overlay
+  document.getElementById('btn-close-new').addEventListener('click', function() {
+    setState(activeFleet !== null ? 'fleet' : 'home');
+  });
+
+  // Close export overlay
+  document.getElementById('btn-close-export').addEventListener('click', function() {
+    setState(activeFleet !== null ? 'fleet' : 'home');
   });
 }
 
@@ -433,8 +488,8 @@ function renderHomeScreen() {
     card.addEventListener('click', function() {
       setActiveFleet(idx);
       renderFleetScreen();
-      if (isDesktop()) renderPickerScreen();
-      showScreen('fleet');
+      renderPickerScreen();
+      setState('fleet');
     });
 
     list.appendChild(card);
@@ -490,8 +545,8 @@ function initNewFleetScreen() {
     saveFleets();
     renderHomeScreen();
     renderFleetScreen();
-    if (isDesktop()) renderPickerScreen();
-    showScreen('fleet');
+    renderPickerScreen();
+    setState('fleet');
     resetNewFleetDraft();
   });
 
@@ -1016,8 +1071,7 @@ let pickerSearch   = '';
 
 function openPickerForCategory(cat) {
   if (cat) pickerCategory = cat;
-  renderPickerScreen();
-  showScreen('picker');
+  openPicker();
 }
 
 function renderPickerScreen() {
@@ -1201,13 +1255,12 @@ function addShipToFleet(fleet, ship) {
     fleet.commander = { shipId: ship.id, name: ship.name, pts: ship.pts, rerolls: 2 };
     saveFleets();
     renderFleetScreen();
-    showScreen('fleet');
+    closePicker();
     showToast(ship.name + ' set as commander');
     return;
   }
 
   if (ship.category === 'Escort') {
-    // Find existing squadron for this ship type, or create new
     const existing = fleet.squadrons.find(function(s) { return s.shipId === ship.id; });
     if (existing) {
       existing.count = Math.min(existing.count + 1, 6);
@@ -1216,16 +1269,15 @@ function addShipToFleet(fleet, ship) {
     }
     saveFleets();
     renderFleetScreen();
-    showScreen('fleet');
+    closePicker();
     showToast(ship.name + ' added to squadron');
     return;
   }
 
-  // Regular ship
   fleet.ships.push({ shipId: ship.id, upgrades: [], qty: 1, _idx: Date.now() });
   saveFleets();
   renderFleetScreen();
-  showScreen('fleet');
+  closePicker();
   showToast(ship.name + ' added');
 }
 
@@ -1322,17 +1374,16 @@ async function init() {
   initNav();
   initNewFleetScreen();
   renderHomeScreen();
+  setState('home');
 
   document.getElementById('btn-new-fleet').addEventListener('click', function() {
     resetNewFleetDraft();
-    showScreen('new');
+    setState('new');
   });
 
   document.getElementById('btn-add-ship').addEventListener('click', function() {
     pickerSearch = '';
-    // Preserve last active category tab
-    renderPickerScreen();
-    showScreen('picker');
+    openPicker();
   });
 
   document.getElementById('modal-close').addEventListener('click', function() {
@@ -1392,7 +1443,7 @@ async function init() {
     setActiveFleet(null);
     saveFleets();
     renderHomeScreen();
-    showScreen('home');
+    setState('home');
     showToast('Fleet deleted');
   });
 }

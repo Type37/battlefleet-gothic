@@ -8,59 +8,141 @@
 </head>
 <body>
 
-<!-- ── Home Screen ── -->
-<div id="screen-home" class="screen active">
+<div id="app">
+
+  <!-- ══ Left panel — fleet list / fleet detail ══ -->
+  <div id="left-panel">
+
+    <!-- Home header -->
+    <header id="header-home" class="topbar">
+      <div class="brand">
+        <div class="brand-title">Battlefleet Gothic</div>
+        <div class="brand-sub">Fleet Builder</div>
+      </div>
+      <button class="icon-btn" id="btn-settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </header>
+
+    <!-- Fleet header (hidden until fleet open) -->
+    <header id="header-fleet" class="topbar" hidden>
+      <button class="back-btn" id="btn-back-home">‹</button>
+      <div>
+        <div class="topbar-title" id="fleet-name-display">Fleet</div>
+        <div class="topbar-sub" id="fleet-faction-display"></div>
+      </div>
+      <button class="icon-btn" id="btn-fleet-menu" aria-label="Fleet options">···</button>
+      <div id="fleet-menu-dropdown" class="fleet-menu-dropdown hidden">
+        <button class="fleet-menu-item" id="fleet-menu-rename">Rename Fleet</button>
+        <button class="fleet-menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
+        <button class="fleet-menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
+      </div>
+    </header>
+
+    <!-- Pts tracker (fleet state only) -->
+    <div class="pts-tracker" id="pts-tracker" hidden>
+      <div class="pts-numbers">
+        <div><span class="pts-used" id="pts-used">0</span><span class="pts-limit" id="pts-limit"> / 0 pts</span></div>
+        <div class="pts-remaining" id="pts-remaining">0 remaining</div>
+      </div>
+      <div class="pts-track">
+        <div class="pts-seg pts-valid" id="pts-valid-bar" style="width:0%"></div>
+        <div class="pts-seg pts-invalid" id="pts-invalid-bar" style="width:0%"></div>
+      </div>
+      <div class="pts-legend" id="pts-legend" style="display:none">
+        <div class="pts-legend-item"><div class="pts-legend-dot valid"></div><span id="legend-valid-text">Valid</span></div>
+        <div class="pts-legend-item"><div class="pts-legend-dot invalid"></div><span id="legend-invalid-text">Needs fixing</span></div>
+      </div>
+    </div>
+
+    <!-- Validation panel (fleet state only) -->
+    <div id="validation-panel"></div>
+
+    <!-- Scrollable left body -->
+    <div id="left-body" class="panel-body">
+
+      <!-- Home content -->
+      <div id="home-content">
+        <div class="section-label">Your Fleets</div>
+        <div id="fleet-list"></div>
+        <div class="empty-state" id="empty-fleets" hidden>
+          <div class="empty-icon">⚓</div>
+          <div class="empty-title">No fleets yet</div>
+          <div class="empty-sub">Create your first fleet below</div>
+        </div>
+        <button class="new-fleet-btn" id="btn-new-fleet">
+          <span class="new-fleet-plus">+</span> New Fleet
+        </button>
+      </div>
+
+      <!-- Fleet ships body -->
+      <div id="fleet-body" hidden></div>
+
+    </div>
+
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" data-nav="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Fleets</span>
+      </div>
+      <div class="nav-item" data-nav="fleet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>Build</span>
+      </div>
+      <div class="nav-item" data-nav="export">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Export</span>
+      </div>
+    </nav>
+
+    <!-- FAB (mobile only — desktop picker is always visible) -->
+    <button class="fab" id="btn-add-ship" aria-label="Add ship">+</button>
+
+  </div><!-- /#left-panel -->
+
+  <!-- ══ Right panel — always visible on desktop ══ -->
+  <div id="right-panel">
+
+    <!-- Welcome state -->
+    <div id="right-welcome">
+      <div class="empty-state">
+        <div class="empty-icon">⚔</div>
+        <div class="empty-title">Select a fleet</div>
+        <div class="empty-sub">Choose a fleet from the list, or create a new one to get started</div>
+      </div>
+    </div>
+
+    <!-- Ship picker -->
+    <div id="right-picker" hidden>
+      <header class="topbar" id="picker-topbar">
+        <button class="back-btn" id="btn-close-picker">‹ Fleet</button>
+        <div class="topbar-title">Add Ship</div>
+        <div style="width:64px"></div>
+      </header>
+      <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
+      <div class="search-wrap">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
+          <button class="search-clear" id="btn-search-clear" style="display:none" aria-label="Clear search">✕</button>
+        </div>
+      </div>
+      <div class="panel-body" id="picker-body"></div>
+    </div>
+
+  </div><!-- /#right-panel -->
+
+</div><!-- /#app -->
+
+<!-- ══ New Fleet overlay ══ -->
+<div id="overlay-new" class="overlay" hidden>
   <header class="topbar">
-    <div class="brand">
-      <div class="brand-title">Battlefleet Gothic</div>
-      <div class="brand-sub">Fleet Builder</div>
-    </div>
-    <button class="icon-btn" id="btn-settings" aria-label="Settings">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-    </button>
-  </header>
-
-  <div class="screen-body">
-    <div class="section-label">Your Fleets</div>
-    <div id="fleet-list">
-      <!-- populated by JS -->
-    </div>
-    <div class="empty-state" id="empty-fleets" style="display:none">
-      <div class="empty-icon">⚓</div>
-      <div class="empty-title">No fleets yet</div>
-      <div class="empty-sub">Create your first fleet below</div>
-    </div>
-    <button class="new-fleet-btn" id="btn-new-fleet">
-      <span class="new-fleet-plus">+</span>
-      New Fleet
-    </button>
-  </div>
-
-  <nav class="bottom-nav">
-    <div class="nav-item active" data-screen="home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Fleets</span>
-    </div>
-    <div class="nav-item" id="nav-build" data-screen="fleet">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-      <span>Build</span>
-    </div>
-    <div class="nav-item" id="nav-export" data-screen="export">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Export</span>
-    </div>
-  </nav>
-</div>
-
-<!-- ── New Fleet Screen ── -->
-<div id="screen-new" class="screen">
-  <header class="topbar">
-    <button class="back-btn" data-back="home">‹ Back</button>
+    <button class="back-btn" id="btn-close-new">✕</button>
     <div class="topbar-title">New Fleet</div>
     <div style="width:56px"></div>
   </header>
-
-  <div class="screen-body">
+  <div class="overlay-body">
     <div class="steps" id="new-steps">
       <div class="step active" data-step="1">1</div>
       <div class="step-line"></div>
@@ -68,26 +150,16 @@
       <div class="step-line"></div>
       <div class="step" data-step="3">3</div>
     </div>
-
-    <!-- Step 1: Faction -->
     <div id="new-step-1" class="new-step">
       <div class="section-label">Select Faction</div>
-      <div id="faction-grid" class="faction-grid">
-        <!-- populated by JS -->
-      </div>
+      <div id="faction-grid" class="faction-grid"></div>
       <button class="primary-btn" id="btn-step1-next" disabled>Select Fleet List →</button>
     </div>
-
-    <!-- Step 2: Fleet List -->
     <div id="new-step-2" class="new-step" style="display:none">
       <div class="section-label" id="step2-label">Fleet List</div>
-      <div id="fleet-list-options">
-        <!-- populated by JS -->
-      </div>
+      <div id="fleet-list-options"></div>
       <button class="primary-btn" id="btn-step2-next" disabled>Name & Points →</button>
     </div>
-
-    <!-- Step 3: Name + Points -->
     <div id="new-step-3" class="new-step" style="display:none">
       <div class="section-label">Fleet Details</div>
       <div class="field-group">
@@ -112,94 +184,14 @@
   </div>
 </div>
 
-<!-- ── Fleet View Screen ── -->
-<div id="screen-fleet" class="screen">
-  <header class="topbar" id="fleet-topbar">
-    <button class="back-btn" data-back="home">‹</button>
-    <div>
-      <div class="topbar-title" id="fleet-name-display">Fleet</div>
-      <div class="topbar-sub" id="fleet-faction-display"></div>
-    </div>
-    <button class="icon-btn" id="btn-fleet-menu" aria-label="Fleet options">···</button>
-    <div id="fleet-menu-dropdown" class="fleet-menu-dropdown hidden">
-      <button class="fleet-menu-item" id="fleet-menu-rename">Rename Fleet</button>
-      <button class="fleet-menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
-      <button class="fleet-menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
-    </div>
-  </header>
-
-  <div class="pts-tracker" id="pts-tracker">
-    <div class="pts-numbers">
-      <div><span class="pts-used" id="pts-used">0</span><span class="pts-limit" id="pts-limit"> / 0 pts</span></div>
-      <div class="pts-remaining" id="pts-remaining">0 remaining</div>
-    </div>
-    <div class="pts-track">
-      <div class="pts-seg pts-valid" id="pts-valid-bar" style="width:0%"></div>
-      <div class="pts-seg pts-invalid" id="pts-invalid-bar" style="width:0%"></div>
-    </div>
-    <div class="pts-legend" id="pts-legend" style="display:none">
-      <div class="pts-legend-item"><div class="pts-legend-dot valid"></div><span id="legend-valid-text">Valid</span></div>
-      <div class="pts-legend-item"><div class="pts-legend-dot invalid"></div><span id="legend-invalid-text">Needs fixing</span></div>
-    </div>
-  </div>
-
-  <div id="validation-panel"></div>
-
-  <div class="screen-body" id="fleet-body">
-    <!-- populated by JS -->
-  </div>
-
-  <button class="fab" id="btn-add-ship" aria-label="Add ship">+</button>
-
-  <nav class="bottom-nav">
-    <div class="nav-item" data-screen="home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Fleets</span>
-    </div>
-    <div class="nav-item active" data-screen="fleet">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-      <span>Build</span>
-    </div>
-    <div class="nav-item" data-screen="export">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Export</span>
-    </div>
-  </nav>
-</div>
-
-<!-- ── Ship Picker Screen ── -->
-<div id="screen-picker" class="screen">
+<!-- ══ Export overlay ══ -->
+<div id="overlay-export" class="overlay" hidden>
   <header class="topbar">
-    <button class="back-btn" data-back="fleet">‹ Fleet</button>
-    <div class="topbar-title">Add Ship</div>
-    <div style="width:64px"></div>
-  </header>
-
-  <div class="cat-tabs" id="picker-tabs" role="tablist">
-    <!-- populated by JS -->
-  </div>
-
-  <div class="search-wrap">
-    <div class="search-bar">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
-      <button class="search-clear" id="btn-search-clear" style="display:none" aria-label="Clear search">✕</button>
-    </div>
-  </div>
-
-  <div class="screen-body" id="picker-body">
-    <!-- populated by JS -->
-  </div>
-</div>
-
-<!-- ── Export Screen ── -->
-<div id="screen-export" class="screen">
-  <header class="topbar">
-    <button class="back-btn" data-back="home">‹ Back</button>
+    <button class="back-btn" id="btn-close-export">‹ Back</button>
     <div class="topbar-title">Export</div>
     <div style="width:56px"></div>
   </header>
-  <div class="screen-body" id="export-body">
+  <div class="overlay-body">
     <div id="export-select-msg" class="info-box" style="margin:16px 12px">
       Open a fleet from the Fleets tab to export it.
     </div>
@@ -213,7 +205,7 @@
   </div>
 </div>
 
-<!-- ── Upgrade Picker Modal ── -->
+<!-- ══ Upgrade modal ══ -->
 <div id="modal-upgrades" class="modal" style="display:none" role="dialog" aria-modal="true">
   <div class="modal-backdrop" id="modal-backdrop"></div>
   <div class="modal-sheet" id="modal-sheet">
@@ -221,13 +213,11 @@
       <div class="modal-title" id="modal-title">Upgrades</div>
       <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
     </div>
-    <div class="modal-body" id="modal-body">
-      <!-- populated by JS -->
-    </div>
+    <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
-<!-- ── Toast ── -->
+<!-- ══ Toast ══ -->
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="js/app.js"></script>
