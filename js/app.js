@@ -7,7 +7,7 @@
 /* ── Constants ─────────────────────────────────────────────── */
 const STORE_KEY = 'bfg-fleets';
 const GREEK = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π'];
-const CAT_ORDER = ['Fleet Commander','Battleship','Grand Cruiser','Battlecruiser','Heavy Cruiser','Cruiser','Light Cruiser','Escort'];
+const CAT_ORDER = ['Cruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser','Battlecruiser','Battleship','Escort','Fleet Commander'];
 const CRUISER_CATS = new Set(['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser']);
 const CAT_TITLES = {
   'Fleet Commander':  'An admiral or character who leads the fleet — required above 750 pts, gives command re-rolls',
@@ -126,6 +126,7 @@ let activeFleet = null;          // index into fleets[]
 let state = 'home';              // 'home' | 'fleet'
 let pickerCategory = 'All';
 let pickerSearch = '';
+let pickerSelectedId = null;
 let wizStep = 1;
 let wizDraft = {};               // { faction, fleetList }
 
@@ -270,6 +271,17 @@ function shipArt(id) { return ART.has(id) ? `images/ships/${id}.webp` : null; }
 function escHtml(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function shipStatGridHtml(s) {
+  const st = s.stats || {};
+  const cells = [
+    ['Spd', st.Speed], ['Turn', st.Turns], ['Shld', st.Shields],
+    ['Arm', st.Armour], ['Trt', st.Turrets], ['Hits', st.Hits],
+  ].filter(c => c[1] != null);
+  if (!cells.length) return '';
+  return `<div class="card-stats">${cells.map(([lbl, val]) =>
+    `<div class="card-stat"><b>${escHtml(String(val))}</b><span>${lbl}</span></div>`
+  ).join('')}</div>`;
+}
 function statsRun(ship) {
   const st = ship.stats || {};
   const bits = [];
@@ -329,7 +341,8 @@ function closeOverlayEl(el) {
 }
 function trapTab(e) {
   if (e.key !== 'Tab') return;
-  const open = [document.getElementById('overlay-export'), document.getElementById('modal-upgrades')]
+  const open = [document.getElementById('overlay-export'), document.getElementById('modal-upgrades'),
+    document.getElementById('modal-new-fleet'), document.getElementById('modal-ship-picker')]
     .find(o => o && !o.hidden);
   if (!open) return;
   const list = focusablesIn(open.querySelector('.overlay-sheet') || open);
@@ -345,32 +358,42 @@ function setState(s) {
   app.dataset.state = s;
   const onFleet = s === 'fleet';
 
-  $('mast-brand').hidden   = onFleet;
-  $('mast-fleet').hidden   = !onFleet;
-  $('mast-pts').hidden     = !onFleet;
-  $('mast-actions').hidden = !onFleet;
+  $('sidebar').hidden = !onFleet;
   $('fleet-menu-dropdown').hidden = true;
 
   $('home-content').hidden  = onFleet;
   $('fleet-content').hidden = !onFleet;
 
-  $('registry-wizard').hidden = onFleet;
-  $('registry-picker').hidden = !onFleet;
-  $('registry-mobile-title').textContent = onFleet ? 'Add Ship' : 'New Fleet';
-
-  app.classList.remove('registry-open');
-
-  document.querySelectorAll('#bottom-nav .nav-item').forEach(n => {
-    n.classList.toggle('active', (n.dataset.nav === 'home' && !onFleet));
-  });
 
   if (onFleet) renderFleet(); else renderHome();
 }
-function openRegistryMobile() {
-  app.classList.add('registry-open');
+
+/* ── New Fleet / Ship Picker modals ───────────────────────────
+   The picker deliberately stays open after each add so the user can
+   add several ships in one sitting, closing only when they're done. */
+function openNewFleetModal() {
+  wizDraft = {};
+  wizGoto(1);
+  renderWizard();
+  openOverlayEl($('modal-new-fleet'));
 }
-function closeRegistryMobile() {
-  app.classList.remove('registry-open');
+function closeNewFleetModal() { closeOverlayEl($('modal-new-fleet')); }
+function openShipPicker() {
+  renderPicker(getFleet());
+  openOverlayEl($('modal-ship-picker'));
+}
+function openPickerForAdmiral() {
+  const fleet = getFleet();
+  const cmdrs = pickerShips(fleet).filter(s => s.category === 'Fleet Commander');
+  if (!cmdrs.length) { showToast('No Fleet Commanders available for this fleet list'); return; }
+  pickerCategory = 'Fleet Commander';
+  openShipPicker();
+}
+function closeShipPicker() {
+  closeOverlayEl($('modal-ship-picker'));
+  pickerSelectedId = null;
+  const inner = $('picker-inner');
+  if (inner) inner.classList.remove('detail-open');
 }
 
 /* ── Home render ───────────────────────────────────────────── */
@@ -379,14 +402,17 @@ function renderHome() {
   $('empty-fleets').hidden = fleets.length > 0;
   idx.innerHTML = fleets.map((f, i) => {
     const m = fmeta(f.faction);
+    const total = fleetTotalPts(f);
+    const pct = Math.min(100, Math.round((total / f.limit) * 100));
     return `
-    <button class="fleet-row" data-open="${i}" style="${fstyle(f.faction)}">
-      <span class="fleet-row-emblem"></span>
-      <span class="fleet-row-main">
-        <span class="fleet-row-name">${escHtml(f.name)}</span>
-        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? ` (${escHtml(f.fleetList)})` : ''}</span>
-      </span>
-      <span class="fleet-row-pts"><b>${fleetTotalPts(f)}</b><span>of ${f.limit} pts</span></span>
+    <button class="fleet-card" data-open="${i}" style="${fstyle(f.faction)}">
+      <div class="fleet-card-top">
+        <span class="fleet-card-emblem"></span>
+        <span class="fleet-card-pts">${total}<small>/ ${f.limit} pts</small></span>
+      </div>
+      <div class="fleet-card-name">${escHtml(f.name)}</div>
+      <div class="fleet-card-sub">${escHtml(m.short)}${f.fleetList ? ` &middot; ${escHtml(f.fleetList)}` : ''}</div>
+      <div class="fleet-card-bar"><div style="width:${pct}%"></div></div>
     </button>`;
   }).join('');
 }
@@ -526,10 +552,9 @@ function renderManifest(fleet) {
 
   if (!html) {
     html = `<div class="empty-state">
-      <div class="empty-rule"></div>
       <div class="empty-title">No ships yet</div>
-      <div class="empty-sub">Add your first ship from the panel on the right (or the <b>Add</b> button below on mobile). Start with a Fleet Commander and capital ships, then escorts.</div>
-      <div class="empty-rule"></div>
+      <div class="empty-sub">Start with a Fleet Commander and capital ships, then escorts.</div>
+      <button class="btn-primary" data-open-picker>+ Add Ship</button>
     </div>`;
   }
   body.innerHTML = html;
@@ -540,23 +565,20 @@ function shipDetailHtml(ship) {
   const art = shipArt(ship.id);
   if (art) html += `<img class="ship-art" src="${art}" alt="${escHtml(ship.name)}" loading="lazy">`;
   const st = ship.stats || {};
-  const cells = [
-    ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
-    ['Armour', st.Armour], ['Turrets', st.Turrets], ['Hits', st.Hits],
-  ].filter(c => c[1]);
-  if (cells.length) {
-    html += `<div class="stat-strip">${cells.map(c => `
-      <div class="stat-cell" title="${escHtml(STAT_TITLES[c[0]] || c[0])}">
-        <span class="stat-cell-icon" aria-hidden="true">${STAT_ICONS[c[0]] || ''}</span>
-        <span class="stat-cell-text"><b>${escHtml(c[1])}</b><span>${c[0]}</span></span>
-      </div>`).join('')}</div>`;
-  }
+  const STAT_PAIRS = [['Speed','Turns'],['Shields','Armour'],['Turrets','Hits']];
+  const statRows = STAT_PAIRS
+    .filter(([a,b]) => st[a] != null || st[b] != null)
+    .map(([a,b]) => `<tr>
+      <td class="st-n">${a}</td><td class="st-v">${escHtml(String(st[a] ?? '—'))}</td>
+      <td class="st-n">${b}</td><td class="st-v">${escHtml(String(st[b] ?? '—'))}</td>
+    </tr>`).join('');
+  if (statRows) html += `<table class="stat-table"><tbody>${statRows}</tbody></table>`;
   if (ship.armament && ship.armament.length) {
     html += `<table class="arm-table">
       <thead><tr>
         <th title="Name of the weapon battery, lance, or ordnance system">Armament</th>
-        <th title="How far the weapon reaches, or how fast ordnance moves">Range / Speed</th>
-        <th title="Firepower: dice rolled for a weapons battery. Strength: dice rolled for a torpedo salvo">FP / Str</th>
+        <th title="How far the weapon reaches, or how fast ordnance moves">Range</th>
+        <th title="Firepower: dice rolled for a weapons battery. Strength: dice rolled for a torpedo salvo">FP/Str</th>
         <th title="Which side(s) of the ship this weapon can fire into">Arc</th>
       </tr></thead>
       <tbody>${ship.armament.map(a => {
@@ -589,14 +611,16 @@ function renderPicker(fleet) {
   const ships = pickerShips(fleet);
   const cats = CAT_ORDER.filter(c => ships.some(s => s.category === c));
 
-  // tabs
+  // tabs — compact labels in narrow left pane
   const tabs = ['All', ...cats];
   if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
-  $('picker-tabs').innerHTML = tabs.map(t =>
-    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every ship available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
-  ).join('');
+  $('picker-tabs').innerHTML = tabs.map(t => {
+    const cnt = t === 'All' ? ships.length : ships.filter(s => s.category === t).length;
+    const label = t === 'Fleet Commander' ? 'Admirals' : t === 'All' ? 'All' : t + 's';
+    return `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}">${escHtml(label)} <span class="tab-count">${cnt}</span></button>`;
+  }).join('');
 
-  // rows
+  // list items
   const q = pickerSearch.trim().toLowerCase();
   let pool = ships;
   if (pickerCategory !== 'All') pool = pool.filter(s => s.category === pickerCategory);
@@ -612,27 +636,88 @@ function renderPicker(fleet) {
   let html = '';
   for (const [cat, list] of groups) {
     if (!list.length) continue;
-    if (pickerCategory === 'All') html += `<div class="pick-cat-head" title="${escHtml(CAT_TITLES[cat] || '')}">${escHtml(cat)}s</div>`;
+    if (pickerCategory === 'All') {
+      const catLabel = cat === 'Fleet Commander' ? 'Admirals' : cat + 's';
+      html += `<div class="pick-cat-head"><span>${escHtml(catLabel)}</span><span class="pick-cat-count">${list.length}</span></div>`;
+    }
     list.slice().sort((a, b) => b.pts - a.pts).forEach(s => {
       const warn = bsWouldViolate(s.category);
+      const art = shipArt(s.id);
+      const sel = pickerSelectedId === s.id ? ' selected' : '';
       html += `
-      <div class="pick-row" data-ship="${s.id}">
-        <div class="pick-row-top">
-          <button class="pick-row-main row-toggle" data-toggle aria-expanded="false">
-            <span class="pick-row-name" style="display:block">${escHtml(s.name)}</span>
-            <span class="pick-row-stats" style="display:block">${statsRun(s)}</span>
-          </button>
-          <span class="pick-row-pts">${s.pts}<small style="display:block;font-size:9px;font-weight:400;color:var(--faint);text-align:right;letter-spacing:1px">pts</small></span>
-          <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio; allowed, but flagged' : 'Add to fleet'}">+</button>
+      <button class="ship-list-item${sel}${warn ? ' warn-item' : ''}" data-ship-pick="${s.id}">
+        <div class="ship-list-art">
+          ${art
+            ? `<img src="${art}" alt="" loading="lazy">`
+            : `<span class="ship-list-art-icon" style="${fstyle(fleet.faction)}"></span>`}
         </div>
-        <div class="ship-detail"><div class="ship-detail-pad">
-          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet; you can add it anyway and fix this later.</div>` : ''}
-          ${shipDetailHtml(s)}
-        </div></div>
-      </div>`;
+        <div class="ship-list-info">
+          <span class="ship-list-name">${escHtml(s.name)}</span>
+          <span class="ship-list-meta">${escHtml(s.category)}</span>
+        </div>
+        <span class="ship-list-pts">${s.pts}<small>pts</small></span>
+      </button>`;
     });
   }
   $('picker-body').innerHTML = html || `<div class="pick-none">No ships match.</div>`;
+
+  // keep detail pane in sync if something was already selected
+  if (pickerSelectedId && pool.some(s => s.id === pickerSelectedId)) {
+    selectPickerShip(pickerSelectedId, fleet);
+  } else if (pickerSelectedId) {
+    pickerSelectedId = null;
+    clearPickerDetail();
+  }
+}
+
+function clearPickerDetail() {
+  $('picker-detail-content').hidden = true;
+  $('picker-detail-empty').hidden = false;
+  $('picker-inner').classList.remove('detail-open');
+}
+
+function selectPickerShip(id, fleet) {
+  fleet = fleet || getFleet();
+  pickerSelectedId = id;
+  const s = shipDef(id);
+  if (!s) return;
+
+  // highlight selected row
+  document.querySelectorAll('.ship-list-item').forEach(el =>
+    el.classList.toggle('selected', el.dataset.shipPick === id));
+
+  const art = shipArt(id);
+  const bsWarn = s.category === 'Battleship' &&
+    countCruisers(fleet) < (countBattleships(fleet) + 1) * 3;
+  const keywords = (s.specialRules || []).map(r =>
+    `<span class="keyword-chip">${escHtml(r.name)}</span>`).join('');
+
+  const content = $('picker-detail-content');
+  content.innerHTML = `
+    <button class="picker-back-btn" id="btn-picker-back" aria-label="Back to list">‹ Ships</button>
+    ${art ? `<div class="picker-detail-art-wrap"><img src="${art}" alt="${escHtml(s.name)}"></div>` : ''}
+    <div class="picker-detail-header">
+      <div class="picker-detail-name">${escHtml(s.name)}</div>
+      <div class="picker-detail-sub">${escHtml(s.category)} · ${s.pts} pts</div>
+      ${keywords ? `<div class="picker-detail-keywords">${keywords}</div>` : ''}
+    </div>
+    <div class="picker-detail-body">
+      ${bsWarn ? `<div class="picker-detail-warn">⚠ Needs ${(countBattleships(fleet)+1)*3} cruiser-class ships before this battleship is legal — you can add it now and sort it later.</div>` : ''}
+      ${shipDetailHtml(s)}
+    </div>
+    <div class="picker-detail-footer">
+      <button class="btn-primary picker-detail-add${bsWarn ? ' warn' : ''}" data-add="${s.id}">+ Add to Fleet</button>
+    </div>`;
+  content.hidden = false;
+  $('picker-detail-empty').hidden = true;
+
+  // mobile: push to detail pane
+  if (window.innerWidth <= 899) {
+    $('picker-inner').classList.add('detail-open');
+    content.querySelector('#btn-picker-back').addEventListener('click', () => {
+      $('picker-inner').classList.remove('detail-open');
+    });
+  }
 }
 
 /* ── Fleet mutations ───────────────────────────────────────── */
@@ -658,6 +743,7 @@ function addShip(shipId) {
   }
   saveFleets();
   renderFleet();
+  closeShipPicker();
 }
 function removeShip(i) {
   const fleet = getFleet();
@@ -727,8 +813,8 @@ function commissionFleet() {
   });
   saveFleets();
   activeFleet = fleets.length - 1;
-  wizDraft = {}; $('new-fleet-name').value = '';
-  wizGoto(1); renderWizard();
+  $('new-fleet-name').value = '';
+  closeNewFleetModal();
   setState('fleet');
   showToast(`${name} created`);
 }
@@ -1041,6 +1127,31 @@ function deleteFleet() {
 }
 
 /* ── Events ────────────────────────────────────────────────── */
+/* ── Action sheet (iOS-style fleet options on mobile) ──────── */
+let _actionItems = [];
+function showActionSheet(label, items) {
+  _actionItems = items;
+  $('action-sheet-label').textContent = label;
+  $('action-sheet-items').innerHTML = items.map((item, i) =>
+    `<button class="action-sheet-item${item.danger ? ' danger' : ''}" data-idx="${i}">${escHtml(item.label)}</button>`
+  ).join('');
+  $('action-sheet').hidden = false;
+}
+function hideActionSheet() { $('action-sheet').hidden = true; }
+
+/* ── Ship detail sheet (card tap → full rules) ─────────────── */
+let _detailShipId = null;
+function openShipDetailSheet(shipId) {
+  const s = shipDef(shipId);
+  if (!s) return;
+  _detailShipId = shipId;
+  $('detail-sheet-title').textContent = s.name;
+  $('detail-sheet-body').innerHTML = shipDetailHtml(s);
+  $('ship-detail-sheet').querySelector('.detail-sheet-footer').hidden = true;
+  openOverlayEl($('ship-detail-sheet'));
+}
+function closeShipDetailSheet() { closeOverlayEl($('ship-detail-sheet')); }
+
 function bindEvents() {
   // masthead
   $('btn-back-home').addEventListener('click', () => { activeFleet = null; setState('home'); });
@@ -1048,37 +1159,59 @@ function bindEvents() {
   $('btn-theme-toggle').addEventListener('click', () => setTheme(currentTheme() === 'dark' ? 'light' : 'dark'));
   $('btn-fleet-menu').addEventListener('click', e => {
     e.stopPropagation();
-    $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
+    if (window.innerWidth <= 899) {
+      showActionSheet('Fleet', [
+        { label: 'Export', action: openExport },
+        { label: 'Rename Fleet', action: renameFleet },
+        { label: 'Duplicate Fleet', action: duplicateFleet },
+        { label: 'Delete Fleet', action: deleteFleet, danger: true },
+      ]);
+    } else {
+      $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
+    }
   });
   document.addEventListener('click', e => {
-    if (!e.target.closest('.mast-actions')) $('fleet-menu-dropdown').hidden = true;
+    if (!e.target.closest('.sidebar-actions')) $('fleet-menu-dropdown').hidden = true;
   });
+  $('fleet-menu-export').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; openExport(); });
   $('fleet-menu-rename').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; renameFleet(); });
   $('fleet-menu-duplicate').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; duplicateFleet(); });
   $('fleet-menu-delete').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; deleteFleet(); });
+
+  // action sheet
+  $('action-sheet-items').addEventListener('click', e => {
+    const btn = e.target.closest('[data-idx]');
+    if (!btn) return;
+    const item = _actionItems[+btn.dataset.idx];
+    hideActionSheet();
+    if (item && item.action) item.action();
+  });
+  $('btn-action-sheet-cancel').addEventListener('click', hideActionSheet);
+  $('action-sheet').addEventListener('click', e => { if (e.target === $('action-sheet')) hideActionSheet(); });
+
+  // ship detail sheet
+  $('btn-close-detail-sheet').addEventListener('click', closeShipDetailSheet);
+  $('ship-detail-sheet').addEventListener('click', e => { if (e.target === $('ship-detail-sheet')) closeShipDetailSheet(); });
+  $('ship-detail-sheet').querySelector('.detail-sheet-add').addEventListener('click', function() {
+    const id = this.dataset.shipId;
+    if (id) { closeShipDetailSheet(); addShip(id); }
+  });
 
   // home
   $('fleet-index').addEventListener('click', e => {
     const row = e.target.closest('[data-open]');
     if (row) { activeFleet = +row.dataset.open; setState('fleet'); }
   });
-  $('btn-new-fleet').addEventListener('click', () => {
-    openRegistryMobile();  // no-op visually on desktop (wizard already visible)
-    document.querySelector('.registry-inner').scrollTop = 0;
-  });
+  $('btn-new-fleet').addEventListener('click', openNewFleetModal);
+  $('btn-close-new-fleet').addEventListener('click', closeNewFleetModal);
+  $('modal-new-fleet').addEventListener('click', e => { if (e.target === $('modal-new-fleet')) closeNewFleetModal(); });
 
-  // registry mobile close
-  $('btn-close-registry').addEventListener('click', closeRegistryMobile);
+  // roster add buttons
+  $('btn-add-ship').addEventListener('click', openShipPicker);
+  $('btn-add-admiral').addEventListener('click', openPickerForAdmiral);
+  $('btn-close-picker').addEventListener('click', closeShipPicker);
+  $('modal-ship-picker').addEventListener('click', e => { if (e.target === $('modal-ship-picker')) closeShipPicker(); });
 
-  // bottom nav
-  document.querySelectorAll('#bottom-nav .nav-item').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const nav = btn.dataset.nav;
-      if (nav === 'home') { if (state === 'fleet') { activeFleet = null; setState('home'); } closeRegistryMobile(); }
-      if (nav === 'add') { openRegistryMobile(); }
-      if (nav === 'export') { openExport(); }
-    });
-  });
 
   // wizard
   $('faction-grid').addEventListener('click', e => {
@@ -1136,19 +1269,21 @@ function bindEvents() {
     $('btn-search-clear').hidden = true;
     renderPicker(getFleet());
   });
+  // Picker: clicking a list item selects it and shows detail in right pane
   $('picker-body').addEventListener('click', e => {
+    const item = e.target.closest('[data-ship-pick]');
+    if (item) { selectPickerShip(item.dataset.shipPick); return; }
+  });
+  // Picker detail pane: add button
+  $('picker-detail-pane').addEventListener('click', e => {
     const add = e.target.closest('[data-add]');
     if (add) { addShip(add.dataset.add); return; }
-    const toggle = e.target.closest('[data-toggle]');
-    if (toggle) {
-      const open = toggle.closest('.pick-row').classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    }
   });
 
   // manifest
   $('fleet-body').addEventListener('click', e => {
     const t = e.target;
+    if (t.closest('[data-open-picker]')) { openShipPicker(); return; }
     const removeCmd = t.closest('[data-remove-cmd]');
     if (removeCmd) { getFleet().commander = null; saveFleets(); renderFleet(); showToast('Commander removed'); return; }
     const rem = t.closest('[data-remove]');
@@ -1175,8 +1310,15 @@ function bindEvents() {
     if (upg) { openUpgrades(+upg.dataset.upgrades); return; }
     const toggle = t.closest('[data-toggle]');
     if (toggle) {
-      const open = toggle.closest('.ship-row').classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
+      const row = toggle.closest('.ship-row');
+      const fleet = getFleet();
+      if (row.dataset.slot !== undefined) {
+        const sl = fleet.ships[+row.dataset.slot];
+        if (sl) { openShipDetailSheet(sl.shipId); return; }
+      } else if (row.dataset.sqd !== undefined) {
+        const sq = fleet.squadrons[+row.dataset.sqd];
+        if (sq) { openShipDetailSheet(sq.shipId); return; }
+      }
     }
   });
 
@@ -1213,8 +1355,11 @@ function bindEvents() {
     if (e.key === 'Escape') {
       closeOverlayEl($('overlay-export'));
       closeOverlayEl($('modal-upgrades'));
+      closeNewFleetModal();
+      closeShipPicker();
+      closeShipDetailSheet();
+      hideActionSheet();
       $('fleet-menu-dropdown').hidden = true;
-      closeRegistryMobile();
     }
   });
 }
