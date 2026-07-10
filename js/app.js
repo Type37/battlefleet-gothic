@@ -329,7 +329,8 @@ function closeOverlayEl(el) {
 }
 function trapTab(e) {
   if (e.key !== 'Tab') return;
-  const open = [document.getElementById('overlay-export'), document.getElementById('modal-upgrades')]
+  const open = [document.getElementById('overlay-export'), document.getElementById('modal-upgrades'),
+    document.getElementById('modal-new-fleet'), document.getElementById('modal-ship-picker')]
     .find(o => o && !o.hidden);
   if (!open) return;
   const list = focusablesIn(open.querySelector('.overlay-sheet') || open);
@@ -351,24 +352,28 @@ function setState(s) {
   $('home-content').hidden  = onFleet;
   $('fleet-content').hidden = !onFleet;
 
-  $('registry-wizard').hidden = onFleet;
-  $('registry-picker').hidden = !onFleet;
-  $('registry-mobile-title').textContent = onFleet ? 'Add Ship' : 'New Fleet';
-
-  app.classList.remove('registry-open');
-
   document.querySelectorAll('#bottom-nav .nav-item').forEach(n => {
     n.classList.toggle('active', (n.dataset.nav === 'home' && !onFleet));
   });
 
   if (onFleet) renderFleet(); else renderHome();
 }
-function openRegistryMobile() {
-  app.classList.add('registry-open');
+
+/* ── New Fleet / Ship Picker modals ───────────────────────────
+   The picker deliberately stays open after each add so the user can
+   add several ships in one sitting, closing only when they're done. */
+function openNewFleetModal() {
+  wizDraft = {};
+  wizGoto(1);
+  renderWizard();
+  openOverlayEl($('modal-new-fleet'));
 }
-function closeRegistryMobile() {
-  app.classList.remove('registry-open');
+function closeNewFleetModal() { closeOverlayEl($('modal-new-fleet')); }
+function openShipPicker() {
+  renderPicker(getFleet());
+  openOverlayEl($('modal-ship-picker'));
 }
+function closeShipPicker() { closeOverlayEl($('modal-ship-picker')); }
 
 /* ── Home render ───────────────────────────────────────────── */
 function renderHome() {
@@ -526,10 +531,9 @@ function renderManifest(fleet) {
 
   if (!html) {
     html = `<div class="empty-state">
-      <div class="empty-rule"></div>
       <div class="empty-title">No ships yet</div>
-      <div class="empty-sub">Add your first ship from the panel on the right (or the <b>Add</b> button below on mobile). Start with a Fleet Commander and capital ships, then escorts.</div>
-      <div class="empty-rule"></div>
+      <div class="empty-sub">Start with a Fleet Commander and capital ships, then escorts.</div>
+      <button class="btn-primary" data-open-picker>+ Add Ship</button>
     </div>`;
   }
   body.innerHTML = html;
@@ -727,8 +731,8 @@ function commissionFleet() {
   });
   saveFleets();
   activeFleet = fleets.length - 1;
-  wizDraft = {}; $('new-fleet-name').value = '';
-  wizGoto(1); renderWizard();
+  $('new-fleet-name').value = '';
+  closeNewFleetModal();
   setState('fleet');
   showToast(`${name} created`);
 }
@@ -1062,20 +1066,22 @@ function bindEvents() {
     const row = e.target.closest('[data-open]');
     if (row) { activeFleet = +row.dataset.open; setState('fleet'); }
   });
-  $('btn-new-fleet').addEventListener('click', () => {
-    openRegistryMobile();  // no-op visually on desktop (wizard already visible)
-    document.querySelector('.registry-inner').scrollTop = 0;
-  });
+  $('btn-new-fleet').addEventListener('click', openNewFleetModal);
+  $('btn-close-new-fleet').addEventListener('click', closeNewFleetModal);
+  $('modal-new-fleet').addEventListener('click', e => { if (e.target === $('modal-new-fleet')) closeNewFleetModal(); });
 
-  // registry mobile close
-  $('btn-close-registry').addEventListener('click', closeRegistryMobile);
+  // add-ship trigger — the header button and the empty-state CTA (latter
+  // is handled inside the main fleet-body listener further down)
+  $('btn-add-ship').addEventListener('click', openShipPicker);
+  $('btn-close-picker').addEventListener('click', closeShipPicker);
+  $('modal-ship-picker').addEventListener('click', e => { if (e.target === $('modal-ship-picker')) closeShipPicker(); });
 
   // bottom nav
   document.querySelectorAll('#bottom-nav .nav-item').forEach(btn => {
     btn.addEventListener('click', () => {
       const nav = btn.dataset.nav;
-      if (nav === 'home') { if (state === 'fleet') { activeFleet = null; setState('home'); } closeRegistryMobile(); }
-      if (nav === 'add') { openRegistryMobile(); }
+      if (nav === 'home') { if (state === 'fleet') { activeFleet = null; setState('home'); } }
+      if (nav === 'add') { if (state === 'fleet') openShipPicker(); else openNewFleetModal(); }
       if (nav === 'export') { openExport(); }
     });
   });
@@ -1149,6 +1155,7 @@ function bindEvents() {
   // manifest
   $('fleet-body').addEventListener('click', e => {
     const t = e.target;
+    if (t.closest('[data-open-picker]')) { openShipPicker(); return; }
     const removeCmd = t.closest('[data-remove-cmd]');
     if (removeCmd) { getFleet().commander = null; saveFleets(); renderFleet(); showToast('Commander removed'); return; }
     const rem = t.closest('[data-remove]');
@@ -1213,8 +1220,9 @@ function bindEvents() {
     if (e.key === 'Escape') {
       closeOverlayEl($('overlay-export'));
       closeOverlayEl($('modal-upgrades'));
+      closeNewFleetModal();
+      closeShipPicker();
       $('fleet-menu-dropdown').hidden = true;
-      closeRegistryMobile();
     }
   });
 }

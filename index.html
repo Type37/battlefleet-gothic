@@ -90,69 +90,14 @@
 
       <!-- Fleet: manifest -->
       <div id="fleet-content" hidden>
+        <div class="view-head">
+          <h1>Roster</h1>
+          <button class="btn-primary" id="btn-add-ship">+ Add Ship</button>
+        </div>
         <div id="validation-panel" aria-live="polite" aria-label="Fleet validation"></div>
         <div id="fleet-body"></div>
       </div>
 
-    </section>
-
-    <!-- Detail: new-fleet wizard (home) / ship picker (fleet) -->
-    <section id="registry">
-      <div class="registry-inner">
-
-        <!-- Mobile-only close bar -->
-        <header class="registry-mobilebar">
-          <button class="mast-back" id="btn-close-registry" aria-label="Close registry">‹</button>
-          <div class="registry-mobilebar-title" id="registry-mobile-title">Ships</div>
-          <div style="width:44px"></div>
-        </header>
-
-        <!-- New Fleet wizard -->
-        <div id="registry-wizard">
-          <div class="pane-head"><span>New Fleet</span></div>
-          <div class="wizard-steps" id="wizard-steps">
-            <div class="wstep active" data-step="1" title="Which faction you're building for"><i>1</i><em>Faction</em></div>
-            <div class="wstep" data-step="2" title="A named list within your faction — changes which ships are available"><i>2</i><em>Fleet List</em></div>
-            <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>3</i><em>Details</em></div>
-          </div>
-          <div class="wizard-body">
-            <div id="wiz-step-1" class="wiz-step">
-              <div id="faction-grid" class="faction-grid"></div>
-            </div>
-            <div id="wiz-step-2" class="wiz-step" hidden>
-              <div id="fleet-list-options"></div>
-            </div>
-            <div id="wiz-step-3" class="wiz-step" hidden>
-              <label class="field-label" for="new-fleet-name">Fleet Name</label>
-              <input class="field-input" id="new-fleet-name" type="text" placeholder="e.g. Gothic Patrol" maxlength="40" autocomplete="off">
-              <label class="field-label" for="new-fleet-pts" style="margin-top:18px">Points Limit</label>
-              <div class="pts-chips" id="pts-chips">
-                <button class="pts-chip" data-pts="750">750</button>
-                <button class="pts-chip" data-pts="1000">1000</button>
-                <button class="pts-chip active" data-pts="1500">1500</button>
-                <button class="pts-chip" data-pts="2000">2000</button>
-              </div>
-              <input class="field-input" id="new-fleet-pts" type="number" value="1500" min="250" max="5000" step="50">
-            </div>
-          </div>
-          <div class="wizard-foot">
-            <button class="btn-outline" id="btn-wiz-back" hidden>‹ Back</button>
-            <button class="btn-primary" id="btn-wiz-next" disabled>Continue ›</button>
-          </div>
-        </div>
-
-        <!-- Ship picker -->
-        <div id="registry-picker" hidden>
-          <div class="pane-head"><span>Add Ships</span><span class="pane-head-aside" id="picker-faction-label"></span></div>
-          <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
-          <div class="search-wrap">
-            <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
-            <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
-          </div>
-          <div id="picker-body"></div>
-        </div>
-
-      </div>
     </section>
 
   </div>
@@ -165,6 +110,64 @@
   </nav>
 
 </div><!-- /#app -->
+
+<!-- ══════════ New Fleet modal ══════════ -->
+<div id="modal-new-fleet" class="overlay" hidden>
+  <div class="overlay-sheet" role="dialog" aria-modal="true" aria-labelledby="new-fleet-title">
+    <header class="overlay-head">
+      <div class="overlay-title" id="new-fleet-title">New Fleet</div>
+      <button class="overlay-close" id="btn-close-new-fleet" aria-label="Close">✕</button>
+    </header>
+    <div class="wizard-steps" id="wizard-steps">
+      <div class="wstep active" data-step="1" title="Which faction you're building for"><i>1</i><em>Faction</em></div>
+      <div class="wstep" data-step="2" title="A named list within your faction — changes which ships are available"><i>2</i><em>Fleet List</em></div>
+      <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>3</i><em>Details</em></div>
+    </div>
+    <div class="overlay-body">
+      <div id="wiz-step-1" class="wiz-step">
+        <div id="faction-grid" class="faction-grid"></div>
+      </div>
+      <div id="wiz-step-2" class="wiz-step" hidden>
+        <div id="fleet-list-options"></div>
+      </div>
+      <div id="wiz-step-3" class="wiz-step" hidden>
+        <label class="field-label" for="new-fleet-name">Fleet Name</label>
+        <input class="field-input" id="new-fleet-name" type="text" placeholder="e.g. Gothic Patrol" maxlength="40" autocomplete="off">
+        <label class="field-label" for="new-fleet-pts" style="margin-top:18px">Points Limit</label>
+        <div class="pts-chips" id="pts-chips">
+          <button class="pts-chip" data-pts="750">750</button>
+          <button class="pts-chip" data-pts="1000">1000</button>
+          <button class="pts-chip active" data-pts="1500">1500</button>
+          <button class="pts-chip" data-pts="2000">2000</button>
+        </div>
+        <input class="field-input" id="new-fleet-pts" type="number" value="1500" min="250" max="5000" step="50">
+      </div>
+    </div>
+    <div class="wizard-foot">
+      <button class="btn-outline" id="btn-wiz-back" hidden>‹ Back</button>
+      <button class="btn-primary" id="btn-wiz-next" disabled>Continue ›</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ Ship picker modal — stays open across multiple adds ══════════ -->
+<div id="modal-ship-picker" class="overlay" hidden>
+  <div class="overlay-sheet overlay-sheet-xl" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+    <header class="overlay-head">
+      <div>
+        <div class="overlay-title" id="picker-title">Add Ship</div>
+        <div class="pane-head-aside" id="picker-faction-label"></div>
+      </div>
+      <button class="overlay-close" id="btn-close-picker" aria-label="Close">✕</button>
+    </header>
+    <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
+    <div class="search-wrap">
+      <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
+      <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
+    </div>
+    <div class="overlay-body" id="picker-body"></div>
+  </div>
+</div>
 
 <!-- ══════════ Export overlay ══════════ -->
 <div id="overlay-export" class="overlay" hidden>
