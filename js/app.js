@@ -34,6 +34,25 @@ function fstyle(faction) {
   return `--fi:url('../assets/icons/${m.icon}');--fc:${m.color}`;
 }
 
+// Per-stat glyph + plain-English meaning, shown as an icon (always visible) with
+// the explanation on hover/focus — no permanent paragraph of rules text.
+const STAT_ICONS = {
+  Speed:   '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="4,4 20,12 4,20 8,12"/></svg>',
+  Turns:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3v5h-5"/></svg>',
+  Shields: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2.5 20 6v6c0 5.2-3.6 8.7-8 9.5-4.4-.8-8-4.3-8-9.5V6z"/></svg>',
+  Armour:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1.5"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="9" y1="4" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="20"/><line x1="9" y1="12" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="12"/></svg>',
+  Turrets: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><line x1="12" y1="2" x2="12" y2="6.5"/><line x1="12" y1="17.5" x2="12" y2="22"/><line x1="2" y1="12" x2="6.5" y2="12"/><line x1="17.5" y1="12" x2="22" y2="12"/></svg>',
+  Hits:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"><polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/></svg>',
+};
+const STAT_TITLES = {
+  Speed:   'Speed — how far the ship moves each turn',
+  Turns:   'Turns — sharpest turn the ship can make in one move',
+  Shields: 'Shields — blocks one hit each, recharges every turn',
+  Armour:  'Armour — roll needed to score a hit on this ship',
+  Turrets: 'Turrets — shoots down incoming torpedoes and bombers',
+  Hits:    'Hits — damage the ship can take before it is crippled',
+};
+
 /* ── State ─────────────────────────────────────────────────── */
 let DB = null;
 let ART = new Set();   // ship ids that have extracted illustrations
@@ -440,9 +459,11 @@ function shipDetailHtml(ship) {
     ['Armour', st.Armour], ['Turrets', st.Turrets], ['Hits', st.Hits],
   ].filter(c => c[1]);
   if (cells.length) {
-    html += `<div class="stat-strip">${cells.map(c =>
-      `<div class="stat-cell"><b>${escHtml(c[1])}</b><span>${c[0]}</span></div>`).join('')}</div>`;
-    html += `<p class="stat-key">Hits = damage taken before crippled. Shields block incoming hits. Armour = D6 needed to hit. Turrets shoot down torpedoes &amp; bombers. Turns = max course change.</p>`;
+    html += `<div class="stat-strip">${cells.map(c => `
+      <div class="stat-cell" title="${escHtml(STAT_TITLES[c[0]] || c[0])}">
+        <span class="stat-cell-icon" aria-hidden="true">${STAT_ICONS[c[0]] || ''}</span>
+        <span class="stat-cell-text"><b>${escHtml(c[1])}</b><span>${c[0]}</span></span>
+      </div>`).join('')}</div>`;
   }
   if (ship.armament && ship.armament.length) {
     html += `<table class="arm-table">

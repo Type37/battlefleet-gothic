@@ -231,13 +231,18 @@ input { font: inherit; color: inherit; }
 .menu-item.danger:hover { background: var(--err-bg); }
 
 /* ═══════════ Deck : two columns ═══════════ */
+/* Capped and centered so the two panels don't stretch edge-to-edge and
+   thin out into empty space on a wide monitor. */
 #deck {
   flex: 1;
   display: flex;
   min-height: 0;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 #manifest {
-  width: 460px;
+  width: 520px;
   flex: none;
   overflow-y: auto;
   border-right: 1px solid var(--line);
@@ -248,6 +253,7 @@ input { font: inherit; color: inherit; }
 #registry {
   flex: 1;
   min-width: 0;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
   background: var(--ink2);
@@ -504,21 +510,22 @@ input { font: inherit; color: inherit; }
 }
 
 .stat-strip {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin: 8px 0 10px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 10px 0 14px;
 }
 .stat-cell {
+  display: flex; align-items: center; gap: 9px;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 4px;
   background: var(--hull);
-  padding: 5px 10px;
-  text-align: center;
-  min-width: 58px;
+  padding: 9px 13px;
+  min-width: 80px;
 }
-.stat-cell b { display: block; font-family: var(--data); font-size: 14px; font-variant-numeric: tabular-nums; }
-.stat-cell span { display: block; font-family: var(--data); font-size: 8.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
-
-.stat-key { font-size: 11.5px; font-style: italic; color: var(--faint); line-height: 1.4; margin: -2px 0 10px; }
+.stat-cell-icon { flex: none; width: 20px; height: 20px; color: var(--gold); }
+.stat-cell-icon svg { display: block; width: 100%; height: 100%; }
+.stat-cell-text { display: flex; flex-direction: column; }
+.stat-cell b { font-family: var(--data); font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat-cell span { font-family: var(--data); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
 
 .arm-table {
   width: 100%;
@@ -947,6 +954,7 @@ input { font: inherit; color: inherit; }
   #app.registry-open #registry {
     display: flex;
     position: fixed; inset: 0;
+    max-width: none;
     z-index: 80;
     background: var(--ink);
   }
@@ -993,7 +1001,8 @@ input { font: inherit; color: inherit; }
 @media (max-width: 480px) {
   .mast-sub { display: none; }
   .faction-grid { grid-template-columns: 1fr; }
-  .stat-cell { min-width: 52px; padding: 4px 7px; }
+  .stat-cell { min-width: 64px; padding: 7px 9px; gap: 7px; }
+  .stat-cell-icon { width: 17px; height: 17px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
