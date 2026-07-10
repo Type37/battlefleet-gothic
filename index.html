@@ -13,6 +13,9 @@
       }
     } catch (e) {}
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -58,8 +61,9 @@
 
       <div class="sidebar-actions">
         <button class="btn-sidebar" id="btn-export">Export</button>
-        <button class="btn-sidebar" id="btn-fleet-menu" aria-label="Fleet options">Fleet Options ⋯</button>
+        <button class="btn-sidebar" id="btn-fleet-menu" aria-label="Fleet options">···</button>
         <div id="fleet-menu-dropdown" class="menu-dropdown" hidden>
+          <button class="menu-item" id="fleet-menu-export">Export</button>
           <button class="menu-item" id="fleet-menu-rename">Rename Fleet</button>
           <button class="menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
           <button class="menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
@@ -194,6 +198,33 @@
       <button class="overlay-close" id="modal-close" aria-label="Close">✕</button>
     </header>
     <div class="overlay-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ══════════ Ship detail sheet ══════════ -->
+<div id="ship-detail-sheet" class="overlay" hidden>
+  <div class="overlay-sheet overlay-sheet-narrow" role="dialog" aria-modal="true" aria-labelledby="detail-sheet-title">
+    <header class="overlay-head">
+      <div>
+        <div class="overlay-title" id="detail-sheet-title"></div>
+      </div>
+      <button class="overlay-close" id="btn-close-detail-sheet" aria-label="Close">✕</button>
+    </header>
+    <div class="overlay-body" id="detail-sheet-body"></div>
+    <div class="detail-sheet-footer">
+      <button class="btn-primary detail-sheet-add">+ Add to Fleet</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ Action sheet (fleet options on mobile) ══════════ -->
+<div id="action-sheet" class="action-sheet-overlay" hidden>
+  <div class="action-sheet">
+    <div class="action-sheet-group">
+      <div class="action-sheet-label" id="action-sheet-label"></div>
+      <div id="action-sheet-items"></div>
+    </div>
+    <button class="action-sheet-cancel" id="btn-action-sheet-cancel">Cancel</button>
   </div>
 </div>
 

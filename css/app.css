@@ -15,7 +15,7 @@
   --data:      var(--sys);
   --caslon:    var(--sys);
   --condensed: var(--sys);
-  --lore:      var(--sys);
+  --lore:      'EB Garamond', Georgia, 'Times New Roman', serif;
 
   /* spacing — 4px grid */
   --sp-xxs: 2px; --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px;
@@ -461,7 +461,7 @@ input { font: inherit; color: inherit; }
 
 .rule-block { margin: var(--sp-sm) 0; }
 .rule-block b { font-family: var(--data); font-weight: 700; color: var(--accent); }
-.rule-block p { font-family: var(--data); font-size: 14px; color: var(--bone-dim); line-height: 1.5; }
+.rule-block p { font-family: var(--lore); font-size: 16px; color: var(--bone-dim); line-height: 1.65; }
 
 .detail-actions { display: flex; gap: var(--sp-sm); margin-top: var(--sp-md); }
 .chip-btn { font-family: var(--data); font-size: 14px; font-weight: 600; padding: var(--sp-sm) var(--sp-lg); border-radius: var(--radius-pill); background: var(--hull3); color: var(--accent); min-height: 36px; }
@@ -599,6 +599,107 @@ input { font: inherit; color: inherit; }
 .upg-opt-pts { font-family: var(--data); font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent); font-size: 15px; }
 
 /* ═══════════ Toast ═══════════ */
+/* ═══════════ Keyword chips ═══════════ */
+.keyword-chip { display: inline-block; font-family: var(--data); font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-tint); border-radius: var(--radius-pill); padding: 2px 9px; white-space: nowrap; cursor: default; }
+.keyword-chip:hover { background: var(--accent-wash); }
+
+/* ═══════════ Ship card grid (picker) ═══════════ */
+.ship-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: var(--sp-md); padding: var(--sp-md) var(--sp-xl) var(--sp-xl); }
+.pick-cat-head { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-lg) var(--sp-xl) var(--sp-xs); font-family: var(--data); font-size: 13px; font-weight: 700; letter-spacing: -.01em; color: var(--faint); }
+.pick-cat-count { font-variant-numeric: tabular-nums; }
+.ship-card {
+  display: flex; flex-direction: column;
+  background: var(--hull);
+  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-edge), var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out);
+}
+.ship-card:hover { transform: translateY(-2px); box-shadow: var(--glass-edge), var(--shadow-md); }
+.ship-card:active { transform: scale(.985); transition: transform .1s; }
+.ship-card-art-wrap { height: 90px; background: #000; flex: none; overflow: hidden; }
+.ship-card-art-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.ship-card-art-empty { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--hull3) 0%, var(--hull2) 100%); }
+.ship-card-art-icon { width: 36px; height: 36px; background-color: var(--fc, var(--faint)); -webkit-mask: var(--fi) no-repeat center / contain; mask: var(--fi) no-repeat center / contain; opacity: .4; }
+.ship-card-content { padding: var(--sp-md); flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.ship-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-sm); }
+.ship-card-name { font-family: var(--gotisch); font-size: 15px; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
+.ship-card-pts { font-family: var(--data); font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 700; color: var(--accent); flex: none; white-space: nowrap; }
+.ship-card-pts small { font-size: 10px; font-weight: 400; color: var(--faint); }
+.ship-card-type { font-family: var(--data); font-size: 12px; color: var(--faint); }
+.card-stats { display: flex; gap: var(--sp-xs); flex-wrap: wrap; margin: 4px 0; }
+.card-stat { background: var(--hull3); border-radius: var(--radius-sm); padding: 3px 7px; text-align: center; min-width: 38px; }
+.card-stat b { display: block; font-family: var(--data); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.card-stat span { display: block; font-family: var(--data); font-size: 10px; color: var(--faint); margin-top: 1px; }
+.ship-card-keywords { display: flex; flex-wrap: wrap; gap: var(--sp-xs); margin-top: 4px; }
+.ship-card-warn { font-family: var(--data); font-size: 12px; color: var(--warn-tx); background: var(--warn-bg); border-radius: var(--radius-sm); padding: 4px 8px; margin-top: 4px; }
+.ship-card-add {
+  margin: 0 var(--sp-md) var(--sp-md);
+  padding: var(--sp-sm) var(--sp-lg);
+  min-height: 44px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: var(--radius-md);
+  font-family: var(--data);
+  font-size: 15px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: background .15s;
+}
+.ship-card-add svg { width: 16px; height: 16px; flex: none; }
+.ship-card-add:hover { background: var(--accent-2); }
+.ship-card-add:active { background: var(--accent-press); }
+.ship-card-add.warn { background: var(--warn-tx); }
+
+/* ═══════════ Action sheet (iOS-style, mobile fleet options) ═══════════ */
+.action-sheet-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,.32);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 0 var(--sp-md) calc(var(--sp-xl) + env(safe-area-inset-bottom));
+}
+.action-sheet { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: var(--sp-sm); animation: sheet-up .3s var(--ease-out); }
+.action-sheet-group {
+  background: var(--hull);
+  -webkit-backdrop-filter: saturate(180%) blur(40px); backdrop-filter: saturate(180%) blur(40px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-edge), var(--shadow-float);
+  overflow: hidden;
+}
+.action-sheet-label { font-family: var(--data); font-size: 13px; color: var(--faint); text-align: center; padding: var(--sp-md) var(--sp-lg) var(--sp-sm); }
+.action-sheet-item {
+  display: block; width: 100%; text-align: center;
+  padding: var(--sp-lg) var(--sp-xl); min-height: 54px;
+  font-family: var(--data); font-size: 17px; font-weight: 400;
+  color: var(--accent);
+  border-top: 1px solid var(--line);
+}
+.action-sheet-item:first-of-type { border-top: none; }
+.action-sheet-item.danger { color: var(--blood); }
+.action-sheet-item:active { background: var(--hull3); }
+.action-sheet-cancel {
+  display: block; width: 100%; text-align: center;
+  padding: var(--sp-lg) var(--sp-xl); min-height: 54px;
+  font-family: var(--data); font-size: 17px; font-weight: 700;
+  color: var(--accent);
+  background: var(--hull);
+  -webkit-backdrop-filter: saturate(180%) blur(40px); backdrop-filter: saturate(180%) blur(40px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-edge), var(--shadow-float);
+}
+.action-sheet-cancel:active { background: var(--hull3); }
+
+/* ═══════════ Ship detail sheet ═══════════ */
+#ship-detail-sheet .overlay-sheet { max-height: 88dvh; }
+.detail-sheet-footer { flex: none; padding: var(--sp-md) var(--sp-xl) var(--sp-xl); border-top: 1px solid var(--line); }
+.detail-sheet-footer .btn-primary { display: block; width: 100%; min-height: 50px; font-size: 16px; }
+
 .toast { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 16px); background: var(--hull); -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass); color: var(--bone); font-family: var(--data); font-size: 14px; font-weight: 500; padding: var(--sp-md) var(--sp-xl); border-radius: var(--radius-pill); box-shadow: var(--glass-edge), var(--shadow-float); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s var(--ease-out); z-index: 200; max-width: min(90vw, 480px); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
@@ -610,17 +711,48 @@ input { font: inherit; color: inherit; }
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 899px) {
   #masthead { padding: 0 var(--sp-lg); }
+
+  /* ── Compact 2-row fleet header on mobile ── */
   #sidebar {
-    width: 100%; height: auto; flex-direction: column;
-    gap: var(--sp-md); padding: var(--sp-lg);
+    width: 100%;
+    flex-direction: row; flex-wrap: wrap; align-items: center;
+    gap: 0; padding: var(--sp-xs) var(--sp-md);
     border-right: none; border-bottom: 1px solid var(--line);
   }
-  .mast-fleet-name { font-size: 22px; }
-  .mast-pts { padding: var(--sp-md); }
-  .pts-used { font-size: 26px; }
-  .sidebar-actions { flex-direction: row; margin-top: 0; }
-  .btn-sidebar { flex: 1; text-align: center; }
-  .menu-dropdown { bottom: auto; top: calc(100% + 8px); }
+  .mast-back    { order: 1; flex: none; font-size: 15px; padding: var(--sp-sm) var(--sp-md) var(--sp-sm) 0; }
+  .mast-fleet-id { order: 2; flex: 1; min-width: 0; padding: var(--sp-xs) 0; border: none; }
+  .mast-fleet-name { font-size: 16px; }
+  .mast-fleet-sub  { font-size: 12px; margin-top: 0; }
+  .sidebar-actions { order: 3; flex: none; flex-direction: row; gap: var(--sp-xs); margin-top: 0; }
+  .mast-pts {
+    order: 4; flex: 1 1 100%;
+    background: transparent; box-shadow: none; border-radius: 0;
+    padding: 4px 0 var(--sp-sm);
+  }
+  .mast-pts-nums { gap: 3px; margin-bottom: 3px; }
+  .pts-used { font-size: 18px; }
+  .pts-limit { font-size: 13px; }
+  .pts-word  { font-size: 11px; }
+  .pts-remaining { font-size: 11px; margin-top: 0; }
+  .pts-track { height: 4px; margin-top: var(--sp-xs); }
+
+  /* Hide Export button on mobile — accessible via ··· action sheet */
+  #btn-export { display: none; }
+
+  /* Ellipsis button: compact round icon */
+  #btn-fleet-menu {
+    width: 44px; height: 44px; min-height: 0;
+    padding: 0; font-size: 20px; letter-spacing: 2px;
+    background: var(--hull3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Dropdown on mobile: anchor below button */
+  .menu-dropdown { top: calc(100% + 4px); right: 0; left: auto; min-width: 200px; bottom: auto; }
+
+  /* Category tabs: wrap so all visible at once */
+  .cat-tabs { flex-wrap: wrap; overflow-x: visible; gap: var(--sp-xs); padding: var(--sp-md) var(--sp-lg); }
+  .cat-tab { flex: 1 1 auto; text-align: center; }
 
   #deck { flex-direction: column; }
   #manifest { max-width: none; padding: var(--sp-lg); padding-bottom: calc(var(--nav-h) + 40px); }

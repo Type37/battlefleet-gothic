@@ -270,6 +270,17 @@ function shipArt(id) { return ART.has(id) ? `images/ships/${id}.webp` : null; }
 function escHtml(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function shipStatGridHtml(s) {
+  const st = s.stats || {};
+  const cells = [
+    ['Spd', st.Speed], ['Turn', st.Turns], ['Shld', st.Shields],
+    ['Arm', st.Armour], ['Trt', st.Turrets], ['Hits', st.Hits],
+  ].filter(c => c[1] != null);
+  if (!cells.length) return '';
+  return `<div class="card-stats">${cells.map(([lbl, val]) =>
+    `<div class="card-stat"><b>${escHtml(String(val))}</b><span>${lbl}</span></div>`
+  ).join('')}</div>`;
+}
 function statsRun(ship) {
   const st = ship.stats || {};
   const bits = [];
@@ -596,11 +607,12 @@ function renderPicker(fleet) {
   // tabs
   const tabs = ['All', ...cats];
   if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
-  $('picker-tabs').innerHTML = tabs.map(t =>
-    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every ship available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
-  ).join('');
+  $('picker-tabs').innerHTML = tabs.map(t => {
+    const cnt = t === 'All' ? ships.length : ships.filter(s => s.category === t).length;
+    return `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every ship available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')} <span class="tab-count" style="opacity:.6;font-size:11px">(${cnt})</span></button>`;
+  }).join('');
 
-  // rows
+  // cards
   const q = pickerSearch.trim().toLowerCase();
   let pool = ships;
   if (pickerCategory !== 'All') pool = pool.filter(s => s.category === pickerCategory);
@@ -616,25 +628,40 @@ function renderPicker(fleet) {
   let html = '';
   for (const [cat, list] of groups) {
     if (!list.length) continue;
-    if (pickerCategory === 'All') html += `<div class="pick-cat-head" title="${escHtml(CAT_TITLES[cat] || '')}">${escHtml(cat)}s</div>`;
+    if (pickerCategory === 'All') {
+      html += `<div class="pick-cat-head" title="${escHtml(CAT_TITLES[cat] || '')}"><span>${escHtml(cat)}s</span><span class="pick-cat-count">${list.length}</span></div>`;
+    }
+    html += `<div class="ship-card-grid">`;
     list.slice().sort((a, b) => b.pts - a.pts).forEach(s => {
       const warn = bsWouldViolate(s.category);
+      const art = shipArt(s.id);
+      const keywords = (s.specialRules || []).slice(0, 5).map(r =>
+        `<span class="keyword-chip" title="${escHtml(r.effects || '')}">${escHtml(r.name)}</span>`
+      ).join('');
       html += `
-      <div class="pick-row" data-ship="${s.id}">
-        <div class="pick-row-top">
-          <button class="pick-row-main row-toggle" data-toggle aria-expanded="false">
-            <span class="pick-row-name" style="display:block">${escHtml(s.name)}</span>
-            <span class="pick-row-stats" style="display:block">${statsRun(s)}</span>
-          </button>
-          <span class="pick-row-pts">${s.pts}<small style="display:block;font-size:9px;font-weight:400;color:var(--faint);text-align:right;letter-spacing:1px">pts</small></span>
-          <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio; allowed, but flagged' : 'Add to fleet'}">+</button>
+      <div class="ship-card" data-ship-detail="${s.id}">
+        <div class="ship-card-art-wrap">
+          ${art
+            ? `<img src="${art}" alt="${escHtml(s.name)}" loading="lazy">`
+            : `<div class="ship-card-art-empty" style="${fstyle(fleet.faction)}"><span class="ship-card-art-icon"></span></div>`}
         </div>
-        <div class="ship-detail"><div class="ship-detail-pad">
-          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet; you can add it anyway and fix this later.</div>` : ''}
-          ${shipDetailHtml(s)}
-        </div></div>
+        <div class="ship-card-content">
+          <div class="ship-card-header">
+            <div class="ship-card-name">${escHtml(s.name)}</div>
+            <div class="ship-card-pts">${s.pts}<small>pts</small></div>
+          </div>
+          <div class="ship-card-type">${escHtml(s.category)}</div>
+          ${shipStatGridHtml(s)}
+          ${keywords ? `<div class="ship-card-keywords">${keywords}</div>` : ''}
+          ${warn ? `<div class="ship-card-warn">⚠ Needs ${(countBattleships(fleet)+1)*3} cruisers first</div>` : ''}
+        </div>
+        <button class="ship-card-add${warn ? ' warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add
+        </button>
       </div>`;
     });
+    html += `</div>`;
   }
   $('picker-body').innerHTML = html || `<div class="pick-none">No ships match.</div>`;
 }
@@ -662,6 +689,7 @@ function addShip(shipId) {
   }
   saveFleets();
   renderFleet();
+  closeShipPicker();
 }
 function removeShip(i) {
   const fleet = getFleet();
@@ -1045,6 +1073,31 @@ function deleteFleet() {
 }
 
 /* ── Events ────────────────────────────────────────────────── */
+/* ── Action sheet (iOS-style fleet options on mobile) ──────── */
+let _actionItems = [];
+function showActionSheet(label, items) {
+  _actionItems = items;
+  $('action-sheet-label').textContent = label;
+  $('action-sheet-items').innerHTML = items.map((item, i) =>
+    `<button class="action-sheet-item${item.danger ? ' danger' : ''}" data-idx="${i}">${escHtml(item.label)}</button>`
+  ).join('');
+  $('action-sheet').hidden = false;
+}
+function hideActionSheet() { $('action-sheet').hidden = true; }
+
+/* ── Ship detail sheet (card tap → full rules) ─────────────── */
+let _detailShipId = null;
+function openShipDetailSheet(shipId) {
+  const s = shipDef(shipId);
+  if (!s) return;
+  _detailShipId = shipId;
+  $('detail-sheet-title').textContent = s.name;
+  $('detail-sheet-body').innerHTML = shipDetailHtml(s);
+  $('ship-detail-sheet').querySelector('.detail-sheet-add').dataset.shipId = shipId;
+  openOverlayEl($('ship-detail-sheet'));
+}
+function closeShipDetailSheet() { closeOverlayEl($('ship-detail-sheet')); }
+
 function bindEvents() {
   // masthead
   $('btn-back-home').addEventListener('click', () => { activeFleet = null; setState('home'); });
@@ -1052,14 +1105,43 @@ function bindEvents() {
   $('btn-theme-toggle').addEventListener('click', () => setTheme(currentTheme() === 'dark' ? 'light' : 'dark'));
   $('btn-fleet-menu').addEventListener('click', e => {
     e.stopPropagation();
-    $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
+    if (window.innerWidth <= 899) {
+      showActionSheet('Fleet', [
+        { label: 'Export', action: openExport },
+        { label: 'Rename Fleet', action: renameFleet },
+        { label: 'Duplicate Fleet', action: duplicateFleet },
+        { label: 'Delete Fleet', action: deleteFleet, danger: true },
+      ]);
+    } else {
+      $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
+    }
   });
   document.addEventListener('click', e => {
     if (!e.target.closest('.sidebar-actions')) $('fleet-menu-dropdown').hidden = true;
   });
+  $('fleet-menu-export').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; openExport(); });
   $('fleet-menu-rename').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; renameFleet(); });
   $('fleet-menu-duplicate').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; duplicateFleet(); });
   $('fleet-menu-delete').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; deleteFleet(); });
+
+  // action sheet
+  $('action-sheet-items').addEventListener('click', e => {
+    const btn = e.target.closest('[data-idx]');
+    if (!btn) return;
+    const item = _actionItems[+btn.dataset.idx];
+    hideActionSheet();
+    if (item && item.action) item.action();
+  });
+  $('btn-action-sheet-cancel').addEventListener('click', hideActionSheet);
+  $('action-sheet').addEventListener('click', e => { if (e.target === $('action-sheet')) hideActionSheet(); });
+
+  // ship detail sheet
+  $('btn-close-detail-sheet').addEventListener('click', closeShipDetailSheet);
+  $('ship-detail-sheet').addEventListener('click', e => { if (e.target === $('ship-detail-sheet')) closeShipDetailSheet(); });
+  $('ship-detail-sheet').querySelector('.detail-sheet-add').addEventListener('click', function() {
+    const id = this.dataset.shipId;
+    if (id) { closeShipDetailSheet(); addShip(id); }
+  });
 
   // home
   $('fleet-index').addEventListener('click', e => {
@@ -1143,13 +1225,12 @@ function bindEvents() {
     renderPicker(getFleet());
   });
   $('picker-body').addEventListener('click', e => {
+    // Add button: add ship and return to roster (picker closes via addShip)
     const add = e.target.closest('[data-add]');
     if (add) { addShip(add.dataset.add); return; }
-    const toggle = e.target.closest('[data-toggle]');
-    if (toggle) {
-      const open = toggle.closest('.pick-row').classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    }
+    // Card body (not the add button): open detail sheet
+    const card = e.target.closest('[data-ship-detail]');
+    if (card && !e.target.closest('[data-add]')) { openShipDetailSheet(card.dataset.shipDetail); return; }
   });
 
   // manifest
@@ -1222,6 +1303,8 @@ function bindEvents() {
       closeOverlayEl($('modal-upgrades'));
       closeNewFleetModal();
       closeShipPicker();
+      closeShipDetailSheet();
+      hideActionSheet();
       $('fleet-menu-dropdown').hidden = true;
     }
   });
