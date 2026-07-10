@@ -9,6 +9,16 @@ const STORE_KEY = 'bfg-fleets';
 const GREEK = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π'];
 const CAT_ORDER = ['Fleet Commander','Battleship','Grand Cruiser','Battlecruiser','Heavy Cruiser','Cruiser','Light Cruiser','Escort'];
 const CRUISER_CATS = new Set(['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser']);
+const CAT_TITLES = {
+  'Fleet Commander':  'An admiral or character who leads the fleet — required above 750 pts, gives command re-rolls',
+  'Battleship':        'The largest, most heavily-gunned hull in a fleet — needs 3 cruiser-class escorts per battleship',
+  'Grand Cruiser':      'A rare, oversized cruiser hull — counts as a cruiser for the battleship escort requirement',
+  'Battlecruiser':      'A cruiser built for speed over armour — counts as a cruiser for the battleship escort requirement',
+  'Heavy Cruiser':      'A cruiser with reinforced armament or armour over the standard pattern — counts as a cruiser',
+  'Cruiser':            'The backbone of most fleets — balanced firepower and durability',
+  'Light Cruiser':      'A cheaper, lighter cruiser hull — counts as a cruiser for the battleship escort requirement',
+  'Escort':             'Small, cheap ships bought in squadrons of 2 to 6 — screen capital ships and hunt ordnance',
+};
 
 const FACTION_META = {
   'Imperial Navy':               { icon: 'imperial-navy.svg', color: 'var(--f-imperial)', short: 'Imperial Navy' },
@@ -39,8 +49,11 @@ function fstyle(faction) {
 const STAT_ICONS = {
   Speed:   '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="4,4 20,12 4,20 8,12"/></svg>',
   Turns:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3v5h-5"/></svg>',
-  Shields: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2.5 20 6v6c0 5.2-3.6 8.7-8 9.5-4.4-.8-8-4.3-8-9.5V6z"/></svg>',
-  Armour:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1.5"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="9" y1="4" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="20"/><line x1="9" y1="12" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="12"/></svg>',
+  // Void shields are a projected energy field, not a physical shield plate —
+  // concentric arcs over the hull read as a force-field bubble, not heraldry.
+  Shields: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M3.5 14.5a8.5 8.5 0 0 1 17 0" stroke-width="2"/><path d="M6.5 15.5a5.5 5.5 0 0 1 11 0" stroke-width="1.7" opacity=".75"/><path d="M9.5 16.5a2.5 2.5 0 0 1 5 0" stroke-width="1.4" opacity=".55"/><line x1="3" y1="19.5" x2="21" y2="19.5" stroke-width="2"/></svg>',
+  // Riveted hull plate bands — reads as armored ship hull, not a brick wall.
+  Armour:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="3" width="19" height="18" rx="2"/><line x1="2.5" y1="9" x2="21.5" y2="9"/><line x1="2.5" y1="15" x2="21.5" y2="15"/><circle cx="6" cy="6" r=".9" fill="currentColor" stroke="none"/><circle cx="18" cy="6" r=".9" fill="currentColor" stroke="none"/><circle cx="6" cy="12" r=".9" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r=".9" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r=".9" fill="currentColor" stroke="none"/><circle cx="18" cy="18" r=".9" fill="currentColor" stroke="none"/></svg>',
   Turrets: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><line x1="12" y1="2" x2="12" y2="6.5"/><line x1="12" y1="17.5" x2="12" y2="22"/><line x1="2" y1="12" x2="6.5" y2="12"/><line x1="17.5" y1="12" x2="22" y2="12"/></svg>',
   Hits:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"><polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/></svg>',
 };
@@ -52,6 +65,42 @@ const STAT_TITLES = {
   Turrets: 'Turrets — shoots down incoming torpedoes and bombers',
   Hits:    'Hits — damage the ship can take before it is crippled',
 };
+
+/* ── Fire arc diagrams ─────────────────────────────────────────
+   Matches the rulebook's own fire-arc template: a top-down hull outline
+   split by corner-to-corner diagonals into Front/Left/Right/Rear
+   quadrants, with the arcs a weapon can fire into shaded solid. */
+const ARC_QUADRANT_POINTS = {
+  Front: '5,4 19,4 12,12',
+  Left:  '5,4 5,20 12,12',
+  Right: '19,4 19,20 12,12',
+  Rear:  '5,20 19,20 12,12',
+};
+function arcQuadrants(raw) {
+  const s = (raw || '').toLowerCase();
+  if (!s || s === '-' || s === 'n/a') return [];
+  if (s.includes('all')) return ['Front', 'Left', 'Right', 'Rear'];
+  return ['Front', 'Left', 'Right', 'Rear'].filter(q => s.includes(q.toLowerCase()));
+}
+function arcIconSvg(raw) {
+  const on = new Set(arcQuadrants(raw));
+  if (!on.size) return '';
+  const shaded = Object.entries(ARC_QUADRANT_POINTS)
+    .filter(([q]) => on.has(q))
+    .map(([, pts]) => `<polygon points="${pts}" fill="currentColor"/>`).join('');
+  return `<svg viewBox="0 0 24 24">
+    ${shaded}
+    <polygon points="5,4 19,4 19,20 5,20" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".65"/>
+    <path d="M5,4 L19,20 M19,4 L5,20" stroke="currentColor" stroke-width=".8" opacity=".35"/>
+    <polygon points="9,4 15,4 12,.5" fill="currentColor"/>
+  </svg>`;
+}
+function arcTitle(raw) {
+  const q = arcQuadrants(raw);
+  if (!q.length) return raw || 'No firing arc listed';
+  if (q.length === 4) return 'Fires in any direction';
+  return `Fires into the ${q.join(' / ')} arc${q.length > 1 ? 's' : ''} (shaded, bow marked at top)`;
+}
 
 /* ── State ─────────────────────────────────────────────────── */
 let DB = null;
@@ -376,7 +425,7 @@ function renderManifest(fleet) {
           <div class="ship-row-stats">${c ? escHtml(c.name) : ''}</div>
         </div>
         <div class="ship-row-pts">${fleet.commander.pts}<small>pts</small></div>
-        <button class="row-x" data-remove-cmd aria-label="Remove commander">✕</button>
+        <button class="row-x" data-remove-cmd aria-label="Remove commander" title="Relieve this commander of duty">✕</button>
       </div>
     </div>`;
   }
@@ -393,7 +442,7 @@ function renderManifest(fleet) {
     if (cat === 'Fleet Commander' || cat === 'Escort' || !byCat[cat]) continue;
     const group = byCat[cat];
     const catPts = group.reduce((a, g) => a + slotPts(g.sl), 0);
-    html += `<div class="man-band"><span>${escHtml(cat)}s</span><span class="man-band-count">×${group.length}</span><span class="man-band-pts">${catPts} pts</span></div>`;
+    html += `<div class="man-band" title="${escHtml(CAT_TITLES[cat] || '')}"><span>${escHtml(cat)}s</span><span class="man-band-count">×${group.length}</span><span class="man-band-pts">${catPts} pts</span></div>`;
 
     // greek indices per shipId
     const seen = {};
@@ -402,19 +451,19 @@ function renderManifest(fleet) {
       let suffix = '';
       if (dupes > 1) {
         seen[g.sl.shipId] = (seen[g.sl.shipId] || 0);
-        suffix = `<span class="greek">${GREEK[seen[g.sl.shipId] % GREEK.length]}</span>`;
+        suffix = `<span class="greek" title="One of ${dupes} ${g.s.name} in this fleet — the letter just tells them apart, it has no rules effect">${GREEK[seen[g.sl.shipId] % GREEK.length]}</span>`;
         seen[g.sl.shipId]++;
       }
       const invalid = bsInvalid && g.s.category === 'Battleship';
       const upgTags = (g.sl.upgrades || []).map(u =>
-        `<span class="upg-tag">${escHtml(u.name)}${u.pts ? ` +${u.pts}` : ''}</span>`).join('');
+        `<span class="upg-tag">${escHtml(u.name)}${u.pts > 0 ? ` +${u.pts}` : u.pts < 0 ? ` ${u.pts}` : ''}</span>`).join('');
       html += `
       <div class="ship-row ${invalid ? 'invalid' : ''}" data-slot="${g.i}">
         <button class="ship-row-top" data-toggle aria-expanded="false">
           <span class="ship-row-main">
             <span class="ship-row-name">${escHtml(g.s.name)}${suffix}</span>
             <span class="ship-row-stats">${statsRun(g.s)}</span>
-            ${invalid ? '<span class="ship-row-flag">⚠ Needs cruiser escort</span>' : ''}
+            ${invalid ? '<span class="ship-row-flag" title="Every battleship needs 3 cruiser-class ships in the fleet to be legal — add more cruisers or remove a battleship">⚠ Needs cruiser escort</span>' : ''}
           </span>
           <span class="ship-row-pts">${slotPts(g.sl)}<small>pts</small></span>
         </button>
@@ -444,15 +493,15 @@ function renderManifest(fleet) {
           <button class="ship-row-main row-toggle" data-toggle aria-expanded="false">
             <span class="ship-row-name" style="display:block">${escHtml(s.name)}</span>
             <span class="ship-row-stats" style="display:block">${statsRun(s)}</span>
-            ${bad ? `<span class="ship-row-flag" style="display:block">⚠ Squadrons field 2–6 ships</span>` : ''}
+            ${bad ? `<span class="ship-row-flag" style="display:block" title="Squadrons must have between 2 and 6 ships to be legal">⚠ Squadrons field 2–6 ships</span>` : ''}
           </button>
           <span class="sqd-step">
-            <button class="sqd-btn" data-sqd-dec="${i}" ${sq.count <= 1 ? 'disabled' : ''} aria-label="Remove one ship from squadron">−</button>
-            <span class="sqd-count" aria-label="Ships in squadron">${sq.count}</span>
-            <button class="sqd-btn" data-sqd-inc="${i}" ${sq.count >= 6 ? 'disabled' : ''} aria-label="Add one ship to squadron">+</button>
+            <button class="sqd-btn" data-sqd-dec="${i}" ${sq.count <= 1 ? 'disabled' : ''} aria-label="Remove one ship from squadron" title="Remove one ship">−</button>
+            <span class="sqd-count" aria-label="Ships in squadron" title="Ships in this squadron">${sq.count}</span>
+            <button class="sqd-btn" data-sqd-inc="${i}" ${sq.count >= 6 ? 'disabled' : ''} aria-label="Add one ship to squadron" title="Add one ship">+</button>
           </span>
           <span class="ship-row-pts">${sqdPts(sq)}<small>pts</small></span>
-          <button class="row-x" data-remove-sqd="${i}" aria-label="Remove squadron">✕</button>
+          <button class="row-x" data-remove-sqd="${i}" aria-label="Remove squadron" title="Disband this squadron">✕</button>
         </div>
         <div class="ship-detail"><div class="ship-detail-pad">${shipDetailHtml(s)}</div></div>
       </div>`;
@@ -488,10 +537,21 @@ function shipDetailHtml(ship) {
   }
   if (ship.armament && ship.armament.length) {
     html += `<table class="arm-table">
-      <thead><tr><th>Armament</th><th>Range / Speed</th><th>FP / Str</th><th>Arc</th></tr></thead>
-      <tbody>${ship.armament.map(a => `
-        <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td><td>${escHtml(a['Fire Arc'] || '-')}</td></tr>
-      `).join('')}</tbody>
+      <thead><tr>
+        <th title="Name of the weapon battery, lance, or ordnance system">Armament</th>
+        <th title="How far the weapon reaches, or how fast ordnance moves">Range / Speed</th>
+        <th title="Firepower: dice rolled for a weapons battery. Strength: dice rolled for a torpedo salvo">FP / Str</th>
+        <th title="Which side(s) of the ship this weapon can fire into">Arc</th>
+      </tr></thead>
+      <tbody>${ship.armament.map(a => {
+        const arcSvg = arcIconSvg(a['Fire Arc']);
+        return `
+        <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td>
+          <td class="arc-cell" title="${escHtml(arcTitle(a['Fire Arc']))}">
+            ${arcSvg ? `<span class="arc-icon" aria-hidden="true">${arcSvg}</span>` : ''}<span class="arc-label">${escHtml(a['Fire Arc'] || '-')}</span>
+          </td>
+        </tr>`;
+      }).join('')}</tbody>
     </table>`;
   }
   if (ship.specialRules && ship.specialRules.length) {
@@ -517,7 +577,7 @@ function renderPicker(fleet) {
   const tabs = ['All', ...cats];
   if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
   $('picker-tabs').innerHTML = tabs.map(t =>
-    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
+    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every vessel available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
   ).join('');
 
   // rows
@@ -536,7 +596,7 @@ function renderPicker(fleet) {
   let html = '';
   for (const [cat, list] of groups) {
     if (!list.length) continue;
-    if (pickerCategory === 'All') html += `<div class="pick-cat-head">${escHtml(cat)}s</div>`;
+    if (pickerCategory === 'All') html += `<div class="pick-cat-head" title="${escHtml(CAT_TITLES[cat] || '')}">${escHtml(cat)}s</div>`;
     list.slice().sort((a, b) => b.pts - a.pts).forEach(s => {
       const warn = bsWouldViolate(s.category);
       html += `
@@ -684,7 +744,7 @@ function exportText(fleet) {
       const dupes = byCat[cat].filter(x => x.shipId === sl.shipId).length;
       let suffix = '';
       if (dupes > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = ' ' + GREEK[seen[sl.shipId]++ % GREEK.length]; }
-      const upg = (sl.upgrades || []).map(u => `${u.name}${u.pts ? ` (+${u.pts})` : ''}`).join(', ');
+      const upg = (sl.upgrades || []).map(u => `${u.name}${u.pts > 0 ? ` (+${u.pts})` : u.pts < 0 ? ` (${u.pts})` : ''}`).join(', ');
       lines.push(`  ${s.name}${suffix}: ${slotPts(sl)} pts${upg ? `  [${upg}]` : ''}`);
     });
   }
@@ -750,7 +810,7 @@ function printCardHtml(ship, opts) {
     ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
     ['Armour', st.Armour], ['Turrets', st.Turrets],
   ].filter(c => c[1]);
-  const upgRules = (opts.upgrades || []).map(u => `<b>${escHtml(u.name)}</b>${u.pts ? ` (+${u.pts} pts)` : ''}`).join(' / ');
+  const upgRules = (opts.upgrades || []).map(u => `<b>${escHtml(u.name)}</b>${u.pts > 0 ? ` (+${u.pts} pts)` : u.pts < 0 ? ` (${u.pts} pts)` : ''}`).join(' / ');
   const rules = (ship.specialRules || []).map(r => `<b>${escHtml(r.name)}:</b> ${escHtml(r.effects || '')}`).join(' ');
   return `
   <div class="pcard">
@@ -775,7 +835,7 @@ function printCardHtml(ship, opts) {
       <table class="pcard-arm">
         <thead><tr><th>Armament</th><th>Range/Speed</th><th>FP/Str</th><th>Arc</th></tr></thead>
         <tbody>${ship.armament.map(a => `
-          <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td><td>${escHtml(a['Fire Arc'] || '-')}</td></tr>`).join('')}
+          <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td><td class="pcard-arc">${arcIconSvg(a['Fire Arc'])}</td></tr>`).join('')}
         </tbody>
       </table>` : ''}
       ${(rules || upgRules) ? `<div class="pcard-rules">${upgRules}${upgRules && rules ? ' / ' : ''}${rules}</div>` : ''}

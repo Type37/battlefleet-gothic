@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-10T02:34:52.117Z",
+  "version": "2026-07-10T05:22:31.944Z",
   "bsdataRepo": "https://github.com/BSData/battlefleetgothic",
   "factions": {
     "Imperial Navy": {
@@ -1735,7 +1735,6 @@
         "7db8db4f-3649-4932-9114-598f708bda42",
         "1741-0ffc-fd8c-79e6",
         "1421-5d8d-a1d7-4b40",
-        "7097-1466-41fb-f27b",
         "a91e-87e4-7a52-6b53",
         "3e08-c5ed-c2e2-8bce",
         "b5b2-a3cd-3374-9c8d",
@@ -2200,15 +2199,6 @@
         "2f63e8ff-5632-43eb-9434-d6749e7115a0",
         "1a1ebb83-bf55-4fc3-8aca-e3b3c733369d",
         "8ff6f2a1-fc73-4742-a7d0-02b5d984c443",
-        "febac49e-ecca-450a-b5ee-415858c59b0b",
-        "453b3f94-43e7-4691-a7fb-3a27d605a988",
-        "017cda8e-7be0-4bf1-afde-43dd43c9c933",
-        "a23d7d9c-10f1-4f2b-a195-066df1460b80",
-        "5623b4aa-2140-41ff-bdef-c232feb0d238",
-        "dff12655-3099-4556-853b-57c96fb003e7",
-        "5f835d0b-5c75-47ab-b96a-e2a771f17039",
-        "7c87d775-c33e-4a72-9f53-9f4639c82971",
-        "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
         "fb307851-3d74-495c-9baa-a44ac4ba13b9",
         "0376-f1a7-5fee-7f9a",
         "5610-4d14-8ed5-e67e",
@@ -2243,7 +2233,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
@@ -2411,13 +2401,13 @@
           "name": "Strike Cruiser Prow Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Strike Cruiser Prow Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -2502,7 +2492,7 @@
           "name": "Battlebarge Dorsal bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -2564,13 +2554,13 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -2670,7 +2660,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -2749,7 +2739,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -3008,7 +2998,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -3075,7 +3065,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -3142,7 +3132,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -3209,7 +3199,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -3276,7 +3266,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Weapons Battery",
@@ -3353,7 +3343,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -3385,7 +3375,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -3417,7 +3407,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Lance",
@@ -3449,7 +3439,7 @@
           "name": "Gladius Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3481,7 +3471,7 @@
           "name": "Hunter Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3507,13 +3497,13 @@
           "name": "Nova Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Nova Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3539,7 +3529,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3571,7 +3561,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3635,7 +3625,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -3690,7 +3680,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -3783,7 +3773,7 @@
           "name": "Cobra Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -3814,7 +3804,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
@@ -3870,7 +3860,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -3908,7 +3898,7 @@
           "name": "Firestorm Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -3946,7 +3936,7 @@
           "name": "Dorsal Lance",
           "Range/Speed": "60cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -4007,7 +3997,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -4068,7 +4058,7 @@
           "name": "Retribution Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -4100,7 +4090,7 @@
           "name": "Sword Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -4138,7 +4128,7 @@
           "name": "Dorsal Weapons battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -4227,7 +4217,7 @@
           "name": "Carnage Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Carnage 2nd Port Weapons Battery",
@@ -4326,7 +4316,7 @@
           "name": "Devastation Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -4432,7 +4422,7 @@
           "name": "Planet Killer Prow Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "12",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Planet Killer Port Weapons Battery",
@@ -4450,13 +4440,13 @@
           "name": "Planet Killer Dorsal Lances",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Planet Killer Prow Torpedos",
           "Range/Speed": "30 cm",
           "Firepower/Str": "9",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Planet Killer Armageddon Gun",
@@ -4512,7 +4502,7 @@
           "name": "Slaughter Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -4550,13 +4540,13 @@
           "name": "Hecate Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Hecate Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Hecate Port Launch Bays",
@@ -4618,7 +4608,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Launch Bays",
@@ -4696,7 +4686,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -4784,13 +4774,13 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Hives of Nurgle",
@@ -4869,7 +4859,7 @@
           "name": "Inferno Prow Weapons Batteries",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -4929,7 +4919,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -5015,7 +5005,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Lance Battery",
@@ -5027,7 +5017,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -5077,7 +5067,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
@@ -5133,7 +5123,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -5189,7 +5179,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Weapons Battery",
@@ -5245,13 +5235,13 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Repulsive Dorsal Lance Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -5375,7 +5365,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -5469,13 +5459,13 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -5501,7 +5491,7 @@
           "name": "Iconoclast Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -5527,7 +5517,7 @@
           "name": "Idolator Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Idolator Lance Battery",
@@ -5559,7 +5549,7 @@
           "name": "Infidel Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Infidel Torpedos",
@@ -5615,7 +5605,7 @@
           "name": "Battlebarge Dorsal bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -5685,13 +5675,13 @@
           "name": "Strike Cruiser Prow Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Strike Cruiser Prow Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -5764,7 +5754,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -5806,7 +5796,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Weapons Battery",
@@ -5824,7 +5814,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -5872,7 +5862,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left\\front\\right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -5890,7 +5880,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -5944,7 +5934,7 @@
           "name": "Dorsal Bombardment Cannon",
           "Range/Speed": "30 cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Launch Bay",
@@ -5968,13 +5958,13 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -5992,7 +5982,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -6016,7 +6006,7 @@
           "name": "Prow Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -6046,7 +6036,7 @@
           "name": "Hades Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Lance Battery",
@@ -6070,7 +6060,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -6095,12 +6085,6 @@
           "Range/Speed": "Thunderhawks: 20 cm",
           "Firepower/Str": "1 Squadrons",
           "Fire Arc": "-"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
         },
         {
           "name": "Port Launch Bays",
@@ -6118,7 +6102,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -6136,25 +6120,25 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
           "Range/Speed": "Furies: 30cm Starhawks 20cm",
           "Firepower/Str": "4 Squadrons",
-          "Fire Arc": ""
+          "Fire Arc": "-"
         },
         {
           "name": "Starboard Launch Bays",
           "Range/Speed": "Furies: 30cm Starhawks 20cm",
           "Firepower/Str": "4 Squadrons",
-          "Fire Arc": ""
+          "Fire Arc": "-"
         },
         {
           "name": "Prow Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -6376,7 +6360,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedos",
@@ -6408,7 +6392,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -6440,7 +6424,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Lance",
@@ -6472,7 +6456,7 @@
           "name": "Gladius Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6504,7 +6488,7 @@
           "name": "Hunter Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6530,13 +6514,13 @@
           "name": "Nova Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Nova Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6562,7 +6546,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6600,7 +6584,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -6686,7 +6670,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6730,7 +6714,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -6756,7 +6740,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -6836,7 +6820,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -6916,7 +6900,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left\\front\\right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -6940,7 +6924,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7072,7 +7056,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -7128,7 +7112,7 @@
           "name": "Dorsal Bombardment Cannon",
           "Range/Speed": "30 cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Launch Bay",
@@ -7178,7 +7162,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -7190,7 +7174,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7246,7 +7230,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -7326,7 +7310,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -7338,7 +7322,7 @@
           "name": "Prow Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7438,7 +7422,7 @@
           "name": "Hades Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -7512,7 +7496,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7594,7 +7578,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
@@ -7618,7 +7602,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7706,7 +7690,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -7724,13 +7708,13 @@
           "name": "Port Launch Bays",
           "Range/Speed": "Furies: 30cm Starhawks 20cm",
           "Firepower/Str": "4 Squadrons",
-          "Fire Arc": ""
+          "Fire Arc": "-"
         },
         {
           "name": "Starboard Launch Bays",
           "Range/Speed": "Furies: 30cm Starhawks 20cm",
           "Firepower/Str": "4 Squadrons",
-          "Fire Arc": ""
+          "Fire Arc": "-"
         },
         {
           "name": "Prow Torpedoes",
@@ -7742,7 +7726,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -7934,7 +7918,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8005,7 +7989,7 @@
           "name": "Ark Mechanicus Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Ark Mechanicus Port Lance Battery",
@@ -8061,7 +8045,7 @@
           "name": "Defiant Prow Lance Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Defiant Port Launch Bays",
@@ -8129,7 +8113,7 @@
           "name": "Dictator Dorsal Lance",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8244,13 +8228,13 @@
           "name": "Emperor Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Emperor Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -8281,7 +8265,7 @@
           "name": "Dorsal Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8305,7 +8289,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -8323,7 +8307,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -8413,7 +8397,7 @@
           "name": "Dorsal Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8425,13 +8409,13 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -8521,7 +8505,7 @@
           "name": "Gothic Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8571,7 +8555,7 @@
           "name": "Lunar Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Lunar Port Lance Battery",
@@ -8764,13 +8748,13 @@
           "name": "Oberon Dorsal Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Oberon Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -8813,7 +8797,7 @@
           "name": "Retribution Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -8880,7 +8864,7 @@
           "name": "Tyrant Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -8995,7 +8979,7 @@
           "name": "Grey Knights Battlebarge Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9095,7 +9079,7 @@
           "name": "Blackship Dorsal Lance Batteries",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Blackship Port Weapons Battery",
@@ -9198,7 +9182,7 @@
           "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9259,7 +9243,7 @@
           "name": "Cobra Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Cobra Prow Torpedos",
@@ -9291,7 +9275,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -9329,7 +9313,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9355,7 +9339,7 @@
           "name": "Gladius Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9387,7 +9371,7 @@
           "name": "Hunter Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9413,13 +9397,13 @@
           "name": "Nova Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Nova Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9445,7 +9429,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9495,7 +9479,7 @@
           "name": "Dorsal Bombardment Cannon",
           "Range/Speed": "30 cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9533,7 +9517,7 @@
           "name": "Prow Bombardment cannon",
           "Range/Speed": "30 cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Launch Bay",
@@ -9601,7 +9585,7 @@
           "name": "Blackship Dorsal Lance Batteries",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Blackship Port Weapons Battery",
@@ -9707,7 +9691,7 @@
           "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9774,7 +9758,7 @@
           "name": "Cobra Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9818,7 +9802,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -9856,7 +9840,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9882,7 +9866,7 @@
           "name": "Gladius Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9914,7 +9898,7 @@
           "name": "Hunter Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9940,7 +9924,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -9966,13 +9950,13 @@
           "name": "Nova Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Nova Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -10433,13 +10417,13 @@
           "name": "Flame Of Asuryan L Keel Pulsar Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Flame Of Asuryan R Keel Pulsar Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         }
       ],
       "specialRules": [],
@@ -10608,19 +10592,19 @@
           "name": "Keel Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow L Pulsar Lances",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Prow R Pulsar Lances",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Keel Launch Bay",
@@ -11467,7 +11451,7 @@
           "name": "Terror Ship Port Launch Bays",
           "Range/Speed": "Fighta Bommas:25cm Assault Boats:30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "n/a"
+          "Fire Arc": "-"
         },
         {
           "name": "Terror Ship Starboard Gunz",
@@ -11479,7 +11463,7 @@
           "name": "Terror Ship Starboard Launch Bays",
           "Range/Speed": "Fighta Bommas:25cm Assault Boats:30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "n/a"
+          "Fire Arc": "-"
         },
         {
           "name": "Terror Ship Prow Gunz",
@@ -11689,7 +11673,7 @@
           "name": "Zukov's Klaw Ork Port Launch Bays",
           "Range/Speed": "Assault Boats:30cm",
           "Firepower/Str": "2/Special",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Zukov's Klaw Ork Starboard Gunz",
@@ -11701,7 +11685,7 @@
           "name": "Zukov's Klaw Ork Starboard Launch Bays",
           "Range/Speed": "Assault Boats:30cm",
           "Firepower/Str": "2/Special",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Zukov's Klaw Ork Prow Gunz",
@@ -11717,22 +11701,6 @@
         }
       ],
       "specialRules": [],
-      "upgrades": []
-    },
-    "7097-1466-41fb-f27b": {
-      "id": "7097-1466-41fb-f27b",
-      "name": "Validation Warlord",
-      "faction": "Orks",
-      "pts": 40,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [
-        {
-          "name": "Ork Warlord Validation",
-          "effects": "Duplicate warlords here for list validation, Select on ship for marking ship upgrades."
-        }
-      ],
       "upgrades": []
     },
     "a91e-87e4-7a52-6b53": {
@@ -11755,7 +11723,7 @@
           "name": "Grunt Assault Ship Gunz Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -11839,7 +11807,7 @@
           "name": "Brute Ram Ship Gunz Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -11896,31 +11864,31 @@
           "name": "Gauss particle whip (Cairn)",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Star pulse generator",
           "Range/Speed": "20cm",
           "Firepower/Str": "(1 per enemy)",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         },
         {
           "name": "Portal (Cairn)",
           "Range/Speed": "10cm",
           "Firepower/Str": "3",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         },
         {
           "name": "Lightning arc (Cairn)",
           "Range/Speed": "30cm",
           "Firepower/Str": "20",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Sepulchre",
           "Range/Speed": "20cm",
           "Firepower/Str": "Leadership",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [
@@ -11951,25 +11919,25 @@
           "name": "Gauss particle whip (Scythe)",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Lightning arc (Scythe)",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/right"
+          "Fire Arc": "Left / Right"
         },
         {
           "name": "Portal",
           "Range/Speed": "10cm",
           "Firepower/Str": "2",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         },
         {
           "name": "Star pulse generator (Cairn)",
           "Range/Speed": "20cm",
           "Firepower/Str": "(1 per enemy)",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [],
@@ -11995,7 +11963,7 @@
           "name": "Lightning Arc (Shroud)",
           "Range/Speed": "30cm",
           "Firepower/Str": "10",
-          "Fire Arc": "Front/left/right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -12027,13 +11995,13 @@
           "name": "Portal (Cairn)",
           "Range/Speed": "10cm",
           "Firepower/Str": "3",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         },
         {
           "name": "Lightning arc (Cairn)",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         }
       ],
       "specialRules": [],
@@ -12059,19 +12027,19 @@
           "name": "Lightning Arc (Shroud)",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         },
         {
           "name": "Gauss particle whip (Cairn)",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Portal (Cairn)",
           "Range/Speed": "10cm",
           "Firepower/Str": "1",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [],
@@ -12129,7 +12097,7 @@
           "name": "Jackal Portal",
           "Range/Speed": "10cm",
           "Firepower/Str": "1",
-          "Fire Arc": "All around"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [],
@@ -12155,7 +12123,7 @@
           "name": "Prow Pyro-acid Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Feeder Tentacles",
@@ -12197,13 +12165,13 @@
           "name": "Pyro-acid Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         },
         {
           "name": "Bio-Plasma Discharge",
           "Range/Speed": "15cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         }
       ],
       "specialRules": [],
@@ -12330,7 +12298,7 @@
           "name": "Prow Bio-Plasma Spines (Discharge)",
           "Range/Speed": "15cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -12348,7 +12316,7 @@
           "name": "Thorax Bio-Plasma Discharge",
           "Range/Speed": "15cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Thorax Launch Bay",
@@ -12360,19 +12328,19 @@
           "name": "Pyro-acid Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "0",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         },
         {
           "name": "Bio-Plasma Discharge",
           "Range/Speed": "15cm",
           "Firepower/Str": "0",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         },
         {
           "name": "Launch Bay",
           "Range/Speed": "Assault Boats: 15cm\nFighters: 20cm",
           "Firepower/Str": "0",
-          "Fire Arc": "Left/Right"
+          "Fire Arc": "Left / Right"
         }
       ],
       "specialRules": [],
@@ -12647,7 +12615,7 @@
           "name": "Demiurg 'Bastion' Dorsal Launch Bays",
           "Range/Speed": "Fighters: 30cm Bombers: 20cm Assault Boats: 30cm Torpedos: 30cm",
           "Firepower/Str": "2 Squadrons or 4 Torpedos",
-          "Fire Arc": "All Arround"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [],
@@ -12709,13 +12677,13 @@
           "name": "Demiurg 'Stronghold' Dorsal Torpedo Silos",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "All Arround"
+          "Fire Arc": "All Around"
         },
         {
           "name": "Demiurg 'Stronghold' Dorsal Launch Bays",
           "Range/Speed": "Fighters: 30cm Bombers: 20cm Assault Boats: 30cm",
           "Firepower/Str": "3 Squadrons",
-          "Fire Arc": "All Arround"
+          "Fire Arc": "All Around"
         }
       ],
       "specialRules": [],
@@ -12741,7 +12709,7 @@
           "name": "Gal'leath Prow Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Gal'leath Port Gravitic Hook",
@@ -12833,31 +12801,31 @@
           "name": "Il'fannor Prow Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Il'fannor Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Il'fannor Starboard Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Il'fannor Port Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Il'fannor Starboard Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Il'fannor Port Gravitic Hook",
@@ -12913,19 +12881,19 @@
           "name": "Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Prow Launch Bay",
           "Range/Speed": "Mantas: 20cm\nBarracudas: 25cm",
           "Firepower/Str": "2",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Starbord Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Warden Gravitic Hooks",
@@ -12943,25 +12911,25 @@
           "name": "Port Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Starbord Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Starbord Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         }
       ],
       "specialRules": [],
@@ -13017,7 +12985,7 @@
           "name": "Lar'shi Prow Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Lar'shi Port Launch Bays",
@@ -13035,25 +13003,25 @@
           "name": "Lar'shi Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Lar'shi Starboard Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Lar'shi Port Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Lar'shi Starboard Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Right"
+          "Fire Arc": "Front / Right"
         }
       ],
       "specialRules": [],
@@ -13097,13 +13065,13 @@
           "name": "Port Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Prow Gravitic Lanchers",
@@ -13115,7 +13083,7 @@
           "name": "Prow Launch Bay",
           "Range/Speed": "Mantas: 20cm\nBarracudas: 25cm",
           "Firepower/Str": "1",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Prow Railgun Battery",
@@ -13127,19 +13095,19 @@
           "name": "Starbord Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Starbord Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Port Ion Cannon",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Prow Railgun Battery",
@@ -13151,7 +13119,7 @@
           "name": "Starbord Ion Cannon",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         }
       ],
       "specialRules": [],
@@ -13201,7 +13169,7 @@
           "name": "Port Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Prow Gravitic Lanchers",
@@ -13213,31 +13181,31 @@
           "name": "Port Launch Bay",
           "Range/Speed": "Mantas: 20cm\nBarracudas: 25cm",
           "Firepower/Str": "3",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Starbord Ion Cannon",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Starbord Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Right/Front"
+          "Fire Arc": "Front / Right"
         },
         {
           "name": "Starboard Launch Bay",
           "Range/Speed": "Mantas: 20cm\nBarracudas: 25cm",
           "Firepower/Str": "3",
-          "Fire Arc": "N/A"
+          "Fire Arc": "-"
         },
         {
           "name": "Port Ion Cannon",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front"
+          "Fire Arc": "Front / Left"
         }
       ],
       "specialRules": [
@@ -13274,7 +13242,7 @@
           "name": "Orca Prow Railgun Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -13300,7 +13268,7 @@
           "name": "Warden Prow Ion Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Warden Prow Railgun Battery",
@@ -13332,7 +13300,7 @@
           "name": "Skether'qan Prow Railgun Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -13395,7 +13363,7 @@
           "name": "Prow Railgun battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -13421,7 +13389,7 @@
           "name": "Kir'qath Prow Railgun Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Kir'qath Prow Gravitic Launcher",
@@ -13521,7 +13489,7 @@
           "name": "Prow Lance Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Launch Bays",
@@ -13665,7 +13633,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -13709,7 +13677,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -13841,7 +13809,7 @@
           "name": "Tyrant Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -13915,7 +13883,7 @@
           "name": "Carnage Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Carnage 2nd Port Weapons Battery",
@@ -13977,7 +13945,7 @@
           "name": "Devastation Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14015,13 +13983,13 @@
           "name": "Hecate Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Hecate Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Front"
+          "Fire Arc": "Front / Left"
         },
         {
           "name": "Hecate Port Launch Bays",
@@ -14083,7 +14051,7 @@
           "name": "Inferno Prow Weapons Batteries",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14183,7 +14151,7 @@
           "name": "Slaughter Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14271,7 +14239,7 @@
           "name": "Iconoclast Weapons Profile",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14297,7 +14265,7 @@
           "name": "Idolator Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Idolator Lance Battery",
@@ -14329,7 +14297,7 @@
           "name": "Recommissioned Escort Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Recommissioned Escort Prow Torpedoes",
@@ -14361,7 +14329,7 @@
           "name": "Cargo Transport Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Cargo Transport Prow Torpedoes",
@@ -14393,7 +14361,7 @@
           "name": "Rogue Trader Cargo Vessel Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -14428,7 +14396,7 @@
           "name": "Xenos Vessel Weapons battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Xenos Vessel Lance Battery",
@@ -14529,7 +14497,7 @@
           "name": "Cobra Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14555,7 +14523,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -14593,7 +14561,7 @@
           "name": "Firestorm Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14619,7 +14587,7 @@
           "name": "Sword Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -14645,7 +14613,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Lance Battery",
@@ -14713,7 +14681,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Weapons Battery",
@@ -14762,7 +14730,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Starboard Lance Battery",
@@ -14832,7 +14800,7 @@
           "name": "Lunar Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Lunar Port Lance Battery",
@@ -14918,7 +14886,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Nova Cannon",
@@ -14955,7 +14923,7 @@
           "name": "Oberon Dorsal Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Oberon Port Lance Battery",
@@ -14979,7 +14947,7 @@
           "name": "Oberon Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Oberon Starboard Lance Battery",
@@ -15028,7 +14996,7 @@
           "name": "Prow Bombardment Cannons",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Launch Bays",
@@ -15096,19 +15064,19 @@
           "name": "Battlebarge Dorsal bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Dorsal Lance",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Battlebarge Prow Lances",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "F"
+          "Fire Arc": "Front"
         },
         {
           "name": "Battlebarge Starboard Bombardment Cannon",
@@ -15257,7 +15225,7 @@
           "name": "Prow Bombardment Cannons",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow orpedoes",
@@ -15369,7 +15337,7 @@
           "name": "Eternal Crusader Dorsal Bombardment Cannons",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Eternal Crusader Port Weapons Batteries",
@@ -15463,13 +15431,13 @@
           "name": "Prow Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Launch Bay",
@@ -15686,7 +15654,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -15733,7 +15701,7 @@
           "name": "Ark Mechanicus Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Ark Mechanicus Port Lance Battery",
@@ -15789,7 +15757,7 @@
           "name": "Defiant Prow Lance Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Defiant Port Launch Bays",
@@ -15857,7 +15825,7 @@
           "name": "Dictator Dorsal Lance",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -15972,13 +15940,13 @@
           "name": "Emperor Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Emperor Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -16009,7 +15977,7 @@
           "name": "Dorsal Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -16033,7 +16001,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -16051,7 +16019,7 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16141,7 +16109,7 @@
           "name": "Dorsal Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -16153,13 +16121,13 @@
           "name": "Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Front/Left/Fight"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16249,7 +16217,7 @@
           "name": "Gothic Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Right/Front"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
@@ -16299,7 +16267,7 @@
           "name": "Lunar Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Lunar Port Lance Battery",
@@ -16438,13 +16406,13 @@
           "name": "Oberon Dorsal Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Oberon Prow Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "5",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16482,7 +16450,7 @@
           "name": "Retribution Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Nova Cannon",
@@ -16544,7 +16512,7 @@
           "name": "Tyrant Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -16647,13 +16615,13 @@
           "name": "Hellfire Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Hellfire Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Hellfire Port Lance Battery",
@@ -16696,7 +16664,7 @@
           "name": "Iconoclast Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16722,7 +16690,7 @@
           "name": "Apostatel Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Apostate Prow Torpedos",
@@ -16734,7 +16702,7 @@
           "name": "Apostate Lance Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16784,7 +16752,7 @@
           "name": "Slaughter Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16834,7 +16802,7 @@
           "name": "Devastation Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -16974,7 +16942,7 @@
           "name": "Emasculator Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Emasculator Port Lance Battery",
@@ -17068,7 +17036,7 @@
           "name": "Desolator Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Desolator Prow Torpedos",
@@ -17112,7 +17080,7 @@
           "name": "Hades Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Hades Prow Lance Battery",
@@ -17162,13 +17130,13 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Repulsive Dorsal Lance Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [
@@ -17267,13 +17235,13 @@
           "name": "Styx Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Styx Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Styx Starboard Launch Bays",
@@ -17372,7 +17340,7 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Nova Cannon",
@@ -17421,13 +17389,13 @@
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Prow Torpedoes",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17483,7 +17451,7 @@
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17584,105 +17552,6 @@
       "specialRules": [],
       "upgrades": []
     },
-    "febac49e-ecca-450a-b5ee-415858c59b0b": {
-      "id": "febac49e-ecca-450a-b5ee-415858c59b0b",
-      "name": "Firestorm Class Frigate",
-      "faction": "Armada Imperialis",
-      "pts": 40,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "453b3f94-43e7-4691-a7fb-3a27d605a988": {
-      "id": "453b3f94-43e7-4691-a7fb-3a27d605a988",
-      "name": "Falchion Class Frigate",
-      "faction": "Armada Imperialis",
-      "pts": 35,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "017cda8e-7be0-4bf1-afde-43dd43c9c933": {
-      "id": "017cda8e-7be0-4bf1-afde-43dd43c9c933",
-      "name": "Nova Class Frigate",
-      "faction": "Armada Imperialis",
-      "pts": 50,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "a23d7d9c-10f1-4f2b-a195-066df1460b80": {
-      "id": "a23d7d9c-10f1-4f2b-a195-066df1460b80",
-      "name": "Gladius Class Frigate",
-      "faction": "Armada Imperialis",
-      "pts": 45,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "5623b4aa-2140-41ff-bdef-c232feb0d238": {
-      "id": "5623b4aa-2140-41ff-bdef-c232feb0d238",
-      "name": "Hunter Class Destroyer",
-      "faction": "Armada Imperialis",
-      "pts": 40,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "dff12655-3099-4556-853b-57c96fb003e7": {
-      "id": "dff12655-3099-4556-853b-57c96fb003e7",
-      "name": "Firestorm Rapid Strike Vessel",
-      "faction": "Armada Imperialis",
-      "pts": 45,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "5f835d0b-5c75-47ab-b96a-e2a771f17039": {
-      "id": "5f835d0b-5c75-47ab-b96a-e2a771f17039",
-      "name": "Sword Rapid Strike Vessel",
-      "faction": "Armada Imperialis",
-      "pts": 40,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "7c87d775-c33e-4a72-9f53-9f4639c82971": {
-      "id": "7c87d775-c33e-4a72-9f53-9f4639c82971",
-      "name": "Falchion Rapid Strike Vessel",
-      "faction": "Armada Imperialis",
-      "pts": 40,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "a9c7bb02-eb1e-4188-8aef-d7fd305265e5": {
-      "id": "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
-      "name": "Cobra Rapid Strike Vessel",
-      "faction": "Armada Imperialis",
-      "pts": 35,
-      "category": "Escort",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
     "fb307851-3d74-495c-9baa-a44ac4ba13b9": {
       "id": "fb307851-3d74-495c-9baa-a44ac4ba13b9",
       "name": "Inquisitor Lord",
@@ -17744,7 +17613,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17788,7 +17657,7 @@
           "name": "Falchion Prow Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Falchion Prow Torpedoes",
@@ -17826,7 +17695,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17852,7 +17721,7 @@
           "name": "Gladius Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17884,7 +17753,7 @@
           "name": "Hunter Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17910,13 +17779,13 @@
           "name": "Nova Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Nova Weapons Battery",
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17942,7 +17811,7 @@
           "name": "Weapons Battery",
           "Range/Speed": "30",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/right/front"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],
@@ -17980,7 +17849,7 @@
           "name": "Seditio Opprimere Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Seditio Opprimere Prow Launch Bay",
@@ -18075,13 +17944,13 @@
           "name": "Dorsal Lances",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         },
         {
           "name": "Vengeful Spirit Dorsal Lances",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
+          "Fire Arc": "Front / Left / Right"
         }
       ],
       "specialRules": [],

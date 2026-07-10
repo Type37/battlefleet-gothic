@@ -536,7 +536,7 @@ input { font: inherit; color: inherit; }
   transition: max-height .22s ease, opacity .18s ease;
   background: var(--ink2);
 }
-.ship-row.open .ship-detail { max-height: 1200px; opacity: 1; }
+.ship-row.open .ship-detail, .pick-row.open .ship-detail { max-height: 1200px; opacity: 1; }
 .ship-detail-pad { padding: 4px 18px 16px; }
 
 .ship-art {
@@ -590,6 +590,10 @@ input { font: inherit; color: inherit; }
 }
 .arm-table td:first-child { color: var(--bone); font-family: var(--caslon); font-size: 13.5px; }
 .arm-table tr:last-child td { border-bottom: none; }
+.arc-cell { display: table-cell; white-space: nowrap; }
+.arc-icon { display: inline-block; width: 17px; height: 17px; vertical-align: -4px; color: var(--gold); margin-right: 5px; }
+.arc-icon svg { display: block; width: 100%; height: 100%; }
+.arc-label { font-size: 10.5px; }
 
 .rule-block { margin: 8px 0; }
 .rule-block b { font-family: var(--caslon); color: var(--gold); }
@@ -1157,6 +1161,8 @@ input { font: inherit; color: inherit; }
   border-bottom: 0.2mm solid #bbb;
 }
 .pcard-arm td:first-child { font-family: var(--caslon); font-size: 6.5pt; }
+.pcard-arc { width: 3.4mm; }
+.pcard-arc svg { display: block; width: 3mm; height: 3mm; color: #111; }
 .pcard-rules { font-size: 5.8pt; line-height: 1.3; color: #222; overflow: hidden; }
 .pcard-rules b { font-size: 5.8pt; }
 .pcard-sil { width: 100%; height: 11mm; object-fit: contain; }

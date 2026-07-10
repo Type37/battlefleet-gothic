@@ -535,6 +535,25 @@ function buildDatabase(catalogues) {
 
 const CAPITAL = new Set(['Battleship','Battlecruiser','Grand Cruiser','Cruiser','Light Cruiser','Heavy Cruiser']);
 
+// Canonicalize a Fire Arc string to a consistent "Front / Left / Right"
+// style: fixed token order, fixed casing, typos folded into the right word.
+const ARC_ORDER = ['Front', 'Left', 'Right', 'Rear'];
+function normalizeArc(raw) {
+  const s = (raw || '').trim().toLowerCase();
+  if (!s || s === '-' || s === 'n/a') return '-';
+  if (/all\s*ar+ound/.test(s)) return 'All Around';
+  const tokens = s.split(/[\s/\\]+/).filter(Boolean);
+  const found = new Set();
+  tokens.forEach(function(t) {
+    if (t === 'front' || t === 'f' || t === 'prow') found.add('Front');
+    else if (t === 'left' || t === 'l' || t === 'port') found.add('Left');
+    else if (t === 'right' || t === 'r' || t === 'fight' || t === 'starboard') found.add('Right');
+    else if (t === 'rear' || t === 'aft') found.add('Rear');
+  });
+  if (!found.size) return raw || '-';
+  return ARC_ORDER.filter(function(a) { return found.has(a); }).join(' / ');
+}
+
 function cleanDatabase(db) {
   const dropped = [];
 
@@ -544,6 +563,15 @@ function cleanDatabase(db) {
     (ship.upgrades || []).forEach(function(g) {
       if (g.group) g.group = g.group.replace(/Varient/g, 'Variant').replace(/Re-Rolls/g, 'Re-rolls');
     });
+
+    // 1b. Normalize Fire Arc strings — BSData has inconsistent casing,
+    // separators (/, \, mixed spacing) and outright typos ("Fight" for
+    // "Right", "All Arround" for "All Around").
+    if (ship.armament && ship.armament.length) {
+      ship.armament.forEach(function(a) {
+        a['Fire Arc'] = normalizeArc(a['Fire Arc']);
+      });
+    }
 
     // 2. Dedup identical armament lines
     if (ship.armament && ship.armament.length) {
@@ -589,9 +617,19 @@ function cleanDatabase(db) {
   // 5. Drop weaponless / free capital ships (broken/leaked entries) and junk
   //    commander markers. Faction-special free commanders whose cost lives in
   //    refits/re-rolls (Mechanicus Archmagos, Hive Mind) are kept deliberately.
-  const JUNK_COMMANDERS = new Set(['legion']);
+  const JUNK_COMMANDERS = new Set(['legion', 'validation warlord']);
   for (const [id, ship] of Object.entries(db.ships)) {
     if (CAPITAL.has(ship.category) && (!ship.armament || !ship.armament.length || !ship.pts)) {
+      dropped.push(id);
+    }
+    // Escorts with neither stats nor armament are blank ghost entries — a
+    // duplicate with a real profile exists elsewhere for every case checked
+    // (e.g. Armada Imperialis' Firestorm/Falchion/Nova frigates mirror
+    // fully-statted Imperial Navy/Space Marines versions). Escorts that
+    // have stats but genuinely no listed weapon (a few Tyranid organisms)
+    // are left alone — that's a real, if sparse, data gap, not a ghost.
+    if (ship.category === 'Escort' && (!ship.armament || !ship.armament.length) &&
+        (!ship.stats || !Object.keys(ship.stats).length)) {
       dropped.push(id);
     }
     if (ship.category === 'Fleet Commander' && JUNK_COMMANDERS.has(ship.name.toLowerCase())) {
