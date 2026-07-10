@@ -364,9 +364,6 @@ function setState(s) {
   $('home-content').hidden  = onFleet;
   $('fleet-content').hidden = !onFleet;
 
-  document.querySelectorAll('#bottom-nav .nav-item').forEach(n => {
-    n.classList.toggle('active', (n.dataset.nav === 'home' && !onFleet));
-  });
 
   if (onFleet) renderFleet(); else renderHome();
 }
@@ -386,6 +383,9 @@ function openShipPicker() {
   openOverlayEl($('modal-ship-picker'));
 }
 function openPickerForAdmiral() {
+  const fleet = getFleet();
+  const cmdrs = pickerShips(fleet).filter(s => s.category === 'Fleet Commander');
+  if (!cmdrs.length) { showToast('No Fleet Commanders available for this fleet list'); return; }
   pickerCategory = 'Fleet Commander';
   openShipPicker();
 }
@@ -565,23 +565,20 @@ function shipDetailHtml(ship) {
   const art = shipArt(ship.id);
   if (art) html += `<img class="ship-art" src="${art}" alt="${escHtml(ship.name)}" loading="lazy">`;
   const st = ship.stats || {};
-  const cells = [
-    ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
-    ['Armour', st.Armour], ['Turrets', st.Turrets], ['Hits', st.Hits],
-  ].filter(c => c[1]);
-  if (cells.length) {
-    html += `<div class="stat-strip">${cells.map(c => `
-      <div class="stat-cell" title="${escHtml(STAT_TITLES[c[0]] || c[0])}">
-        <span class="stat-cell-icon" aria-hidden="true">${STAT_ICONS[c[0]] || ''}</span>
-        <span class="stat-cell-text"><b>${escHtml(c[1])}</b><span>${c[0]}</span></span>
-      </div>`).join('')}</div>`;
-  }
+  const STAT_PAIRS = [['Speed','Turns'],['Shields','Armour'],['Turrets','Hits']];
+  const statRows = STAT_PAIRS
+    .filter(([a,b]) => st[a] != null || st[b] != null)
+    .map(([a,b]) => `<tr>
+      <td class="st-n">${a}</td><td class="st-v">${escHtml(String(st[a] ?? '—'))}</td>
+      <td class="st-n">${b}</td><td class="st-v">${escHtml(String(st[b] ?? '—'))}</td>
+    </tr>`).join('');
+  if (statRows) html += `<table class="stat-table"><tbody>${statRows}</tbody></table>`;
   if (ship.armament && ship.armament.length) {
     html += `<table class="arm-table">
       <thead><tr>
         <th title="Name of the weapon battery, lance, or ordnance system">Armament</th>
-        <th title="How far the weapon reaches, or how fast ordnance moves">Range / Speed</th>
-        <th title="Firepower: dice rolled for a weapons battery. Strength: dice rolled for a torpedo salvo">FP / Str</th>
+        <th title="How far the weapon reaches, or how fast ordnance moves">Range</th>
+        <th title="Firepower: dice rolled for a weapons battery. Strength: dice rolled for a torpedo salvo">FP/Str</th>
         <th title="Which side(s) of the ship this weapon can fire into">Arc</th>
       </tr></thead>
       <tbody>${ship.armament.map(a => {
@@ -656,7 +653,7 @@ function renderPicker(fleet) {
         </div>
         <div class="ship-list-info">
           <span class="ship-list-name">${escHtml(s.name)}</span>
-          <span class="ship-list-meta">${escHtml(s.category)}${warn ? ' · ⚠ add cruisers first' : ''}</span>
+          <span class="ship-list-meta">${escHtml(s.category)}</span>
         </div>
         <span class="ship-list-pts">${s.pts}<small>pts</small></span>
       </button>`;
@@ -1150,7 +1147,7 @@ function openShipDetailSheet(shipId) {
   _detailShipId = shipId;
   $('detail-sheet-title').textContent = s.name;
   $('detail-sheet-body').innerHTML = shipDetailHtml(s);
-  $('ship-detail-sheet').querySelector('.detail-sheet-add').dataset.shipId = shipId;
+  $('ship-detail-sheet').querySelector('.detail-sheet-footer').hidden = true;
   openOverlayEl($('ship-detail-sheet'));
 }
 function closeShipDetailSheet() { closeOverlayEl($('ship-detail-sheet')); }
@@ -1215,15 +1212,6 @@ function bindEvents() {
   $('btn-close-picker').addEventListener('click', closeShipPicker);
   $('modal-ship-picker').addEventListener('click', e => { if (e.target === $('modal-ship-picker')) closeShipPicker(); });
 
-  // bottom nav
-  document.querySelectorAll('#bottom-nav .nav-item').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const nav = btn.dataset.nav;
-      if (nav === 'home') { if (state === 'fleet') { activeFleet = null; setState('home'); } }
-      if (nav === 'add') { if (state === 'fleet') openShipPicker(); else openNewFleetModal(); }
-      if (nav === 'export') { openExport(); }
-    });
-  });
 
   // wizard
   $('faction-grid').addEventListener('click', e => {
@@ -1322,8 +1310,15 @@ function bindEvents() {
     if (upg) { openUpgrades(+upg.dataset.upgrades); return; }
     const toggle = t.closest('[data-toggle]');
     if (toggle) {
-      const open = toggle.closest('.ship-row').classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
+      const row = toggle.closest('.ship-row');
+      const fleet = getFleet();
+      if (row.dataset.slot !== undefined) {
+        const sl = fleet.ships[+row.dataset.slot];
+        if (sl) { openShipDetailSheet(sl.shipId); return; }
+      } else if (row.dataset.sqd !== undefined) {
+        const sq = fleet.squadrons[+row.dataset.sqd];
+        if (sq) { openShipDetailSheet(sq.shipId); return; }
+      }
     }
   });
 
