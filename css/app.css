@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    BATTLEFLEET GOTHIC : FLEET REGISTRY
    Design: the 1999 rulebook & Fleet Deck cards. Blood-red bands,
-   blackletter class names, bone text on void-blue, ledger rows.
+   condensed Oswald class names, bone text on void-blue, ledger rows.
    ═══════════════════════════════════════════════════════════════ */
 
 @font-face {
@@ -97,14 +97,18 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 input { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
 
-/* Display face: Oswald reads as heavy condensed caps, matching the rulebook titling */
+/* Display face: Oswald reads as heavy condensed caps, matching the rulebook titling.
+   Weight carries hierarchy: 700 for brand/fleet identity, 600 for ship-class names,
+   500 for the lighter mobile bar title. */
 .mast-title, .mast-fleet-name, .fleet-row-name, .empty-title,
 .ship-row-name, .pick-row-name, .overlay-title, .registry-mobilebar-title,
 .pcard-class, .print-roster h1 {
   text-transform: uppercase;
-  font-weight: 600;
   letter-spacing: .015em;
 }
+.mast-title, .mast-fleet-name, .print-roster h1 { font-weight: 700; }
+.fleet-row-name, .ship-row-name, .pick-row-name, .empty-title, .overlay-title, .pcard-class { font-weight: 600; }
+.registry-mobilebar-title { font-weight: 500; }
 
 /* subtle vertical grain on the void */
 #app {
