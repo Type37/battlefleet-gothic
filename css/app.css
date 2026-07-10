@@ -1110,10 +1110,8 @@ input { font: inherit; color: inherit; }
   letter-spacing: .3px;
   text-transform: uppercase;
 }
-.pcard-art { width: 100%; height: 13mm; object-fit: contain; background: #000; flex: none; }
-.pcard-body { flex: 1; display: flex; gap: 2mm; padding: 1.6mm 3mm; min-height: 0; }
-.pcard-left { width: 30mm; flex: none; display: flex; flex-direction: column; gap: 1.2mm; }
-.pcard-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1mm; }
+.pcard-art { width: 100%; height: 10.5mm; object-fit: contain; background: #000; flex: none; }
+.pcard-body { flex: 1; display: flex; gap: 1mm; padding: 1.3mm 3mm; min-height: 0; }
 
 .pcard-statrow { display: flex; gap: 1mm; }
 .pcard-stat {
@@ -1136,28 +1134,36 @@ input { font: inherit; color: inherit; }
   background: #fff;
 }
 .pcard-crit { margin-top: auto; }
-.pcard-crit-label { font-family: var(--data); font-size: 5pt; letter-spacing: .3px; text-transform: uppercase; color: #444; margin-bottom: 0.5mm; }
-.crit-track { display: flex; gap: 0.6mm; }
+.pcard-crit-label { font-family: var(--data); font-size: 4.6pt; letter-spacing: .3px; text-transform: uppercase; color: #444; margin-bottom: 0.5mm; }
+.crit-track { display: flex; gap: 0.4mm; }
 .crit-cell {
   flex: 1;
   aspect-ratio: 1;
   border: 0.3mm solid #333;
   border-radius: 0.5mm;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--data); font-size: 5.5pt; font-weight: 600;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: var(--data); font-size: 5pt; font-weight: 600;
   color: #333;
   background: #fff;
+  line-height: 1;
+}
+.crit-cell i {
+  font-style: normal;
+  font-size: 3.2pt;
+  font-weight: 700;
+  color: #a01c1c;
+  margin-top: 0.2mm;
 }
 .pcard-arm { width: 100%; border-collapse: collapse; font-family: var(--data); }
 .pcard-arm th {
   font-size: 4.6pt; letter-spacing: .5px; text-transform: uppercase;
   text-align: left; color: #f0ead8;
   background: #17181c;
-  padding: 0.6mm 1.2mm;
+  padding: 0.4mm 1.2mm;
 }
 .pcard-arm td {
   font-size: 6pt;
-  padding: 0.6mm 1.2mm;
+  padding: 0.4mm 1.2mm;
   border-bottom: 0.2mm solid #bbb;
 }
 .pcard-arm td:first-child { font-family: var(--caslon); font-size: 6.5pt; }
@@ -1181,6 +1187,30 @@ input { font: inherit; color: inherit; }
 .print-roster td, .print-roster th { padding: 1.4mm 3mm; border-bottom: 0.2mm solid #ccc; text-align: left; }
 .print-roster .pr-pts { text-align: right; font-variant-numeric: tabular-nums; }
 .print-roster .pr-total { font-weight: 700; border-top: 0.4mm solid #111; }
+
+/* Reference sheet — one shared page ahead of the ship cards. */
+.print-reference {
+  max-width: 180mm; margin: 0 auto; color: #111;
+  break-after: page; page-break-after: always;
+}
+.print-reference h1 { font-family: var(--gotisch); font-size: 22pt; font-weight: 700; text-transform: uppercase; margin-bottom: 1mm; }
+.print-reference .pr-sub { font-family: var(--data); font-size: 8pt; letter-spacing: .3px; text-transform: uppercase; color: #555; margin-bottom: 5mm; }
+.print-reference h2 {
+  font-family: var(--data); font-size: 9pt; letter-spacing: .4px; text-transform: uppercase;
+  background: #17181c; color: #f0ead8;
+  padding: 1.4mm 3mm;
+  margin: 4mm 0 0;
+}
+.ref-crit { width: 100%; border-collapse: collapse; font-family: var(--data); font-size: 8pt; }
+.ref-crit th { padding: 1.4mm 3mm; border-bottom: 0.3mm solid #111; text-align: left; font-size: 7pt; text-transform: uppercase; letter-spacing: .3px; }
+.ref-crit td { padding: 1.2mm 3mm; border-bottom: 0.2mm solid #ccc; vertical-align: top; }
+.ref-roll { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ref-extra { display: block; font-size: 6pt; color: #a01c1c; font-weight: 700; text-transform: uppercase; }
+.ref-loc { font-family: var(--caslon); font-weight: bold; white-space: nowrap; }
+.ref-arcs { display: flex; gap: 6mm; margin: 3mm 0 2mm; padding: 0 3mm; flex-wrap: wrap; }
+.ref-arc-item { display: flex; flex-direction: column; align-items: center; gap: 1mm; font-family: var(--data); font-size: 7pt; text-transform: uppercase; letter-spacing: .3px; }
+.ref-arc-item svg { width: 9mm; height: 9mm; color: #111; }
+.ref-note { font-family: var(--caslon); font-size: 8.5pt; font-style: italic; color: #333; padding: 0 3mm; margin-top: 2mm; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

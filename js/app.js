@@ -102,6 +102,22 @@ function arcTitle(raw) {
   return `Fires into the ${q.join(' / ')} arc${q.length > 1 ? 's' : ''} (shaded, bow marked at top)`;
 }
 
+/* ── Critical Hits Table — straight from the rulebook (2D6), used on both
+   the per-ship crit track and the printed quick-reference sheet. ─────── */
+const CRIT_TABLE = [
+  { roll: 2,  extra: '',    loc: 'Dorsal Armament',    effect: "Dorsal weapons may not fire until repaired." },
+  { roll: 3,  extra: '',    loc: 'Starboard Armament', effect: "Starboard (right) weapons may not fire until repaired." },
+  { roll: 4,  extra: '',    loc: 'Port Armament',      effect: "Port (left) weapons may not fire until repaired." },
+  { roll: 5,  extra: '',    loc: 'Prow Armament',      effect: "Prow weapons may not fire until repaired." },
+  { roll: 6,  extra: '+1',  loc: 'Engine Room',        effect: "Ship may not turn until repaired." },
+  { roll: 7,  extra: '',    loc: 'Fire!',              effect: "Roll to extinguish each End Phase — unrepaired, it causes 1 extra damage and keeps burning." },
+  { roll: 8,  extra: '+1',  loc: 'Thrusters',          effect: "Speed reduced by 10cm until repaired." },
+  { roll: 9,  extra: '',    loc: 'Bridge Smashed',     effect: "Leadership reduced by 3, cannot be repaired. Flagship: Fleet Commander re-rolls are lost." },
+  { roll: 10, extra: '',    loc: 'Shields Collapse',   effect: "Shield strength reduced to zero, cannot be repaired." },
+  { roll: 11, extra: '+D3', loc: 'Hull Breach',        effect: "A huge gash is torn in the hull." },
+  { roll: 12, extra: '+D6', loc: 'Bulkhead Collapse',  effect: "Whole compartments crumple." },
+];
+
 /* ── State ─────────────────────────────────────────────────── */
 let DB = null;
 let ART = new Set();   // ship ids that have extracted illustrations
@@ -841,10 +857,33 @@ function printCardHtml(ship, opts) {
       ${(rules || upgRules) ? `<div class="pcard-rules">${upgRules}${upgRules && rules ? ' / ' : ''}${rules}</div>` : ''}
       ${!isEscort ? `
       <div class="pcard-crit">
-        <div class="pcard-crit-label">Critical Damage</div>
-        <div class="crit-track">${[2,3,4,5,6,7,8,9,10].map(n => `<span class="crit-cell">${n}</span>`).join('')}</div>
+        <div class="pcard-crit-label">Critical Damage (2D6, see reference sheet)</div>
+        <div class="crit-track">${CRIT_TABLE.map(c => `<span class="crit-cell">${c.roll}${c.extra ? `<i>${c.extra}</i>` : ''}</span>`).join('')}</div>
       </div>` : ''}
     </div>
+  </div>`;
+}
+
+// One shared page ahead of the ship cards: the full 2D6 critical hits
+// table (players need this at the table every game) and a legend for the
+// fire-arc diagrams printed on each card.
+function buildReferenceSheetHtml() {
+  return `<div class="print-reference">
+    <h1>Quick Reference</h1>
+    <div class="pr-sub">Critical Hits &amp; Fire Arcs</div>
+    <h2>Critical Hits Table (2D6)</h2>
+    <table class="ref-crit">
+      <thead><tr><th>Roll</th><th>Location</th><th>Effect</th></tr></thead>
+      <tbody>${CRIT_TABLE.map(c => `
+        <tr><td class="ref-roll">${c.roll}${c.extra ? `<span class="ref-extra">${c.extra} dmg</span>` : ''}</td><td class="ref-loc">${escHtml(c.loc)}</td><td>${escHtml(c.effect)}</td></tr>
+      `).join('')}</tbody>
+    </table>
+    <h2>Fire Arcs</h2>
+    <div class="ref-arcs">
+      ${['Front', 'Left', 'Right', 'Rear'].map(a => `<div class="ref-arc-item">${arcIconSvg(a)}<span>${a}</span></div>`).join('')}
+      <div class="ref-arc-item">${arcIconSvg('All Around')}<span>All Around</span></div>
+    </div>
+    <p class="ref-note">The shaded quadrant(s) show which side of the ship a weapon can fire into — the small triangle marks the bow. "All Around" weapons (mostly turrets) may fire in any direction.</p>
   </div>`;
 }
 
@@ -859,18 +898,25 @@ function printCards() {
   }
   const byId = {};
   fleet.ships.forEach(sl => { byId[sl.shipId] = (byId[sl.shipId] || 0) + 1; });
-  const seen = {};
+  const byCat = {};
   fleet.ships.forEach(sl => {
     const s = shipDef(sl.shipId); if (!s) return;
-    let suffix = '';
-    if (byId[sl.shipId] > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = GREEK[seen[sl.shipId]++ % GREEK.length]; }
-    cards.push(printCardHtml(s, { pts: slotPts(sl), suffix, upgrades: sl.upgrades, factionShort: short, fleetName: fleet.name }));
+    (byCat[s.category] = byCat[s.category] || []).push(sl);
+  });
+  const seen = {};
+  CAT_ORDER.forEach(cat => {
+    (byCat[cat] || []).forEach(sl => {
+      const s = shipDef(sl.shipId); if (!s) return;
+      let suffix = '';
+      if (byId[sl.shipId] > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = GREEK[seen[sl.shipId]++ % GREEK.length]; }
+      cards.push(printCardHtml(s, { pts: slotPts(sl), suffix, upgrades: sl.upgrades, factionShort: short, fleetName: fleet.name }));
+    });
   });
   fleet.squadrons.forEach(sq => {
     const s = shipDef(sq.shipId); if (!s) return;
     cards.push(printCardHtml(s, { pts: sqdPts(sq), count: sq.count, factionShort: short, fleetName: fleet.name }));
   });
-  $('print-root').innerHTML = `<div class="print-grid">${cards.join('')}</div>`;
+  $('print-root').innerHTML = buildReferenceSheetHtml() + `<div class="print-grid">${cards.join('')}</div>`;
   window.print();
 }
 
