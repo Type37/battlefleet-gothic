@@ -426,13 +426,6 @@ input { font: inherit; color: inherit; }
 .sqd-btn:disabled { opacity: .3; cursor: default; }
 .sqd-count { min-width: 26px; text-align: center; font-family: var(--data); font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 700; }
 
-.ship-detail {
-  max-height: 0; opacity: 0; overflow: hidden;
-  transition: max-height .28s var(--ease-out), opacity .2s ease;
-}
-.ship-row.open .ship-detail, .pick-row.open .ship-detail { max-height: 1400px; opacity: 1; }
-.ship-detail-pad { padding: var(--sp-xs) var(--sp-lg) var(--sp-lg); border-top: 1px solid var(--line); margin-top: var(--sp-xs); }
-
 .ship-art { display: block; width: 100%; max-height: 200px; object-fit: contain; background: #000; border-radius: var(--radius-md); margin: var(--sp-md) 0; }
 
 /* Stat table: Speed/Turns · Shields/Armour · Turrets/Hits */
