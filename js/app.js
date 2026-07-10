@@ -501,22 +501,17 @@ function renderManifest(fleet) {
         `<span class="upg-tag">${escHtml(u.name)}${u.pts > 0 ? ` +${u.pts}` : u.pts < 0 ? ` ${u.pts}` : ''}</span>`).join('');
       html += `
       <div class="ship-row ${invalid ? 'invalid' : ''}" data-slot="${g.i}">
-        <button class="ship-row-top" data-toggle aria-expanded="false">
-          <span class="ship-row-main">
-            <span class="ship-row-name">${escHtml(g.s.name)}${suffix}</span>
-            <span class="ship-row-stats">${statsRun(g.s)}</span>
-            ${invalid ? '<span class="ship-row-flag" title="Every battleship needs 3 cruiser-class ships in the fleet to be legal — add more cruisers or remove a battleship">⚠ Needs cruiser escort</span>' : ''}
-          </span>
+        <div class="ship-row-top">
+          <button class="ship-row-main row-toggle" data-toggle aria-expanded="false">
+            <span class="ship-row-name" style="display:block">${escHtml(g.s.name)}${suffix}</span>
+            <span class="ship-row-stats" style="display:block">${statsRun(g.s)}</span>
+            ${invalid ? '<span class="ship-row-flag" style="display:block" title="Every battleship needs 3 cruiser-class ships in the fleet to be legal — add more cruisers or remove a battleship">⚠ Needs cruiser escort</span>' : ''}
+            ${upgTags ? `<span style="display:block;margin-top:6px">${upgTags}</span>` : ''}
+          </button>
           <span class="ship-row-pts">${slotPts(g.sl)}<small>pts</small></span>
-        </button>
-        <div class="ship-detail"><div class="ship-detail-pad">
-          ${shipDetailHtml(g.s)}
-          ${upgTags ? `<div style="margin-top:6px">${upgTags}</div>` : ''}
-          <div class="detail-actions">
-            ${g.s.upgrades && g.s.upgrades.length ? `<button class="chip-btn" data-upgrades="${g.i}">Upgrades</button>` : ''}
-            <button class="chip-btn" data-remove="${g.i}">Remove Ship</button>
-          </div>
-        </div></div>
+          ${g.s.upgrades && g.s.upgrades.length ? `<button class="chip-btn" data-upgrades="${g.i}">Upgrades</button>` : ''}
+          <button class="row-x" data-remove="${g.i}" aria-label="Remove ship" title="Remove this ship">✕</button>
+        </div>
       </div>`;
     });
   }
@@ -545,7 +540,6 @@ function renderManifest(fleet) {
           <span class="ship-row-pts">${sqdPts(sq)}<small>pts</small></span>
           <button class="row-x" data-remove-sqd="${i}" aria-label="Remove squadron" title="Disband this squadron">✕</button>
         </div>
-        <div class="ship-detail"><div class="ship-detail-pad">${shipDetailHtml(s)}</div></div>
       </div>`;
     });
   }
