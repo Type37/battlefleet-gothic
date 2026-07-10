@@ -450,8 +450,8 @@ input { font: inherit; color: inherit; }
 .stat-cell span { font-family: var(--data); font-size: 12px; color: var(--faint); margin-top: 2px; }
 
 .arm-table { width: 100%; border-collapse: collapse; font-family: var(--data); font-size: 13px; margin: var(--sp-sm) 0 var(--sp-md); }
-.arm-table th { font-size: 12px; color: var(--faint); font-weight: 600; text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); }
-.arm-table td { padding: 7px 8px; border-bottom: 1px solid var(--line2); color: var(--bone-dim); font-variant-numeric: tabular-nums; }
+.arm-table th { font-size: 12px; color: var(--bone-dim); font-weight: 600; text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.arm-table td { padding: 7px 8px; border-bottom: 1px solid var(--line2); color: var(--bone); font-variant-numeric: tabular-nums; }
 .arm-table td:first-child { color: var(--bone); font-weight: 500; font-size: 14px; }
 .arm-table tr:last-child td { border-bottom: none; }
 .arc-cell { display: table-cell; white-space: nowrap; }
@@ -461,7 +461,7 @@ input { font: inherit; color: inherit; }
 
 .rule-block { margin: var(--sp-sm) 0; }
 .rule-block b { font-family: var(--data); font-weight: 700; color: var(--accent); }
-.rule-block p { font-family: var(--lore); font-size: 16px; color: var(--bone-dim); line-height: 1.65; }
+.rule-block p { font-family: var(--sys); font-size: 14px; color: var(--bone); line-height: 1.5; }
 
 .detail-actions { display: flex; gap: var(--sp-sm); margin-top: var(--sp-md); }
 .chip-btn { font-family: var(--data); font-size: 14px; font-weight: 600; padding: var(--sp-sm) var(--sp-lg); border-radius: var(--radius-pill); background: var(--hull3); color: var(--accent); min-height: 36px; }
@@ -613,7 +613,7 @@ input { font: inherit; color: inherit; }
 .ship-list-art-icon { width: 22px; height: 22px; background-color: var(--fc, var(--faint)); -webkit-mask: var(--fi) no-repeat center / contain; mask: var(--fi) no-repeat center / contain; opacity: .5; }
 .ship-list-info { flex: 1; min-width: 0; }
 .ship-list-name { display: block; font-size: 14px; font-weight: 600; line-height: 1.2; }
-.ship-list-meta { display: block; font-family: var(--data); font-size: 12px; color: var(--faint); margin-top: 1px; }
+.ship-list-meta { display: block; font-family: var(--data); font-size: 12px; color: var(--bone-dim); margin-top: 1px; }
 .ship-list-pts { flex: none; font-family: var(--data); font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 700; color: var(--accent); text-align: right; white-space: nowrap; }
 .ship-list-pts small { display: block; font-size: 10px; font-weight: 400; color: var(--faint); }
 .warn-item .ship-list-meta { color: var(--warn-tx); }
