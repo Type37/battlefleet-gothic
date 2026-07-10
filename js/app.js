@@ -7,7 +7,7 @@
 /* ── Constants ─────────────────────────────────────────────── */
 const STORE_KEY = 'bfg-fleets';
 const GREEK = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π'];
-const CAT_ORDER = ['Fleet Commander','Battleship','Grand Cruiser','Battlecruiser','Heavy Cruiser','Cruiser','Light Cruiser','Escort'];
+const CAT_ORDER = ['Cruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser','Battlecruiser','Battleship','Escort','Fleet Commander'];
 const CRUISER_CATS = new Set(['Cruiser','Battlecruiser','Light Cruiser','Heavy Cruiser','Grand Cruiser']);
 const CAT_TITLES = {
   'Fleet Commander':  'An admiral or character who leads the fleet — required above 750 pts, gives command re-rolls',
@@ -126,6 +126,7 @@ let activeFleet = null;          // index into fleets[]
 let state = 'home';              // 'home' | 'fleet'
 let pickerCategory = 'All';
 let pickerSearch = '';
+let pickerSelectedId = null;
 let wizStep = 1;
 let wizDraft = {};               // { faction, fleetList }
 
@@ -384,7 +385,16 @@ function openShipPicker() {
   renderPicker(getFleet());
   openOverlayEl($('modal-ship-picker'));
 }
-function closeShipPicker() { closeOverlayEl($('modal-ship-picker')); }
+function openPickerForAdmiral() {
+  pickerCategory = 'Fleet Commander';
+  openShipPicker();
+}
+function closeShipPicker() {
+  closeOverlayEl($('modal-ship-picker'));
+  pickerSelectedId = null;
+  const inner = $('picker-inner');
+  if (inner) inner.classList.remove('detail-open');
+}
 
 /* ── Home render ───────────────────────────────────────────── */
 function renderHome() {
@@ -604,15 +614,16 @@ function renderPicker(fleet) {
   const ships = pickerShips(fleet);
   const cats = CAT_ORDER.filter(c => ships.some(s => s.category === c));
 
-  // tabs
+  // tabs — compact labels in narrow left pane
   const tabs = ['All', ...cats];
   if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
   $('picker-tabs').innerHTML = tabs.map(t => {
     const cnt = t === 'All' ? ships.length : ships.filter(s => s.category === t).length;
-    return `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every ship available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')} <span class="tab-count" style="opacity:.6;font-size:11px">(${cnt})</span></button>`;
+    const label = t === 'Fleet Commander' ? 'Admirals' : t === 'All' ? 'All' : t + 's';
+    return `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}">${escHtml(label)} <span class="tab-count">${cnt}</span></button>`;
   }).join('');
 
-  // cards
+  // list items
   const q = pickerSearch.trim().toLowerCase();
   let pool = ships;
   if (pickerCategory !== 'All') pool = pool.filter(s => s.category === pickerCategory);
@@ -629,41 +640,87 @@ function renderPicker(fleet) {
   for (const [cat, list] of groups) {
     if (!list.length) continue;
     if (pickerCategory === 'All') {
-      html += `<div class="pick-cat-head" title="${escHtml(CAT_TITLES[cat] || '')}"><span>${escHtml(cat)}s</span><span class="pick-cat-count">${list.length}</span></div>`;
+      const catLabel = cat === 'Fleet Commander' ? 'Admirals' : cat + 's';
+      html += `<div class="pick-cat-head"><span>${escHtml(catLabel)}</span><span class="pick-cat-count">${list.length}</span></div>`;
     }
-    html += `<div class="ship-card-grid">`;
     list.slice().sort((a, b) => b.pts - a.pts).forEach(s => {
       const warn = bsWouldViolate(s.category);
       const art = shipArt(s.id);
-      const keywords = (s.specialRules || []).slice(0, 5).map(r =>
-        `<span class="keyword-chip" title="${escHtml(r.effects || '')}">${escHtml(r.name)}</span>`
-      ).join('');
+      const sel = pickerSelectedId === s.id ? ' selected' : '';
       html += `
-      <div class="ship-card" data-ship-detail="${s.id}">
-        <div class="ship-card-art-wrap">
+      <button class="ship-list-item${sel}${warn ? ' warn-item' : ''}" data-ship-pick="${s.id}">
+        <div class="ship-list-art">
           ${art
-            ? `<img src="${art}" alt="${escHtml(s.name)}" loading="lazy">`
-            : `<div class="ship-card-art-empty" style="${fstyle(fleet.faction)}"><span class="ship-card-art-icon"></span></div>`}
+            ? `<img src="${art}" alt="" loading="lazy">`
+            : `<span class="ship-list-art-icon" style="${fstyle(fleet.faction)}"></span>`}
         </div>
-        <div class="ship-card-content">
-          <div class="ship-card-header">
-            <div class="ship-card-name">${escHtml(s.name)}</div>
-            <div class="ship-card-pts">${s.pts}<small>pts</small></div>
-          </div>
-          <div class="ship-card-type">${escHtml(s.category)}</div>
-          ${shipStatGridHtml(s)}
-          ${keywords ? `<div class="ship-card-keywords">${keywords}</div>` : ''}
-          ${warn ? `<div class="ship-card-warn">⚠ Needs ${(countBattleships(fleet)+1)*3} cruisers first</div>` : ''}
+        <div class="ship-list-info">
+          <span class="ship-list-name">${escHtml(s.name)}</span>
+          <span class="ship-list-meta">${escHtml(s.category)}${warn ? ' · ⚠ add cruisers first' : ''}</span>
         </div>
-        <button class="ship-card-add${warn ? ' warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          Add
-        </button>
-      </div>`;
+        <span class="ship-list-pts">${s.pts}<small>pts</small></span>
+      </button>`;
     });
-    html += `</div>`;
   }
   $('picker-body').innerHTML = html || `<div class="pick-none">No ships match.</div>`;
+
+  // keep detail pane in sync if something was already selected
+  if (pickerSelectedId && pool.some(s => s.id === pickerSelectedId)) {
+    selectPickerShip(pickerSelectedId, fleet);
+  } else if (pickerSelectedId) {
+    pickerSelectedId = null;
+    clearPickerDetail();
+  }
+}
+
+function clearPickerDetail() {
+  $('picker-detail-content').hidden = true;
+  $('picker-detail-empty').hidden = false;
+  $('picker-inner').classList.remove('detail-open');
+}
+
+function selectPickerShip(id, fleet) {
+  fleet = fleet || getFleet();
+  pickerSelectedId = id;
+  const s = shipDef(id);
+  if (!s) return;
+
+  // highlight selected row
+  document.querySelectorAll('.ship-list-item').forEach(el =>
+    el.classList.toggle('selected', el.dataset.shipPick === id));
+
+  const art = shipArt(id);
+  const bsWarn = s.category === 'Battleship' &&
+    countCruisers(fleet) < (countBattleships(fleet) + 1) * 3;
+  const keywords = (s.specialRules || []).map(r =>
+    `<span class="keyword-chip">${escHtml(r.name)}</span>`).join('');
+
+  const content = $('picker-detail-content');
+  content.innerHTML = `
+    <button class="picker-back-btn" id="btn-picker-back" aria-label="Back to list">‹ Ships</button>
+    ${art ? `<div class="picker-detail-art-wrap"><img src="${art}" alt="${escHtml(s.name)}"></div>` : ''}
+    <div class="picker-detail-header">
+      <div class="picker-detail-name">${escHtml(s.name)}</div>
+      <div class="picker-detail-sub">${escHtml(s.category)} · ${s.pts} pts</div>
+      ${keywords ? `<div class="picker-detail-keywords">${keywords}</div>` : ''}
+    </div>
+    <div class="picker-detail-body">
+      ${bsWarn ? `<div class="picker-detail-warn">⚠ Needs ${(countBattleships(fleet)+1)*3} cruiser-class ships before this battleship is legal — you can add it now and sort it later.</div>` : ''}
+      ${shipDetailHtml(s)}
+    </div>
+    <div class="picker-detail-footer">
+      <button class="btn-primary picker-detail-add${bsWarn ? ' warn' : ''}" data-add="${s.id}">+ Add to Fleet</button>
+    </div>`;
+  content.hidden = false;
+  $('picker-detail-empty').hidden = true;
+
+  // mobile: push to detail pane
+  if (window.innerWidth <= 899) {
+    $('picker-inner').classList.add('detail-open');
+    content.querySelector('#btn-picker-back').addEventListener('click', () => {
+      $('picker-inner').classList.remove('detail-open');
+    });
+  }
 }
 
 /* ── Fleet mutations ───────────────────────────────────────── */
@@ -1152,9 +1209,9 @@ function bindEvents() {
   $('btn-close-new-fleet').addEventListener('click', closeNewFleetModal);
   $('modal-new-fleet').addEventListener('click', e => { if (e.target === $('modal-new-fleet')) closeNewFleetModal(); });
 
-  // add-ship trigger — the header button and the empty-state CTA (latter
-  // is handled inside the main fleet-body listener further down)
+  // roster add buttons
   $('btn-add-ship').addEventListener('click', openShipPicker);
+  $('btn-add-admiral').addEventListener('click', openPickerForAdmiral);
   $('btn-close-picker').addEventListener('click', closeShipPicker);
   $('modal-ship-picker').addEventListener('click', e => { if (e.target === $('modal-ship-picker')) closeShipPicker(); });
 
@@ -1224,13 +1281,15 @@ function bindEvents() {
     $('btn-search-clear').hidden = true;
     renderPicker(getFleet());
   });
+  // Picker: clicking a list item selects it and shows detail in right pane
   $('picker-body').addEventListener('click', e => {
-    // Add button: add ship and return to roster (picker closes via addShip)
+    const item = e.target.closest('[data-ship-pick]');
+    if (item) { selectPickerShip(item.dataset.shipPick); return; }
+  });
+  // Picker detail pane: add button
+  $('picker-detail-pane').addEventListener('click', e => {
     const add = e.target.closest('[data-add]');
     if (add) { addShip(add.dataset.add); return; }
-    // Card body (not the add button): open detail sheet
-    const card = e.target.closest('[data-ship-detail]');
-    if (card && !e.target.closest('[data-add]')) { openShipDetailSheet(card.dataset.shipDetail); return; }
   });
 
   // manifest

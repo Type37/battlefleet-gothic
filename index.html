@@ -93,7 +93,10 @@
       <div id="fleet-content" hidden>
         <div class="view-head">
           <h1>Roster</h1>
-          <button class="btn-primary" id="btn-add-ship">+ Add Ship</button>
+          <div class="view-head-btns">
+            <button class="btn-outline" id="btn-add-admiral">+ Admiral</button>
+            <button class="btn-primary" id="btn-add-ship">+ Ship</button>
+          </div>
         </div>
         <div id="validation-panel" aria-live="polite" aria-label="Fleet validation"></div>
         <div id="fleet-body"></div>
@@ -151,7 +154,7 @@
   </div>
 </div>
 
-<!-- ══════════ Ship picker modal — stays open across multiple adds ══════════ -->
+<!-- ══════════ Ship picker modal ══════════ -->
 <div id="modal-ship-picker" class="overlay" hidden>
   <div class="overlay-sheet overlay-sheet-xl" role="dialog" aria-modal="true" aria-labelledby="picker-title">
     <header class="overlay-head">
@@ -161,12 +164,24 @@
       </div>
       <button class="overlay-close" id="btn-close-picker" aria-label="Close">✕</button>
     </header>
-    <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
-    <div class="search-wrap">
-      <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
-      <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
+    <!-- 2-pane: list left / detail right -->
+    <div class="picker-inner" id="picker-inner">
+      <div class="picker-list-pane" id="picker-list-pane">
+        <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
+        <div class="search-wrap">
+          <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
+          <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
+        </div>
+        <div id="picker-body" class="picker-list-body"></div>
+      </div>
+      <div class="picker-detail-pane" id="picker-detail-pane">
+        <div class="picker-detail-empty" id="picker-detail-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;opacity:.3"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Select a ship from the list to see its full stats, armament, and special rules.
+        </div>
+        <div id="picker-detail-content" style="display:flex;flex-direction:column;flex:1" hidden></div>
+      </div>
     </div>
-    <div class="overlay-body" id="picker-body"></div>
   </div>
 </div>
 
