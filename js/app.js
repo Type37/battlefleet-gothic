@@ -596,6 +596,12 @@ function shipDetailHtml(ship) {
     html += ship.specialRules.map(r =>
       `<div class="rule-block"><b>${escHtml(r.name)}</b><p>${escHtml(r.effects || '')}</p></div>`).join('');
   }
+  if (ship.lore) {
+    html += `<section class="lore-block">
+      <h4 class="lore-head">Background</h4>
+      ${ship.lore.split(/\n{2,}/).map(p => `<p>${escHtml(p.trim())}</p>`).join('')}
+    </section>`;
+  }
   return html || '<p class="wiz-note">No additional data for this ship.</p>';
 }
 
@@ -1372,6 +1378,16 @@ async function boot() {
     DB = await res.json();
   } catch (e) {
     DB = null;
+  }
+  // Merge in per-ship background text (kept separate so a BSData re-sync can't wipe it)
+  if (DB && DB.ships) {
+    try {
+      const lore = (await (await fetch('data/ship_lore.json')).json()).lore || {};
+      for (const id in DB.ships) {
+        const s = DB.ships[id];
+        if (s && lore[s.name]) s.lore = lore[s.name];
+      }
+    } catch (e) { /* lore is optional */ }
   }
   try {
     const ids = await (await fetch('images/ships/manifest.json')).json();

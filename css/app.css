@@ -456,6 +456,12 @@ input { font: inherit; color: inherit; }
 .rule-block b { font-family: var(--data); font-weight: 700; color: var(--accent); }
 .rule-block p { font-family: var(--sys); font-size: 14px; color: var(--bone); line-height: 1.5; }
 
+/* Background / lore — flavour text, clearly set apart from the mechanical rules above */
+.lore-block { margin: var(--sp-lg) 0 var(--sp-xs); padding-top: var(--sp-md); border-top: 1px solid var(--line2); }
+.lore-head { font-family: var(--data); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); margin: 0 0 var(--sp-sm); }
+.lore-block p { font-family: var(--lore); font-size: 16px; line-height: 1.62; color: var(--bone); margin: 0 0 var(--sp-sm); }
+.lore-block p:last-child { margin-bottom: 0; }
+
 .detail-actions { display: flex; gap: var(--sp-sm); margin-top: var(--sp-md); }
 .chip-btn { font-family: var(--data); font-size: 14px; font-weight: 600; padding: var(--sp-sm) var(--sp-lg); border-radius: var(--radius-pill); background: var(--hull3); color: var(--accent); min-height: 36px; }
 .chip-btn:hover { background: var(--accent-tint); }
