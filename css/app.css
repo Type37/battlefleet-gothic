@@ -131,7 +131,7 @@ input { font: inherit; color: inherit; }
 .mast-sub {
   font-family: var(--data);
   font-size: 10px;
-  letter-spacing: 2.2px;
+  letter-spacing: .5px;
   text-transform: uppercase;
   color: var(--faint);
   margin-top: 3px;
@@ -158,7 +158,7 @@ input { font: inherit; color: inherit; }
 .mast-fleet-sub {
   font-family: var(--data);
   font-size: 10px;
-  letter-spacing: 1.6px;
+  letter-spacing: .4px;
   text-transform: uppercase;
   color: var(--bone-dim);
   margin-top: 2px;
@@ -174,7 +174,7 @@ input { font: inherit; color: inherit; }
 .pts-used  { font-size: 20px; font-weight: 700; color: var(--gold); line-height: 1; }
 .pts-sep   { color: var(--faint); }
 .pts-limit { font-size: 14px; color: var(--bone-dim); }
-.pts-word  { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--faint); }
+.pts-word  { font-size: 10px; letter-spacing: .4px; text-transform: uppercase; color: var(--faint); }
 .pts-remaining { margin-left: auto; font-size: 12px; color: var(--bone-dim); }
 .mast-pts.over-limit .pts-used, .mast-pts.over-limit .pts-remaining { color: var(--err-tx); }
 .pts-track {
@@ -194,7 +194,7 @@ input { font: inherit; color: inherit; }
 .mast-btn {
   font-family: var(--data);
   font-size: 12px;
-  letter-spacing: 1.2px;
+  letter-spacing: .3px;
   text-transform: uppercase;
   color: var(--bone-dim);
   border: 1px solid var(--line);
@@ -280,7 +280,7 @@ input { font: inherit; color: inherit; }
   font-family: var(--data);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 2.4px;
+  letter-spacing: .5px;
   text-transform: uppercase;
   color: var(--bone-dim);
   border-bottom: 1px solid var(--line);
@@ -292,7 +292,7 @@ input { font: inherit; color: inherit; }
   border-bottom: 1px solid #000;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
-.ledger-band-aside { font-weight: 400; letter-spacing: 1.2px; opacity: .8; }
+.ledger-band-aside { font-weight: 400; letter-spacing: .3px; opacity: .8; }
 
 /* ═══════════ Home: fleet index ═══════════ */
 .fleet-row {
@@ -317,7 +317,7 @@ input { font: inherit; color: inherit; }
 .fleet-row-name { font-family: var(--gotisch); font-size: 20px; line-height: 1.1; }
 .fleet-row-sub {
   font-family: var(--data); font-size: 11px;
-  letter-spacing: 1px; text-transform: uppercase;
+  letter-spacing: .3px; text-transform: uppercase;
   color: var(--faint); margin-top: 3px;
 }
 .fleet-row-pts {
@@ -327,7 +327,7 @@ input { font: inherit; color: inherit; }
   flex: none;
 }
 .fleet-row-pts b { font-size: 16px; color: var(--gold); font-weight: 700; }
-.fleet-row-pts span { display: block; font-size: 10px; color: var(--faint); letter-spacing: 1px; }
+.fleet-row-pts span { display: block; font-size: 10px; color: var(--faint); letter-spacing: .3px; }
 
 .commission-btn {
   display: block;
@@ -337,7 +337,7 @@ input { font: inherit; color: inherit; }
   font-family: var(--data);
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: .4px;
   text-transform: uppercase;
   color: var(--bone);
   background: linear-gradient(180deg, var(--blood2), var(--blood));
@@ -354,7 +354,7 @@ input { font: inherit; color: inherit; }
   padding: 11px;
   font-family: var(--data);
   font-size: 11px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase;
+  letter-spacing: .4px; text-transform: uppercase;
   color: var(--bone-dim);
   background: transparent;
   border: 1px solid var(--line);
@@ -409,11 +409,11 @@ input { font: inherit; color: inherit; }
   border-bottom: 1px solid #000;
   font-family: var(--data);
   font-size: 11px; font-weight: 700;
-  letter-spacing: 2.4px; text-transform: uppercase;
+  letter-spacing: .5px; text-transform: uppercase;
   color: var(--bone);
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
-.man-band-count { font-weight: 400; opacity: .75; letter-spacing: 1px; }
+.man-band-count { font-weight: 400; opacity: .75; letter-spacing: .3px; }
 .man-band-pts { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .5px; }
 
 .ship-row { border-bottom: 1px solid var(--line); }
@@ -438,7 +438,7 @@ input { font: inherit; color: inherit; }
 .ship-row-stats b { color: var(--bone); font-weight: 600; }
 .stat-sep { display: inline-block; width: 1px; height: 8px; margin: 0 8px; background: currentColor; opacity: .4; vertical-align: 0; }
 .ship-row-flag {
-  font-family: var(--data); font-size: 10px; letter-spacing: 1px;
+  font-family: var(--data); font-size: 10px; letter-spacing: .3px;
   text-transform: uppercase; color: var(--warn-tx);
   margin-top: 3px;
 }
@@ -449,7 +449,7 @@ input { font: inherit; color: inherit; }
   font-size: 15px; font-weight: 700;
   color: var(--gold);
 }
-.ship-row-pts small { display: block; font-size: 9px; font-weight: 400; color: var(--faint); text-align: right; letter-spacing: 1px; }
+.ship-row-pts small { display: block; font-size: 9px; font-weight: 400; color: var(--faint); text-align: right; letter-spacing: .3px; }
 .row-x {
   flex: none;
   width: 38px; height: 38px;
@@ -525,7 +525,7 @@ input { font: inherit; color: inherit; }
 .stat-cell-icon svg { display: block; width: 100%; height: 100%; }
 .stat-cell-text { display: flex; flex-direction: column; }
 .stat-cell b { font-family: var(--data); font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
-.stat-cell span { font-family: var(--data); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
+.stat-cell span { font-family: var(--data); font-size: 10px; letter-spacing: .3px; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
 
 .arm-table {
   width: 100%;
@@ -535,7 +535,7 @@ input { font: inherit; color: inherit; }
   margin: 6px 0 10px;
 }
 .arm-table th {
-  font-size: 9.5px; letter-spacing: 1.4px; text-transform: uppercase;
+  font-size: 9.5px; letter-spacing: .3px; text-transform: uppercase;
   color: var(--faint); font-weight: 600;
   text-align: left;
   padding: 4px 8px;
@@ -557,7 +557,7 @@ input { font: inherit; color: inherit; }
 .detail-actions { display: flex; gap: 8px; margin-top: 10px; }
 .chip-btn {
   font-family: var(--data); font-size: 11px;
-  letter-spacing: 1.2px; text-transform: uppercase;
+  letter-spacing: .3px; text-transform: uppercase;
   padding: 8px 13px;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -599,7 +599,7 @@ input { font: inherit; color: inherit; }
 }
 .wstep em {
   font-family: var(--data); font-style: normal;
-  font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase;
+  font-size: 11.5px; letter-spacing: .3px; text-transform: uppercase;
   color: var(--bone-dim);
 }
 /* Capped width: on a wide right panel, full-bleed buttons and a Continue
@@ -636,7 +636,7 @@ input { font: inherit; color: inherit; }
 .faction-cell-name { font-family: var(--caslon); font-weight: bold; font-size: 17px; line-height: 1.15; }
 .faction-cell-sub {
   font-family: var(--data); font-size: 11px;
-  letter-spacing: 1px; text-transform: uppercase;
+  letter-spacing: .3px; text-transform: uppercase;
   color: var(--faint); margin-top: 2px;
 }
 
@@ -657,7 +657,7 @@ input { font: inherit; color: inherit; }
 .field-label {
   display: block;
   font-family: var(--data); font-size: 11.5px;
-  letter-spacing: 1.6px; text-transform: uppercase;
+  letter-spacing: .4px; text-transform: uppercase;
   color: var(--bone-dim);
   margin-bottom: 7px;
 }
@@ -690,7 +690,7 @@ input { font: inherit; color: inherit; }
 
 .primary-btn {
   font-family: var(--data); font-size: 12px; font-weight: 600;
-  letter-spacing: 1.8px; text-transform: uppercase;
+  letter-spacing: .4px; text-transform: uppercase;
   color: var(--bone);
   background: linear-gradient(180deg, var(--blood2), var(--blood));
   border: 1px solid var(--blood2);
@@ -702,7 +702,7 @@ input { font: inherit; color: inherit; }
 .primary-btn:disabled { opacity: .35; cursor: default; }
 .ghost-btn {
   font-family: var(--data); font-size: 12px;
-  letter-spacing: 1.4px; text-transform: uppercase;
+  letter-spacing: .3px; text-transform: uppercase;
   color: var(--bone-dim);
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -725,7 +725,7 @@ input { font: inherit; color: inherit; }
   flex: none;
   padding: 11px 15px 9px;
   font-family: var(--data); font-size: 11px;
-  letter-spacing: 1.4px; text-transform: uppercase;
+  letter-spacing: .3px; text-transform: uppercase;
   color: var(--faint);
   border-bottom: 2px solid transparent;
   white-space: nowrap;
@@ -760,7 +760,7 @@ input { font: inherit; color: inherit; }
 .pick-cat-head {
   padding: 10px 18px 6px;
   font-family: var(--data); font-size: 10px; font-weight: 700;
-  letter-spacing: 2.4px; text-transform: uppercase;
+  letter-spacing: .5px; text-transform: uppercase;
   color: var(--faint);
   border-bottom: 1px solid var(--line);
 }
@@ -868,7 +868,7 @@ input { font: inherit; color: inherit; }
 .upg-group { margin-bottom: 16px; }
 .upg-group-name {
   font-family: var(--data); font-size: 10.5px;
-  letter-spacing: 2px; text-transform: uppercase;
+  letter-spacing: .4px; text-transform: uppercase;
   color: var(--bone-dim);
   padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
@@ -986,7 +986,7 @@ input { font: inherit; color: inherit; }
     align-items: center; justify-content: center;
     gap: 3px;
     font-family: var(--data); font-size: 10px;
-    letter-spacing: 1.4px; text-transform: uppercase;
+    letter-spacing: .3px; text-transform: uppercase;
     color: var(--faint);
     transition: color .12s;
   }
@@ -1062,7 +1062,7 @@ input { font: inherit; color: inherit; }
   color: #f0ead8;
   font-family: var(--data);
   font-size: 6pt;
-  letter-spacing: 1px;
+  letter-spacing: .3px;
   text-transform: uppercase;
 }
 .pcard-art { width: 100%; height: 13mm; object-fit: contain; background: #000; flex: none; }
@@ -1083,7 +1083,7 @@ input { font: inherit; color: inherit; }
 .pcard-stat span { display: block; font-family: var(--data); font-size: 4pt; letter-spacing: .5px; text-transform: uppercase; color: #666; }
 
 .pcard-hits { display: flex; align-items: center; flex-wrap: wrap; gap: 0.8mm; }
-.pcard-hits-label { font-family: var(--data); font-size: 5pt; letter-spacing: 1px; text-transform: uppercase; color: #444; margin-right: 0.5mm; }
+.pcard-hits-label { font-family: var(--data); font-size: 5pt; letter-spacing: .3px; text-transform: uppercase; color: #444; margin-right: 0.5mm; }
 .hit-box {
   width: 3.4mm; height: 3.4mm;
   border: 0.35mm solid #a01c1c;
@@ -1091,7 +1091,7 @@ input { font: inherit; color: inherit; }
   background: #fff;
 }
 .pcard-crit { margin-top: auto; }
-.pcard-crit-label { font-family: var(--data); font-size: 5pt; letter-spacing: 1px; text-transform: uppercase; color: #444; margin-bottom: 0.5mm; }
+.pcard-crit-label { font-family: var(--data); font-size: 5pt; letter-spacing: .3px; text-transform: uppercase; color: #444; margin-bottom: 0.5mm; }
 .crit-track { display: flex; gap: 0.6mm; }
 .crit-cell {
   flex: 1;
@@ -1123,9 +1123,9 @@ input { font: inherit; color: inherit; }
 /* roster print */
 .print-roster { max-width: 180mm; margin: 0 auto; color: #111; }
 .print-roster h1 { font-family: var(--gotisch); font-size: 22pt; margin-bottom: 1mm; }
-.print-roster .pr-sub { font-family: var(--data); font-size: 8pt; letter-spacing: 1px; text-transform: uppercase; color: #555; margin-bottom: 5mm; }
+.print-roster .pr-sub { font-family: var(--data); font-size: 8pt; letter-spacing: .3px; text-transform: uppercase; color: #555; margin-bottom: 5mm; }
 .print-roster h2 {
-  font-family: var(--data); font-size: 9pt; letter-spacing: 2px; text-transform: uppercase;
+  font-family: var(--data); font-size: 9pt; letter-spacing: .4px; text-transform: uppercase;
   background: #17181c; color: #f0ead8;
   padding: 1.4mm 3mm;
   margin: 4mm 0 0;

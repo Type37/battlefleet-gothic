@@ -211,7 +211,6 @@ function statsRun(ship) {
   if (st.Hits)    bits.push(`<b>${escHtml(st.Hits)}</b> Hits`);
   if (st.Shields) bits.push(`<b>${escHtml(st.Shields)}</b> Shields`);
   if (st.Armour)  bits.push(`Armour <b>${escHtml(st.Armour)}</b>`);
-  if (st.Speed)   bits.push(`<b>${escHtml(st.Speed)}</b>`);
   if (!bits.length) return escHtml(ship.category);
   return bits.join('<span class="stat-sep"></span>');
 }
@@ -298,7 +297,7 @@ function renderHome() {
       <span class="fleet-row-emblem"></span>
       <span class="fleet-row-main">
         <span class="fleet-row-name">${escHtml(f.name)}</span>
-        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? '<span class="stat-sep"></span>' + escHtml(f.fleetList) : ''}</span>
+        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? ` (${escHtml(f.fleetList)})` : ''}</span>
       </span>
       <span class="fleet-row-pts"><b>${fleetTotalPts(f)}</b><span>of ${f.limit} pts</span></span>
     </button>`;
@@ -312,7 +311,7 @@ function renderFleet() {
   const m = fmeta(fleet.faction);
 
   $('fleet-name-display').textContent = fleet.name;
-  $('fleet-faction-display').innerHTML = escHtml(m.short) + (fleet.fleetList ? '<span class="stat-sep"></span>' + escHtml(fleet.fleetList) : '');
+  $('fleet-faction-display').textContent = m.short + (fleet.fleetList ? ` (${fleet.fleetList})` : '');
   $('picker-faction-label').textContent = m.short;
 
   // pts tracker
@@ -422,7 +421,7 @@ function renderManifest(fleet) {
         <div class="ship-row-top">
           <button class="ship-row-main row-toggle" data-toggle aria-expanded="false">
             <span class="ship-row-name" style="display:block">${escHtml(s.name)}</span>
-            <span class="ship-row-stats" style="display:block">Squadron of <b>${sq.count}</b><span class="stat-sep"></span>${statsRun(s)}</span>
+            <span class="ship-row-stats" style="display:block">${statsRun(s)}</span>
             ${bad ? `<span class="ship-row-flag" style="display:block">⚠ Squadrons field 2–6 ships</span>` : ''}
           </button>
           <span class="sqd-step">
