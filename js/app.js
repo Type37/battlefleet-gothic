@@ -554,10 +554,10 @@ function renderManifest(fleet) {
   body.innerHTML = html;
 }
 
-function shipDetailHtml(ship) {
+function shipDetailHtml(ship, opts) {
   let html = '';
   const art = shipArt(ship.id);
-  if (art) html += `<img class="ship-art" src="${art}" alt="${escHtml(ship.name)}" loading="lazy">`;
+  if (art && !(opts && opts.skipArt)) html += `<img class="ship-art" src="${art}" alt="${escHtml(ship.name)}" loading="lazy">`;
   const st = ship.stats || {};
   const STAT_PAIRS = [['Speed','Turns'],['Shields','Armour'],['Turrets','Hits']];
   const statRows = STAT_PAIRS
@@ -703,7 +703,7 @@ function selectPickerShip(id, fleet) {
     </div>
     <div class="picker-detail-body">
       ${bsWarn ? `<div class="picker-detail-warn">⚠ Needs ${(countBattleships(fleet)+1)*3} cruiser-class ships before this battleship is legal — you can add it now and sort it later.</div>` : ''}
-      ${shipDetailHtml(s)}
+      ${shipDetailHtml(s, { skipArt: true })}
     </div>
     <div class="picker-detail-footer">
       <button class="btn-primary picker-detail-add${bsWarn ? ' warn' : ''}" data-add="${s.id}">+ Add to Fleet</button>
