@@ -25,7 +25,7 @@
       <div class="mast-emblem" aria-hidden="true"></div>
       <div class="mast-titles">
         <div class="mast-title">Battlefleet Gothic</div>
-        <div class="mast-sub">Fleet Registry · Segmentum Obscurus</div>
+        <div class="mast-sub">Fleet Builder</div>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
       <div id="fleet-menu-dropdown" class="menu-dropdown" hidden>
         <button class="menu-item" id="fleet-menu-rename">Rename Fleet</button>
         <button class="menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
-        <button class="menu-item danger" id="fleet-menu-delete">Strike from Registry</button>
+        <button class="menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
       </div>
     </div>
 
@@ -72,16 +72,16 @@
 
       <!-- Home: fleet index -->
       <div id="home-content">
-        <div class="ledger-band"><span>Registered Fleets</span></div>
+        <div class="ledger-band"><span>Your Fleets</span></div>
         <div id="fleet-index"></div>
         <div class="empty-state" id="empty-fleets" hidden>
           <div class="empty-rule"></div>
-          <div class="empty-title">The registry is empty</div>
-          <div class="empty-sub">No fleets stand ready in Segmentum Obscurus.</div>
+          <div class="empty-title">No fleets yet</div>
+          <div class="empty-sub">Create a fleet to get started.</div>
           <div class="empty-rule"></div>
         </div>
-        <button class="commission-btn" id="btn-new-fleet">✠ &nbsp;Commission New Fleet</button>
-        <button class="import-btn" id="btn-import-fleet">⭱ &nbsp;Import Backup File</button>
+        <button class="commission-btn" id="btn-new-fleet">+ New Fleet</button>
+        <button class="import-btn" id="btn-import-fleet">Import Backup File</button>
         <input type="file" id="import-file-input" accept=".json,application/json" hidden>
       </div>
 
@@ -100,17 +100,17 @@
         <!-- Mobile-only close bar -->
         <header class="registry-mobilebar">
           <button class="mast-back" id="btn-close-registry" aria-label="Close registry">‹</button>
-          <div class="registry-mobilebar-title" id="registry-mobile-title">Registry</div>
+          <div class="registry-mobilebar-title" id="registry-mobile-title">Ships</div>
           <div style="width:44px"></div>
         </header>
 
         <!-- New Fleet wizard -->
         <div id="registry-wizard">
-          <div class="ledger-band ledger-band-red"><span>Commission a Fleet</span></div>
+          <div class="ledger-band ledger-band-red"><span>New Fleet</span></div>
           <div class="wizard-steps" id="wizard-steps">
-            <div class="wstep active" data-step="1" title="Which side you'll command"><i>I</i><em>Faction</em></div>
-            <div class="wstep" data-step="2" title="A named campaign/sector list within your faction — changes which ships are available"><i>II</i><em>Fleet List</em></div>
-            <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>III</i><em>Charter</em></div>
+            <div class="wstep active" data-step="1" title="Which faction you're building for"><i>I</i><em>Faction</em></div>
+            <div class="wstep" data-step="2" title="A named list within your faction — changes which ships are available"><i>II</i><em>Fleet List</em></div>
+            <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>III</i><em>Details</em></div>
           </div>
           <div class="wizard-body">
             <div id="wiz-step-1" class="wiz-step">
@@ -140,10 +140,10 @@
 
         <!-- Ship picker -->
         <div id="registry-picker" hidden>
-          <div class="ledger-band ledger-band-red"><span>Naval Registry</span><span class="ledger-band-aside" id="picker-faction-label"></span></div>
+          <div class="ledger-band ledger-band-red"><span>Add Ships</span><span class="ledger-band-aside" id="picker-faction-label"></span></div>
           <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
           <div class="search-wrap">
-            <input id="picker-search" class="search-input" placeholder="Search the registry…" autocomplete="off">
+            <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
             <button class="search-clear" id="btn-search-clear" hidden aria-label="Clear search">✕</button>
           </div>
           <div id="picker-body"></div>
@@ -187,7 +187,7 @@
 <div id="modal-upgrades" class="overlay" hidden>
   <div class="overlay-sheet overlay-sheet-narrow" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <header class="overlay-head">
-      <div class="overlay-title" id="modal-title">Refit &amp; Upgrades</div>
+      <div class="overlay-title" id="modal-title">Upgrades</div>
       <button class="overlay-close" id="modal-close" aria-label="Close">✕</button>
     </header>
     <div class="overlay-body" id="modal-body"></div>

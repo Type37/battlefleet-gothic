@@ -487,7 +487,7 @@ function renderManifest(fleet) {
           ${shipDetailHtml(g.s)}
           ${upgTags ? `<div style="margin-top:6px">${upgTags}</div>` : ''}
           <div class="detail-actions">
-            ${g.s.upgrades && g.s.upgrades.length ? `<button class="chip-btn" data-upgrades="${g.i}">Refit / Upgrades</button>` : ''}
+            ${g.s.upgrades && g.s.upgrades.length ? `<button class="chip-btn" data-upgrades="${g.i}">Upgrades</button>` : ''}
             <button class="chip-btn" data-remove="${g.i}">Remove Ship</button>
           </div>
         </div></div>
@@ -527,8 +527,8 @@ function renderManifest(fleet) {
   if (!html) {
     html = `<div class="empty-state">
       <div class="empty-rule"></div>
-      <div class="empty-title">No ships on the manifest</div>
-      <div class="empty-sub">Add your first vessel from the registry: the panel to the right on desktop, or the <b>Add</b> button below on mobile. Start with a Fleet Commander and capital ships, then escorts.</div>
+      <div class="empty-title">No ships yet</div>
+      <div class="empty-sub">Add your first ship from the panel on the right (or the <b>Add</b> button below on mobile). Start with a Fleet Commander and capital ships, then escorts.</div>
       <div class="empty-rule"></div>
     </div>`;
   }
@@ -574,7 +574,7 @@ function shipDetailHtml(ship) {
     html += ship.specialRules.map(r =>
       `<div class="rule-block"><b>${escHtml(r.name)}</b><p>${escHtml(r.effects || '')}</p></div>`).join('');
   }
-  return html || '<p class="wiz-note">No further data held in the registry for this class.</p>';
+  return html || '<p class="wiz-note">No additional data for this ship.</p>';
 }
 
 /* ── Picker render ─────────────────────────────────────────── */
@@ -593,7 +593,7 @@ function renderPicker(fleet) {
   const tabs = ['All', ...cats];
   if (!tabs.includes(pickerCategory)) pickerCategory = 'All';
   $('picker-tabs').innerHTML = tabs.map(t =>
-    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every vessel available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
+    `<button class="cat-tab ${t === pickerCategory ? 'active' : ''}" data-tab="${escHtml(t)}" role="tab" aria-selected="${t === pickerCategory}" title="${escHtml(CAT_TITLES[t] || 'Every ship available to this fleet list')}">${escHtml(t === 'All' ? 'All' : t + 's')}</button>`
   ).join('');
 
   // rows
@@ -626,13 +626,13 @@ function renderPicker(fleet) {
           <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio; allowed, but flagged' : 'Add to fleet'}">+</button>
         </div>
         <div class="ship-detail"><div class="ship-detail-pad">
-          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet; you may add it anyway and fix the manifest later.</div>` : ''}
+          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet; you can add it anyway and fix this later.</div>` : ''}
           ${shipDetailHtml(s)}
         </div></div>
       </div>`;
     });
   }
-  $('picker-body').innerHTML = html || `<div class="pick-none">No vessels of this class answer the summons.</div>`;
+  $('picker-body').innerHTML = html || `<div class="pick-none">No ships match.</div>`;
 }
 
 /* ── Fleet mutations ───────────────────────────────────────── */
@@ -644,17 +644,17 @@ function addShip(shipId) {
   if (s.category === 'Fleet Commander') {
     const had = !!fleet.commander;
     fleet.commander = { shipId, name: s.name, pts: s.pts, rerolls: 0 };
-    showToast(had ? `${s.name} assumes command` : `${s.name} takes command of the fleet`);
+    showToast(had ? `${s.name} set as Fleet Commander` : `${s.name} added as Fleet Commander`);
   } else if (s.category === 'Escort') {
     const sq = fleet.squadrons.find(x => x.shipId === shipId);
     if (sq) {
-      if (sq.count >= 6) { showToast(`Squadrons field at most 6 ships`); return; }
-      sq.count++; showToast(`${s.name} joins the squadron (${sq.count})`);
+      if (sq.count >= 6) { showToast(`A squadron can have at most 6 ships`); return; }
+      sq.count++; showToast(`${s.name} added (${sq.count} in squadron)`);
     }
-    else { fleet.squadrons.push({ shipId, count: 2, upgrades: [] }); showToast(`${s.name} squadron formed (2 ships)`); }
+    else { fleet.squadrons.push({ shipId, count: 2, upgrades: [] }); showToast(`${s.name} squadron added (2 ships)`); }
   } else {
     fleet.ships.push({ shipId, qty: 1, upgrades: [], _idx: Date.now() });
-    showToast(`${s.name} added to the manifest`);
+    showToast(`${s.name} added`);
   }
   saveFleets();
   renderFleet();
@@ -664,7 +664,7 @@ function removeShip(i) {
   const s = shipDef(fleet.ships[i]?.shipId);
   fleet.ships.splice(i, 1);
   saveFleets(); renderFleet();
-  if (s) showToast(`${s.name} struck from the manifest`);
+  if (s) showToast(`${s.name} removed`);
 }
 
 /* ── Wizard ────────────────────────────────────────────────── */
@@ -682,7 +682,7 @@ function wizGoto(step) {
   const next = $('btn-wiz-next');
   if (step === 1) { next.textContent = 'Continue ›'; next.disabled = !wizDraft.faction; }
   if (step === 2) { next.textContent = 'Continue ›'; next.disabled = !wizDraft.fleetList; }
-  if (step === 3) { next.textContent = '✠ Commission Fleet'; next.disabled = false; }
+  if (step === 3) { next.textContent = 'Create Fleet'; next.disabled = false; }
 }
 function renderWizard() {
   const grid = $('faction-grid');
@@ -703,7 +703,7 @@ function renderWizardLists() {
   const lists = fac ? fac.fleetLists : [];
   const box = $('fleet-list-options');
   if (!lists.length) {
-    box.innerHTML = `<p class="wiz-note">No named fleet lists for this faction — the fleet will be unaligned.</p>`;
+    box.innerHTML = `<p class="wiz-note">This faction has no named fleet lists — you can skip this step.</p>`;
     wizDraft.fleetList = '';
     return;
   }
@@ -730,7 +730,7 @@ function commissionFleet() {
   wizDraft = {}; $('new-fleet-name').value = '';
   wizGoto(1); renderWizard();
   setState('fleet');
-  showToast(`${name} enters the registry`);
+  showToast(`${name} created`);
 }
 
 /* ── Export & print ────────────────────────────────────────── */
@@ -978,7 +978,7 @@ function renderUpgradeBody() {
   const fleet = getFleet();
   const sl = fleet.ships[modalSlotIdx];
   const s = shipDef(sl.shipId);
-  $('modal-title').textContent = `Refit: ${s.name}`;
+  $('modal-title').textContent = `Upgrades: ${s.name}`;
   $('modal-body').innerHTML = s.upgrades.map((g, gi) => `
     <div class="upg-group">
       <div class="upg-group-name">${escHtml(g.group || 'Options')}</div>
@@ -1028,16 +1028,16 @@ function duplicateFleet() {
   copy.created = new Date().toISOString();
   fleets.push(copy);
   saveFleets();
-  showToast(`${copy.name} entered into the registry`);
+  showToast(`${copy.name} created`);
 }
 function deleteFleet() {
   const fleet = getFleet();
-  if (!window.confirm(`Strike "${fleet.name}" from the registry? This cannot be undone.`)) return;
+  if (!window.confirm(`Delete "${fleet.name}"? This cannot be undone.`)) return;
   fleets.splice(activeFleet, 1);
   activeFleet = null;
   saveFleets();
   setState('home');
-  showToast('Fleet struck from the registry');
+  showToast('Fleet deleted');
 }
 
 /* ── Events ────────────────────────────────────────────────── */
@@ -1150,14 +1150,14 @@ function bindEvents() {
   $('fleet-body').addEventListener('click', e => {
     const t = e.target;
     const removeCmd = t.closest('[data-remove-cmd]');
-    if (removeCmd) { getFleet().commander = null; saveFleets(); renderFleet(); showToast('Commander relieved of duty'); return; }
+    if (removeCmd) { getFleet().commander = null; saveFleets(); renderFleet(); showToast('Commander removed'); return; }
     const rem = t.closest('[data-remove]');
     if (rem) { removeShip(+rem.dataset.remove); return; }
     const remSqd = t.closest('[data-remove-sqd]');
     if (remSqd) {
       const fleet = getFleet();
       fleet.squadrons.splice(+remSqd.dataset.removeSqd, 1);
-      saveFleets(); renderFleet(); showToast('Squadron disbanded'); return;
+      saveFleets(); renderFleet(); showToast('Squadron removed'); return;
     }
     const inc = t.closest('[data-sqd-inc]');
     if (inc) {
@@ -1234,7 +1234,7 @@ async function boot() {
   } catch (e) { ART = new Set(); }
   if (!DB) {
     document.body.innerHTML = `<div style="padding:40px;font-family:serif;text-align:center">
-      <h1 style="font-size:22px">The registry archives are unreachable</h1>
+      <h1 style="font-size:22px">Couldn't load ship data</h1>
       <p style="opacity:.7">ship_database.json failed to load; serve this app over HTTP.</p></div>`;
     return;
   }
