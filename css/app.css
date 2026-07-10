@@ -289,8 +289,7 @@ input { font: inherit; color: inherit; }
 .fleet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: var(--sp-lg); }
 .fleet-card {
   text-align: left;
-  background: var(--hull);
-  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+  background: var(--solid);
   box-shadow: var(--glass-edge), var(--shadow-md);
   border-radius: var(--radius-lg);
   padding: var(--sp-lg);
@@ -385,8 +384,7 @@ input { font: inherit; color: inherit; }
 .man-band-pts { margin-left: auto; font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); }
 
 .ship-row {
-  background: var(--hull);
-  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+  background: var(--solid);
   box-shadow: var(--glass-edge), var(--shadow-sm);
   border-radius: var(--radius-lg);
   margin-bottom: var(--sp-sm);
