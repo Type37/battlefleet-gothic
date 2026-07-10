@@ -259,6 +259,20 @@ input { font: inherit; color: inherit; }
   padding: var(--sp-xl);
   scrollbar-width: thin; scrollbar-color: var(--stroke-strong, var(--line)) transparent;
 }
+/* Detail pane — ship picker (fleet state) / new-fleet wizard (home state) */
+#registry {
+  flex: 1; min-width: 0; max-width: 760px;
+  display: flex; flex-direction: column;
+  background: var(--hull);
+  border-left: 1px solid var(--line);
+}
+.registry-inner {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: var(--stroke-strong, var(--line)) transparent;
+}
+.registry-mobilebar { display: none; }
 .view-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-lg); margin-bottom: var(--sp-xl); }
 .view-head h1 { font-family: var(--gotisch); font-size: 24px; font-weight: 700; }
 
