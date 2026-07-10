@@ -345,10 +345,7 @@ function setState(s) {
   app.dataset.state = s;
   const onFleet = s === 'fleet';
 
-  $('mast-brand').hidden   = onFleet;
-  $('mast-fleet').hidden   = !onFleet;
-  $('mast-pts').hidden     = !onFleet;
-  $('mast-actions').hidden = !onFleet;
+  $('sidebar').hidden = !onFleet;
   $('fleet-menu-dropdown').hidden = true;
 
   $('home-content').hidden  = onFleet;
@@ -379,14 +376,17 @@ function renderHome() {
   $('empty-fleets').hidden = fleets.length > 0;
   idx.innerHTML = fleets.map((f, i) => {
     const m = fmeta(f.faction);
+    const total = fleetTotalPts(f);
+    const pct = Math.min(100, Math.round((total / f.limit) * 100));
     return `
-    <button class="fleet-row" data-open="${i}" style="${fstyle(f.faction)}">
-      <span class="fleet-row-emblem"></span>
-      <span class="fleet-row-main">
-        <span class="fleet-row-name">${escHtml(f.name)}</span>
-        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? ` (${escHtml(f.fleetList)})` : ''}</span>
-      </span>
-      <span class="fleet-row-pts"><b>${fleetTotalPts(f)}</b><span>of ${f.limit} pts</span></span>
+    <button class="fleet-card" data-open="${i}" style="${fstyle(f.faction)}">
+      <div class="fleet-card-top">
+        <span class="fleet-card-emblem"></span>
+        <span class="fleet-card-pts">${total}<small>/ ${f.limit} pts</small></span>
+      </div>
+      <div class="fleet-card-name">${escHtml(f.name)}</div>
+      <div class="fleet-card-sub">${escHtml(m.short)}${f.fleetList ? ` &middot; ${escHtml(f.fleetList)}` : ''}</div>
+      <div class="fleet-card-bar"><div style="width:${pct}%"></div></div>
     </button>`;
   }).join('');
 }
@@ -1051,7 +1051,7 @@ function bindEvents() {
     $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
   });
   document.addEventListener('click', e => {
-    if (!e.target.closest('.mast-actions')) $('fleet-menu-dropdown').hidden = true;
+    if (!e.target.closest('.sidebar-actions')) $('fleet-menu-dropdown').hidden = true;
   });
   $('fleet-menu-rename').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; renameFleet(); });
   $('fleet-menu-duplicate').addEventListener('click', () => { $('fleet-menu-dropdown').hidden = true; duplicateFleet(); });

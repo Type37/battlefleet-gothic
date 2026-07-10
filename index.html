@@ -13,75 +13,78 @@
       }
     } catch (e) {}
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Roboto+Slab:wght@700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
 <div id="app" data-state="home">
 
-  <!-- ══════════ Masthead ══════════ -->
+  <!-- ══════════ Topbar ══════════ -->
   <header id="masthead">
     <div class="mast-brand" id="mast-brand">
       <div class="mast-emblem" aria-hidden="true"></div>
       <div class="mast-titles">
         <div class="mast-title">Battlefleet Gothic</div>
-        <div class="mast-sub">Fleet Builder</div>
       </div>
     </div>
-
-    <div class="mast-fleet" id="mast-fleet" hidden>
-      <button class="mast-back" id="btn-back-home" aria-label="Back to fleets">‹</button>
-      <div class="mast-fleet-id">
-        <div class="mast-fleet-name" id="fleet-name-display">Fleet</div>
-        <div class="mast-fleet-sub" id="fleet-faction-display"></div>
-      </div>
-    </div>
-
-    <div class="mast-pts" id="mast-pts" hidden>
-      <div class="mast-pts-nums">
-        <span class="pts-used" id="pts-used">0</span><span class="pts-sep">/</span><span class="pts-limit" id="pts-limit">0</span>
-        <span class="pts-word">pts</span>
-        <span class="pts-remaining" id="pts-remaining"></span>
-      </div>
-      <div class="pts-track" aria-hidden="true" title="Gold: legal points spent. Red: points tied up in ships that currently break a rule.">
-        <div class="pts-seg pts-valid" id="pts-valid-bar"></div>
-        <div class="pts-seg pts-invalid" id="pts-invalid-bar"></div>
-      </div>
-    </div>
-
-    <div class="mast-actions" id="mast-actions" hidden>
-      <button class="mast-btn" id="btn-export">Export</button>
-      <button class="mast-btn mast-btn-icon" id="btn-fleet-menu" aria-label="Fleet options">⋯</button>
-      <div id="fleet-menu-dropdown" class="menu-dropdown" hidden>
-        <button class="menu-item" id="fleet-menu-rename">Rename Fleet</button>
-        <button class="menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
-        <button class="menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
-      </div>
-    </div>
-
     <button class="mast-btn mast-btn-icon mast-theme-toggle" id="btn-theme-toggle" aria-label="Switch to dark mode">
       <span id="theme-toggle-icon" aria-hidden="true"></span>
     </button>
   </header>
 
-  <!-- ══════════ Deck : two columns ══════════ -->
+  <!-- ══════════ App shell ══════════ -->
   <div id="deck">
 
-    <!-- Left: manifest -->
+    <!-- Sidebar: fleet identity, points, actions (fleet state only) -->
+    <aside id="sidebar" hidden>
+      <button class="mast-back" id="btn-back-home" aria-label="Back to fleets">‹ Fleets</button>
+
+      <div class="mast-fleet-id">
+        <div class="mast-fleet-name" id="fleet-name-display">Fleet</div>
+        <div class="mast-fleet-sub" id="fleet-faction-display"></div>
+      </div>
+
+      <div class="mast-pts" id="mast-pts">
+        <div class="mast-pts-nums">
+          <span class="pts-used" id="pts-used">0</span><span class="pts-sep">/</span><span class="pts-limit" id="pts-limit">0</span>
+          <span class="pts-word">pts</span>
+        </div>
+        <div class="pts-remaining" id="pts-remaining"></div>
+        <div class="pts-track" aria-hidden="true" title="Gold: legal points spent. Red: points tied up in ships that currently break a rule.">
+          <div class="pts-seg pts-valid" id="pts-valid-bar"></div>
+          <div class="pts-seg pts-invalid" id="pts-invalid-bar"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn-sidebar" id="btn-export">Export</button>
+        <button class="btn-sidebar" id="btn-fleet-menu" aria-label="Fleet options">Fleet Options ⋯</button>
+        <div id="fleet-menu-dropdown" class="menu-dropdown" hidden>
+          <button class="menu-item" id="fleet-menu-rename">Rename Fleet</button>
+          <button class="menu-item" id="fleet-menu-duplicate">Duplicate Fleet</button>
+          <button class="menu-item danger" id="fleet-menu-delete">Delete Fleet</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Overview: fleet grid (home) / ship roster (fleet) -->
     <section id="manifest">
 
       <!-- Home: fleet index -->
       <div id="home-content">
-        <div class="ledger-band"><span>Your Fleets</span></div>
-        <div id="fleet-index"></div>
+        <div class="view-head">
+          <h1>Your Fleets</h1>
+          <button class="btn-primary" id="btn-new-fleet">+ New Fleet</button>
+        </div>
+        <div id="fleet-index" class="fleet-grid"></div>
         <div class="empty-state" id="empty-fleets" hidden>
-          <div class="empty-rule"></div>
           <div class="empty-title">No fleets yet</div>
           <div class="empty-sub">Create a fleet to get started.</div>
-          <div class="empty-rule"></div>
         </div>
-        <button class="commission-btn" id="btn-new-fleet">+ New Fleet</button>
-        <button class="import-btn" id="btn-import-fleet">Import Backup File</button>
+        <button class="btn-outline btn-block" id="btn-import-fleet">Import Backup File</button>
         <input type="file" id="import-file-input" accept=".json,application/json" hidden>
       </div>
 
@@ -93,7 +96,7 @@
 
     </section>
 
-    <!-- Right: registry (wizard on home / picker on fleet) -->
+    <!-- Detail: new-fleet wizard (home) / ship picker (fleet) -->
     <section id="registry">
       <div class="registry-inner">
 
@@ -106,11 +109,11 @@
 
         <!-- New Fleet wizard -->
         <div id="registry-wizard">
-          <div class="ledger-band ledger-band-red"><span>New Fleet</span></div>
+          <div class="pane-head"><span>New Fleet</span></div>
           <div class="wizard-steps" id="wizard-steps">
-            <div class="wstep active" data-step="1" title="Which faction you're building for"><i>I</i><em>Faction</em></div>
-            <div class="wstep" data-step="2" title="A named list within your faction — changes which ships are available"><i>II</i><em>Fleet List</em></div>
-            <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>III</i><em>Details</em></div>
+            <div class="wstep active" data-step="1" title="Which faction you're building for"><i>1</i><em>Faction</em></div>
+            <div class="wstep" data-step="2" title="A named list within your faction — changes which ships are available"><i>2</i><em>Fleet List</em></div>
+            <div class="wstep" data-step="3" title="Name the fleet and set its points limit"><i>3</i><em>Details</em></div>
           </div>
           <div class="wizard-body">
             <div id="wiz-step-1" class="wiz-step">
@@ -133,14 +136,14 @@
             </div>
           </div>
           <div class="wizard-foot">
-            <button class="ghost-btn" id="btn-wiz-back" hidden>‹ Back</button>
-            <button class="primary-btn" id="btn-wiz-next" disabled>Continue ›</button>
+            <button class="btn-outline" id="btn-wiz-back" hidden>‹ Back</button>
+            <button class="btn-primary" id="btn-wiz-next" disabled>Continue ›</button>
           </div>
         </div>
 
         <!-- Ship picker -->
         <div id="registry-picker" hidden>
-          <div class="ledger-band ledger-band-red"><span>Add Ships</span><span class="ledger-band-aside" id="picker-faction-label"></span></div>
+          <div class="pane-head"><span>Add Ships</span><span class="pane-head-aside" id="picker-faction-label"></span></div>
           <div class="cat-tabs" id="picker-tabs" role="tablist"></div>
           <div class="search-wrap">
             <input id="picker-search" class="search-input" placeholder="Search ships…" autocomplete="off">
@@ -172,10 +175,10 @@
     </header>
     <div class="overlay-body">
       <div class="export-actions">
-        <button class="primary-btn" id="btn-print-cards">⎙ &nbsp;Print Ship Cards</button>
-        <button class="ghost-btn" id="btn-print-roster">Print Roster</button>
-        <button class="ghost-btn" id="btn-copy-text">Copy as Text</button>
-        <button class="ghost-btn" id="btn-download-fleet">⭳ Save Backup File</button>
+        <button class="btn-primary" id="btn-print-cards">⎙ &nbsp;Print Ship Cards</button>
+        <button class="btn-outline" id="btn-print-roster">Print Roster</button>
+        <button class="btn-outline" id="btn-copy-text">Copy as Text</button>
+        <button class="btn-outline" id="btn-download-fleet">⭳ Save Backup File</button>
       </div>
       <p class="export-hint">.bfg.json backups re-import from the Fleets screen — use them to move or share a fleet.</p>
       <pre class="export-preview" id="export-preview"></pre>
