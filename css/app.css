@@ -1,35 +1,37 @@
 /* ═══════════════════════════════════════════════════════════════
    BATTLEFLEET GOTHIC : FLEET REGISTRY
-   Design: the 1999 rulebook & Fleet Deck cards. Blood-red bands,
-   bone text on void-blue, ledger rows. Native system type — no
-   webfonts to load; hierarchy comes from weight and tracking.
+   Design: an admiralty ledger — ruled rows and tabbed selection
+   states, not rounded cards. Brass and gunmetal, not gold-and-void.
+   Corner brackets (blueprint registration marks) are the one
+   deliberate ornament; everything else is flat and rectilinear.
+   Native system type — hierarchy comes from weight and tracking.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Light is the default theme; [data-theme="dark"] overrides every token
-   below. Blood/gold/faction hues stay constant across both — only the
+   below. Blood/brass/faction hues stay constant across both — only the
    neutral ground and text scale flips. --on-blood/--on-gold exist because
    a few surfaces (ledger bands, primary buttons, the checked-upgrade box)
    sit on a fixed accent color regardless of theme, so their text can't
    use the theme-flipping --bone/--ink tokens without breaking contrast. */
 :root {
-  /* ground */
-  --ink:      #f2ede0;
-  --ink2:     #e8e0c9;
-  --hull:     #ffffff;
-  --hull2:    #f7f2e2;
-  --hull3:    #efe6cd;
-  --line:     #d9cfae;
-  --line2:    #c4b78c40;
-  /* text */
-  --bone:     #241d12;
-  --bone-dim: #5c4f36;
-  --faint:    #766646;
+  /* ground — aged ledger paper */
+  --ink:      #efe9d8;
+  --ink2:     #e3dac0;
+  --hull:     #faf7ee;
+  --hull2:    #f2ead2;
+  --hull3:    #e9dfc0;
+  --line:     #c9bb92;
+  --line2:    #b9a97440;
+  /* text — iron-gall ink */
+  --bone:     #201a10;
+  --bone-dim: #52462e;
+  --faint:    #726139;
   /* accents */
-  --blood:    #8e1a17;
-  --blood2:   #a92220;
-  --blood-deep: #5e1210;
-  --gold:     #93691a;
-  --gold-dim: #b08d3e;
+  --blood:    #7c2116;
+  --blood2:   #9c2c1c;
+  --blood-deep: #4f150d;
+  --gold:     #8a5a24;
+  --gold-dim: #a97b3e;
   --on-blood: #f0ead8;
   --on-gold:  #faf6ea;
   /* semantic */
@@ -51,9 +53,8 @@
   --f-pirates:  #9d8550;
   --f-armada:   #b09048;
 
-  --app-glow: #fffdf5;
-  --mast-grad-1: #fbf7ec;
-  --mast-grad-2: #f2ead2;
+  --app-glow: #fbf6e8;
+  --mast-bg: var(--ink2);
 
   --sys: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --gotisch: var(--sys);  /* display: weight + tracking carry hierarchy, not a separate face */
@@ -65,25 +66,25 @@
 }
 
 :root[data-theme="dark"] {
-  --ink:      #0d0f14;
-  --ink2:     #10131a;
-  --hull:     #151923;
-  --hull2:    #1b202c;
-  --hull3:    #222836;
-  --line:     #262c39;
-  --line2:    #37405233;
-  --bone:     #e6dfca;
-  --bone-dim: #b3aa92;
-  --faint:    #9297a6;
-  --gold:     #c9a44a;
-  --gold-dim: #8d7434;
-  --on-gold:  #1a1408;
+  /* ground — gunmetal chart room, not void-black */
+  --ink:      #171b20;
+  --ink2:     #1b2026;
+  --hull:     #21272e;
+  --hull2:    #272e36;
+  --hull3:    #303941;
+  --line:     #3a434c;
+  --line2:    #3a434c40;
+  --bone:     #dcd6c6;
+  --bone-dim: #a39c8a;
+  --faint:    #7d8590;
+  --gold:     #c99a56;
+  --gold-dim: #8d7038;
+  --on-gold:  #201a10;
   --warn-bg: rgba(190,120,20,.12); --warn-bd: rgba(200,140,40,.45); --warn-tx: #d9a44a;
   --err-bg:  rgba(150,30,25,.14);  --err-bd:  rgba(190,60,50,.5);   --err-tx:  #e08d82;
   --ok-tx:   #7fb98a;
-  --app-glow: #161b28;
-  --mast-grad-1: #141824;
-  --mast-grad-2: #10131c;
+  --app-glow: #1e242b;
+  --mast-bg: var(--ink2);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,9 +98,9 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
 }
-button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; border-radius: 0; }
 button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
-input { font: inherit; color: inherit; }
+input { font: inherit; color: inherit; border-radius: 0; }
 [hidden] { display: none !important; }
 
 /* Display treatment: uppercase + tracking, weight carries hierarchy —
@@ -115,17 +116,29 @@ input { font: inherit; color: inherit; }
 .fleet-row-name, .ship-row-name, .pick-row-name, .empty-title, .overlay-title, .pcard-class { font-weight: 600; }
 .registry-mobilebar-title { font-weight: 500; }
 
-/* subtle vertical grain */
+/* Corner-bracket device — blueprint registration marks. The one
+   deliberate ornament in the whole system; used sparingly. */
+.bracket-frame { position: relative; }
+.bracket-frame::before, .bracket-frame::after {
+  content: '';
+  position: absolute;
+  width: 11px; height: 11px;
+  border: 1.5px solid var(--gold-dim);
+  opacity: .8;
+  pointer-events: none;
+}
+.bracket-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.bracket-frame::after  { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+/* faint page ground */
 #app {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(ellipse 120% 60% at 50% -10%, var(--app-glow) 0%, transparent 60%),
-    var(--ink);
+  background: var(--app-glow);
 }
 
-/* ═══════════ Masthead ═══════════ */
+/* ═══════════ Masthead — a brass letterhead, not an app bar ═══════════ */
 #masthead {
   flex: none;
   min-height: var(--mast-h);
@@ -133,30 +146,22 @@ input { font: inherit; color: inherit; }
   align-items: center;
   gap: 20px;
   padding: 0 20px;
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--mast-grad-1) 0%, var(--mast-grad-2) 100%);
+  background: var(--mast-bg);
+  border-bottom: 2px solid var(--gold-dim);
   position: relative;
   z-index: 20;
 }
-#masthead::after { /* gold hairline beneath */
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: -3px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim) 25%, var(--gold-dim) 75%, transparent);
-  opacity: .5;
-  pointer-events: none;
-}
 
-.mast-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.mast-brand { display: flex; align-items: center; gap: 14px; min-width: 0; padding: 8px 12px 8px 4px; }
 .mast-emblem {
-  width: 34px; height: 34px; flex: none;
+  width: 30px; height: 30px; flex: none;
   background-color: var(--gold);
   -webkit-mask: url('../assets/icons/armada.svg') no-repeat center / contain;
   mask: url('../assets/icons/armada.svg') no-repeat center / contain;
 }
 .mast-title {
   font-family: var(--gotisch);
-  font-size: 25px;
+  font-size: 24px;
   line-height: 1;
   letter-spacing: .5px;
   color: var(--bone);
@@ -178,14 +183,13 @@ input { font: inherit; color: inherit; }
   font-size: 26px; line-height: 1;
   color: var(--bone-dim);
   border: 1px solid var(--line);
-  border-radius: 3px;
   background: var(--hull);
   transition: color .12s, border-color .12s;
 }
 .mast-back:hover { color: var(--bone); border-color: var(--gold-dim); }
 .mast-fleet-name {
   font-family: var(--gotisch);
-  font-size: 22px;
+  font-size: 21px;
   line-height: 1.05;
   white-space: nowrap; overflow: visible;
 }
@@ -212,15 +216,14 @@ input { font: inherit; color: inherit; }
 .pts-remaining { margin-left: auto; font-size: 12px; color: var(--bone-dim); }
 .mast-pts.over-limit .pts-used, .mast-pts.over-limit .pts-remaining { color: var(--err-tx); }
 .pts-track {
-  height: 5px;
+  height: 4px;
   background: var(--hull);
   border: 1px solid var(--line);
-  border-radius: 2px;
   display: flex;
   overflow: hidden;
 }
 .pts-seg { height: 100%; transition: width .3s ease; }
-.pts-valid   { background: linear-gradient(180deg, var(--gold), var(--gold-dim)); }
+.pts-valid   { background: var(--gold); }
 .pts-invalid { background: var(--blood2); }
 .mast-pts.over-limit .pts-valid { background: var(--blood-deep); }
 
@@ -233,7 +236,6 @@ input { font: inherit; color: inherit; }
   color: var(--bone-dim);
   border: 1px solid var(--line);
   background: var(--hull);
-  border-radius: 3px;
   padding: 9px 14px;
   transition: color .12s, border-color .12s;
 }
@@ -244,7 +246,10 @@ input { font: inherit; color: inherit; }
   flex: none;
   padding: 9px;
   color: var(--bone-dim);
+  border-color: transparent;
+  background: transparent;
 }
+.mast-theme-toggle:hover { border-color: var(--line); }
 .mast-theme-toggle svg { display: block; width: 18px; height: 18px; }
 
 .menu-dropdown {
@@ -254,8 +259,7 @@ input { font: inherit; color: inherit; }
   min-width: 200px;
   background: var(--hull2);
   border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: 0 12px 32px rgba(0,0,0,.55);
+  box-shadow: 4px 4px 0 var(--line2);
   z-index: 60;
   padding: 4px;
 }
@@ -264,7 +268,6 @@ input { font: inherit; color: inherit; }
   text-align: left;
   font-family: var(--data); font-size: 13px;
   padding: 10px 12px;
-  border-radius: 3px;
   color: var(--bone-dim);
 }
 .menu-item:hover { background: var(--hull3); color: var(--bone); }
@@ -328,10 +331,9 @@ input { font: inherit; color: inherit; }
   background: var(--ink2);
 }
 .ledger-band-red {
-  background: linear-gradient(180deg, var(--blood) 0%, var(--blood-deep) 100%);
+  background: var(--blood);
   color: var(--on-blood);
-  border-bottom: 1px solid #000;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  border-bottom: 1px solid var(--blood-deep);
 }
 .ledger-band-aside { font-weight: 400; letter-spacing: .3px; opacity: .8; }
 
@@ -344,9 +346,10 @@ input { font: inherit; color: inherit; }
   text-align: left;
   padding: 14px 18px;
   border-bottom: 1px solid var(--line);
-  transition: background .12s;
+  border-left: 3px solid transparent;
+  transition: background .12s, border-color .12s;
 }
-.fleet-row:hover { background: var(--hull); }
+.fleet-row:hover { background: var(--hull); border-left-color: var(--gold-dim); }
 .fleet-row-emblem {
   width: 30px; height: 30px; flex: none;
   background-color: var(--fc, var(--bone-dim));
@@ -381,12 +384,11 @@ input { font: inherit; color: inherit; }
   letter-spacing: .4px;
   text-transform: uppercase;
   color: var(--on-blood);
-  background: linear-gradient(180deg, var(--blood2), var(--blood));
-  border: 1px solid var(--blood2);
-  border-radius: 3px;
-  transition: filter .12s;
+  background: var(--blood);
+  border: 1px solid var(--blood-deep);
+  transition: background .12s;
 }
-.commission-btn:hover { filter: brightness(1.15); }
+.commission-btn:hover { background: var(--blood2); }
 
 .import-btn {
   display: block;
@@ -399,7 +401,6 @@ input { font: inherit; color: inherit; }
   color: var(--bone-dim);
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 3px;
   transition: color .12s, border-color .12s;
 }
 .import-btn:hover { color: var(--bone); border-color: var(--gold-dim); }
@@ -420,10 +421,7 @@ input { font: inherit; color: inherit; }
 .pick-row.open [data-toggle] .pick-row-name::before { transform: rotate(90deg); }
 
 .empty-state { text-align: center; padding: 42px 24px; }
-.empty-rule {
-  height: 1px; width: 120px; margin: 0 auto;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-}
+.empty-rule { height: 1px; width: 120px; margin: 0 auto; background: var(--line); }
 .empty-title { font-family: var(--gotisch); font-size: 24px; margin: 18px 0 6px; color: var(--bone-dim); }
 .empty-sub { font-style: italic; color: var(--faint); margin-bottom: 18px; }
 
@@ -433,8 +431,8 @@ input { font: inherit; color: inherit; }
   display: flex; gap: 9px; align-items: flex-start;
   font-family: var(--data); font-size: 12.5px; line-height: 1.4;
   padding: 8px 11px;
-  border-radius: 3px;
   border: 1px solid;
+  border-left-width: 3px;
 }
 .vitem.err  { background: var(--err-bg);  border-color: var(--err-bd);  color: var(--err-tx); }
 .vitem.warn { background: var(--warn-bg); border-color: var(--warn-bd); color: var(--warn-tx); }
@@ -445,14 +443,13 @@ input { font: inherit; color: inherit; }
   position: sticky; top: 0; z-index: 5;
   display: flex; align-items: baseline; gap: 10px;
   padding: 9px 18px 7px;
-  background: linear-gradient(180deg, var(--blood) 0%, var(--blood-deep) 100%);
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  background: var(--blood);
+  border-top: 1px solid var(--blood-deep);
+  border-bottom: 1px solid var(--blood-deep);
   font-family: var(--data);
   font-size: 11px; font-weight: 700;
   letter-spacing: .5px; text-transform: uppercase;
   color: var(--on-blood);
-  text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 .man-band-count { font-weight: 400; opacity: .75; letter-spacing: .3px; }
 .man-band-pts { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; letter-spacing: .5px; }
@@ -494,7 +491,6 @@ input { font: inherit; color: inherit; }
 .row-x {
   flex: none;
   width: 38px; height: 38px;
-  border-radius: 3px;
   color: var(--faint);
   font-size: 15px;
   transition: color .12s, background .12s;
@@ -514,7 +510,6 @@ input { font: inherit; color: inherit; }
 .sqd-btn {
   width: 34px; height: 34px;
   border: 1px solid var(--line);
-  border-radius: 3px;
   background: var(--hull);
   color: var(--bone-dim);
   font-family: var(--data); font-size: 15px; line-height: 1;
@@ -546,7 +541,6 @@ input { font: inherit; color: inherit; }
   object-fit: contain;
   background: #000;
   border: 1px solid var(--line);
-  border-radius: 4px;
   margin: 2px 0 12px;
 }
 
@@ -556,8 +550,8 @@ input { font: inherit; color: inherit; }
 }
 .stat-cell {
   display: flex; align-items: center; gap: 9px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  border-top: 1px solid var(--line);
+  border-bottom: 2px solid var(--gold-dim);
   background: var(--hull);
   padding: 9px 13px;
   min-width: 80px;
@@ -605,7 +599,6 @@ input { font: inherit; color: inherit; }
   letter-spacing: .3px; text-transform: uppercase;
   padding: 8px 13px;
   border: 1px solid var(--line);
-  border-radius: 3px;
   background: var(--hull);
   color: var(--bone-dim);
   transition: color .12s, border-color .12s;
@@ -616,7 +609,6 @@ input { font: inherit; color: inherit; }
   font-family: var(--data); font-size: 11px;
   color: var(--gold);
   border: 1px solid var(--gold-dim);
-  border-radius: 3px;
   padding: 2px 8px;
   margin: 2px 4px 2px 0;
   font-variant-numeric: tabular-nums;
@@ -666,12 +658,12 @@ input { font: inherit; color: inherit; }
   text-align: left;
   padding: 12px 14px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-left: 3px solid transparent;
   background: var(--hull);
   transition: border-color .12s, background .12s;
 }
-.faction-cell:hover { border-color: var(--gold-dim); background: var(--hull2); }
-.faction-cell.selected { border-color: var(--gold); background: var(--hull2); box-shadow: inset 0 0 0 1px var(--gold); }
+.faction-cell:hover { border-color: var(--gold-dim); }
+.faction-cell.selected { border-color: var(--gold-dim); border-left-color: var(--gold); background: var(--hull2); }
 .faction-icon {
   width: 30px; height: 30px; flex: none;
   background-color: var(--fc, var(--bone-dim));
@@ -689,13 +681,13 @@ input { font: inherit; color: inherit; }
   display: block; width: 100%; text-align: left;
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-left: 3px solid transparent;
   background: var(--hull);
   margin-bottom: 8px;
   transition: border-color .12s;
 }
 .list-opt:hover { border-color: var(--gold-dim); }
-.list-opt.selected { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.list-opt.selected { border-color: var(--gold-dim); border-left-color: var(--gold); }
 .list-opt-name { font-family: var(--caslon); font-weight: bold; font-size: 17px; }
 .list-opt-sub { font-family: var(--data); font-size: 12.5px; color: var(--faint); margin-top: 2px; }
 
@@ -710,7 +702,6 @@ input { font: inherit; color: inherit; }
   width: 100%;
   background: var(--hull);
   border: 1px solid var(--line);
-  border-radius: 3px;
   padding: 11px 13px;
   font-family: var(--caslon);
   font-size: 16px;
@@ -724,33 +715,31 @@ input { font: inherit; color: inherit; }
   font-family: var(--data); font-size: 14.5px; font-weight: 600;
   font-variant-numeric: tabular-nums;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-bottom: 2px solid transparent;
   background: var(--hull);
   color: var(--bone-dim);
   transition: border-color .12s, color .12s;
 }
 .pts-chip:hover { border-color: var(--gold-dim); }
-.pts-chip.active { border-color: var(--gold); color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.pts-chip.active { border-color: var(--line); border-bottom-color: var(--gold); color: var(--gold); }
 .wiz-note { font-style: italic; font-size: 14px; color: var(--faint); margin-top: 16px; }
 
 .primary-btn {
   font-family: var(--data); font-size: 12px; font-weight: 600;
   letter-spacing: .4px; text-transform: uppercase;
   color: var(--on-blood);
-  background: linear-gradient(180deg, var(--blood2), var(--blood));
-  border: 1px solid var(--blood2);
-  border-radius: 3px;
+  background: var(--blood);
+  border: 1px solid var(--blood-deep);
   padding: 11px 22px;
-  transition: filter .12s;
+  transition: background .12s;
 }
-.primary-btn:hover:not(:disabled) { filter: brightness(1.15); }
+.primary-btn:hover:not(:disabled) { background: var(--blood2); }
 .primary-btn:disabled { opacity: .35; cursor: default; }
 .ghost-btn {
   font-family: var(--data); font-size: 12px;
   letter-spacing: .3px; text-transform: uppercase;
   color: var(--bone-dim);
   border: 1px solid var(--line);
-  border-radius: 3px;
   background: transparent;
   padding: 11px 18px;
   transition: color .12s, border-color .12s;
@@ -784,7 +773,6 @@ input { font: inherit; color: inherit; }
   width: 100%;
   background: var(--hull);
   border: 1px solid var(--line);
-  border-radius: 3px;
   padding: 10px 38px 10px 13px;
   font-family: var(--caslon);
   font-size: 15px;
@@ -798,7 +786,6 @@ input { font: inherit; color: inherit; }
   transform: translateY(-50%);
   width: 38px; height: 38px;
   color: var(--faint);
-  border-radius: 3px;
 }
 .search-clear:hover { color: var(--bone); }
 
@@ -836,7 +823,6 @@ input { font: inherit; color: inherit; }
   flex: none;
   width: 40px; height: 40px;
   border: 1px solid var(--line);
-  border-radius: 3px;
   background: var(--hull);
   color: var(--bone-dim);
   font-size: 20px; line-height: 1;
@@ -849,8 +835,8 @@ input { font: inherit; color: inherit; }
   font-family: var(--data); font-size: 12px;
   background: var(--warn-bg);
   border: 1px solid var(--warn-bd);
+  border-left-width: 3px;
   color: var(--warn-tx);
-  border-radius: 3px;
   padding: 8px 11px;
   margin-bottom: 10px;
 }
@@ -860,7 +846,7 @@ input { font: inherit; color: inherit; }
 .overlay {
   position: fixed; inset: 0;
   z-index: 100;
-  background: rgba(6,8,12,.82);
+  background: rgba(10,8,4,.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -873,10 +859,9 @@ input { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   background: var(--hull);
-  border: 1px solid var(--line2);
+  border: 1px solid var(--line);
   border-top: 3px solid var(--blood);
-  border-radius: 5px;
-  box-shadow: 0 24px 70px rgba(0,0,0,.6);
+  box-shadow: 6px 6px 0 var(--line2);
 }
 .overlay-sheet-narrow { width: 520px; }
 .overlay-head {
@@ -889,7 +874,6 @@ input { font: inherit; color: inherit; }
 .overlay-close {
   width: 34px; height: 34px;
   color: var(--faint);
-  border-radius: 3px;
   font-size: 15px;
 }
 .overlay-close:hover { color: var(--bone); background: var(--hull3); }
@@ -903,7 +887,6 @@ input { font: inherit; color: inherit; }
   color: var(--bone-dim);
   background: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 3px;
   padding: 14px;
   white-space: pre-wrap;
   word-break: break-word;
@@ -924,17 +907,16 @@ input { font: inherit; color: inherit; }
   width: 100%; text-align: left;
   padding: 10px 12px;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-left: 3px solid transparent;
   background: var(--ink2);
   margin-bottom: 6px;
   transition: border-color .12s;
 }
 .upg-opt:hover { border-color: var(--gold-dim); }
-.upg-opt.selected { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.upg-opt.selected { border-color: var(--gold-dim); border-left-color: var(--gold); }
 .upg-check {
   width: 16px; height: 16px; flex: none;
   border: 1px solid var(--faint);
-  border-radius: 2px;
   position: relative;
 }
 .upg-opt.selected .upg-check { border-color: var(--gold); background: var(--gold); }
@@ -954,13 +936,12 @@ input { font: inherit; color: inherit; }
   left: 50%; bottom: 26px;
   transform: translate(-50%, 16px);
   background: var(--hull3);
-  border: 1px solid var(--line2);
+  border: 1px solid var(--line);
   border-left: 3px solid var(--gold);
   color: var(--bone);
   font-family: var(--data); font-size: 13px;
   padding: 11px 18px;
-  border-radius: 3px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  box-shadow: 4px 4px 0 var(--line2);
   opacity: 0;
   pointer-events: none;
   transition: opacity .2s, transform .2s;
@@ -986,7 +967,8 @@ input { font: inherit; color: inherit; }
     padding: 10px 14px;
     min-height: 0;
   }
-  .mast-title { font-size: 21px; }
+  .mast-brand { padding: 0; }
+  .mast-title { font-size: 20px; }
   .mast-fleet-name { font-size: 19px; }
   .mast-pts { flex: 1 1 100%; max-width: none; order: 10; margin: 0; }
   #app[data-state="home"] .mast-pts { display: none; }
@@ -1040,7 +1022,7 @@ input { font: inherit; color: inherit; }
 
   .faction-grid { grid-template-columns: 1fr 1fr; }
   .overlay { padding: 0; align-items: stretch; }
-  .overlay-sheet, .overlay-sheet-narrow { width: 100%; max-height: none; border-radius: 0; border-left: none; border-right: none; }
+  .overlay-sheet, .overlay-sheet-narrow { width: 100%; max-height: none; border-left: none; border-right: none; box-shadow: none; }
 }
 
 @media (max-width: 480px) {
@@ -1077,7 +1059,6 @@ input { font: inherit; color: inherit; }
   width: 88.9mm;
   height: 63.5mm;
   border: 0.4mm solid #111;
-  border-radius: 2.5mm;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1117,7 +1098,6 @@ input { font: inherit; color: inherit; }
 .pcard-stat {
   flex: 1;
   border: 0.3mm solid #333;
-  border-radius: 1mm;
   text-align: center;
   padding: 0.6mm 0.4mm;
   background: #fff;
@@ -1130,7 +1110,6 @@ input { font: inherit; color: inherit; }
 .hit-box {
   width: 3.4mm; height: 3.4mm;
   border: 0.35mm solid #a01c1c;
-  border-radius: 0.5mm;
   background: #fff;
 }
 .pcard-crit { margin-top: auto; }
@@ -1140,7 +1119,6 @@ input { font: inherit; color: inherit; }
   flex: 1;
   aspect-ratio: 1;
   border: 0.3mm solid #333;
-  border-radius: 0.5mm;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-family: var(--data); font-size: 5pt; font-weight: 600;
   color: #333;
