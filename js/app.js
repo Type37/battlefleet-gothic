@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   BATTLEFLEET GOTHIC — FLEET REGISTRY
+   BATTLEFLEET GOTHIC : FLEET REGISTRY
    Vanilla JS. No dependencies. localStorage persistence.
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
@@ -140,7 +140,7 @@ function validateFleet(fleet) {
   }
   const bs = countBattleships(fleet), cr = countCruisers(fleet);
   if (bs > 0 && cr < bs * 3) {
-    issues.push({ type: 'err', msg: `${bs} battleship${bs>1?'s':''} require${bs>1?'':'s'} ${bs*3} cruisers — add ${bs*3 - cr} more.`, affectsCategory: 'Battleship' });
+    issues.push({ type: 'err', msg: `${bs} battleship${bs>1?'s':''} require${bs>1?'':'s'} ${bs*3} cruisers; add ${bs*3 - cr} more.`, affectsCategory: 'Battleship' });
   }
   fleet.squadrons.forEach(sq => {
     const s = shipDef(sq.shipId);
@@ -194,7 +194,7 @@ function statsRun(ship) {
   if (st.Armour)  bits.push(`Armour <b>${escHtml(st.Armour)}</b>`);
   if (st.Speed)   bits.push(`<b>${escHtml(st.Speed)}</b>`);
   if (!bits.length) return escHtml(ship.category);
-  return bits.join('<span class="stat-sep">·</span>');
+  return bits.join('<span class="stat-sep"></span>');
 }
 let toastTimer = null;
 function showToast(msg) {
@@ -279,7 +279,7 @@ function renderHome() {
       <span class="fleet-row-emblem"></span>
       <span class="fleet-row-main">
         <span class="fleet-row-name">${escHtml(f.name)}</span>
-        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? ' · ' + escHtml(f.fleetList) : ''}</span>
+        <span class="fleet-row-sub">${escHtml(m.short)}${f.fleetList ? '<span class="stat-sep"></span>' + escHtml(f.fleetList) : ''}</span>
       </span>
       <span class="fleet-row-pts"><b>${fleetTotalPts(f)}</b><span>of ${f.limit} pts</span></span>
     </button>`;
@@ -293,7 +293,7 @@ function renderFleet() {
   const m = fmeta(fleet.faction);
 
   $('fleet-name-display').textContent = fleet.name;
-  $('fleet-faction-display').textContent = m.short + (fleet.fleetList ? ' · ' + fleet.fleetList : '');
+  $('fleet-faction-display').innerHTML = escHtml(m.short) + (fleet.fleetList ? '<span class="stat-sep"></span>' + escHtml(fleet.fleetList) : '');
   $('picker-faction-label').textContent = m.short;
 
   // pts tracker
@@ -403,7 +403,7 @@ function renderManifest(fleet) {
         <div class="ship-row-top">
           <button class="ship-row-main row-toggle" data-toggle aria-expanded="false">
             <span class="ship-row-name" style="display:block">${escHtml(s.name)}</span>
-            <span class="ship-row-stats" style="display:block">Squadron of <b>${sq.count}</b><span class="stat-sep">·</span>${statsRun(s)}</span>
+            <span class="ship-row-stats" style="display:block">Squadron of <b>${sq.count}</b><span class="stat-sep"></span>${statsRun(s)}</span>
             ${bad ? `<span class="ship-row-flag" style="display:block">⚠ Squadrons field 2–6 ships</span>` : ''}
           </button>
           <span class="sqd-step">
@@ -423,7 +423,7 @@ function renderManifest(fleet) {
     html = `<div class="empty-state">
       <div class="empty-rule"></div>
       <div class="empty-title">No ships on the manifest</div>
-      <div class="empty-sub">Add your first vessel from the registry — the panel to the right on desktop, or the <b>Add</b> button below on mobile. Start with a Fleet Commander and capital ships, then escorts.</div>
+      <div class="empty-sub">Add your first vessel from the registry: the panel to the right on desktop, or the <b>Add</b> button below on mobile. Start with a Fleet Commander and capital ships, then escorts.</div>
       <div class="empty-rule"></div>
     </div>`;
   }
@@ -442,13 +442,13 @@ function shipDetailHtml(ship) {
   if (cells.length) {
     html += `<div class="stat-strip">${cells.map(c =>
       `<div class="stat-cell"><b>${escHtml(c[1])}</b><span>${c[0]}</span></div>`).join('')}</div>`;
-    html += `<p class="stat-key">Hits = damage taken before crippled · Shields = block incoming hits · Armour = D6 needed to hit · Turrets = shoot down torpedoes &amp; bombers · Turns = max course change</p>`;
+    html += `<p class="stat-key">Hits = damage taken before crippled. Shields block incoming hits. Armour = D6 needed to hit. Turrets shoot down torpedoes &amp; bombers. Turns = max course change.</p>`;
   }
   if (ship.armament && ship.armament.length) {
     html += `<table class="arm-table">
       <thead><tr><th>Armament</th><th>Range / Speed</th><th>FP / Str</th><th>Arc</th></tr></thead>
       <tbody>${ship.armament.map(a => `
-        <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '—')}</td><td>${escHtml(a['Firepower/Str'] || '—')}</td><td>${escHtml(a['Fire Arc'] || '—')}</td></tr>
+        <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td><td>${escHtml(a['Fire Arc'] || '-')}</td></tr>
       `).join('')}</tbody>
     </table>`;
   }
@@ -505,10 +505,10 @@ function renderPicker(fleet) {
             <span class="pick-row-stats" style="display:block">${statsRun(s)}</span>
           </button>
           <span class="pick-row-pts">${s.pts}<small style="display:block;font-size:9px;font-weight:400;color:var(--faint);text-align:right;letter-spacing:1px">pts</small></span>
-          <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio — allowed, but flagged' : 'Add to fleet'}">+</button>
+          <button class="pick-add ${warn ? 'warn' : ''}" data-add="${s.id}" aria-label="Add ${escHtml(s.name)}" title="${warn ? 'Adding this ship breaks the battleship ratio; allowed, but flagged' : 'Add to fleet'}">+</button>
         </div>
         <div class="ship-detail"><div class="ship-detail-pad">
-          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet — you may add it anyway and fix the manifest later.</div>` : ''}
+          ${warn ? `<div class="pick-warn-box">⚠ Requires ${(countBattleships(fleet)+1)*3} cruisers in the fleet; you may add it anyway and fix the manifest later.</div>` : ''}
           ${shipDetailHtml(s)}
         </div></div>
       </div>`;
@@ -585,12 +585,12 @@ function renderWizardLists() {
   const lists = fac ? fac.fleetLists : [];
   const box = $('fleet-list-options');
   if (!lists.length) {
-    box.innerHTML = `<p class="wiz-note">This registry holds no named fleet lists — the fleet will be chartered unaligned.</p>`;
+    box.innerHTML = `<p class="wiz-note">This registry holds no named fleet lists; the fleet will be chartered unaligned.</p>`;
     wizDraft.fleetList = '';
     return;
   }
   box.innerHTML =
-    `<p class="wiz-note" style="margin:0 0 12px">Each fleet list allows a different mix of ships and enforces its own restrictions — the registry will only offer vessels legal for the list you pick.</p>` +
+    `<p class="wiz-note" style="margin:0 0 12px">Each fleet list allows a different mix of ships and enforces its own restrictions; the registry will only offer vessels legal for the list you pick.</p>` +
     lists.map(l => `
     <button class="list-opt ${wizDraft.fleetList === l.name ? 'selected' : ''}" data-list="${escHtml(l.name)}">
       <span class="list-opt-name" style="display:block">${escHtml(l.name)}</span>
@@ -620,13 +620,13 @@ function exportText(fleet) {
   const m = fmeta(fleet.faction);
   const lines = [];
   lines.push(`${fleet.name.toUpperCase()}`);
-  lines.push(`${m.short}${fleet.fleetList ? ' — ' + fleet.fleetList : ''}`);
+  lines.push(`${m.short}${fleet.fleetList ? ' / ' + fleet.fleetList : ''}`);
   lines.push(`${fleetTotalPts(fleet)} / ${fleet.limit} pts`);
   lines.push('═'.repeat(40));
   if (fleet.commander) {
     const c = shipDef(fleet.commander.shipId);
     lines.push('', 'FLEET COMMANDER');
-    lines.push(`  ${fleet.commander.name || (c && c.name) || 'Commander'} — ${fleet.commander.pts} pts`);
+    lines.push(`  ${fleet.commander.name || (c && c.name) || 'Commander'}: ${fleet.commander.pts} pts`);
   }
   const byCat = {};
   fleet.ships.forEach(sl => {
@@ -643,14 +643,14 @@ function exportText(fleet) {
       let suffix = '';
       if (dupes > 1) { seen[sl.shipId] = seen[sl.shipId] || 0; suffix = ' ' + GREEK[seen[sl.shipId]++ % GREEK.length]; }
       const upg = (sl.upgrades || []).map(u => `${u.name}${u.pts ? ` (+${u.pts})` : ''}`).join(', ');
-      lines.push(`  ${s.name}${suffix} — ${slotPts(sl)} pts${upg ? `  [${upg}]` : ''}`);
+      lines.push(`  ${s.name}${suffix}: ${slotPts(sl)} pts${upg ? `  [${upg}]` : ''}`);
     });
   }
   if (fleet.squadrons.length) {
     lines.push('', 'ESCORT SQUADRONS');
     fleet.squadrons.forEach(sq => {
       const s = shipDef(sq.shipId);
-      lines.push(`  ${s.name} ×${sq.count} — ${sqdPts(sq)} pts`);
+      lines.push(`  ${s.name} ×${sq.count}: ${sqdPts(sq)} pts`);
     });
   }
   lines.push('', '═'.repeat(40), `TOTAL: ${fleetTotalPts(fleet)} pts`);
@@ -685,7 +685,7 @@ function importFleetFile(file) {
       const data = JSON.parse(reader.result);
       const f = data.fleet || data;   // accept wrapped or bare fleet
       if (!f || !f.faction || !Array.isArray(f.ships)) throw new Error('shape');
-      if (!DB.factions[f.faction]) { showToast('Unknown faction — file may be from a different data version'); return; }
+      if (!DB.factions[f.faction]) { showToast('Unknown faction; file may be from a different data version'); return; }
       f.id = Date.now();
       f.ships = f.ships || []; f.squadrons = f.squadrons || [];
       fleets.push(f);
@@ -708,12 +708,12 @@ function printCardHtml(ship, opts) {
     ['Speed', st.Speed], ['Turns', st.Turns], ['Shields', st.Shields],
     ['Armour', st.Armour], ['Turrets', st.Turrets],
   ].filter(c => c[1]);
-  const upgRules = (opts.upgrades || []).map(u => `<b>${escHtml(u.name)}</b>${u.pts ? ` (+${u.pts} pts)` : ''}`).join(' · ');
+  const upgRules = (opts.upgrades || []).map(u => `<b>${escHtml(u.name)}</b>${u.pts ? ` (+${u.pts} pts)` : ''}`).join(' / ');
   const rules = (ship.specialRules || []).map(r => `<b>${escHtml(r.name)}:</b> ${escHtml(r.effects || '')}`).join(' ');
   return `
   <div class="pcard">
     <div class="pcard-head">
-      <span class="pcard-class">${escHtml(ship.category)} — ${escHtml(ship.name)}${opts.suffix ? ' ' + opts.suffix : ''}</span>
+      <span class="pcard-class">${escHtml(ship.name)}${opts.suffix ? ' ' + opts.suffix : ''}</span>
       <span class="pcard-pts">${opts.pts} pts</span>
     </div>
     <div class="pcard-sub">
@@ -733,10 +733,10 @@ function printCardHtml(ship, opts) {
       <table class="pcard-arm">
         <thead><tr><th>Armament</th><th>Range/Speed</th><th>FP/Str</th><th>Arc</th></tr></thead>
         <tbody>${ship.armament.map(a => `
-          <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '—')}</td><td>${escHtml(a['Firepower/Str'] || '—')}</td><td>${escHtml(a['Fire Arc'] || '—')}</td></tr>`).join('')}
+          <tr><td>${escHtml(a.name)}</td><td>${escHtml(a['Range/Speed'] || '-')}</td><td>${escHtml(a['Firepower/Str'] || '-')}</td><td>${escHtml(a['Fire Arc'] || '-')}</td></tr>`).join('')}
         </tbody>
       </table>` : ''}
-      ${(rules || upgRules) ? `<div class="pcard-rules">${upgRules}${upgRules && rules ? ' — ' : ''}${rules}</div>` : ''}
+      ${(rules || upgRules) ? `<div class="pcard-rules">${upgRules}${upgRules && rules ? ' / ' : ''}${rules}</div>` : ''}
       ${!isEscort ? `
       <div class="pcard-crit">
         <div class="pcard-crit-label">Critical Damage</div>
@@ -778,7 +778,7 @@ function printRoster() {
   const m = fmeta(fleet.faction);
   let html = `<div class="print-roster">
     <h1>${escHtml(fleet.name)}</h1>
-    <div class="pr-sub">${escHtml(m.short)}${fleet.fleetList ? ' · ' + escHtml(fleet.fleetList) : ''} · ${fleetTotalPts(fleet)} / ${fleet.limit} pts</div>`;
+    <div class="pr-sub">${escHtml(m.short)}${fleet.fleetList ? ' / ' + escHtml(fleet.fleetList) : ''} (${fleetTotalPts(fleet)} / ${fleet.limit} pts)</div>`;
   if (fleet.commander) {
     const c = shipDef(fleet.commander.shipId);
     html += `<h2>Fleet Commander</h2><table><tr><td>${escHtml(fleet.commander.name || (c && c.name) || '')}</td><td class="pr-pts">${fleet.commander.pts} pts</td></tr></table>`;
@@ -830,7 +830,7 @@ function renderUpgradeBody() {
   const fleet = getFleet();
   const sl = fleet.ships[modalSlotIdx];
   const s = shipDef(sl.shipId);
-  $('modal-title').textContent = `Refit — ${s.name}`;
+  $('modal-title').textContent = `Refit: ${s.name}`;
   $('modal-body').innerHTML = s.upgrades.map((g, gi) => `
     <div class="upg-group">
       <div class="upg-group-name">${escHtml(g.group || 'Options')}</div>
@@ -854,7 +854,7 @@ function toggleUpgrade(optId, groupIdx) {
   if (!opt) return;
   sl.upgrades = sl.upgrades || [];
   const had = sl.upgrades.some(u => u.id === optId);
-  // options within a group are exclusive — clear the group first
+  // options within a group are exclusive, so clear the group first
   const groupIds = new Set(group.options.map(o => o.id));
   sl.upgrades = sl.upgrades.filter(u => !groupIds.has(u.id));
   if (!had) sl.upgrades.push({ id: opt.id, name: opt.name, pts: opt.pts || 0 });
@@ -1039,7 +1039,7 @@ function bindEvents() {
   $('btn-copy-text').addEventListener('click', () => {
     navigator.clipboard.writeText($('export-preview').textContent)
       .then(() => showToast('Fleet list copied'))
-      .catch(() => showToast('Copy failed — select the text manually'));
+      .catch(() => showToast('Copy failed; select the text manually'));
   });
   $('btn-download-fleet').addEventListener('click', () => { const f = getFleet(); if (f) downloadFleet(f); });
 
@@ -1085,7 +1085,7 @@ async function boot() {
   if (!DB) {
     document.body.innerHTML = `<div style="padding:40px;font-family:serif;color:#e6dfca;text-align:center">
       <h1 style="font-size:22px">The registry archives are unreachable</h1>
-      <p style="opacity:.7">ship_database.json failed to load — serve this app over HTTP.</p></div>`;
+      <p style="opacity:.7">ship_database.json failed to load; serve this app over HTTP.</p></div>`;
     return;
   }
   loadFleets();

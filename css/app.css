@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   BATTLEFLEET GOTHIC — FLEET REGISTRY
+   BATTLEFLEET GOTHIC : FLEET REGISTRY
    Design: the 1999 rulebook & Fleet Deck cards. Blood-red bands,
    blackletter class names, bone text on void-blue, ledger rows.
    ═══════════════════════════════════════════════════════════════ */
@@ -47,7 +47,7 @@
   /* text */
   --bone:     #e6dfca;
   --bone-dim: #b3aa92;   /* raised for AA on dark grounds */
-  --faint:    #9297a6;   /* raised from #6c6f7d — now ~4.6:1 on --ink2 */
+  --faint:    #9297a6;   /* raised from #6c6f7d, now ~4.6:1 on --ink2 */
   /* accents */
   --blood:    #8e1a17;
   --blood2:   #a92220;
@@ -97,7 +97,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 input { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
 
-/* Display face — Oswald reads as heavy condensed caps, matching the rulebook titling */
+/* Display face: Oswald reads as heavy condensed caps, matching the rulebook titling */
 .mast-title, .mast-fleet-name, .fleet-row-name, .empty-title,
 .ship-row-name, .pick-row-name, .overlay-title, .registry-mobilebar-title,
 .pcard-class, .print-roster h1 {
@@ -255,7 +255,7 @@ input { font: inherit; color: inherit; }
 .menu-item.danger { color: var(--err-tx); }
 .menu-item.danger:hover { background: var(--err-bg); }
 
-/* ═══════════ Deck — two columns ═══════════ */
+/* ═══════════ Deck : two columns ═══════════ */
 #deck {
   flex: 1;
   display: flex;
@@ -383,7 +383,7 @@ input { font: inherit; color: inherit; }
 .import-btn:hover { color: var(--bone); border-color: var(--gold-dim); }
 .export-hint { font-style: italic; font-size: 13px; color: var(--faint); margin-top: 10px; }
 
-/* expand affordance — chevron on expandable rows only (not the commander row) */
+/* expand affordance: chevron on expandable rows only (not the commander row) */
 [data-toggle] .ship-row-name::before,
 [data-toggle] .pick-row-name::before {
   content: '\25B8';
@@ -455,7 +455,7 @@ input { font: inherit; color: inherit; }
   font-variant-numeric: tabular-nums;
 }
 .ship-row-stats b { color: var(--bone); font-weight: 600; }
-.ship-row-stats .stat-sep { color: var(--faint); margin: 0 5px; }
+.stat-sep { display: inline-block; width: 1px; height: 8px; margin: 0 8px; background: currentColor; opacity: .4; vertical-align: 0; }
 .ship-row-flag {
   font-family: var(--data); font-size: 10px; letter-spacing: 1px;
   text-transform: uppercase; color: var(--warn-tx);
@@ -796,7 +796,7 @@ input { font: inherit; color: inherit; }
   font-variant-numeric: tabular-nums;
 }
 .pick-row-stats b { color: var(--bone); font-weight: 600; }
-.pick-row-stats .stat-sep { color: var(--faint); margin: 0 5px; }
+/* .stat-sep hairline defined once above, reused everywhere */
 .pick-row-pts {
   flex: none;
   font-family: var(--data); font-variant-numeric: tabular-nums;
@@ -1020,7 +1020,7 @@ input { font: inherit; color: inherit; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PRINT — ship cards & roster
+   PRINT : ship cards & roster
    Card: 88.9mm × 63.5mm landscape (poker size rotated), 2 per row.
    ═══════════════════════════════════════════════════════════════ */
 @media print {
