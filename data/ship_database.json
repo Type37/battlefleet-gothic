@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-09T22:32:55.214Z",
+  "version": "2026-07-10T02:34:52.117Z",
   "bsdataRepo": "https://github.com/BSData/battlefleetgothic",
   "factions": {
     "Imperial Navy": {
@@ -464,8 +464,6 @@
         "5da4-8ae6-fa73-87ce",
         "bb453fc8-379f-49ca-8030-2c3456c729a0",
         "367d-28f2-9d61-3247",
-        "0fff-de9d-bc9c-5f2f",
-        "375c-4f20-011c-693d",
         "4cd1-d76f-ebd0-6d38",
         "f5c7-aea0-51d4-702a",
         "0b2b-0730-62de-1df8",
@@ -2158,16 +2156,12 @@
         "8ff259b5-11aa-49e4-86ca-c1f9101704be",
         "930ac713-cf02-4a88-bdaf-e526c9933cb2",
         "72382db0-d66e-4c4a-8c11-7ccea06a0e4c",
-        "4675d6dd-be10-44e4-87a2-60ffdf77992a",
-        "818e7121-b439-49e7-81ab-1c752fc79aff",
-        "430197bb-be6a-4f5a-be75-229ab80507d4",
         "83c2-8ca0-d80b-0911",
         "88af-b057-0099-0a0d",
         "d941-fa4c-ab47-bfd2",
         "3fca-d065-ff67-cd0d",
         "6cf7-bc84-05fa-1b2d",
         "d992-ca25-3f54-5e0a",
-        "d776-183f-430c-639a",
         "95ed-7cb1-547e-b6d4",
         "c6c4-e97d-9bed-fdfa",
         "b598-d65f-400b-c05a",
@@ -2183,7 +2177,6 @@
         "ed42-f39b-70c9-b032",
         "26ed-15e9-db45-99d7",
         "07f4-ad3c-5819-a030",
-        "371e-1cad-8a60-5b6e",
         "d3c6-4481-e85a-2b07",
         "9c37-be2b-9741-5b3f",
         "e2f3-d0aa-38b9-5a02",
@@ -2216,11 +2209,7 @@
         "5f835d0b-5c75-47ab-b96a-e2a771f17039",
         "7c87d775-c33e-4a72-9f53-9f4639c82971",
         "a9c7bb02-eb1e-4188-8aef-d7fd305265e5",
-        "3a978ff1-809f-4409-b08d-a39333b70e0d",
-        "93575f7a-0c82-481b-aca4-dc540fa69876",
-        "a46373ab-15b6-42a0-8156-67edfe0c1866",
         "fb307851-3d74-495c-9baa-a44ac4ba13b9",
-        "49fa463c-1029-48dd-9b9e-f97f167c69d2",
         "0376-f1a7-5fee-7f9a",
         "5610-4d14-8ed5-e67e",
         "9960-f870-8718-4d1a",
@@ -2285,14 +2274,13 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "8",
-        "Re-rolls": "1",
-        "Pg.": ""
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Extra Re-Rolls",
+          "group": "Extra Re-rolls",
           "options": [
             {
               "id": "91a3-dbcd-30e5-3492",
@@ -2324,8 +2312,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "+1",
-        "Re-rolls": "1",
-        "Pg.": ""
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [
@@ -2344,14 +2331,13 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "8",
-        "Re-rolls": "1",
-        "Pg.": ""
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Extra Re-Rolls",
+          "group": "Extra Re-rolls",
           "options": [
             {
               "id": "ad92-3cea-3951-50bc",
@@ -2701,7 +2687,7 @@
       ],
       "upgrades": [
         {
-          "group": "Varient",
+          "group": "Variant",
           "options": [
             {
               "id": "084a-9445-864c-11d0",
@@ -2863,36 +2849,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Nova Cannon",
           "Range/Speed": "30-150",
           "Firepower/Str": "1",
@@ -2902,7 +2858,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Varient",
+          "group": "Variant",
           "options": [
             {
               "id": "a54d-1fe1-bb33-257f",
@@ -3008,12 +2964,6 @@
           "name": "Prow Torpedoes",
           "Range/Speed": "30 cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150 cm",
-          "Firepower/Str": "1",
           "Fire Arc": "Front"
         }
       ],
@@ -3346,55 +3296,39 @@
     },
     "5da4-8ae6-fa73-87ce": {
       "id": "5da4-8ae6-fa73-87ce",
-      "name": "Fleet Admiral Ldr 8",
+      "name": "Fleet Admiral",
       "faction": "Imperial Navy",
       "pts": 50,
       "category": "Fleet Commander",
-      "stats": {},
+      "stats": {
+        "Leadership": "8"
+      },
       "armament": [],
       "specialRules": [],
       "upgrades": []
     },
     "bb453fc8-379f-49ca-8030-2c3456c729a0": {
       "id": "bb453fc8-379f-49ca-8030-2c3456c729a0",
-      "name": "Solar Admiral Ldr 10",
+      "name": "Solar Admiral",
       "faction": "Imperial Navy",
       "pts": 150,
       "category": "Fleet Commander",
-      "stats": {},
+      "stats": {
+        "Leadership": "10"
+      },
       "armament": [],
       "specialRules": [],
       "upgrades": []
     },
     "367d-28f2-9d61-3247": {
       "id": "367d-28f2-9d61-3247",
-      "name": "Admiral Ldr 9",
+      "name": "Admiral",
       "faction": "Imperial Navy",
       "pts": 100,
       "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "0fff-de9d-bc9c-5f2f": {
-      "id": "0fff-de9d-bc9c-5f2f",
-      "name": "Master of the Fleet Ldr 10",
-      "faction": "Imperial Navy",
-      "pts": 50,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "375c-4f20-011c-693d": {
-      "id": "375c-4f20-011c-693d",
-      "name": "Lord Admiral Rath Ldr 10",
-      "faction": "Imperial Navy",
-      "pts": 200,
-      "category": "Fleet Commander",
-      "stats": {},
+      "stats": {
+        "Leadership": "9"
+      },
       "armament": [],
       "specialRules": [],
       "upgrades": []
@@ -3763,12 +3697,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
           "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         }
       ],
       "specialRules": [],
@@ -4090,7 +4018,7 @@
       ],
       "upgrades": [
         {
-          "group": "Varient",
+          "group": "Variant",
           "options": [
             {
               "id": "a9a8-a19a-b99a-5caa",
@@ -4248,8 +4176,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "10",
-        "Re-rolls": "1 per turn",
-        "Pg.": ""
+        "Re-rolls": "1 per turn"
       },
       "armament": [],
       "specialRules": [
@@ -4326,8 +4253,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "9",
-        "Re-rolls": "1",
-        "Pg.": "128"
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [
@@ -4957,8 +4883,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "+2 (max of 9)",
-        "Re-rolls": "1",
-        "Pg.": ""
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [
@@ -5704,8 +5629,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "10",
-        "Re-rolls": "0",
-        "Pg.": ""
+        "Re-rolls": "0"
       },
       "armament": [],
       "specialRules": [],
@@ -5879,22 +5803,10 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Dorsal Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
           "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         },
         {
           "name": "Starboard Weapons Battery",
@@ -5909,12 +5821,6 @@
           "Fire Arc": "Left"
         },
         {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
-        },
-        {
           "name": "Dorsal Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "6",
@@ -5933,12 +5839,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Nova Cannon",
           "Range/Speed": "30-150 cm",
           "Firepower/Str": "1",
@@ -5955,36 +5855,6 @@
           "Range/Speed": "30 cm",
           "Firepower/Str": "6",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Dorsal Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150 cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Starboard Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Port Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
         },
         {
           "name": "Port Weapons Battery",
@@ -6017,12 +5887,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "5",
@@ -6053,36 +5917,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Port Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Starboard Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Port Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
-        },
-        {
           "name": "Port Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "6",
@@ -6093,12 +5927,6 @@
           "Range/Speed": "45 cm",
           "Firepower/Str": "6",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         },
         {
           "name": "Port Bombardment Cannon",
@@ -6137,22 +5965,10 @@
           "Fire Arc": "Left"
         },
         {
-          "name": "Starboard Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Right"
-        },
-        {
           "name": "Dorsal Lance Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "2",
           "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Weapons Battery",
@@ -6179,22 +5995,10 @@
           "Fire Arc": "Left/Front/Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Torpedos",
           "Range/Speed": "30cm",
           "Firepower/Str": "9",
           "Fire Arc": "Front"
-        },
-        {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
         },
         {
           "name": "Port Launch Bay",
@@ -6209,24 +6013,6 @@
           "Fire Arc": "-"
         },
         {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
@@ -6239,21 +6025,9 @@
           "Fire Arc": "Left"
         },
         {
-          "name": "Port Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left"
-        },
-        {
           "name": "Starboard Lance Battery",
           "Range/Speed": "30 cm",
           "Firepower/Str": "4",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Starboard Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
           "Fire Arc": "Right"
         },
         {
@@ -6275,12 +6049,6 @@
           "Fire Arc": "Left/Front/Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Lance Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "2",
@@ -6297,12 +6065,6 @@
           "Range/Speed": "45 cm",
           "Firepower/Str": "14",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         },
         {
           "name": "Dorsal Lance Battery",
@@ -6323,18 +6085,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Port Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Right"
-        },
-        {
           "name": "Port Launch Bays",
           "Range/Speed": "Thunderhawks: 20 cm",
           "Firepower/Str": "1 Squadrons",
@@ -6365,28 +6115,10 @@
           "Fire Arc": "-"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Weapons Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
           "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Port Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Lance Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Right"
         },
         {
           "name": "Port Weapons Battery",
@@ -6407,18 +6139,6 @@
           "Fire Arc": "Left/front/right"
         },
         {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
           "name": "Port Launch Bays",
           "Range/Speed": "Furies: 30cm Starhawks 20cm",
           "Firepower/Str": "4 Squadrons",
@@ -6431,22 +6151,10 @@
           "Fire Arc": ""
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Weapons Battery",
           "Range/Speed": "60 cm",
           "Firepower/Str": "5",
           "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
         },
         {
           "name": "Port Lance Battery",
@@ -6461,54 +6169,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Starboard Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Port Launch Bays",
-          "Range/Speed": "Thunderhawks: 20 cm",
-          "Firepower/Str": "1 Squadron",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150 cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Port Weapons Battery",
           "Range/Speed": "45 cm",
           "Firepower/Str": "4",
@@ -6519,48 +6179,6 @@
           "Range/Speed": "45 cm",
           "Firepower/Str": "4",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Port Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Starboard Weapons Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "60 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/front/right"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150 cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Weapons Battery",
-          "Range/Speed": "45 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left/front/right"
         }
       ],
       "specialRules": [],
@@ -8390,12 +8008,6 @@
           "Fire Arc": "Left/Right/Front"
         },
         {
-          "name": "Ark Mechanicus Launch Bays",
-          "Range/Speed": "Fury Interceptors: 30cm Starhawk Bombers: 20cm",
-          "Firepower/Str": "2 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
           "name": "Ark Mechanicus Port Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
@@ -8518,12 +8130,6 @@
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
           "Fire Arc": "Left/Right/Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Torpedoes",
@@ -8918,12 +8524,6 @@
           "Fire Arc": "Left/Right/Front"
         },
         {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Torpedoes",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
@@ -8984,12 +8584,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Torpedoes",
@@ -9068,8 +8662,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "9",
-        "Re-rolls": "",
-        "Pg.": ""
+        "Re-rolls": ""
       },
       "armament": [],
       "specialRules": [
@@ -9097,7 +8690,7 @@
           ]
         },
         {
-          "group": "Re-Rolls",
+          "group": "Re-rolls",
           "options": [
             {
               "id": "5390fd0b-6ce4-41ee-b8a1-5e14bb1cc40c",
@@ -9223,12 +8816,6 @@
           "Fire Arc": "Left/Front/Right"
         },
         {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Torpedoes",
           "Range/Speed": "30cm",
           "Firepower/Str": "9",
@@ -9318,12 +8905,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Torpedoes",
@@ -9617,12 +9198,6 @@
           "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
           "Fire Arc": "Left/Front/Right"
         }
       ],
@@ -10058,8 +9633,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "Ldr 9",
-        "Re-rolls": "An Inquisitor Lord gets one re-roll, which may be\nused for any ship in the fleet.",
-        "Pg.": "51"
+        "Re-rolls": "An Inquisitor Lord gets one re-roll, which may be\nused for any ship in the fleet."
       },
       "armament": [],
       "specialRules": [],
@@ -10133,12 +9707,6 @@
           "name": "Inquisitorial Cruiser Dorsal Bombardment Cannon",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Dorsal Lance Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
           "Fire Arc": "Left/Front/Right"
         }
       ],
@@ -10418,8 +9986,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "+2 (max of 10)",
-        "Re-rolls": "0",
-        "Pg.": ""
+        "Re-rolls": "0"
       },
       "armament": [],
       "specialRules": [],
@@ -10501,14 +10068,13 @@
     },
     "ded8-27cb-ef54-c036": {
       "id": "ded8-27cb-ef54-c036",
-      "name": "Autarch Ldr 9",
+      "name": "Autarch",
       "faction": "Eldar Corsairs",
       "pts": 75,
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "9",
-        "Re-rolls": "0",
-        "Pg.": ""
+        "Re-rolls": "0"
       },
       "armament": [],
       "specialRules": [],
@@ -10546,12 +10112,6 @@
           "name": "Prow Phantom Lance",
           "Range/Speed": "30cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Impaler",
-          "Range/Speed": "Attack Craft: 30cm",
-          "Firepower/Str": "Special",
           "Fire Arc": "Front"
         },
         {
@@ -10615,30 +10175,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "12",
           "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedo Tubes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Phantom Lance",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Impaler",
-          "Range/Speed": "Attack Craft: 30cm",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Launch Bays",
-          "Range/Speed": "Fighters: 30cm Bombers: 20cm Boats: 30cm",
-          "Firepower/Str": "4 Squadrons",
-          "Fire Arc": "-"
         }
       ],
       "specialRules": [],
@@ -10830,7 +10366,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Re-Rolls",
+          "group": "Re-rolls",
           "options": [
             {
               "id": "5131-e177-1aa5-dc30",
@@ -10917,8 +10453,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "10",
-        "Re-rolls": "0",
-        "Pg.": ""
+        "Re-rolls": "0"
       },
       "armament": [],
       "specialRules": [],
@@ -10935,7 +10470,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Re-Rolls",
+          "group": "Re-rolls",
           "options": [
             {
               "id": "1bd0-e3ea-f5a6-def7",
@@ -11383,8 +10918,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "+2 (to a max of 10)",
-        "Re-rolls": "0",
-        "Pg.": ""
+        "Re-rolls": "0"
       },
       "armament": [],
       "specialRules": [],
@@ -11434,36 +10968,6 @@
           "name": "Torture Class Cruiser Prow Batteries",
           "Range/Speed": "30cm",
           "Firepower/Str": "12",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedo Tubes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Phantom Lance",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Impaler",
-          "Range/Speed": "Attack Craft: 30cm",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Launch Bays",
-          "Range/Speed": "Fighters: 30cm Bombers: 20cm Boats: 30cm",
-          "Firepower/Str": "4 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Impaler",
-          "Range/Speed": "Attack Craft: 30cm",
-          "Firepower/Str": "Special",
           "Fire Arc": "Front"
         }
       ],
@@ -12961,26 +12465,7 @@
         "Armour": "5+",
         "Turrets": "1 (Spores)"
       },
-      "armament": [
-        {
-          "name": "Prow Pyro-acid Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Feeder Tentacles",
-          "Range/Speed": "Contact",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Bio-plasma Discharge",
-          "Range/Speed": "15cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        }
-      ],
+      "armament": [],
       "specialRules": [],
       "upgrades": [
         {
@@ -13029,38 +12514,7 @@
         "Armour": "6+",
         "Turrets": "Special"
       },
-      "armament": [
-        {
-          "name": "Pyro-acid Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Feeder Tentacles",
-          "Range/Speed": "Contact",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedoes",
-          "Range/Speed": "15 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Massive Claws",
-          "Range/Speed": "Contact",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Bio Plasma Discharge",
-          "Range/Speed": "15 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "-"
-        }
-      ],
+      "armament": [],
       "specialRules": [],
       "upgrades": [
         {
@@ -13115,20 +12569,7 @@
         "Armour": "5+",
         "Turrets": "1 (Spores)"
       },
-      "armament": [
-        {
-          "name": "Pyro-acid Battery",
-          "Range/Speed": "30 cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Feeder Tentacles",
-          "Range/Speed": "Contact",
-          "Firepower/Str": "Special",
-          "Fire Arc": "Front"
-        }
-      ],
+      "armament": [],
       "specialRules": [],
       "upgrades": [
         {
@@ -13493,28 +12934,10 @@
           "Fire Arc": "-"
         },
         {
-          "name": "Port Railgun Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/Front"
-        },
-        {
           "name": "Prow Gravitic Lanchers",
           "Range/Speed": "Missiles: 20-40cm",
           "Firepower/Str": "3",
           "Fire Arc": "Front"
-        },
-        {
-          "name": "Warden Gravitic Hooks",
-          "Range/Speed": "-",
-          "Firepower/Str": "Capacity: 2 Warden",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Starbord Railgun Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Right/Front"
         },
         {
           "name": "Port Ion Cannon",
@@ -13527,12 +12950,6 @@
           "Range/Speed": "45cm",
           "Firepower/Str": "3",
           "Fire Arc": "Left/Front"
-        },
-        {
-          "name": "Prow Gravitic Lanchers",
-          "Range/Speed": "Missiles: 20-40cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Front"
         },
         {
           "name": "Starbord Ion Cannon",
@@ -13725,24 +13142,6 @@
           "Fire Arc": "Left/Front"
         },
         {
-          "name": "Port Railgun Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "Left/Front"
-        },
-        {
-          "name": "Prow Gravitic Lanchers",
-          "Range/Speed": "Missiles: 20-40cm",
-          "Firepower/Str": "5",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Launch Bay",
-          "Range/Speed": "Mantas: 20cm\nBarracudas: 25cm",
-          "Firepower/Str": "1",
-          "Fire Arc": "N/A"
-        },
-        {
           "name": "Prow Railgun Battery",
           "Range/Speed": "45cm",
           "Firepower/Str": "4",
@@ -13752,12 +13151,6 @@
           "name": "Starbord Ion Cannon",
           "Range/Speed": "45cm",
           "Firepower/Str": "1",
-          "Fire Arc": "Right/Front"
-        },
-        {
-          "name": "Starbord Railgun Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "2",
           "Fire Arc": "Right/Front"
         }
       ],
@@ -14079,12 +13472,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
           "Fire Arc": "Front"
-        },
-        {
-          "name": "Prow Torpedos",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
         }
       ],
       "specialRules": [],
@@ -14246,7 +13633,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Varient",
+          "group": "Variant",
           "options": [
             {
               "id": "9c8a-d042-35fd-21e2",
@@ -14392,8 +13779,7 @@
       "category": "Fleet Commander",
       "stats": {
         "Leadership": "+1",
-        "Re-rolls": "1",
-        "Pg.": ""
+        "Re-rolls": "1"
       },
       "armament": [],
       "specialRules": [],
@@ -14485,7 +13871,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Varient",
+          "group": "Variant",
           "options": [
             {
               "id": "74ed-55b0-d537-53ff",
@@ -15622,57 +15008,6 @@
       ],
       "upgrades": []
     },
-    "4675d6dd-be10-44e4-87a2-60ffdf77992a": {
-      "id": "4675d6dd-be10-44e4-87a2-60ffdf77992a",
-      "name": "Space Marine Battlebarge",
-      "faction": "Armada Imperialis",
-      "pts": 425,
-      "category": "Battleship",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "818e7121-b439-49e7-81ab-1c752fc79aff": {
-      "id": "818e7121-b439-49e7-81ab-1c752fc79aff",
-      "name": "Space Marine Strike Cruiser",
-      "faction": "Armada Imperialis",
-      "pts": 145,
-      "category": "Cruiser",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "430197bb-be6a-4f5a-be75-229ab80507d4": {
-      "id": "430197bb-be6a-4f5a-be75-229ab80507d4",
-      "name": "Tyrant Class Cruiser",
-      "faction": "Armada Imperialis",
-      "pts": 185,
-      "category": "Cruiser",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Ships",
-          "options": [
-            {
-              "id": "8ee8f434-3db9-4a0b-82b6-4327c8682967",
-              "name": "Zealous",
-              "pts": 10,
-              "description": ""
-            },
-            {
-              "id": "ff83b26c-18bc-4b55-b0c3-01de21aa8b62",
-              "name": "Dominion",
-              "pts": 10,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
     "83c2-8ca0-d80b-0911": {
       "id": "83c2-8ca0-d80b-0911",
       "name": "Assault Strike Cruiser Variant",
@@ -15764,22 +15099,10 @@
           "Fire Arc": "Left/Front/Right"
         },
         {
-          "name": "Battlebarge Dorsal bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
           "name": "Dorsal Lance",
           "Range/Speed": "60cm",
           "Firepower/Str": "3",
           "Fire Arc": "Front/Left/Right"
-        },
-        {
-          "name": "Battlebarge Prow Launch Bays",
-          "Range/Speed": "Thnderhakws: 20cm",
-          "Firepower/Str": "3 Squadrons",
-          "Fire Arc": "-"
         },
         {
           "name": "Battlebarge Prow Lances",
@@ -16211,221 +15534,6 @@
         }
       ]
     },
-    "d776-183f-430c-639a": {
-      "id": "d776-183f-430c-639a",
-      "name": "Venerable Battlebarge",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Battleship",
-      "stats": {
-        "Type": "Battleship",
-        "Hits": "12",
-        "Speed": "20cm",
-        "Turns": "45°",
-        "Shields": "4",
-        "Armour": "5+",
-        "Turrets": "4",
-        "Leadership": "30cm",
-        "Re-rolls": "4",
-        "Pg.": "Front"
-      },
-      "armament": [
-        {
-          "name": "Seditio Opprimere Port Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Seditio Opprimere Starboard Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Seditio Opprimere Dorsal Bombardment Cannon",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Seditio Opprimere Prow Launch Bay",
-          "Range/Speed": "Thunderhawks: 20cm",
-          "Firepower/Str": "2 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Seditio Opprimere Prow Torpedos",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Vengeful Spirit Port Launch Bays",
-          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Vengeful Spirit Starboard Launch Bays",
-          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Vengeful Spirit Prow Launch Bays",
-          "Range/Speed": "Swiftdeaths: 30cm Doomfires: 20cm Dreadclaws: 30cm",
-          "Firepower/Str": "2",
-          "Fire Arc": "-"
-        },
-        {
-          "name": "Battlebarge Port Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Battlebarge Starboard Weapons Battery",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Battlebarge Port Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "10",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Battlebarge Starboard Weapons Battery",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "10",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Vengeful Spirit Port Weapons Battery",
-          "Range/Speed": "60cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Left"
-        },
-        {
-          "name": "Vengeful Spirit Starboard Weapons Battery",
-          "Range/Speed": "60cm",
-          "Firepower/Str": "6",
-          "Fire Arc": "Right"
-        },
-        {
-          "name": "Chaos Battlebarge Prow Torpedo Tubes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Front"
-        },
-        {
-          "name": "Dorsal Lances",
-          "Range/Speed": "45cm",
-          "Firepower/Str": "4",
-          "Fire Arc": "Left/Front/Right"
-        },
-        {
-          "name": "Vengeful Spirit Dorsal Lances",
-          "Range/Speed": "60cm",
-          "Firepower/Str": "3",
-          "Fire Arc": "Left/Front/Right"
-        }
-      ],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Ship Model",
-          "options": [
-            {
-              "id": "1dc8-4cdd-320c-127c",
-              "name": "Emperor Class Battleship",
-              "pts": 400,
-              "description": ""
-            },
-            {
-              "id": "23ae-78ef-7646-a7fa",
-              "name": "Retribution Class Battleship",
-              "pts": 380,
-              "description": ""
-            },
-            {
-              "id": "6c14-231c-1aff-4992",
-              "name": "Mars Class Battlecruiser",
-              "pts": 305,
-              "description": ""
-            },
-            {
-              "id": "f3b3-f3bd-4469-f3ae",
-              "name": "Overlord Class Battlecruiser",
-              "pts": 270,
-              "description": ""
-            },
-            {
-              "id": "af42-b154-2340-dbab",
-              "name": "Emperor Class Battleship",
-              "pts": 400,
-              "description": ""
-            },
-            {
-              "id": "4326-b30c-f2f2-25df",
-              "name": "Apocalypse Class Battleship",
-              "pts": 335,
-              "description": ""
-            },
-            {
-              "id": "e975-cb0d-2ccb-db88",
-              "name": "Oberon Class Battleship",
-              "pts": 335,
-              "description": ""
-            },
-            {
-              "id": "08d7-8fa3-be37-4209",
-              "name": "Avenger Class Grand Cruiser",
-              "pts": 265,
-              "description": ""
-            },
-            {
-              "id": "25d0-5f2b-6b9f-043b",
-              "name": "Exorcist Class Grand Cruiser",
-              "pts": 265,
-              "description": ""
-            },
-            {
-              "id": "b589-eac0-04b1-246a",
-              "name": "Armageddon Class Battlecruiser",
-              "pts": 280,
-              "description": ""
-            },
-            {
-              "id": "c482-8136-c1a7-c1de",
-              "name": "Hellgate Class Heavy Cruiser",
-              "pts": 310,
-              "description": ""
-            },
-            {
-              "id": "1734-30ce-ee76-bc74",
-              "name": "Crusade-Era Battlebarge",
-              "pts": 445,
-              "description": ""
-            },
-            {
-              "id": "e8dd-0916-7cbc-95b2",
-              "name": "Venerable Battlebarge Seditio Opprimere",
-              "pts": 450,
-              "description": ""
-            },
-            {
-              "id": "2343-69f3-f40a-66b2",
-              "name": "Loyalist Venerable Battlebarge",
-              "pts": 445,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
     "95ed-7cb1-547e-b6d4": {
       "id": "95ed-7cb1-547e-b6d4",
       "name": "Dictator Class Cruiser",
@@ -16628,12 +15736,6 @@
           "Fire Arc": "Left/Right/Front"
         },
         {
-          "name": "Ark Mechanicus Launch Bays",
-          "Range/Speed": "Fury Interceptors: 30cm Starhawk Bombers: 20cm",
-          "Firepower/Str": "2 Squadrons",
-          "Fire Arc": "-"
-        },
-        {
           "name": "Ark Mechanicus Port Lance Battery",
           "Range/Speed": "60cm",
           "Firepower/Str": "2",
@@ -16756,12 +15858,6 @@
           "Range/Speed": "60cm",
           "Firepower/Str": "1",
           "Fire Arc": "Left/Right/Front"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Torpedoes",
@@ -17156,12 +16252,6 @@
           "Fire Arc": "Left/Right/Front"
         },
         {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Torpedoes",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
@@ -17222,12 +16312,6 @@
           "Range/Speed": "30cm",
           "Firepower/Str": "2",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
         },
         {
           "name": "Prow Torpedoes",
@@ -17487,12 +16571,6 @@
           "Fire Arc": "Right"
         },
         {
-          "name": "Prow Nova Cannon",
-          "Range/Speed": "30-150",
-          "Firepower/Str": "1",
-          "Fire Arc": "Front"
-        },
-        {
           "name": "Prow Torpedoes",
           "Range/Speed": "30cm",
           "Firepower/Str": "6",
@@ -17530,131 +16608,6 @@
             {
               "id": "33dc-d730-00e1-bc0b",
               "name": "Prow Torpedoes",
-              "pts": 0,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
-    "371e-1cad-8a60-5b6e": {
-      "id": "371e-1cad-8a60-5b6e",
-      "name": "Legion",
-      "faction": "Armada Imperialis",
-      "pts": 0,
-      "category": "Fleet Commander",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Select Legion",
-          "options": [
-            {
-              "id": "316a-7569-f22e-dacb",
-              "name": "Alpha Legion",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "ce48-b472-0635-9033",
-              "name": "Blood Angels",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "c9df-258b-685c-efc7",
-              "name": "Dark Angels",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "0b4f-d2f5-c6d4-86df",
-              "name": "Death Guard",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "a960-45ed-69d7-d017",
-              "name": "Emperor's Children",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "9f34-6aeb-b402-4359",
-              "name": "Imperial Fists",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "d08c-5ce6-47f8-f543",
-              "name": "Iron Hands",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "2e9d-815e-1fa5-a475",
-              "name": "Iron Warriors",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "65c6-6b7c-b382-bdd6",
-              "name": "Night Lords",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "75a6-b3ff-3c20-354b",
-              "name": "Raven Guard",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "4dd8-5ef4-cf1b-20a4",
-              "name": "Salamanders",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "aa54-abe4-293e-feff",
-              "name": "Sons of Horus",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "f4e5-79c9-a2fb-8eca",
-              "name": "Space Wolves",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "c532-18d8-942f-408e",
-              "name": "Thousand Sons",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "3472-3986-0c86-e4b3",
-              "name": "Ultramarines",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "f0a7-64e9-9075-3ef1",
-              "name": "White Scars",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "ab87-3023-27e9-d6a6",
-              "name": "Word Bearers",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "b55c-8777-af51-6735",
-              "name": "World Eaters",
               "pts": 0,
               "description": ""
             }
@@ -18596,7 +17549,7 @@
       "specialRules": [],
       "upgrades": [
         {
-          "group": "Extra Admiral Re-Rolls",
+          "group": "Extra Admiral Re-rolls",
           "options": [
             {
               "id": "356ee19f-2087-4de5-9632-6f26566b92f5",
@@ -18730,63 +17683,6 @@
       "specialRules": [],
       "upgrades": []
     },
-    "3a978ff1-809f-4409-b08d-a39333b70e0d": {
-      "id": "3a978ff1-809f-4409-b08d-a39333b70e0d",
-      "name": "Grey Knights Battlebarge",
-      "faction": "Armada Imperialis",
-      "pts": 440,
-      "category": "Battleship",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
-    "93575f7a-0c82-481b-aca4-dc540fa69876": {
-      "id": "93575f7a-0c82-481b-aca4-dc540fa69876",
-      "name": "Grey Knights Strike Cruiser",
-      "faction": "Armada Imperialis",
-      "pts": 270,
-      "category": "Cruiser",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": [
-        {
-          "group": "Armament Option",
-          "options": [
-            {
-              "id": "2b401cbc-300f-4cc4-b83b-08868c8ab03b",
-              "name": "Launch Bay",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "9cd6a2ab-a71c-4e71-afea-cde401df537f",
-              "name": "Torpedoes",
-              "pts": 0,
-              "description": ""
-            },
-            {
-              "id": "0b55dbde-8407-4f9e-b952-252de9bd31be",
-              "name": "Bombardment Cannon",
-              "pts": 0,
-              "description": ""
-            }
-          ]
-        }
-      ]
-    },
-    "a46373ab-15b6-42a0-8156-67edfe0c1866": {
-      "id": "a46373ab-15b6-42a0-8156-67edfe0c1866",
-      "name": "Inquisition Blackship",
-      "faction": "Armada Imperialis",
-      "pts": 300,
-      "category": "Battleship",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
-    },
     "fb307851-3d74-495c-9baa-a44ac4ba13b9": {
       "id": "fb307851-3d74-495c-9baa-a44ac4ba13b9",
       "name": "Inquisitor Lord",
@@ -18821,17 +17717,6 @@
           ]
         }
       ]
-    },
-    "49fa463c-1029-48dd-9b9e-f97f167c69d2": {
-      "id": "49fa463c-1029-48dd-9b9e-f97f167c69d2",
-      "name": "Inquisitorial Cruiser",
-      "faction": "Armada Imperialis",
-      "pts": 270,
-      "category": "Cruiser",
-      "stats": {},
-      "armament": [],
-      "specialRules": [],
-      "upgrades": []
     },
     "0376-f1a7-5fee-7f9a": {
       "id": "0376-f1a7-5fee-7f9a",
@@ -19185,12 +18070,6 @@
           "Range/Speed": "60cm",
           "Firepower/Str": "6",
           "Fire Arc": "Right"
-        },
-        {
-          "name": "Chaos Battlebarge Prow Torpedo Tubes",
-          "Range/Speed": "30cm",
-          "Firepower/Str": "8",
-          "Fire Arc": "Front"
         },
         {
           "name": "Dorsal Lances",

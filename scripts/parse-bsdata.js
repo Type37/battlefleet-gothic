@@ -528,6 +528,113 @@ function buildDatabase(catalogues) {
   return db;
 }
 
+// ── Post-parse cleanup ─────────────────────────────────────────────────────────
+// BSData carries structural noise that misrepresents ships. This pass repairs the
+// built database so the app can trust it: armament dedup, mutually-exclusive prow
+// weapons, commander Leadership modelling, weaponless ghost hulls, and typos.
+
+const CAPITAL = new Set(['Battleship','Battlecruiser','Grand Cruiser','Cruiser','Light Cruiser','Heavy Cruiser']);
+
+function cleanDatabase(db) {
+  const dropped = [];
+
+  for (const [id, ship] of Object.entries(db.ships)) {
+    // 1. Typos & inconsistent group names
+    ship.name = ship.name.replace(/Varient/g, 'Variant');
+    (ship.upgrades || []).forEach(function(g) {
+      if (g.group) g.group = g.group.replace(/Varient/g, 'Variant').replace(/Re-Rolls/g, 'Re-rolls');
+    });
+
+    // 2. Dedup identical armament lines
+    if (ship.armament && ship.armament.length) {
+      const seen = new Set();
+      ship.armament = ship.armament.filter(function(a) {
+        const k = [a.name, a['Range/Speed'], a['Firepower/Str'], a['Fire Arc']].join('|');
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+
+      // 3. Strip base-armament weapons that are actually PAID prow/refit options —
+      //    the default (0-pt) loadout stays; the alternative belongs to upgrades.
+      const paidOptionNames = [];
+      (ship.upgrades || []).forEach(function(g) {
+        g.options.forEach(function(o) {
+          if (o.pts > 0 && o.name) paidOptionNames.push(o.name.toLowerCase());
+        });
+      });
+      if (paidOptionNames.length) {
+        ship.armament = ship.armament.filter(function(a) {
+          const an = (a.name || '').toLowerCase();
+          return !paidOptionNames.some(function(p) {
+            return an === p || an === 'prow ' + p || an.indexOf(p) !== -1 && p.length > 6;
+          });
+        });
+      }
+    }
+
+    // 4. Commander Leadership modelling — lift "Ldr N"/"Ld N" out of the display
+    //    name into the Leadership stat so duplicates collapse cleanly.
+    if (ship.category === 'Fleet Commander') {
+      const m = ship.name.match(/\s+L(?:d|dr)\s*(\d+)\s*$/i);
+      if (m) {
+        ship.name = ship.name.replace(/\s+L(?:d|dr)\s*\d+\s*$/i, '').trim();
+        ship.stats = ship.stats || {};
+        if (!ship.stats.Leadership) ship.stats.Leadership = m[1];
+      }
+      if (ship.stats) delete ship.stats['Pg.'];
+    }
+  }
+
+  // 5. Drop weaponless / free capital ships (broken/leaked entries) and junk
+  //    commander markers. Faction-special free commanders whose cost lives in
+  //    refits/re-rolls (Mechanicus Archmagos, Hive Mind) are kept deliberately.
+  const JUNK_COMMANDERS = new Set(['legion']);
+  for (const [id, ship] of Object.entries(db.ships)) {
+    if (CAPITAL.has(ship.category) && (!ship.armament || !ship.armament.length || !ship.pts)) {
+      dropped.push(id);
+    }
+    if (ship.category === 'Fleet Commander' && JUNK_COMMANDERS.has(ship.name.toLowerCase())) {
+      dropped.push(id);
+    }
+    // Drop truly-empty commander stubs (no stats, no points, no upgrades)
+    if (ship.category === 'Fleet Commander' && !ship.pts &&
+        (!ship.stats || !Object.keys(ship.stats).length) &&
+        (!ship.upgrades || !ship.upgrades.length)) {
+      dropped.push(id);
+    }
+  }
+
+  // 6. Per-faction dedup by cleaned name — keep the richest entry
+  //    (most stats, then most armament, then has upgrades).
+  function richness(s) {
+    return Object.keys(s.stats || {}).length * 100 + (s.armament || []).length * 10 + (s.upgrades || []).length;
+  }
+  for (const [faction, data] of Object.entries(db.factions)) {
+    const byName = {};
+    data.ships.forEach(function(id) {
+      const s = db.ships[id];
+      if (!s || dropped.indexOf(id) !== -1) return;
+      const key = (s.category === 'Fleet Commander' ? 'cmd:' : '') + s.name.toLowerCase();
+      if (!byName[key]) { byName[key] = id; return; }
+      const keep = richness(db.ships[byName[key]]) >= richness(s) ? byName[key] : id;
+      const drop = keep === byName[key] ? id : byName[key];
+      byName[key] = keep;
+      dropped.push(drop);
+    });
+  }
+
+  // Apply drops
+  const dropSet = new Set(dropped);
+  dropSet.forEach(function(id) { delete db.ships[id]; });
+  for (const data of Object.values(db.factions)) {
+    data.ships = data.ships.filter(function(id) { return !dropSet.has(id); });
+  }
+
+  console.log('\nCleanup: removed ' + dropSet.size + ' broken/duplicate entries');
+  return db;
+}
+
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 async function main() {
@@ -564,7 +671,7 @@ async function main() {
     }
   }
 
-  const db = buildDatabase(catalogues);
+  const db = cleanDatabase(buildDatabase(catalogues));
   const shipCount = Object.keys(db.ships).length;
   const factionCount = Object.keys(db.factions).length;
   console.log('\nBuilt database: ' + factionCount + ' factions, ' + shipCount + ' ships/units');

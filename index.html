@@ -68,11 +68,13 @@
           <div class="empty-rule"></div>
         </div>
         <button class="commission-btn" id="btn-new-fleet">✠ &nbsp;Commission New Fleet</button>
+        <button class="import-btn" id="btn-import-fleet">⭱ &nbsp;Import Backup File</button>
+        <input type="file" id="import-file-input" accept=".json,application/json" hidden>
       </div>
 
       <!-- Fleet: manifest -->
       <div id="fleet-content" hidden>
-        <div id="validation-panel"></div>
+        <div id="validation-panel" aria-live="polite" aria-label="Fleet validation"></div>
         <div id="fleet-body"></div>
       </div>
 
@@ -84,7 +86,7 @@
 
         <!-- Mobile-only close bar -->
         <header class="registry-mobilebar">
-          <button class="mast-back" id="btn-close-registry">‹</button>
+          <button class="mast-back" id="btn-close-registry" aria-label="Close registry">‹</button>
           <div class="registry-mobilebar-title" id="registry-mobile-title">Registry</div>
           <div style="width:44px"></div>
         </header>
@@ -107,7 +109,7 @@
             <div id="wiz-step-3" class="wiz-step" hidden>
               <label class="field-label" for="new-fleet-name">Fleet Name</label>
               <input class="field-input" id="new-fleet-name" type="text" placeholder="e.g. Gothic Patrol" maxlength="40" autocomplete="off">
-              <label class="field-label" style="margin-top:18px">Points Limit</label>
+              <label class="field-label" for="new-fleet-pts" style="margin-top:18px">Points Limit</label>
               <div class="pts-chips" id="pts-chips">
                 <button class="pts-chip" data-pts="750">750</button>
                 <button class="pts-chip" data-pts="1000">1000</button>
@@ -151,9 +153,9 @@
 
 <!-- ══════════ Export overlay ══════════ -->
 <div id="overlay-export" class="overlay" hidden>
-  <div class="overlay-sheet">
+  <div class="overlay-sheet" role="dialog" aria-modal="true" aria-labelledby="export-title">
     <header class="overlay-head">
-      <div class="overlay-title">Export Fleet</div>
+      <div class="overlay-title" id="export-title">Export Fleet</div>
       <button class="overlay-close" id="btn-close-export" aria-label="Close">✕</button>
     </header>
     <div class="overlay-body">
@@ -161,7 +163,9 @@
         <button class="primary-btn" id="btn-print-cards">⎙ &nbsp;Print Ship Cards</button>
         <button class="ghost-btn" id="btn-print-roster">Print Roster</button>
         <button class="ghost-btn" id="btn-copy-text">Copy as Text</button>
+        <button class="ghost-btn" id="btn-download-fleet">⭳ Save Backup File</button>
       </div>
+      <p class="export-hint">Backup files (.bfg.json) can be re-imported from the Fleets screen — use them to move a fleet between devices or share it.</p>
       <pre class="export-preview" id="export-preview"></pre>
     </div>
   </div>
@@ -169,7 +173,7 @@
 
 <!-- ══════════ Upgrades modal ══════════ -->
 <div id="modal-upgrades" class="overlay" hidden>
-  <div class="overlay-sheet overlay-sheet-narrow">
+  <div class="overlay-sheet overlay-sheet-narrow" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <header class="overlay-head">
       <div class="overlay-title" id="modal-title">Refit &amp; Upgrades</div>
       <button class="overlay-close" id="modal-close" aria-label="Close">✕</button>

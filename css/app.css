@@ -5,9 +5,19 @@
    ═══════════════════════════════════════════════════════════════ */
 
 @font-face {
-  font-family: 'Fette Gotisch';
-  src: url('../assets/fonts/DSFetteGotisch.ttf') format('truetype');
-  font-weight: normal; font-style: normal; font-display: swap;
+  font-family: 'Oswald';
+  src: url('../assets/fonts/Oswald-500.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../assets/fonts/Oswald-600.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../assets/fonts/Oswald-700.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Caslon Antique';
@@ -36,8 +46,8 @@
   --line2:    #37405233;
   /* text */
   --bone:     #e6dfca;
-  --bone-dim: #a89f88;
-  --faint:    #6c6f7d;
+  --bone-dim: #b3aa92;   /* raised for AA on dark grounds */
+  --faint:    #9297a6;   /* raised from #6c6f7d — now ~4.6:1 on --ink2 */
   /* accents */
   --blood:    #8e1a17;
   --blood2:   #a92220;
@@ -63,7 +73,7 @@
   --f-pirates:  #9d8550;
   --f-armada:   #b09048;
 
-  --gotisch: 'Fette Gotisch', 'Caslon Antique', serif;
+  --gotisch: 'Oswald', 'Arial Narrow', system-ui, sans-serif;  /* display: heavy condensed caps, matches the book */
   --caslon:  'Caslon Antique', Georgia, serif;
   --data:    system-ui, -apple-system, 'Segoe UI', sans-serif;
 
@@ -86,6 +96,15 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 input { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
+
+/* Display face — Oswald reads as heavy condensed caps, matching the rulebook titling */
+.mast-title, .mast-fleet-name, .fleet-row-name, .empty-title,
+.ship-row-name, .pick-row-name, .overlay-title, .registry-mobilebar-title,
+.pcard-class, .print-roster h1 {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .015em;
+}
 
 /* subtle vertical grain on the void */
 #app {
@@ -347,6 +366,37 @@ input { font: inherit; color: inherit; }
 }
 .commission-btn:hover { filter: brightness(1.15); }
 
+.import-btn {
+  display: block;
+  width: calc(100% - 36px);
+  margin: 8px auto 0;
+  padding: 11px;
+  font-family: var(--data);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--bone-dim);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: color .12s, border-color .12s;
+}
+.import-btn:hover { color: var(--bone); border-color: var(--gold-dim); }
+.export-hint { font-style: italic; font-size: 13px; color: var(--faint); margin-top: 10px; }
+
+/* expand affordance — chevron on expandable rows only (not the commander row) */
+[data-toggle] .ship-row-name::before,
+[data-toggle] .pick-row-name::before {
+  content: '\25B8';
+  display: inline-block;
+  color: var(--faint);
+  font-size: .78em;
+  margin-right: 8px;
+  vertical-align: 1px;
+  transition: transform .15s ease;
+}
+.ship-row.open [data-toggle] .ship-row-name::before,
+.pick-row.open [data-toggle] .pick-row-name::before { transform: rotate(90deg); }
+
 .empty-state { text-align: center; padding: 42px 24px; }
 .empty-rule {
   height: 1px; width: 120px; margin: 0 auto;
@@ -421,7 +471,7 @@ input { font: inherit; color: inherit; }
 .ship-row-pts small { display: block; font-size: 9px; font-weight: 400; color: var(--faint); text-align: right; letter-spacing: 1px; }
 .row-x {
   flex: none;
-  width: 30px; height: 30px;
+  width: 38px; height: 38px;
   border-radius: 3px;
   color: var(--faint);
   font-size: 15px;
@@ -429,15 +479,23 @@ input { font: inherit; color: inherit; }
 }
 .row-x:hover { color: var(--err-tx); background: var(--err-bg); }
 
+/* focus-safe row toggle (replaces inline all:unset which stripped the outline) */
+.row-toggle {
+  display: block; flex: 1; min-width: 0;
+  text-align: left;
+  background: none; border: none; padding: 0;
+  font: inherit; color: inherit; cursor: pointer;
+}
+
 /* squadron count stepper */
 .sqd-step { display: flex; align-items: center; gap: 2px; flex: none; }
 .sqd-btn {
-  width: 26px; height: 26px;
+  width: 34px; height: 34px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--hull);
   color: var(--bone-dim);
-  font-family: var(--data); font-size: 14px; line-height: 1;
+  font-family: var(--data); font-size: 15px; line-height: 1;
   transition: color .12s, border-color .12s;
 }
 .sqd-btn:hover:not(:disabled) { color: var(--bone); border-color: var(--gold-dim); }
@@ -459,6 +517,17 @@ input { font: inherit; color: inherit; }
 .ship-row.open .ship-detail { max-height: 1200px; opacity: 1; }
 .ship-detail-pad { padding: 4px 18px 16px; }
 
+.ship-art {
+  display: block;
+  width: 100%;
+  max-height: 210px;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  margin: 2px 0 12px;
+}
+
 .stat-strip {
   display: flex; flex-wrap: wrap; gap: 6px;
   margin: 8px 0 10px;
@@ -473,6 +542,8 @@ input { font: inherit; color: inherit; }
 }
 .stat-cell b { display: block; font-family: var(--data); font-size: 14px; font-variant-numeric: tabular-nums; }
 .stat-cell span { display: block; font-family: var(--data); font-size: 8.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
+
+.stat-key { font-size: 11.5px; font-style: italic; color: var(--faint); line-height: 1.4; margin: -2px 0 10px; }
 
 .arm-table {
   width: 100%;
@@ -694,9 +765,9 @@ input { font: inherit; color: inherit; }
 .search-input::placeholder { color: var(--faint); font-style: italic; }
 .search-clear {
   position: absolute;
-  right: 26px; top: 50%;
+  right: 22px; top: 50%;
   transform: translateY(-50%);
-  width: 28px; height: 28px;
+  width: 38px; height: 38px;
   color: var(--faint);
   border-radius: 3px;
 }
@@ -734,12 +805,12 @@ input { font: inherit; color: inherit; }
 }
 .pick-add {
   flex: none;
-  width: 34px; height: 34px;
+  width: 40px; height: 40px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--hull);
   color: var(--bone-dim);
-  font-size: 19px; line-height: 1;
+  font-size: 20px; line-height: 1;
   transition: all .12s;
 }
 .pick-add:hover { border-color: var(--gold); color: var(--gold); }
@@ -1008,6 +1079,7 @@ input { font: inherit; color: inherit; }
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+.pcard-art { width: 100%; height: 13mm; object-fit: contain; background: #000; flex: none; }
 .pcard-body { flex: 1; display: flex; gap: 2mm; padding: 1.6mm 3mm; min-height: 0; }
 .pcard-left { width: 30mm; flex: none; display: flex; flex-direction: column; gap: 1.2mm; }
 .pcard-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1mm; }
