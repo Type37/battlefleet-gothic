@@ -1,39 +1,9 @@
 /* ═══════════════════════════════════════════════════════════════
    BATTLEFLEET GOTHIC : FLEET REGISTRY
    Design: the 1999 rulebook & Fleet Deck cards. Blood-red bands,
-   condensed Oswald class names, bone text on void-blue, ledger rows.
+   bone text on void-blue, ledger rows. Native system type — no
+   webfonts to load; hierarchy comes from weight and tracking.
    ═══════════════════════════════════════════════════════════════ */
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('../assets/fonts/Oswald-500.ttf') format('truetype');
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Oswald';
-  src: url('../assets/fonts/Oswald-600.ttf') format('truetype');
-  font-weight: 600; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Oswald';
-  src: url('../assets/fonts/Oswald-700.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Caslon Antique';
-  src: url('../assets/fonts/CaslonAntique.ttf') format('truetype');
-  font-weight: normal; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Caslon Antique';
-  src: url('../assets/fonts/CaslonAntique-Bold.ttf') format('truetype');
-  font-weight: bold; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Caslon Antique';
-  src: url('../assets/fonts/CaslonAntique-Italic.ttf') format('truetype');
-  font-weight: normal; font-style: italic; font-display: swap;
-}
 
 :root {
   /* ground */
@@ -73,9 +43,10 @@
   --f-pirates:  #9d8550;
   --f-armada:   #b09048;
 
-  --gotisch: 'Oswald', 'Arial Narrow', system-ui, sans-serif;  /* display: heavy condensed caps, matches the book */
-  --caslon:  'Caslon Antique', Georgia, serif;
-  --data:    system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sys: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --gotisch: var(--sys);  /* display: weight + tracking carry hierarchy, not a separate face */
+  --caslon:  var(--sys);
+  --data:    var(--sys);
 
   --mast-h: 64px;
   --nav-h: 58px;
@@ -97,9 +68,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 input { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
 
-/* Display face: Oswald reads as heavy condensed caps, matching the rulebook titling.
-   Weight carries hierarchy: 700 for brand/fleet identity, 600 for ship-class names,
-   500 for the lighter mobile bar title. */
+/* Display treatment: uppercase + tracking, weight carries hierarchy —
+   700 for brand/fleet identity, 600 for ship-class names, 500 for the
+   lighter mobile bar title. */
 .mast-title, .mast-fleet-name, .fleet-row-name, .empty-title,
 .ship-row-name, .pick-row-name, .overlay-title, .registry-mobilebar-title,
 .pcard-class, .print-roster h1 {
@@ -617,17 +588,19 @@ input { font: inherit; color: inherit; }
 .wstep.done { opacity: .7; }
 .wstep i {
   font-family: var(--caslon); font-style: normal; font-weight: bold;
-  font-size: 15px; color: var(--gold);
+  font-size: 16px; color: var(--gold);
 }
 .wstep em {
   font-family: var(--data); font-style: normal;
-  font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase;
+  font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase;
   color: var(--bone-dim);
 }
-.wizard-body { padding: 18px; }
+/* Capped width: on a wide right panel, full-bleed buttons and a Continue
+   button pinned to the far edge force needless mouse travel. */
+.wizard-body { padding: 24px; max-width: 640px; margin: 0 auto; }
 .wizard-foot {
   display: flex; justify-content: space-between; gap: 10px;
-  padding: 0 18px 18px;
+  max-width: 640px; margin: 0 auto; padding: 0 24px 24px;
 }
 .wizard-foot .primary-btn { margin-left: auto; }
 
@@ -653,16 +626,16 @@ input { font: inherit; color: inherit; }
   -webkit-mask: var(--fi) no-repeat center / contain;
   mask: var(--fi) no-repeat center / contain;
 }
-.faction-cell-name { font-family: var(--caslon); font-weight: bold; font-size: 15.5px; line-height: 1.15; }
+.faction-cell-name { font-family: var(--caslon); font-weight: bold; font-size: 17px; line-height: 1.15; }
 .faction-cell-sub {
-  font-family: var(--data); font-size: 10px;
+  font-family: var(--data); font-size: 11px;
   letter-spacing: 1px; text-transform: uppercase;
   color: var(--faint); margin-top: 2px;
 }
 
 .list-opt {
   display: block; width: 100%; text-align: left;
-  padding: 13px 16px;
+  padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--hull);
@@ -671,13 +644,13 @@ input { font: inherit; color: inherit; }
 }
 .list-opt:hover { border-color: var(--gold-dim); }
 .list-opt.selected { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
-.list-opt-name { font-family: var(--caslon); font-weight: bold; font-size: 15.5px; }
-.list-opt-sub { font-family: var(--data); font-size: 11px; color: var(--faint); margin-top: 2px; }
+.list-opt-name { font-family: var(--caslon); font-weight: bold; font-size: 17px; }
+.list-opt-sub { font-family: var(--data); font-size: 12.5px; color: var(--faint); margin-top: 2px; }
 
 .field-label {
   display: block;
-  font-family: var(--data); font-size: 10.5px;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-family: var(--data); font-size: 11.5px;
+  letter-spacing: 1.6px; text-transform: uppercase;
   color: var(--bone-dim);
   margin-bottom: 7px;
 }
@@ -695,8 +668,8 @@ input { font: inherit; color: inherit; }
 .pts-chips { display: flex; gap: 8px; margin-bottom: 10px; }
 .pts-chip {
   flex: 1;
-  padding: 9px 4px;
-  font-family: var(--data); font-size: 13px; font-weight: 600;
+  padding: 11px 6px;
+  font-family: var(--data); font-size: 14.5px; font-weight: 600;
   font-variant-numeric: tabular-nums;
   border: 1px solid var(--line);
   border-radius: 3px;
@@ -706,7 +679,7 @@ input { font: inherit; color: inherit; }
 }
 .pts-chip:hover { border-color: var(--gold-dim); }
 .pts-chip.active { border-color: var(--gold); color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
-.wiz-note { font-style: italic; font-size: 13.5px; color: var(--faint); margin-top: 16px; }
+.wiz-note { font-style: italic; font-size: 14px; color: var(--faint); margin-top: 16px; }
 
 .primary-btn {
   font-family: var(--data); font-size: 12px; font-weight: 600;

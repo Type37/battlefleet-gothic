@@ -585,12 +585,12 @@ function renderWizardLists() {
   const lists = fac ? fac.fleetLists : [];
   const box = $('fleet-list-options');
   if (!lists.length) {
-    box.innerHTML = `<p class="wiz-note">This registry holds no named fleet lists; the fleet will be chartered unaligned.</p>`;
+    box.innerHTML = `<p class="wiz-note">No named fleet lists for this faction — the fleet will be unaligned.</p>`;
     wizDraft.fleetList = '';
     return;
   }
   box.innerHTML =
-    `<p class="wiz-note" style="margin:0 0 12px">Each fleet list allows a different mix of ships and enforces its own restrictions; the registry will only offer vessels legal for the list you pick.</p>` +
+    `<p class="wiz-note" style="margin:0 0 12px">Ships offered depend on which list you pick.</p>` +
     lists.map(l => `
     <button class="list-opt ${wizDraft.fleetList === l.name ? 'selected' : ''}" data-list="${escHtml(l.name)}">
       <span class="list-opt-name" style="display:block">${escHtml(l.name)}</span>
