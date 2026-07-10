@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Battlefleet Gothic Fleet Registry</title>
+  <script>
+    // Set before first paint so there's no flash of the wrong theme.
+    // Light is the default — dark only applies once the user picks it.
+    try {
+      if (localStorage.getItem('bfg-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -49,6 +58,10 @@
         <button class="menu-item danger" id="fleet-menu-delete">Strike from Registry</button>
       </div>
     </div>
+
+    <button class="mast-btn mast-btn-icon mast-theme-toggle" id="btn-theme-toggle" aria-label="Switch to dark mode">
+      <span id="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
   </header>
 
   <!-- ══════════ Deck : two columns ══════════ -->

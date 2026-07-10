@@ -223,6 +223,28 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
+/* ── Theme (light default; dark by explicit choice only) ─────── */
+// Icon shows the theme a click switches TO, not the current one.
+const THEME_ICONS = {
+  light: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>',
+  dark:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>',
+};
+function currentTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+}
+function applyTheme(theme) {
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  else document.documentElement.removeAttribute('data-theme');
+  const next = theme === 'dark' ? 'light' : 'dark';
+  $('theme-toggle-icon').innerHTML = THEME_ICONS[next];
+  $('btn-theme-toggle').setAttribute('aria-label', `Switch to ${next} mode`);
+}
+function setTheme(theme) {
+  applyTheme(theme);
+  try { localStorage.setItem('bfg-theme', theme); } catch (e) {}
+}
+function initTheme() { applyTheme(currentTheme()); }
+
 /* ── Overlay focus management ──────────────────────────────── */
 let lastFocus = null;
 function focusablesIn(el) {
@@ -917,6 +939,7 @@ function bindEvents() {
   // masthead
   $('btn-back-home').addEventListener('click', () => { activeFleet = null; setState('home'); });
   $('btn-export').addEventListener('click', openExport);
+  $('btn-theme-toggle').addEventListener('click', () => setTheme(currentTheme() === 'dark' ? 'light' : 'dark'));
   $('btn-fleet-menu').addEventListener('click', e => {
     e.stopPropagation();
     $('fleet-menu-dropdown').hidden = !$('fleet-menu-dropdown').hidden;
@@ -1092,6 +1115,7 @@ function bindEvents() {
 
 /* ── Boot ──────────────────────────────────────────────────── */
 async function boot() {
+  initTheme();
   try {
     const res = await fetch('data/ship_database.json');
     DB = await res.json();
@@ -1103,7 +1127,7 @@ async function boot() {
     ART = new Set(ids);
   } catch (e) { ART = new Set(); }
   if (!DB) {
-    document.body.innerHTML = `<div style="padding:40px;font-family:serif;color:#e6dfca;text-align:center">
+    document.body.innerHTML = `<div style="padding:40px;font-family:serif;text-align:center">
       <h1 style="font-size:22px">The registry archives are unreachable</h1>
       <p style="opacity:.7">ship_database.json failed to load; serve this app over HTTP.</p></div>`;
     return;

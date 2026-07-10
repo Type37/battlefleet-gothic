@@ -5,29 +5,37 @@
    webfonts to load; hierarchy comes from weight and tracking.
    ═══════════════════════════════════════════════════════════════ */
 
+/* Light is the default theme; [data-theme="dark"] overrides every token
+   below. Blood/gold/faction hues stay constant across both — only the
+   neutral ground and text scale flips. --on-blood/--on-gold exist because
+   a few surfaces (ledger bands, primary buttons, the checked-upgrade box)
+   sit on a fixed accent color regardless of theme, so their text can't
+   use the theme-flipping --bone/--ink tokens without breaking contrast. */
 :root {
   /* ground */
-  --ink:      #0d0f14;
-  --ink2:     #10131a;
-  --hull:     #151923;
-  --hull2:    #1b202c;
-  --hull3:    #222836;
-  --line:     #262c39;
-  --line2:    #37405233;
+  --ink:      #f2ede0;
+  --ink2:     #e8e0c9;
+  --hull:     #ffffff;
+  --hull2:    #f7f2e2;
+  --hull3:    #efe6cd;
+  --line:     #d9cfae;
+  --line2:    #c4b78c40;
   /* text */
-  --bone:     #e6dfca;
-  --bone-dim: #b3aa92;   /* raised for AA on dark grounds */
-  --faint:    #9297a6;   /* raised from #6c6f7d, now ~4.6:1 on --ink2 */
+  --bone:     #241d12;
+  --bone-dim: #5c4f36;
+  --faint:    #766646;
   /* accents */
   --blood:    #8e1a17;
   --blood2:   #a92220;
   --blood-deep: #5e1210;
-  --gold:     #c9a44a;
-  --gold-dim: #8d7434;
+  --gold:     #93691a;
+  --gold-dim: #b08d3e;
+  --on-blood: #f0ead8;
+  --on-gold:  #faf6ea;
   /* semantic */
-  --warn-bg: rgba(190,120,20,.12); --warn-bd: rgba(200,140,40,.45); --warn-tx: #d9a44a;
-  --err-bg:  rgba(150,30,25,.14);  --err-bd:  rgba(190,60,50,.5);   --err-tx:  #e08d82;
-  --ok-tx:   #7fb98a;
+  --warn-bg: rgba(190,120,20,.10); --warn-bd: rgba(170,110,20,.45); --warn-tx: #7a5210;
+  --err-bg:  rgba(150,30,25,.08);  --err-bd:  rgba(160,50,40,.4);   --err-tx:  #9c2e26;
+  --ok-tx:   #2f7d43;
   /* faction accents (muted, engraved) */
   --f-imperial: #b03a2e;
   --f-chaos:    #8a4fb0;
@@ -43,6 +51,10 @@
   --f-pirates:  #9d8550;
   --f-armada:   #b09048;
 
+  --app-glow: #fffdf5;
+  --mast-grad-1: #fbf7ec;
+  --mast-grad-2: #f2ead2;
+
   --sys: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --gotisch: var(--sys);  /* display: weight + tracking carry hierarchy, not a separate face */
   --caslon:  var(--sys);
@@ -50,6 +62,28 @@
 
   --mast-h: 64px;
   --nav-h: 58px;
+}
+
+:root[data-theme="dark"] {
+  --ink:      #0d0f14;
+  --ink2:     #10131a;
+  --hull:     #151923;
+  --hull2:    #1b202c;
+  --hull3:    #222836;
+  --line:     #262c39;
+  --line2:    #37405233;
+  --bone:     #e6dfca;
+  --bone-dim: #b3aa92;
+  --faint:    #9297a6;
+  --gold:     #c9a44a;
+  --gold-dim: #8d7434;
+  --on-gold:  #1a1408;
+  --warn-bg: rgba(190,120,20,.12); --warn-bd: rgba(200,140,40,.45); --warn-tx: #d9a44a;
+  --err-bg:  rgba(150,30,25,.14);  --err-bd:  rgba(190,60,50,.5);   --err-tx:  #e08d82;
+  --ok-tx:   #7fb98a;
+  --app-glow: #161b28;
+  --mast-grad-1: #141824;
+  --mast-grad-2: #10131c;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,13 +115,13 @@ input { font: inherit; color: inherit; }
 .fleet-row-name, .ship-row-name, .pick-row-name, .empty-title, .overlay-title, .pcard-class { font-weight: 600; }
 .registry-mobilebar-title { font-weight: 500; }
 
-/* subtle vertical grain on the void */
+/* subtle vertical grain */
 #app {
   height: 100dvh;
   display: flex;
   flex-direction: column;
   background:
-    radial-gradient(ellipse 120% 60% at 50% -10%, #161b28 0%, transparent 60%),
+    radial-gradient(ellipse 120% 60% at 50% -10%, var(--app-glow) 0%, transparent 60%),
     var(--ink);
 }
 
@@ -100,7 +134,7 @@ input { font: inherit; color: inherit; }
   gap: 20px;
   padding: 0 20px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #141824 0%, #10131c 100%);
+  background: linear-gradient(180deg, var(--mast-grad-1) 0%, var(--mast-grad-2) 100%);
   position: relative;
   z-index: 20;
 }
@@ -205,6 +239,13 @@ input { font: inherit; color: inherit; }
 }
 .mast-btn:hover { color: var(--bone); border-color: var(--gold-dim); }
 .mast-btn-icon { padding: 9px 12px; letter-spacing: 0; font-weight: 700; }
+.mast-theme-toggle {
+  margin-left: auto;
+  flex: none;
+  padding: 9px;
+  color: var(--bone-dim);
+}
+.mast-theme-toggle svg { display: block; width: 18px; height: 18px; }
 
 .menu-dropdown {
   position: absolute;
@@ -288,7 +329,7 @@ input { font: inherit; color: inherit; }
 }
 .ledger-band-red {
   background: linear-gradient(180deg, var(--blood) 0%, var(--blood-deep) 100%);
-  color: var(--bone);
+  color: var(--on-blood);
   border-bottom: 1px solid #000;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
@@ -339,7 +380,7 @@ input { font: inherit; color: inherit; }
   font-weight: 600;
   letter-spacing: .4px;
   text-transform: uppercase;
-  color: var(--bone);
+  color: var(--on-blood);
   background: linear-gradient(180deg, var(--blood2), var(--blood));
   border: 1px solid var(--blood2);
   border-radius: 3px;
@@ -410,7 +451,7 @@ input { font: inherit; color: inherit; }
   font-family: var(--data);
   font-size: 11px; font-weight: 700;
   letter-spacing: .5px; text-transform: uppercase;
-  color: var(--bone);
+  color: var(--on-blood);
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 .man-band-count { font-weight: 400; opacity: .75; letter-spacing: .3px; }
@@ -691,7 +732,7 @@ input { font: inherit; color: inherit; }
 .primary-btn {
   font-family: var(--data); font-size: 12px; font-weight: 600;
   letter-spacing: .4px; text-transform: uppercase;
-  color: var(--bone);
+  color: var(--on-blood);
   background: linear-gradient(180deg, var(--blood2), var(--blood));
   border: 1px solid var(--blood2);
   border-radius: 3px;
@@ -897,7 +938,7 @@ input { font: inherit; color: inherit; }
   content: '✓';
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--ink); font-weight: 700;
+  font-size: 11px; color: var(--on-gold); font-weight: 700;
 }
 .upg-opt-name { flex: 1; font-size: 14.5px; }
 .upg-opt-desc { font-size: 12px; color: var(--faint); font-style: italic; margin-top: 2px; }
